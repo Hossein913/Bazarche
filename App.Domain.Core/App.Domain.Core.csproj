@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Booth\Contracts\AppServices\" />
+    <Folder Include="Booth\Contracts\Repositories\" />
+    <Folder Include="Booth\Contracts\Services\" />
+    <Folder Include="Booth\Dtos\" />
+    <Folder Include="Booth\Entities\" />
+    <Folder Include="Booth\Enums\" />
+    <Folder Include="Common\Contracts\AppServices\" />
+    <Folder Include="Common\Contracts\Repositories\" />
+    <Folder Include="Common\Contracts\Services\" />
+    <Folder Include="Common\Dtos\" />
+    <Folder Include="Common\Entities\" />
+    <Folder Include="Common\Enums\" />
+    <Folder Include="Product\Contracts\AppServices\" />
+    <Folder Include="Product\Contracts\Repositories\" />
+    <Folder Include="Product\Contracts\Services\" />
+    <Folder Include="Product\Dtos\" />
+    <Folder Include="Product\Entities\" />
+    <Folder Include="Product\Enums\" />
+    <Folder Include="User\Contracts\AppServices\" />
+    <Folder Include="User\Contracts\Repositories\" />
+    <Folder Include="User\Contracts\Services\" />
+    <Folder Include="User\Dtos\" />
+    <Folder Include="User\Entities\" />
+    <Folder Include="User\Enums\" />
+  </ItemGroup>
+
+</Project>
