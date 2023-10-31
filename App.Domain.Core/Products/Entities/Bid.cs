@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace App.Domain.Core.Products.Entities;
 
-public partial class Bid
+public class Bid
 {
     public int Id { get; set; }
 
@@ -16,7 +16,7 @@ public partial class Bid
 
     public bool IsCancelled { get; set; }
 
-    public virtual ProductAction Action { get; set; } = null!;
+    public virtual Auction Action { get; set; } = null!;
 
     public virtual Customer Customer { get; set; } = null!;
 }

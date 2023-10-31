@@ -7,25 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Booths\Contracts\AppServices\" />
-    <Folder Include="Booths\Contracts\Repositories\" />
-    <Folder Include="Booths\Contracts\Services\" />
-    <Folder Include="Booths\Dtos\" />
+    <Folder Include="Booths\Contracts\IAppServices\" />
+    <Folder Include="Booths\Contracts\IServices\" />
     <Folder Include="Booths\Enums\" />
-    <Folder Include="Common\Contracts\AppServices\" />
-    <Folder Include="Common\Contracts\Repositories\" />
-    <Folder Include="Common\Contracts\Services\" />
-    <Folder Include="Common\Dtos\" />
+    <Folder Include="Common\Contracts\IAppServices\" />
+    <Folder Include="Common\Contracts\IServices\" />
     <Folder Include="Common\Enums\" />
-    <Folder Include="Products\Contracts\AppServices\" />
-    <Folder Include="Products\Contracts\Repositories\" />
-    <Folder Include="Products\Contracts\Services\" />
-    <Folder Include="Products\Dtos\" />
+    <Folder Include="Products\Contracts\IAppServices\" />
+    <Folder Include="Products\Contracts\IServices\" />
     <Folder Include="Products\Enums\" />
-    <Folder Include="User\Contracts\AppServices\" />
-    <Folder Include="User\Contracts\Repositories\" />
-    <Folder Include="User\Contracts\Services\" />
-    <Folder Include="User\Dtos\" />
+    <Folder Include="User\Contracts\IAppServices\" />
+    <Folder Include="User\Contracts\IServices\" />
     <Folder Include="User\Enums\" />
   </ItemGroup>
 

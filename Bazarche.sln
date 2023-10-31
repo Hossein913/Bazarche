@@ -19,21 +19,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{12C193F5-EC34-4005-8658-A0645790D7A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.Core", "App.Domain.Core\App.Domain.Core.csproj", "{75463EB7-EABB-4667-A619-4C5803E17DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Core", "App.Domain.Core\App.Domain.Core.csproj", "{75463EB7-EABB-4667-A619-4C5803E17DAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.Services", "App.Domain.Services\App.Domain.Services.csproj", "{A403803D-BEFF-4971-B02E-6D2446112DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Services", "App.Domain.Services\App.Domain.Services.csproj", "{A403803D-BEFF-4971-B02E-6D2446112DE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.AppServices", "App.Domain.AppServices\App.Domain.AppServices.csproj", "{6C1DA7B1-9C54-445C-B6D8-20708890290B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.AppServices", "App.Domain.AppServices\App.Domain.AppServices.csproj", "{6C1DA7B1-9C54-445C-B6D8-20708890290B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infra.Data.SqlServer.Ef", "App.Infra.Data.SqlServer.Ef\App.Infra.Data.SqlServer.Ef.csproj", "{DE52DB07-B2E5-4CA2-BB9E-FC162E18DC8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Data.SqlServer.Ef", "App.Infra.Data.SqlServer.Ef\App.Infra.Data.SqlServer.Ef.csproj", "{DE52DB07-B2E5-4CA2-BB9E-FC162E18DC8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infra.Data.Repos.Ef", "App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj", "{0387B4B3-6E8A-4B34-87F9-71C85F492025}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Data.Repos.Ef", "App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj", "{0387B4B3-6E8A-4B34-87F9-71C85F492025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.EndPoints.MvcUi", "App.EndPoints.MvcUi\App.EndPoints.MvcUi.csproj", "{B81C36A6-46B8-44B9-86FD-3F047E47EE01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoints.MvcUi", "App.EndPoints.MvcUi\App.EndPoints.MvcUi.csproj", "{B81C36A6-46B8-44B9-86FD-3F047E47EE01}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schaffold", "Schaffold", "{7E9584F4-0399-4FB7-941C-788DACD48412}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scaffold", "Scaffold", "{7E9584F4-0399-4FB7-941C-788DACD48412}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schaffold", "Schaffold\Schaffold.csproj", "{20A47867-A33E-4D39-BCD8-2F6D7C30757A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaffold", "Schaffold\Scaffold.csproj", "{20A47867-A33E-4D39-BCD8-2F6D7C30757A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

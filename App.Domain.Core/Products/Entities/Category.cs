@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace App.Domain.Core.Products.Entities;
 
-public partial class Category
+public class Category
 {
     public int Id { get; set; }
 

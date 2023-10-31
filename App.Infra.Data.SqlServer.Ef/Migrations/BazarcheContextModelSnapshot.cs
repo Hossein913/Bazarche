@@ -113,6 +113,47 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("Pictures");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BasePrice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BoothId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<bool>("IsConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("WinnerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BoothId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductActions");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Bid", b =>
                 {
                     b.Property<int>("Id")
@@ -347,47 +388,6 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.ProductAction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BasePrice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BoothId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<bool>("IsConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("WinnerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BoothId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductActions");
                 });
 
             modelBuilder.Entity("App.Domain.Core.User.Entities.Address", b =>
@@ -680,9 +680,36 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Medal");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+                {
+                    b.HasOne("App.Domain.Core.Booths.Entities.Booth", "Booth")
+                        .WithMany("Actions")
+                        .HasForeignKey("BoothId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Actions_Booths");
+
+                    b.HasOne("App.Domain.Core.User.Entities.Customer", "BoothNavigation")
+                        .WithMany("Actions")
+                        .HasForeignKey("BoothId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Actions_Customers");
+
+                    b.HasOne("App.Domain.Core.Products.Entities.Product", "Product")
+                        .WithMany("Actions")
+                        .HasForeignKey("ProductId")
+                        .IsRequired()
+                        .HasConstraintName("FK_Actions_Products");
+
+                    b.Navigation("Booth");
+
+                    b.Navigation("BoothNavigation");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Products.Entities.Bid", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.ProductAction", "Action")
+                    b.HasOne("App.Domain.Core.Products.Entities.Auction", "Action")
                         .WithMany("Bids")
                         .HasForeignKey("ActionId")
                         .IsRequired()
@@ -785,33 +812,6 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.ProductAction", b =>
-                {
-                    b.HasOne("App.Domain.Core.Booths.Entities.Booth", "Booth")
-                        .WithMany("Actions")
-                        .HasForeignKey("BoothId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Actions_Booths");
-
-                    b.HasOne("App.Domain.Core.User.Entities.Customer", "BoothNavigation")
-                        .WithMany("Actions")
-                        .HasForeignKey("BoothId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Actions_Customers");
-
-                    b.HasOne("App.Domain.Core.Products.Entities.Product", "Product")
-                        .WithMany("Actions")
-                        .HasForeignKey("ProductId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Actions_Products");
-
-                    b.Navigation("Booth");
-
-                    b.Navigation("BoothNavigation");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("App.Domain.Core.User.Entities.Admin", b =>
                 {
                     b.HasOne("App.Domain.Core.Common.Entities.Picture", "ProfilePicture")
@@ -909,6 +909,11 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Sellers");
                 });
 
+            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+                {
+                    b.Navigation("Bids");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Products.Entities.BoothProduct", b =>
                 {
                     b.Navigation("OrderItems");
@@ -929,11 +934,6 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Actions");
 
                     b.Navigation("BoothProducts");
-                });
-
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.ProductAction", b =>
-                {
-                    b.Navigation("Bids");
                 });
 
             modelBuilder.Entity("App.Domain.Core.User.Entities.Address", b =>

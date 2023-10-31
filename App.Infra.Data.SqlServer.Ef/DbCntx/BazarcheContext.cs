@@ -15,7 +15,7 @@ public class BazarcheContext : DbContext
     {
     }
 
-    public virtual DbSet<ProductAction> ProductActions { get; set; }
+    public virtual DbSet<Auction> ProductActions { get; set; }
 
     public virtual DbSet<Address> Addresses { get; set; }
 
@@ -59,7 +59,7 @@ public class BazarcheContext : DbContext
         modelBuilder.ApplyConfiguration(new OrderConfig());
         modelBuilder.ApplyConfiguration(new OrderItemConfig());
         modelBuilder.ApplyConfiguration(new PictureConfig());
-        modelBuilder.ApplyConfiguration(new ProductActionConfig());
+        modelBuilder.ApplyConfiguration(new AuctionConfig());
         modelBuilder.ApplyConfiguration(new ProductConfig());
         modelBuilder.ApplyConfiguration(new SellerConfig());
 

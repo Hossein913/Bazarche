@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace App.Domain.Core.Products.Entities;
 
-public partial class Product
+public class Product
 {
     public int Id { get; set; }
 
@@ -26,7 +26,7 @@ public partial class Product
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<ProductAction> Actions { get; set; } = new List<ProductAction>();
+    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
 
     public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
     public virtual ICollection<Picture> Pictures { get; set; } = new List<Picture>();

@@ -1,3 +1,11 @@
+using App.Domain.Core.Booths.Contracts.IRepositories;
+using App.Domain.Core.Common.Contracts.IRepositories;
+using App.Domain.Core.Products.Contracts.IRepositories;
+using App.Domain.Core.User.Contracts.IRepositories;
+using App.Infra.Data.Repos.Ef.Booths;
+using App.Infra.Data.Repos.Ef.Commons;
+using App.Infra.Data.Repos.Ef.Products;
+using App.Infra.Data.Repos.Ef.Users;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +17,28 @@ builder.Services.AddControllersWithViews();
 //--DbContext
 builder.Services.AddDbContext<BazarcheContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+# region Ripository Injections
+//--Booths
+builder.Services.AddScoped<IBoothRepository, BoothRepository > ();
+builder.Services.AddScoped<IMedalRepository, MedalRepository > ();
+//--Commons
+builder.Services.AddScoped<IPictureRepository, PictureRepository > ();
+//--Products
+builder.Services.AddScoped<IBidRepository, BidRepository > ();
+builder.Services.AddScoped<IBoothProductRepository, BoothProductRepository > ();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository > ();
+builder.Services.AddScoped<ICommentRepository, CommentRepository > ();
+builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository > ();
+builder.Services.AddScoped<IOrderRepository, OrderRepository > ();
+builder.Services.AddScoped<IAuctionRepository, AuctionRepository > ();
+builder.Services.AddScoped<IProductRepository, ProductRepository > ();
+//--Users
+builder.Services.AddScoped<IAddressRepository, AddressRepository > ();
+builder.Services.AddScoped<IAdminRepository, AdminRepository > ();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository > ();
+builder.Services.AddScoped<ISellerRepository, SellerRepository > ();
+#endregion
 
 var app = builder.Build();
 

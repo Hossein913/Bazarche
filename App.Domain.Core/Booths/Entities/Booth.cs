@@ -24,7 +24,7 @@ public partial class Booth
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<ProductAction> Actions { get; set; } = new List<ProductAction>();
+    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
 
     public virtual Picture AvatarPicture { get; set; } = null!;
 

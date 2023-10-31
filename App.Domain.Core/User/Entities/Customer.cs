@@ -37,7 +37,7 @@ public partial class Customer
 
     public DateTime CreatedAt { get; set; }
 
-    public virtual ICollection<ProductAction> Actions { get; set; } = new List<ProductAction>();
+    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
 
     public virtual Address Address { get; set; } = null!;
 
