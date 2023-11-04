@@ -19,8 +19,11 @@ public partial class Admin
     public int? Wallet { get; set; }
 
     public string? ShabaNumber { get; set; }
+    public int AppuserId { get; set; }
 
     #region Navigation properties
     public virtual Picture? ProfilePic { get; set; }
+    public virtual AppUser AppUser { get; set; }
+
     #endregion
 }

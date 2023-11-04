@@ -24,6 +24,8 @@ public partial class Customer
 
     public int? Wallet { get; set; }
 
+    public int AppUserId { get; set; }
+
 
     #region Navigation properties
 
@@ -37,5 +39,8 @@ public partial class Customer
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Picture? ProfilePic { get; set; }
+
+    public virtual AppUser AppUser { get; set; }
+
     #endregion
 }

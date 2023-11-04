@@ -22,5 +22,7 @@ public class AdminConfig : IEntityTypeConfiguration<Admin>
             .HasForeignKey<Admin>(a => a.ProfilePicId)
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Admins_Pictures");
+
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Admin);
     }
 }

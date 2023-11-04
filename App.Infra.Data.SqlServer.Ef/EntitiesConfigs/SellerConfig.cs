@@ -32,5 +32,7 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
             .HasForeignKey<Seller>(s => s.ProfilePicId)
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Sellers_Pictures");
+
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Seller);
     }
 }

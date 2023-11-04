@@ -24,5 +24,7 @@ public class CustomerConfig : IEntityTypeConfiguration<Customer>
             .HasForeignKey<Customer>(c => c.ProfilePicId)
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Customers_Pictures");
+
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Customer);
     }
 }

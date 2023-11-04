@@ -2,12 +2,17 @@ using App.Domain.Core._Booth.Contracts.Repositories;
 using App.Domain.Core._Common.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._User.Contracts.Repositories;
+using App.Domain.Core._User.Entities;
 using App.Infra.Data.Repos.Ef.Booths;
 using App.Infra.Data.Repos.Ef.Commons;
 using App.Infra.Data.Repos.Ef.Products;
 using App.Infra.Data.Repos.Ef.Users;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +44,60 @@ builder.Services.AddScoped<IAdminRepository, AdminRepository > ();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository > ();
 builder.Services.AddScoped<ISellerRepository, SellerRepository > ();
 #endregion
+
+
+
+
+# region Identity
+builder.Services.AddIdentity<AppUser, AppRole>()
+.AddEntityFrameworkStores<BazarcheContext>()
+.AddRoles<AppRole>();
+
+builder.Services.Configure<IdentityOptions>(option =>
+{
+    //UserSetting
+    //option.User.AllowedUserNameCharacters = "abcd123";
+    option.User.RequireUniqueEmail = true;
+
+    //Password Setting
+    option.Password.RequireDigit = false;
+    option.Password.RequireLowercase = false;
+    option.Password.RequireNonAlphanumeric = false;
+    option.Password.RequireUppercase = false;
+    option.Password.RequiredLength = 4;
+    option.Password.RequiredUniqueChars = 1;
+
+    //Lokout Setting
+    option.Lockout.MaxFailedAccessAttempts = 3;
+    option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMilliseconds(10);
+
+    //SignIn Setting
+    option.SignIn.RequireConfirmedAccount = false;
+    option.SignIn.RequireConfirmedEmail = false;
+    option.SignIn.RequireConfirmedPhoneNumber = false;
+
+});
+
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    // cookie setting
+    option.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+
+    option.LoginPath = "/Authenticate/login";
+    option.AccessDeniedPath = "/Authenticate/AccessDenied";
+    option.SlidingExpiration = true;
+});
+
+
+// ---set Authorazation to All endpoints.
+builder.Services.AddMvc(Option =>
+{
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    Option.Filters.Add(new AuthorizeFilter(policy));
+});
+
+#endregion
+
 
 var app = builder.Build();
 

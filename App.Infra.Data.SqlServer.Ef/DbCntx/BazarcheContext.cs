@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
 using App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Infra.Data.SqlServer.Ef.DbCntx;
 
-public class BazarcheContext : DbContext
+public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
 {
     public BazarcheContext(DbContextOptions<BazarcheContext> options) : base(options)
     {
