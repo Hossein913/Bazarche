@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using App.Domain.Core.Products.Entities;
+using App.Domain.Core._Products.Entities;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -16,5 +16,9 @@ public class ProductConfig : IEntityTypeConfiguration<Product>
         entity.Property(e => e.Describtion).HasMaxLength(300);
         entity.Property(e => e.Grantee).HasMaxLength(255);
         entity.Property(e => e.Name).HasMaxLength(255);
+
+        entity.HasMany(p => p.Pictures).WithMany(a => a.Products);
+
+
     }
 }

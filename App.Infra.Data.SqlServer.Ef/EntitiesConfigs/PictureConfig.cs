@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using App.Domain.Core.Common.Entities;
+using App.Domain.Core._Common.Entities;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 

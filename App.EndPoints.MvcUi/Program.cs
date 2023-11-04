@@ -1,7 +1,7 @@
-using App.Domain.Core.Booths.Contracts.IRepositories;
-using App.Domain.Core.Common.Contracts.IRepositories;
-using App.Domain.Core.Products.Contracts.IRepositories;
-using App.Domain.Core.User.Contracts.IRepositories;
+using App.Domain.Core._Booth.Contracts.Repositories;
+using App.Domain.Core._Common.Contracts.Repositories;
+using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._User.Contracts.Repositories;
 using App.Infra.Data.Repos.Ef.Booths;
 using App.Infra.Data.Repos.Ef.Commons;
 using App.Infra.Data.Repos.Ef.Products;

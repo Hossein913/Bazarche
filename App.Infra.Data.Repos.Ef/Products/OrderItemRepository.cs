@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.Products.Contracts.IRepositories;
-using App.Domain.Core.Products.Dtos.OrderItems;
+﻿using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._Products.Dtos.OrderItemDtos;
 
 namespace App.Infra.Data.Repos.Ef.Products;
 

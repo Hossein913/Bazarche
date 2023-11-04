@@ -1,7 +1,6 @@
-﻿using App.Domain.Core.Products.Contracts.IRepositories;
-using App.Domain.Core.Products.Dtos.Categories;
-using App.Domain.Core.Products.Dtos.Products;
-using App.Domain.Core.Products.Entities;
+﻿using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._Products.Dtos.ProductDtos;
+using App.Domain.Core._Products.Entities;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;

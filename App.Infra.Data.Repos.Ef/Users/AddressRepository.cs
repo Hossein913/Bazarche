@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.User.Contracts.IRepositories;
-using App.Domain.Core.User.Dtos.Addresses;
+﻿using App.Domain.Core._User.Contracts.Repositories;
+using App.Domain.Core._User.Dtos.AddresseDtos;
 using System;
 using System.Collections.Generic;
 

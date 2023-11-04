@@ -7,18 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Booths\Contracts\IAppServices\" />
-    <Folder Include="Booths\Contracts\IServices\" />
-    <Folder Include="Booths\Enums\" />
-    <Folder Include="Common\Contracts\IAppServices\" />
-    <Folder Include="Common\Contracts\IServices\" />
-    <Folder Include="Common\Enums\" />
-    <Folder Include="Products\Contracts\IAppServices\" />
-    <Folder Include="Products\Contracts\IServices\" />
-    <Folder Include="Products\Enums\" />
-    <Folder Include="User\Contracts\IAppServices\" />
-    <Folder Include="User\Contracts\IServices\" />
-    <Folder Include="User\Enums\" />
+    <Folder Include="_Booth\Contracts\AppServices\" />
+    <Folder Include="_Booth\Contracts\Services\" />
+    <Folder Include="_Booth\Enums\" />
+    <Folder Include="_Common\Contracts\AppServices\" />
+    <Folder Include="_Common\Contracts\Services\" />
+    <Folder Include="_Common\Enums\" />
+    <Folder Include="_Products\Contracts\AppServices\" />
+    <Folder Include="_Products\Contracts\Services\" />
+    <Folder Include="_Products\Enums\" />
+    <Folder Include="_User\Contracts\AppServices\" />
+    <Folder Include="_User\Contracts\Services\" />
+    <Folder Include="_User\Enums\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.13" />
   </ItemGroup>
 
 </Project>

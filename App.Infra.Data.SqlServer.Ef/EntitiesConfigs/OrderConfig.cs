@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using App.Domain.Core.Products.Entities;
+using App.Domain.Core._Products.Entities;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -17,7 +17,7 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
 
         entity.HasOne(d => d.Customer).WithMany(p => p.Orders)
             .HasForeignKey(d => d.CustomerId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
+            .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_Orders_Customers");
     }
 }

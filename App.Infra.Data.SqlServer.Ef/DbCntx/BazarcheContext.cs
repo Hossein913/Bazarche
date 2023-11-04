@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using App.Domain.Core.Booths.Entities;
-using App.Domain.Core.Common.Entities;
-using App.Domain.Core.Products.Entities;
-using App.Domain.Core.User.Entities;
+using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Products.Entities;
+using App.Domain.Core._User.Entities;
 using App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,12 +14,13 @@ public class BazarcheContext : DbContext
     public BazarcheContext(DbContextOptions<BazarcheContext> options) : base(options)
     {
     }
-
-    public virtual DbSet<Auction> ProductActions { get; set; }
-
     public virtual DbSet<Address> Addresses { get; set; }
 
     public virtual DbSet<Admin> Admins { get; set; }
+
+    public virtual DbSet<Attributes> Attributes { get; set; }
+
+    public virtual DbSet<Auction> Auctions { get; set; }
 
     public virtual DbSet<Bid> Bids { get; set; }
 
@@ -43,12 +44,24 @@ public class BazarcheContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
+
+    public virtual DbSet<Province> Provinces { get; set; }
+
     public virtual DbSet<Seller> Sellers { get; set; }
+
+    public virtual DbSet<Wage> Wages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //Note to Myself : relations Methods start with .Has() therfor relation FluentApi should wirretn
+        //                   in config files of entiy that has an id of other entity
+
+
         modelBuilder.ApplyConfiguration(new AddressConfig());
         modelBuilder.ApplyConfiguration(new AdminConfig());
+        modelBuilder.ApplyConfiguration(new AttributesConfig());
+        modelBuilder.ApplyConfiguration(new AuctionConfig());
         modelBuilder.ApplyConfiguration(new BidConfig());
         modelBuilder.ApplyConfiguration(new BoothConfig());
         modelBuilder.ApplyConfiguration(new BoothProductConfig());
@@ -59,26 +72,11 @@ public class BazarcheContext : DbContext
         modelBuilder.ApplyConfiguration(new OrderConfig());
         modelBuilder.ApplyConfiguration(new OrderItemConfig());
         modelBuilder.ApplyConfiguration(new PictureConfig());
-        modelBuilder.ApplyConfiguration(new AuctionConfig());
         modelBuilder.ApplyConfiguration(new ProductConfig());
+        modelBuilder.ApplyConfiguration(new ProductAttributeValueConfig());
+        modelBuilder.ApplyConfiguration(new ProvinceConfig());
         modelBuilder.ApplyConfiguration(new SellerConfig());
-
-        //modelBuilder.Entity<ProductImage>(entity =>
-        //{
-        //    entity
-        //        .HasNoKey()
-        //        .ToTable("ProductImage");
-
-        //    entity.HasOne(d => d.Picture).WithMany()
-        //        .HasForeignKey(d => d.PictureId)
-        //        .OnDelete(DeleteBehavior.ClientSetNull)
-        //        .HasConstraintName("FK_ProductImage_Pictures");
-
-        //    entity.HasOne(d => d.Product).WithMany()
-        //        .HasForeignKey(d => d.ProductId)
-        //        .OnDelete(DeleteBehavior.ClientSetNull)
-        //        .HasConstraintName("FK_ProductImage_Products");
-        //});
+        modelBuilder.ApplyConfiguration(new WageConfig());
 
         base.OnModelCreating(modelBuilder);
     }

@@ -22,7 +22,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("App.Domain.Core.Booths.Entities.Booth", b =>
+            modelBuilder.Entity("App.Domain.Core._Booth.Entities.Booth", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int>("AccountBalance")
                         .HasColumnType("int");
 
-                    b.Property<int>("AvatarPictureId")
+                    b.Property<int?>("AvatarPictureId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -56,14 +56,16 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AvatarPictureId");
+                    b.HasIndex("AvatarPictureId")
+                        .IsUnique()
+                        .HasFilter("[AvatarPictureId] IS NOT NULL");
 
                     b.HasIndex("MedalId");
 
                     b.ToTable("Booths");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Booths.Entities.Medal", b =>
+            modelBuilder.Entity("App.Domain.Core._Booth.Entities.Medal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +89,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("Medals");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Common.Entities.Picture", b =>
+            modelBuilder.Entity("App.Domain.Core._Common.Entities.Picture", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,7 +115,25 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("Pictures");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Attributes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Attributes");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Auction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -125,6 +145,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("BoothId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("EndTime")
@@ -149,12 +172,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasIndex("BoothId");
 
+                    b.HasIndex("CustomerId");
+
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductActions");
+                    b.ToTable("Auctions");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Bid", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Bid", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,7 +187,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ActionId")
+                    b.Property<int>("AuctionId")
                         .HasColumnType("int");
 
                     b.Property<int>("BidPrice")
@@ -176,14 +201,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ActionId");
+                    b.HasIndex("AuctionId");
 
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Bids");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.BoothProduct", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.BoothProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -218,10 +243,10 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BoothProduct", (string)null);
+                    b.ToTable("BoothProducts");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -232,7 +257,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int?>("ParentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PictureId")
+                    b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -244,12 +269,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("PictureId");
+                    b.HasIndex("PictureId")
+                        .IsUnique()
+                        .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Comment", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -257,13 +284,22 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CustomerId")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("OrderItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
                     b.Property<string>("Text")
@@ -277,10 +313,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasIndex("OrderItemId");
 
+                    b.HasIndex("PictureId")
+                        .IsUnique()
+                        .HasFilter("[PictureId] IS NOT NULL");
+
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Order", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -310,7 +350,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.OrderItem", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.OrderItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -340,7 +380,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("OrderItems");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Product", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -355,6 +395,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Describtion")
                         .IsRequired()
@@ -387,10 +430,40 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Address", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.ProductAttributeValue", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AttributeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttributeId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductAttributeValues");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -405,8 +478,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.Property<string>("FullAddress")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -414,17 +487,17 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasColumnType("nchar(10)")
                         .IsFixedLength();
 
-                    b.Property<string>("Province")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                    b.Property<int?>("ProvinceId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId");
 
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Admin", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Admin", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -432,64 +505,37 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Birthdate")
+                    b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Firestname")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Homenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("Phonenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
-
-                    b.Property<int>("ProfilePictureId")
+                    b.Property<int?>("ProfilePicId")
                         .HasColumnType("int");
 
                     b.Property<string>("ShabaNumber")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nchar(25)")
                         .IsFixedLength();
 
-                    b.Property<int>("Wallet")
+                    b.Property<int?>("Wallet")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProfilePictureId");
+                    b.HasIndex("ProfilePicId")
+                        .IsUnique()
+                        .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Admins");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Customer", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Customer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -497,72 +543,217 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Birthdate")
+                    b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Firestname")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Homenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("Phonenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
-
-                    b.Property<int>("ProfilePictureId")
+                    b.Property<int?>("ProfilePicId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Sexuality")
+                    b.Property<bool?>("Sexuality")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Wallet")
+                    b.Property<int?>("Wallet")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
-                    b.HasIndex("ProfilePictureId");
+                    b.HasIndex("ProfilePicId")
+                        .IsUnique()
+                        .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Seller", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Province", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 32L);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Provinces");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "آذربایجان شرقی"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "آذربایجان غربی"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "اردبیل"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "اصفهان"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "البرز"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "ایلام"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "بوشهر"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "تهران"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "چهارمحال و بختیاری"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "خراسان جنوبی"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "خراسان رضوی"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "خراسان شمالی"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "خوزستان"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "زنجان"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "سمنان"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Name = "سیستان و بلوچستان"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Name = "فارس"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Name = "قزوین"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Name = "قم"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Name = "کردستان"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Name = "کرمان"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Name = "کرمانشاه"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Name = "کهگیلویه و بویراحمد"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Name = "گلستان"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Name = "گیلان"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Name = "لرستان"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Name = "مازندران"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Name = "مرکزی"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Name = "هرمزگان"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Name = "همدان"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Name = "یزد"
+                        });
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Seller", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -570,80 +761,88 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Birthdate")
+                    b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("BoothId")
+                    b.Property<int?>("BoothId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime");
+                    b.Property<string>("Firstname")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Firestname")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Homenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
+                    b.Property<bool?>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Lastname")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("LicenseNumber")
+                    b.Property<int?>("ProfilePicId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("Phonenumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nchar(11)")
-                        .IsFixedLength();
-
-                    b.Property<int>("ProfilePictureId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Sexuality")
-                        .HasColumnType("bit");
 
                     b.Property<string>("ShabaNumber")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nchar(25)")
                         .IsFixedLength();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("AddressId")
+                        .IsUnique()
+                        .HasFilter("[AddressId] IS NOT NULL");
 
-                    b.HasIndex("BoothId");
+                    b.HasIndex("BoothId")
+                        .IsUnique()
+                        .HasFilter("[BoothId] IS NOT NULL");
 
-                    b.HasIndex("ProfilePictureId");
+                    b.HasIndex("ProfilePicId")
+                        .IsUnique()
+                        .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Sellers");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Wage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FeePercenteage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderitemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WageAmount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderitemId")
+                        .IsUnique();
+
+                    b.ToTable("Wages");
+                });
+
+            modelBuilder.Entity("AttributesCategory", b =>
+                {
+                    b.Property<int>("AttributesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AttributesId", "CategoriesId");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("AttributesCategory");
                 });
 
             modelBuilder.Entity("PictureProduct", b =>
@@ -661,17 +860,18 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.ToTable("PictureProduct");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Booths.Entities.Booth", b =>
+            modelBuilder.Entity("App.Domain.Core._Booth.Entities.Booth", b =>
                 {
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", "AvatarPicture")
-                        .WithMany("Booths")
-                        .HasForeignKey("AvatarPictureId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "AvatarPicture")
+                        .WithOne("Booths")
+                        .HasForeignKey("App.Domain.Core._Booth.Entities.Booth", "AvatarPictureId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Booths_Pictures");
 
-                    b.HasOne("App.Domain.Core.Booths.Entities.Medal", "Medal")
+                    b.HasOne("App.Domain.Core._Booth.Entities.Medal", "Medal")
                         .WithMany("Booths")
                         .HasForeignKey("MedalId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_Booths_Medals");
 
@@ -680,63 +880,65 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Medal");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Auction", b =>
                 {
-                    b.HasOne("App.Domain.Core.Booths.Entities.Booth", "Booth")
-                        .WithMany("Actions")
+                    b.HasOne("App.Domain.Core._Booth.Entities.Booth", "Booth")
+                        .WithMany("Auctions")
                         .HasForeignKey("BoothId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
-                        .HasConstraintName("FK_Actions_Booths");
+                        .HasConstraintName("FK_Auctions_Booths");
 
-                    b.HasOne("App.Domain.Core.User.Entities.Customer", "BoothNavigation")
-                        .WithMany("Actions")
-                        .HasForeignKey("BoothId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Actions_Customers");
+                    b.HasOne("App.Domain.Core._User.Entities.Customer", null)
+                        .WithMany("Auctions")
+                        .HasForeignKey("CustomerId");
 
-                    b.HasOne("App.Domain.Core.Products.Entities.Product", "Product")
-                        .WithMany("Actions")
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", "Product")
+                        .WithMany("Auctions")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
-                        .HasConstraintName("FK_Actions_Products");
+                        .HasConstraintName("FK_Auctions_Products");
 
                     b.Navigation("Booth");
-
-                    b.Navigation("BoothNavigation");
 
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Bid", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Bid", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.Auction", "Action")
+                    b.HasOne("App.Domain.Core._Products.Entities.Auction", "Auction")
                         .WithMany("Bids")
-                        .HasForeignKey("ActionId")
+                        .HasForeignKey("AuctionId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_Bids_Actions");
 
-                    b.HasOne("App.Domain.Core.User.Entities.Customer", "Customer")
+                    b.HasOne("App.Domain.Core._User.Entities.Customer", "Customer")
                         .WithMany("Bids")
                         .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_Bids_Customers");
 
-                    b.Navigation("Action");
+                    b.Navigation("Auction");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.BoothProduct", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.BoothProduct", b =>
                 {
-                    b.HasOne("App.Domain.Core.Booths.Entities.Booth", "Booth")
+                    b.HasOne("App.Domain.Core._Booth.Entities.Booth", "Booth")
                         .WithMany("BoothProducts")
                         .HasForeignKey("BoothId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_BoothProduct_Booths");
 
-                    b.HasOne("App.Domain.Core.Products.Entities.Product", "Product")
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", "Product")
                         .WithMany("BoothProducts")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_BoothProduct_Products");
 
@@ -745,17 +947,17 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Category", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.Category", "Parent")
-                        .WithMany("InverseParent")
+                    b.HasOne("App.Domain.Core._Products.Entities.Category", "Parent")
+                        .WithMany("Subcategories")
                         .HasForeignKey("ParentId")
                         .HasConstraintName("FK_Categories_Categories");
 
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", "Picture")
-                        .WithMany("Categories")
-                        .HasForeignKey("PictureId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "Picture")
+                        .WithOne("Categories")
+                        .HasForeignKey("App.Domain.Core._Products.Entities.Category", "PictureId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Categories_Pictures");
 
                     b.Navigation("Parent");
@@ -763,47 +965,57 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Picture");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Comment", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Comment", b =>
                 {
-                    b.HasOne("App.Domain.Core.User.Entities.Customer", "Customer")
-                        .WithMany()
+                    b.HasOne("App.Domain.Core._User.Entities.Customer", "Customer")
+                        .WithMany("Comments")
                         .HasForeignKey("CustomerId")
-                        .IsRequired()
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Comments_Customers");
 
-                    b.HasOne("App.Domain.Core.Products.Entities.OrderItem", "OrderItem")
-                        .WithMany()
+                    b.HasOne("App.Domain.Core._Products.Entities.OrderItem", "OrderItem")
+                        .WithMany("Comments")
                         .HasForeignKey("OrderItemId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_Comments_OrderItems");
+
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "Picture")
+                        .WithOne("Comment")
+                        .HasForeignKey("App.Domain.Core._Products.Entities.Comment", "PictureId");
 
                     b.Navigation("Customer");
 
                     b.Navigation("OrderItem");
+
+                    b.Navigation("Picture");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Order", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
                 {
-                    b.HasOne("App.Domain.Core.User.Entities.Customer", "Customer")
+                    b.HasOne("App.Domain.Core._User.Entities.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_Orders_Customers");
 
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.OrderItem", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.OrderItem", b =>
                 {
-                    b.HasOne("App.Domain.Core.Products.Entities.BoothProduct", "BoothProduct")
+                    b.HasOne("App.Domain.Core._Products.Entities.BoothProduct", "BoothProduct")
                         .WithMany("OrderItems")
                         .HasForeignKey("BoothProductid")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_OrderItems_BoothProduct");
 
-                    b.HasOne("App.Domain.Core.Products.Entities.Order", "Order")
+                    b.HasOne("App.Domain.Core._Products.Entities.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired()
                         .HasConstraintName("FK_OrderItems_Orders");
 
@@ -812,144 +1024,246 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Order");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Admin", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Product", b =>
                 {
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", "ProfilePicture")
-                        .WithMany()
-                        .HasForeignKey("ProfilePictureId")
-                        .IsRequired()
-                        .HasConstraintName("FK_Admins_Pictures");
-
-                    b.Navigation("ProfilePicture");
+                    b.HasOne("App.Domain.Core._Products.Entities.Category", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Customer", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.ProductAttributeValue", b =>
                 {
-                    b.HasOne("App.Domain.Core.User.Entities.Address", "Address")
-                        .WithMany("Customers")
-                        .HasForeignKey("AddressId")
+                    b.HasOne("App.Domain.Core._Products.Entities.Attributes", "Attribute")
+                        .WithMany("ProductAttributeValues")
+                        .HasForeignKey("AttributeId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_ProductAttributeValue_Attribute");
+
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", "Product")
+                        .WithMany("ProductAttributeValues")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
+                        .HasConstraintName("FK_ProductAttributeValue_Products");
+
+                    b.Navigation("Attribute");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Address", b =>
+                {
+                    b.HasOne("App.Domain.Core._User.Entities.Province", "Province")
+                        .WithMany("Addresses")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Addresses_Provinces");
+
+                    b.Navigation("Province");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Admin", b =>
+                {
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "ProfilePic")
+                        .WithOne("Admins")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Admin", "ProfilePicId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_Admins_Pictures");
+
+                    b.Navigation("ProfilePic");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Customer", b =>
+                {
+                    b.HasOne("App.Domain.Core._User.Entities.Address", "Address")
+                        .WithOne("Customers")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Customer", "AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Customers_Addresses");
 
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", "ProfilePicture")
-                        .WithMany("Customers")
-                        .HasForeignKey("ProfilePictureId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "ProfilePic")
+                        .WithOne("Customers")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Customer", "ProfilePicId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Customers_Pictures");
 
                     b.Navigation("Address");
 
-                    b.Navigation("ProfilePicture");
+                    b.Navigation("ProfilePic");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Seller", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Seller", b =>
                 {
-                    b.HasOne("App.Domain.Core.User.Entities.Address", "Address")
-                        .WithMany("Sellers")
-                        .HasForeignKey("AddressId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._User.Entities.Address", "Address")
+                        .WithOne("Sellers")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Seller", "AddressId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Sellers_Addresses");
 
-                    b.HasOne("App.Domain.Core.Booths.Entities.Booth", "Booth")
-                        .WithMany("Sellers")
-                        .HasForeignKey("BoothId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._Booth.Entities.Booth", "Booth")
+                        .WithOne("Sellers")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Seller", "BoothId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .HasConstraintName("FK_Sellers_Booths");
 
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", "ProfilePicture")
-                        .WithMany("Sellers")
-                        .HasForeignKey("ProfilePictureId")
-                        .IsRequired()
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", "ProfilePic")
+                        .WithOne("Sellers")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Seller", "ProfilePicId")
+                        .OnDelete(DeleteBehavior.SetNull)
                         .HasConstraintName("FK_Sellers_Pictures");
 
                     b.Navigation("Address");
 
                     b.Navigation("Booth");
 
-                    b.Navigation("ProfilePicture");
+                    b.Navigation("ProfilePic");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Wage", b =>
+                {
+                    b.HasOne("App.Domain.Core._Products.Entities.OrderItem", "Orderitem")
+                        .WithOne("Wages")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Wage", "OrderitemId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired()
+                        .HasConstraintName("FK_Wages_OrderItems");
+
+                    b.Navigation("Orderitem");
+                });
+
+            modelBuilder.Entity("AttributesCategory", b =>
+                {
+                    b.HasOne("App.Domain.Core._Products.Entities.Attributes", null)
+                        .WithMany()
+                        .HasForeignKey("AttributesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core._Products.Entities.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PictureProduct", b =>
                 {
-                    b.HasOne("App.Domain.Core.Common.Entities.Picture", null)
+                    b.HasOne("App.Domain.Core._Common.Entities.Picture", null)
                         .WithMany()
                         .HasForeignKey("PicturesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("App.Domain.Core.Products.Entities.Product", null)
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Booths.Entities.Booth", b =>
+            modelBuilder.Entity("App.Domain.Core._Booth.Entities.Booth", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Auctions");
 
                     b.Navigation("BoothProducts");
 
-                    b.Navigation("Sellers");
+                    b.Navigation("Sellers")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Booths.Entities.Medal", b =>
+            modelBuilder.Entity("App.Domain.Core._Booth.Entities.Medal", b =>
                 {
                     b.Navigation("Booths");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Common.Entities.Picture", b =>
+            modelBuilder.Entity("App.Domain.Core._Common.Entities.Picture", b =>
                 {
-                    b.Navigation("Booths");
+                    b.Navigation("Admins")
+                        .IsRequired();
 
-                    b.Navigation("Categories");
+                    b.Navigation("Booths")
+                        .IsRequired();
 
-                    b.Navigation("Customers");
+                    b.Navigation("Categories")
+                        .IsRequired();
 
-                    b.Navigation("Sellers");
+                    b.Navigation("Comment")
+                        .IsRequired();
+
+                    b.Navigation("Customers")
+                        .IsRequired();
+
+                    b.Navigation("Sellers")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Auction", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Attributes", b =>
+                {
+                    b.Navigation("ProductAttributeValues");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Auction", b =>
                 {
                     b.Navigation("Bids");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.BoothProduct", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.BoothProduct", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Category", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Category", b =>
                 {
-                    b.Navigation("InverseParent");
+                    b.Navigation("Products");
+
+                    b.Navigation("Subcategories");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Order", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Products.Entities.Product", b =>
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.OrderItem", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Comments");
+
+                    b.Navigation("Wages")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("App.Domain.Core._Products.Entities.Product", b =>
+                {
+                    b.Navigation("Auctions");
 
                     b.Navigation("BoothProducts");
+
+                    b.Navigation("ProductAttributeValues");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Address", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Address", b =>
                 {
-                    b.Navigation("Customers");
+                    b.Navigation("Customers")
+                        .IsRequired();
 
-                    b.Navigation("Sellers");
+                    b.Navigation("Sellers")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("App.Domain.Core.User.Entities.Customer", b =>
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Customer", b =>
                 {
-                    b.Navigation("Actions");
+                    b.Navigation("Auctions");
 
                     b.Navigation("Bids");
+
+                    b.Navigation("Comments");
 
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("App.Domain.Core._User.Entities.Province", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

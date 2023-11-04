@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using App.Domain.Core.Booths.Entities;
+using App.Domain.Core._Booth.Entities;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -15,14 +15,14 @@ public class BoothConfig : IEntityTypeConfiguration<Booth>
         entity.Property(e => e.Description).HasMaxLength(300);
         entity.Property(e => e.Name).HasMaxLength(50);
 
-        entity.HasOne(d => d.AvatarPicture).WithMany(p => p.Booths)
-            .HasForeignKey(d => d.AvatarPictureId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
+        entity.HasOne(d => d.AvatarPicture).WithOne(p => p.Booths)
+            .HasForeignKey<Booth>(d => d.AvatarPictureId)
+            .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Booths_Pictures");
 
         entity.HasOne(d => d.Medal).WithMany(p => p.Booths)
             .HasForeignKey(d => d.MedalId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
+            .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_Booths_Medals");
     }
 }

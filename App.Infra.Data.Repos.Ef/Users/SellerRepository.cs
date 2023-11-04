@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.User.Contracts.IRepositories;
-using App.Domain.Core.User.Dtos.Sellers;
+﻿using App.Domain.Core._User.Contracts.Repositories;
+using App.Domain.Core._User.Dtos.SellersDtos;
 
 namespace App.Infra.Data.Repos.Ef.Users;
 

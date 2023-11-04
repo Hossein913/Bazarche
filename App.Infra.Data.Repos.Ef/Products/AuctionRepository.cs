@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.Products.Contracts.IRepositories;
-using App.Domain.Core.Products.Dtos.Auctions;
+﻿using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._Products.Dtos.AuctionDtos;
 
 namespace App.Infra.Data.Repos.Ef.Products;
 

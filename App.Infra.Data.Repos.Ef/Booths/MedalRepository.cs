@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.Booths.Contracts.IRepositories;
-using App.Domain.Core.Booths.Dtos.Medals;
+﻿using App.Domain.Core._Booth.Contracts.Repositories;
+using App.Domain.Core._Booth.Dtos.MedalDtos;
 
 namespace App.Infra.Data.Repos.Ef.Booths;
 

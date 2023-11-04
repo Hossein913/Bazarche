@@ -1,5 +1,5 @@
-﻿using App.Domain.Core.Common.Contracts.IRepositories;
-using App.Domain.Core.Common.Dtos.Pictures;
+﻿using App.Domain.Core._Common.Contracts.Repositories;
+using App.Domain.Core._Common.Dtos.PictureDtos;
 
 namespace App.Infra.Data.Repos.Ef.Commons;
 

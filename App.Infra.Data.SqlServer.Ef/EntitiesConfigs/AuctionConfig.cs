@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using App.Domain.Core.Products.Entities;
+using App.Domain.Core._Products.Entities;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -15,19 +15,15 @@ public class AuctionConfig : IEntityTypeConfiguration<Auction>
         entity.Property(e => e.EndTime).HasColumnType("datetime");
         entity.Property(e => e.StartTime).HasColumnType("datetime");
 
-        entity.HasOne(d => d.Booth).WithMany(p => p.Actions)
-            .HasForeignKey(d => d.BoothId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Actions_Booths");
+        entity.HasOne(a => a.Booth).WithMany(b => b.Auctions)
+            .HasForeignKey(a => a.BoothId)
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_Auctions_Booths");
 
-        entity.HasOne(d => d.BoothNavigation).WithMany(p => p.Actions)
-            .HasForeignKey(d => d.BoothId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Actions_Customers");
 
-        entity.HasOne(d => d.Product).WithMany(p => p.Actions)
+        entity.HasOne(d => d.Product).WithMany(p => p.Auctions)
             .HasForeignKey(d => d.ProductId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Actions_Products");
+            .OnDelete(DeleteBehavior.NoAction)
+            .HasConstraintName("FK_Auctions_Products");
     }
 }
