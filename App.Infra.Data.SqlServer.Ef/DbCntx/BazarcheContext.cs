@@ -59,6 +59,9 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
         //Note to Myself : relations Methods start with .Has() therfor relation FluentApi should wirretn
         //                   in config files of entiy that has an id of other entity
 
+        modelBuilder.ApplyConfiguration(new SuperAdminRoleSeedData());
+        modelBuilder.ApplyConfiguration(new SuperAdminUserSeedData());
+        modelBuilder.ApplyConfiguration(new AdminUserRoleSeedData());
 
         modelBuilder.ApplyConfiguration(new AddressConfig());
         modelBuilder.ApplyConfiguration(new AdminConfig());
