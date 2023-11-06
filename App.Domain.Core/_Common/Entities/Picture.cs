@@ -14,23 +14,23 @@ public partial class Picture
 
     public DateTime CreatedAt { get; set; }
 
-    public int CreatedBy { get; set; }
+    public int? CreatedBy { get; set; }
 
     public bool IsDeleted { get; set; }
 
 
     #region Navigation properties
-    public virtual Admin Admins { get; set; } = new Admin();
+    public virtual Admin? Admins { get; set; } 
 
-    public virtual Booth Booths { get; set; } = new Booth();
+    public virtual Booth? Booths { get; set; } 
 
-    public virtual Category Categories { get; set; } = new Category();
+    public virtual Category? Categories { get; set; }
 
-    public virtual Customer Customers { get; set; } = new Customer();
+    public virtual Customer? Customers { get; set; }
 
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual ICollection<Product>? Products { get; set; } 
 
-    public virtual Seller Sellers { get; set; } = new Seller();
-    public virtual Comment Comment { get; set; } = new Comment();
+    public virtual Seller? Sellers { get; set; }
+    public virtual Comment? Comment { get; set; } 
     #endregion
 }

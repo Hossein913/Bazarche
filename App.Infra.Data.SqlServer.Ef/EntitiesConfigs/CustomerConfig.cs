@@ -25,6 +25,10 @@ public class CustomerConfig : IEntityTypeConfiguration<Customer>
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Customers_Pictures");
 
-        entity.HasOne(c => c.AppUser).WithOne(u => u.Customer);
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Customer).HasForeignKey<Customer>(c => c.AppUserId);
+
+        entity.HasData(
+        new Customer { Id = 1, Firstname = "جواد  ", Lastname = "بیات", AddressId = 3, ProfilePicId = 15, Birthdate = new DateTime(1990 , 05 , 05), AppUserId = 4 }
+        );
     }
 }

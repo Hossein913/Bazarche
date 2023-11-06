@@ -15,6 +15,8 @@ public partial class Picture
 
     public bool IsDeleted { get; set; }
 
+
+    #region Navigation properties
     public virtual Admin Admins { get; set; } = new Admin();
 
     public virtual Booth Booths { get; set; } = new Booth();
@@ -27,4 +29,5 @@ public partial class Picture
 
     public virtual Seller Sellers { get; set; } = new Seller();
     public virtual Comment Comment { get; set; } = new Comment();
+    #endregion
 }

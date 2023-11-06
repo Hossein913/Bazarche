@@ -9,5 +9,7 @@ public partial class Province
 
     public string Name { get; set; } = null!;
 
+    #region Navigation properties
     public virtual ICollection<Address> Addresses { get; set; } = new List<Address>();
+    #endregion
 }

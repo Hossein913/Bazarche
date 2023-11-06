@@ -25,5 +25,12 @@ public class CommentConfig : IEntityTypeConfiguration<Comment>
             .HasForeignKey(cm => cm.OrderItemId)
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_Comments_OrderItems");
+
+        entity.HasData(
+        new Comment{ Id = 1, CustomerId = 1, OrderItemId = 1, PictureId = null, Text = "محصول فوق العاده ای بود. سپاس", CreatedAt = DateTime.Now, IsConfirmed = false, IsDeleted = false }
+        );
     }
 }
+
+
+

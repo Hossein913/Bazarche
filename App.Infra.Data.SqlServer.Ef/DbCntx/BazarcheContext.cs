@@ -6,6 +6,7 @@ using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
 using App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
+using App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
     public BazarcheContext(DbContextOptions<BazarcheContext> options) : base(options)
     {
     }
+
     public virtual DbSet<Address> Addresses { get; set; }
 
     public virtual DbSet<Admin> Admins { get; set; }
@@ -59,16 +61,18 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
         //Note to Myself : relations Methods start with .Has() therfor relation FluentApi should wirretn
         //                   in config files of entiy that has an id of other entity
 
-        modelBuilder.ApplyConfiguration(new SuperAdminRoleSeedData());
-        modelBuilder.ApplyConfiguration(new SuperAdminUserSeedData());
-        modelBuilder.ApplyConfiguration(new AdminUserRoleSeedData());
-
+        modelBuilder.ApplyConfiguration(new PictureConfig());
+        modelBuilder.ApplyConfiguration(new BoothConfig());
+        modelBuilder.ApplyConfiguration(new ProvinceConfig());
         modelBuilder.ApplyConfiguration(new AddressConfig());
+
+        modelBuilder.ApplyConfiguration(new RoleSeedData());
+        modelBuilder.ApplyConfiguration(new UserSeedData());
+        modelBuilder.ApplyConfiguration(new UsertoRoleSeedData());
+
         modelBuilder.ApplyConfiguration(new AdminConfig());
-        modelBuilder.ApplyConfiguration(new AttributesConfig());
         modelBuilder.ApplyConfiguration(new AuctionConfig());
         modelBuilder.ApplyConfiguration(new BidConfig());
-        modelBuilder.ApplyConfiguration(new BoothConfig());
         modelBuilder.ApplyConfiguration(new BoothProductConfig());
         modelBuilder.ApplyConfiguration(new CategoryConfig());
         modelBuilder.ApplyConfiguration(new CommentConfig());
@@ -76,12 +80,12 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
         modelBuilder.ApplyConfiguration(new MedalConfig());
         modelBuilder.ApplyConfiguration(new OrderConfig());
         modelBuilder.ApplyConfiguration(new OrderItemConfig());
-        modelBuilder.ApplyConfiguration(new PictureConfig());
         modelBuilder.ApplyConfiguration(new ProductConfig());
-        modelBuilder.ApplyConfiguration(new ProductAttributeValueConfig());
-        modelBuilder.ApplyConfiguration(new ProvinceConfig());
         modelBuilder.ApplyConfiguration(new SellerConfig());
         modelBuilder.ApplyConfiguration(new WageConfig());
+
+        modelBuilder.ApplyConfiguration(new ProductAttributeValueConfig());
+        modelBuilder.ApplyConfiguration(new AttributesConfig());
 
         base.OnModelCreating(modelBuilder);
     }

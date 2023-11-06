@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scaffold.Models;
 
-public partial class Auction
+public class Auction
 {
     public int Id { get; set; }
 
@@ -23,11 +23,11 @@ public partial class Auction
 
     public bool IsConfirmed { get; set; }
 
+    #region Navigation properties
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
     public virtual Booth Booth { get; set; } = null!;
 
-    public virtual Customer BoothNavigation { get; set; } = null!;
-
     public virtual Product Product { get; set; } = null!;
+    #endregion
 }

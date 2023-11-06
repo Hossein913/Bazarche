@@ -23,5 +23,16 @@ public class BoothProductConfig : IEntityTypeConfiguration<BoothProduct>
             .HasForeignKey(d => d.ProductId)
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_BoothProduct_Products");
+
+        entity.HasData(
+            new BoothProduct { Id = 1 , ProductId = 1, BoothId = 1, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 2 , ProductId = 9, BoothId = 1, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 3 , ProductId = 8, BoothId = 1, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 4 , ProductId = 3, BoothId = 1, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 5 , ProductId = 6, BoothId = 2, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 6 , ProductId = 2, BoothId = 2, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 7 , ProductId = 4, BoothId = 2, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 8 , ProductId = 9, BoothId = 2, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false}
+            );
     }
 }

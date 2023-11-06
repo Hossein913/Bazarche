@@ -25,5 +25,11 @@ public class OrderItemConfig : IEntityTypeConfiguration<OrderItem>
             .HasForeignKey(d => d.OrderId)
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_OrderItems_Orders");
+
+        entity.HasData(
+            new OrderItem { Id = 1, OrderId = 1, BoothProductid = 1, Count = 1, IsActive = true }
+            );
     }
 }
+
+

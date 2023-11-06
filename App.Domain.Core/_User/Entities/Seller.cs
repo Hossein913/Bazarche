@@ -19,8 +19,6 @@ public partial class Seller
 
     public DateTime? Birthdate { get; set; }
 
-    public bool? IsActive { get; set; }
-
     public string? ShabaNumber { get; set; }
 
     public int? BoothId { get; set; }

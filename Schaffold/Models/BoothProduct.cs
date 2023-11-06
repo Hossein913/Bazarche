@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scaffold.Models;
 
-public partial class BoothProduct
+public class BoothProduct
 {
     public int Id { get; set; }
 
@@ -21,9 +21,13 @@ public partial class BoothProduct
 
     public bool IsDeleted { get; set; }
 
+
+    #region Navigation properties
     public virtual Booth Booth { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual Product Product { get; set; } = null!;
+
+    #endregion
 }

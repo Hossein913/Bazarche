@@ -5,6 +5,7 @@ namespace Scaffold.Models;
 
 public partial class Customer
 {
+
     public int Id { get; set; }
 
     public string? Firstname { get; set; }
@@ -21,8 +22,12 @@ public partial class Customer
 
     public int? Wallet { get; set; }
 
-    public virtual Address? Address { get; set; }
+    public int AppUserId { get; set; }
 
+
+    #region Navigation properties
+
+    public virtual Address? Address { get; set; }
     public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
@@ -32,4 +37,8 @@ public partial class Customer
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
     public virtual Picture? ProfilePic { get; set; }
+
+    public virtual AppUser AppUser { get; set; }
+
+    #endregion
 }

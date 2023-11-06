@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scaffold.Models;
 
-public partial class Category
+public class Category
 {
     public int Id { get; set; }
 
@@ -11,12 +11,17 @@ public partial class Category
 
     public int? ParentId { get; set; }
 
-    public int PictureId { get; set; }
+    public int? PictureId { get; set; }
 
-    public virtual ICollection<Category> InverseParent { get; set; } = new List<Category>();
+
+    #region Navigation properties
+    public virtual ICollection<Category> Subcategories { get; set; } = new List<Category>();
     public virtual ICollection<Attributes> Attributes { get; set; } = new List<Attributes>();
+    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
 
     public virtual Category? Parent { get; set; }
 
-    public virtual Picture Picture { get; set; } = null!;
+    public virtual Picture? Picture { get; set; } = null!;
+    #endregion
+
 }

@@ -20,5 +20,12 @@ public class AddressConfig : IEntityTypeConfiguration<Address>
             .HasForeignKey(d => d.ProvinceId)
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Addresses_Provinces");
+        entity.HasData(
+            new Address { Id = 1 , ProvinceId = 1 , City = "پردیس", FullAddress = "خیابان 29", PostalCode = "2185217412" },
+            new Address { Id = 2 , ProvinceId = 1 , City = "شهریار", FullAddress = "خیابان 92،کوچه اول", PostalCode = "8745123951" },
+            new Address { Id = 3 , ProvinceId = 28 , City = "اراک", FullAddress = "خیابان شهید شیرودی ،نبش دبستان دین ودانش", PostalCode = "3851775124" }
+            );
+
     }
 }
+

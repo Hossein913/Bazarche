@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scaffold.Models;
 
-public partial class Order
+public class Order
 {
     public int Id { get; set; }
 
@@ -17,7 +17,10 @@ public partial class Order
 
     public DateTime? PayedAt { get; set; }
 
+
+    #region Navigation properties
     public virtual Customer Customer { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    #endregion
 }

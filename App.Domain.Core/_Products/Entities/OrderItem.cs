@@ -18,12 +18,12 @@ public class OrderItem
 
 
     #region Navigation properties
-    public virtual BoothProduct BoothProduct { get; set; } = null!;
+    public virtual BoothProduct BoothProduct { get; set; }
 
-    public virtual Order Order { get; set; } = null!;
+    public virtual Order Order { get; set; } 
 
-    public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+    public virtual ICollection<Comment> Comments { get; set; }
 
-    public virtual Wage Wages { get; set; } = new Wage();
+    public virtual Wage Wages { get; set; } 
     #endregion
 }

@@ -19,5 +19,9 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
             .HasForeignKey(d => d.CustomerId)
             .OnDelete(DeleteBehavior.Cascade)
             .HasConstraintName("FK_Orders_Customers");
+        entity.HasData(
+            new Order { Id = 1, CustomerId = 1, Status = true, TotalPrice = 1, CreatedAt = DateTime.Now, PayedAt = DateTime.Now }
+            );
     }
 }
+

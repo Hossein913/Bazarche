@@ -1,4 +1,5 @@
-﻿using App.Domain.Core._User.Entities;
+﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._User.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -25,7 +26,7 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
 
         entity.HasOne(d => d.Booth).WithOne(p => p.Sellers)
             .HasForeignKey<Seller>(d => d.BoothId)
-            .OnDelete(DeleteBehavior.Cascade)
+            .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_Sellers_Booths");
 
         entity.HasOne(s => s.ProfilePic).WithOne(p => p.Sellers)
@@ -33,6 +34,13 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Sellers_Pictures");
 
-        entity.HasOne(c => c.AppUser).WithOne(u => u.Seller);
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Seller)
+       .HasForeignKey<Seller>(s => s.AppuserId);
+
+        entity.HasData(
+        new Seller { Id = 1, Firstname = "حامد", Lastname = "کریمی", AddressId = 1, ProfilePicId = 13, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppuserId = 2 },
+        new Seller { Id = 2, Firstname = "میلاد", Lastname = "بداقی", AddressId = 2, ProfilePicId = 14, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppuserId = 3 }
+        ) ;
+
     }
 }

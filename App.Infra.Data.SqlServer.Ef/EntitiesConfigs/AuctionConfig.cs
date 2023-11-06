@@ -25,5 +25,10 @@ public class AuctionConfig : IEntityTypeConfiguration<Auction>
             .HasForeignKey(d => d.ProductId)
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_Auctions_Products");
+
+        entity.HasData(
+            new Auction { Id = 1, ProductId = 10, BoothId = 1, WinnerId = null, StartTime = new DateTime(2023,06,11) ,EndTime = new DateTime(2023, 10, 11) ,BasePrice = 700000 ,Status = 1 ,IsConfirmed = true  }
+            );
     }
 }
+

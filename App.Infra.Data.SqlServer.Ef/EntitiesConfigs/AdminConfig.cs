@@ -23,6 +23,13 @@ public class AdminConfig : IEntityTypeConfiguration<Admin>
             .OnDelete(DeleteBehavior.SetNull)
             .HasConstraintName("FK_Admins_Pictures");
 
-        entity.HasOne(c => c.AppUser).WithOne(u => u.Admin);
+        entity.HasOne(c => c.AppUser).WithOne(u => u.Admin)
+        .HasForeignKey<Admin>(a => a.AppuserId);
+
+
+        entity.HasData(
+            new Admin { Id = 1, Firstname = "حسین", Lastname = "بشارتی", ProfilePicId = 12, Birthdate = new DateTime(1990 , 05 , 05), Wallet = 800000, ShabaNumber = "Ir89752140000007800125", AppuserId = 1 }
+            ) ;
     }
 }
+

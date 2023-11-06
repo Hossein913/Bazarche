@@ -23,10 +23,18 @@ public partial class Seller
 
     public int? BoothId { get; set; }
 
+    public int AppuserId { get; set; }
+
+
+    #region Navigation properties
     public virtual Address? Address { get; set; }
 
     public virtual Booth? Booth { get; set; }
 
     public virtual Picture? ProfilePic { get; set; }
+
+    public virtual AppUser AppUser { get; set; }
+
+    #endregion
 
 }

@@ -30,7 +30,7 @@ public class Product
     #region Navigation properties
     public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
-    public virtual ICollection<Picture> Pictures { get; set; } = new List<Picture>();
+    public virtual ICollection<Picture>? Pictures { get; set; }
 
     public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
 

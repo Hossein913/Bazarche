@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using App.Domain.Core._Booth.Entities;
+using App.Infra.Data.SqlServer.Ef.Migrations;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -23,6 +24,13 @@ public class BoothConfig : IEntityTypeConfiguration<Booth>
         entity.HasOne(d => d.Medal).WithMany(p => p.Booths)
             .HasForeignKey(d => d.MedalId)
             .OnDelete(DeleteBehavior.NoAction)
-            .HasConstraintName("FK_Booths_Medals");
+        .HasConstraintName("FK_Booths_Medals");
+
+        entity.HasData(
+        new Booth { Id = 1, Name = "رویال ", AvatarPictureId = 16, MedalId = 1, AccountBalance = 0, Description = "عرضه کننده انواع محصولات", IsActive =true , IsDeleted = false },
+        new Booth { Id = 2, Name = "نوین", AvatarPictureId = 17, MedalId = 2, AccountBalance = 2300000, Description = "شیک پوشی شما با ما", IsActive = true, IsDeleted = false }
+
+    );
     }
 }
+

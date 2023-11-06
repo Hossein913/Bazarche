@@ -13,5 +13,7 @@ public partial class Wage
 
     public int WageAmount { get; set; }
 
+    #region Navigation properties
     public virtual OrderItem Orderitem { get; set; } = null!;
+    #endregion
 }

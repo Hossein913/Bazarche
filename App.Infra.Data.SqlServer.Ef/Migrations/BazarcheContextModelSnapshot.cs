@@ -63,6 +63,30 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("MedalId");
 
                     b.ToTable("Booths");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccountBalance = 0,
+                            AvatarPictureId = 16,
+                            Description = "عرضه کننده انواع محصولات",
+                            IsActive = true,
+                            IsDeleted = false,
+                            MedalId = 1,
+                            Name = "رویال "
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccountBalance = 2300000,
+                            AvatarPictureId = 17,
+                            Description = "شیک پوشی شما با ما",
+                            IsActive = true,
+                            IsDeleted = false,
+                            MedalId = 2,
+                            Name = "نوین"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Booth.Entities.Medal", b =>
@@ -87,6 +111,29 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Medals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FeePercentage = 10,
+                            MinSalesRequired = 0,
+                            Name = "Default"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FeePercentage = 8,
+                            MinSalesRequired = 3000000,
+                            Name = "Silver"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FeePercentage = 5,
+                            MinSalesRequired = 10000000,
+                            Name = "Gold"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Common.Entities.Picture", b =>
@@ -100,7 +147,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("CreatedBy")
+                    b.Property<int?>("CreatedBy")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
@@ -113,6 +160,197 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pictures");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8017),
+                            ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8032),
+                            ImageUrl = "202140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8034),
+                            ImageUrl = "302140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8035),
+                            ImageUrl = "402140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8037),
+                            ImageUrl = "502140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8038),
+                            ImageUrl = "602140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8040),
+                            ImageUrl = "702140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8041),
+                            ImageUrl = "802140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8043),
+                            ImageUrl = "902140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8044),
+                            ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8058),
+                            ImageUrl = "112140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8059),
+                            ImageUrl = "5522140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8061),
+                            ImageUrl = "5502140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8062),
+                            ImageUrl = "5512140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 15,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8063),
+                            ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8072),
+                            ImageUrl = "9902140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 17,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8073),
+                            ImageUrl = "9912140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8075),
+                            ImageUrl = "8802140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8081),
+                            ImageUrl = "8812140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8092),
+                            ImageUrl = "8822140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 21,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8093),
+                            ImageUrl = "8832140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 22,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8095),
+                            ImageUrl = "8842140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 23,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8096),
+                            ImageUrl = "8852140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8097),
+                            ImageUrl = "8862140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 25,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8099),
+                            ImageUrl = "8872140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 26,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8100),
+                            ImageUrl = "8882140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 27,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8102),
+                            ImageUrl = "8892140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Attributes", b =>
@@ -177,6 +415,19 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Auctions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BasePrice = 700000,
+                            BoothId = 1,
+                            EndTime = new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsConfirmed = true,
+                            ProductId = 10,
+                            StartTime = new DateTime(2023, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Bid", b =>
@@ -244,6 +495,96 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("BoothProducts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BoothId = 1,
+                            Count = 10,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8037),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 1,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoothId = 1,
+                            Count = 5,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8051),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 9,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BoothId = 1,
+                            Count = 10,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8053),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 8,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BoothId = 1,
+                            Count = 5,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8055),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 3,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BoothId = 2,
+                            Count = 10,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8056),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 6,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BoothId = 2,
+                            Count = 5,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8058),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 2,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BoothId = 2,
+                            Count = 10,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8060),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 4,
+                            Status = true
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BoothId = 2,
+                            Count = 5,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8062),
+                            IsDeleted = false,
+                            Price = 800000,
+                            ProductId = 9,
+                            Status = true
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Category", b =>
@@ -274,6 +615,961 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PictureId = 1,
+                            Title = "کالای دیجیتال"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PictureId = 2,
+                            Title = "خانه و آشپزخانه"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PictureId = 3,
+                            Title = "مد و پوشاک"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            PictureId = 4,
+                            Title = "کالاهای سوپر مارکتی"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            PictureId = 5,
+                            Title = "کتاب و لوازم التحریر"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            PictureId = 6,
+                            Title = "اسباب بازی ،کودک و نوزاد"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            PictureId = 7,
+                            Title = "زیبایی و سلامت"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            PictureId = 8,
+                            Title = "ورزش و سفر"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            PictureId = 9,
+                            Title = "ابزار الات و تجهیزات"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            PictureId = 10,
+                            Title = "خودرو و موتورسیکلت"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            PictureId = 1,
+                            Title = "محصولات بومی محلی"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ParentId = 1,
+                            Title = "موبایل"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Title = "لوازم جانبی لپ تاپ"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ParentId = 1,
+                            Title = "کامپیوتر"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ParentId = 1,
+                            Title = "لوازم جانبی گوشی"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ParentId = 1,
+                            Title = "کتابخوان"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ParentId = 1,
+                            Title = "واقعیت مجازی"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ParentId = 1,
+                            Title = "ساعت و مچ بند هوشمند"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ParentId = 1,
+                            Title = "تلوزیون"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ParentId = 1,
+                            Title = "هدفون، هدست، میکروفون"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ParentId = 1,
+                            Title = "اسپیکر بلوتوث و با سیم"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ParentId = 1,
+                            Title = "هارد، فلش و SSD"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ParentId = 1,
+                            Title = "دوربین"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ParentId = 1,
+                            Title = "لوازم جانبی دوربین"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ParentId = 1,
+                            Title = "تبلت"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ParentId = 1,
+                            Title = "کنسول بازی"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ParentId = 1,
+                            Title = "شارژر تبلت و موبایل"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ParentId = 1,
+                            Title = "کیف، کاور، لوازم جانبی تبلت"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ParentId = 1,
+                            Title = "باتری"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ParentId = 1,
+                            Title = "دوربین های تحت شبکه"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ParentId = 1,
+                            Title = "مودم و تجهیزات شبکه"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ParentId = 1,
+                            Title = "ماشین های اداری"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ParentId = 2,
+                            Title = "تلویزیون"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ParentId = 2,
+                            Title = "یخچال و فریزر"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ParentId = 2,
+                            Title = "دکوراتیو"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ParentId = 2,
+                            Title = "فرش ماشینی، دست بافت، تابلو"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ParentId = 2,
+                            Title = "لوازم برقی خانگی"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ParentId = 2,
+                            Title = "حیوانات خانگی، غذا و لوازم"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ParentId = 2,
+                            Title = "سرو و پذیرایی"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ParentId = 2,
+                            Title = "نور و روشنایی"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ParentId = 2,
+                            Title = "آشپزخانه"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ParentId = 2,
+                            Title = "مواد شوینده"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ParentId = 2,
+                            Title = "دستمال کاغذی"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ParentId = 2,
+                            Title = "ملحفه، سرویس، لوازم خواب"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ParentId = 2,
+                            Title = "حوله و وسایل حمام"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ParentId = 2,
+                            Title = "پادری، کمد، لوازم اتاق خواب"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ParentId = 2,
+                            Title = "لوازم دستشویی، روشویی"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ParentId = 2,
+                            Title = "فندک و لوازم جانبی"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ParentId = 2,
+                            Title = "گل، خاک، کود، لوازم باغبانی"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ParentId = 2,
+                            Title = "کولر گازی"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ParentId = 2,
+                            Title = "کولر آبی"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ParentId = 3,
+                            Title = "مردانه"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ParentId = 3,
+                            Title = "لباس مردانه"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ParentId = 3,
+                            Title = "اکسسوری مردانه"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ParentId = 3,
+                            Title = "زنانه"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ParentId = 3,
+                            Title = "لباس زنانه"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ParentId = 3,
+                            Title = "کفش زنانه"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ParentId = 3,
+                            Title = "اکسسوری زنانه"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ParentId = 3,
+                            Title = "طلا"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            ParentId = 3,
+                            Title = "زیورآلات زنانه"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ParentId = 3,
+                            Title = "زیورآلات نقره زنانه"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ParentId = 3,
+                            Title = "عینک آفتابی زنانه"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ParentId = 3,
+                            Title = "عینک آفتابی مردانه"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ParentId = 3,
+                            Title = "پوشاک ورزشی مردانه"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            ParentId = 3,
+                            Title = "پوشاک ورزشی زنانه"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            ParentId = 3,
+                            Title = "کفش ورزشی مردانه"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            ParentId = 3,
+                            Title = "کفش ورزشی زنانه"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            ParentId = 3,
+                            Title = "پوشاک ورزشی پسرانه"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            ParentId = 3,
+                            Title = "پوشاک ورزشی دخترانه"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            ParentId = 3,
+                            Title = "کفش ورزشی پسرانه"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            ParentId = 3,
+                            Title = "کفش ورزشی دخترانه"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            ParentId = 3,
+                            Title = "کوله پشتی مردانه"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            ParentId = 3,
+                            Title = "بچگانه"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            ParentId = 4,
+                            Title = "کالاهای اساسی و خوار و بار"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            ParentId = 4,
+                            Title = "صبحانه "
+                        },
+                        new
+                        {
+                            Id = 76,
+                            ParentId = 4,
+                            Title = "مواد پروتئینی"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            ParentId = 4,
+                            Title = "لبنیات "
+                        },
+                        new
+                        {
+                            Id = 78,
+                            ParentId = 4,
+                            Title = "نوشیدنی ها"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            ParentId = 4,
+                            Title = "میوه و سبزی"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            ParentId = 4,
+                            Title = "غذای آماده و نودل"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            ParentId = 4,
+                            Title = "فرآورده‌های منجمد"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            ParentId = 4,
+                            Title = "تنقلات"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            ParentId = 4,
+                            Title = "کنسرو و کمپوت"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            ParentId = 4,
+                            Title = "خشکبار و شیرینی"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            ParentId = 5,
+                            Title = "کتاب و مجله"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            ParentId = 5,
+                            Title = "کتاب صوتی"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            ParentId = 5,
+                            Title = "محتوای آموزشی"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            ParentId = 5,
+                            Title = "نرم افزار"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            ParentId = 5,
+                            Title = "بازی کنسول و کامپیوتر"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            ParentId = 5,
+                            Title = "فیلم سینمایی، سریال و مستند"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            ParentId = 5,
+                            Title = "آلبوم موسیقی"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            ParentId = 5,
+                            Title = "لوازم تحریر "
+                        },
+                        new
+                        {
+                            Id = 93,
+                            ParentId = 5,
+                            Title = "آلات موسیقی"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            ParentId = 5,
+                            Title = "فرش ماشینی، دستبافت، تابلو"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            ParentId = 4,
+                            Title = "صنایع دستی"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            ParentId = 6,
+                            Title = "بهداشت و حمام کودک و نوزاد"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            ParentId = 6,
+                            Title = "پوشاک و کفش کودک و نوزاد "
+                        },
+                        new
+                        {
+                            Id = 98,
+                            ParentId = 6,
+                            Title = "تبلت"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            ParentId = 6,
+                            Title = "پلی استیشن، ایکس باکس و بازی"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            ParentId = 6,
+                            Title = "اسباب بازی"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            ParentId = 6,
+                            Title = "بازی و سرگرمی کودک "
+                        },
+                        new
+                        {
+                            Id = 102,
+                            ParentId = 6,
+                            Title = "سلامت، ایمنی و مراقبت"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            ParentId = 6,
+                            Title = "خواب کودک"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            ParentId = 6,
+                            Title = "ملزومات گردش و سفر"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            ParentId = 6,
+                            Title = "لوازم شخصی"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            ParentId = 6,
+                            Title = "غذا خوری"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            ParentId = 7,
+                            Title = "لوازم آرایشی"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            ParentId = 7,
+                            Title = "مراقبت پوست"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            ParentId = 7,
+                            Title = "مراقبت و زیبایی مو"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            ParentId = 7,
+                            Title = "لوازم بهداشتی "
+                        },
+                        new
+                        {
+                            Id = 111,
+                            ParentId = 7,
+                            Title = "عطر و ادکلن"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            ParentId = 7,
+                            Title = "لوازم شخصی برقی"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            ParentId = 7,
+                            Title = "ابزار سلامت"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            ParentId = 8,
+                            Title = "پوشاک ورزشی "
+                        },
+                        new
+                        {
+                            Id = 115,
+                            ParentId = 8,
+                            Title = "کفش ورزشی "
+                        },
+                        new
+                        {
+                            Id = 116,
+                            ParentId = 8,
+                            Title = "تجهیزات سفر"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            ParentId = 8,
+                            Title = "دوچرخه"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            ParentId = 8,
+                            Title = "کوهنوردی و کمپینگ"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            ParentId = 8,
+                            Title = "چتر"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            ParentId = 8,
+                            Title = "ساک ورزشی"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            ParentId = 8,
+                            Title = "قمقمه و شیکر"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            ParentId = 8,
+                            Title = "لوازم ورزشی"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            ParentId = 8,
+                            Title = "اسکوتر برقی"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            ParentId = 8,
+                            Title = "v"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            ParentId = 9,
+                            Title = "ابزار برقی "
+                        },
+                        new
+                        {
+                            Id = 126,
+                            ParentId = 9,
+                            Title = "ابزار غیر برقی "
+                        },
+                        new
+                        {
+                            Id = 127,
+                            ParentId = 9,
+                            Title = "لوازم الکتریکی و یراق آلات"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            ParentId = 9,
+                            Title = "لوازم باغبانی و کشاورزی"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            ParentId = 9,
+                            Title = "تجهیزات ایمنی و کار "
+                        },
+                        new
+                        {
+                            Id = 130,
+                            ParentId = 9,
+                            Title = "حفاظتی و امنیتی"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            ParentId = 9,
+                            Title = "دستگاه های حمل و بالابر صنعتی"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            ParentId = 10,
+                            Title = "خودرو"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            ParentId = 10,
+                            Title = "موتور سیکلت"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            ParentId = 10,
+                            Title = "لوازم مصرفی خودرو "
+                        },
+                        new
+                        {
+                            Id = 135,
+                            ParentId = 10,
+                            Title = "لوازم یدکی خودرو"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            ParentId = 10,
+                            Title = "لوازم صوتی و تصویری"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            ParentId = 10,
+                            Title = "لوازم جانبی خودرو "
+                        },
+                        new
+                        {
+                            Id = 138,
+                            ParentId = 10,
+                            Title = "لوازم موتور سیکلت"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            ParentId = 11,
+                            Title = "مواد غذایی ارگانیک"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            ParentId = 11,
+                            Title = "خواروبار محلی"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            ParentId = 11,
+                            Title = "صبحانه محلی"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            ParentId = 11,
+                            Title = "کیک و شیرینی خانگی"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            ParentId = 11,
+                            Title = "تنقلات خانگی"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            ParentId = 11,
+                            Title = "لبنیات سنتی "
+                        },
+                        new
+                        {
+                            Id = 145,
+                            ParentId = 11,
+                            Title = "خشکبار و آجیل سنتی"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            ParentId = 11,
+                            Title = "غلات و حبوبات ارگانیک"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            ParentId = 11,
+                            Title = "ادویه و چاشنی ارگانیک"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            ParentId = 11,
+                            Title = "عطاری"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            ParentId = 11,
+                            Title = "ترشیجات و شور خانگی"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            ParentId = 11,
+                            Title = "دکوراتیو سنتی"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            ParentId = 11,
+                            Title = "خانه و کاشانه"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            ParentId = 11,
+                            Title = "نوشیدنی‌های ارگانیک"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            ParentId = 11,
+                            Title = "نوشیدنی‌های ارگانیک"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            ParentId = 11,
+                            Title = "اکسسوری و زیورآلات دست ساز"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            ParentId = 11,
+                            Title = "پوشاک بومی و محلی"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            ParentId = 11,
+                            Title = "قالی و قالیچه"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            ParentId = 11,
+                            Title = "ظروف سنتی"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            ParentId = 11,
+                            Title = "لوازم آشپزخانه سنتی"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            ParentId = 11,
+                            Title = "رومیزی، رانر و زیربشقابی سنتی"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Comment", b =>
@@ -318,6 +1614,18 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[PictureId] IS NOT NULL");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 191, DateTimeKind.Local).AddTicks(4898),
+                            CustomerId = 1,
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            OrderItemId = 1,
+                            Text = "محصول فوق العاده ای بود. سپاس"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
@@ -348,6 +1656,17 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 192, DateTimeKind.Local).AddTicks(2020),
+                            CustomerId = 1,
+                            PayedAt = new DateTime(2023, 11, 6, 21, 49, 21, 192, DateTimeKind.Local).AddTicks(2024),
+                            Status = true,
+                            TotalPrice = 1
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.OrderItem", b =>
@@ -378,6 +1697,16 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("OrderId");
 
                     b.ToTable("OrderItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BoothProductid = 1,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 1
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Product", b =>
@@ -433,6 +1762,138 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BasePrise = 100000,
+                            Brand = "زاگرس پوش",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "جنس نخ پنبه ای",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "پیراهن سرمه ای نخی"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BasePrise = 1800000,
+                            Brand = "ال سی من",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "سایز ها ایکس و ایکس لارج",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "هودی آبی"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BasePrise = 100000,
+                            Brand = "اسکیچر",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "جنس زیره پی یو",
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            Name = "کفش پیاده روی"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BasePrise = 100000,
+                            Brand = "کرال",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "نمد ضد آب",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "کلاه نمدی قهوه ای"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BasePrise = 100000,
+                            Brand = "تسکو",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "مخصوص بازی",
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            Name = "هدفوت بلوتوث "
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BasePrise = 100000,
+                            Brand = "آیفون",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "باتری 800 میلی آمپر",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "ساعت هوشمند"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BasePrise = 100000,
+                            Brand = "سامسونگ",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "ضد آب",
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            Name = "ایر پاد سامسونگ"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BasePrise = 100000,
+                            Brand = "سونی",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "سنسور 21 مگاپیکسل",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "دوربین کامپکت"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BasePrise = 32000000,
+                            Brand = "آیفون",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = "ضد آب",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "گوشی آیفون 12"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            BasePrise = 28000000,
+                            Brand = "اچ پی",
+                            Describtion = "محصول عالی",
+                            Grantee = "زمانت تعویض هفت روزه",
+                            IncludedComponentes = "",
+                            InformationDetails = " پردازنده نسل 13",
+                            IsConfirmed = true,
+                            IsDeleted = false,
+                            Name = "لبتاب hp"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.ProductAttributeValue", b =>
@@ -495,6 +1956,32 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("ProvinceId");
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "پردیس",
+                            FullAddress = "خیابان 29",
+                            PostalCode = "2185217412",
+                            ProvinceId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "شهریار",
+                            FullAddress = "خیابان 92،کوچه اول",
+                            PostalCode = "8745123951",
+                            ProvinceId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "اراک",
+                            FullAddress = "خیابان شهید شیرودی ،نبش دبستان دین ودانش",
+                            PostalCode = "3851775124",
+                            ProvinceId = 28
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.Admin", b =>
@@ -539,6 +2026,19 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppuserId = 1,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Firstname = "حسین",
+                            Lastname = "بشارتی",
+                            ProfilePicId = 12,
+                            ShabaNumber = "Ir89752140000007800125",
+                            Wallet = 800000
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.AppRole", b =>
@@ -573,6 +2073,29 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin",
+                            NormalizedName = "ADMIN",
+                            PermissionName = "SuperAdmin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Seller",
+                            NormalizedName = "SELLER",
+                            PermissionName = "DefaultSeller"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER",
+                            PermissionName = "DefaultCustomer"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.AppUser", b =>
@@ -653,6 +2176,80 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b3ff5bed-a006-448e-8f4d-37ec7d737a3f",
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(323),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Admin@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "ADMIN@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGz0GYwWHVTcS6WDst21j4iWOpf5dcXtW5alWd308pwpya/ZgQjxtzzGY9o4C7PYig==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Admin@mail.com"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d88601a4-f509-4a29-886f-f94832158d21",
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(335),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Seller1@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "SELLER1@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAELOkDVqw5VM9gJkZdbDBUDoDV8G40Ul335omeJREctLlIyYM1I6XjnBJvv3+3bcWjQ==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Seller1@mail.com"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4f2efd0f-4ea1-4457-899f-ba39c6453141",
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(340),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Seller2@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "SELLER2@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE+K6MnprVXAWp5zI9V5q0KqPaAeuaUxP7boxQsUuaj+oSFbXSx32iXrtT/cZS9H9Q==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "Seller2@mail.com"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1c3bae04-1a16-475f-8361-3b6922eba736",
+                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(352),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "customer@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "CUSTOMER@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBMWN/AKojskUngHVkSwMaS3NJXaNzlrsrbmked8HGKIGtDVBJ5Koso+gO/bGUKDYQ==",
+                            PhoneNumberConfirmed = false,
+                            TwoFactorEnabled = false,
+                            UserName = "customer@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.Customer", b =>
@@ -702,6 +2299,18 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 3,
+                            AppUserId = 4,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Firstname = "جواد  ",
+                            Lastname = "بیات",
+                            ProfilePicId = 15
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.Province", b =>
@@ -902,9 +2511,6 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<string>("Firstname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Lastname")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -935,6 +2541,30 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasFilter("[ProfilePicId] IS NOT NULL");
 
                     b.ToTable("Sellers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 1,
+                            AppuserId = 2,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Firstname = "حامد",
+                            Lastname = "کریمی",
+                            ProfilePicId = 13,
+                            ShabaNumber = "Ir89752140000007800125"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 2,
+                            AppuserId = 3,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Firstname = "میلاد",
+                            Lastname = "بداقی",
+                            ProfilePicId = 14,
+                            ShabaNumber = "Ir89752140000007800125"
+                        });
                 });
 
             modelBuilder.Entity("App.Domain.Core._User.Entities.Wage", b =>
@@ -960,6 +2590,15 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsUnique();
 
                     b.ToTable("Wages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FeePercenteage = 25,
+                            OrderitemId = 1,
+                            WageAmount = 80000
+                        });
                 });
 
             modelBuilder.Entity("AttributesCategory", b =>
@@ -1059,6 +2698,28 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            UserId = 4,
+                            RoleId = 3
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -1360,7 +3021,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.HasOne("App.Domain.Core._Booth.Entities.Booth", "Booth")
                         .WithOne("Sellers")
                         .HasForeignKey("App.Domain.Core._User.Entities.Seller", "BoothId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .HasConstraintName("FK_Sellers_Booths");
 
                     b.HasOne("App.Domain.Core._Common.Entities.Picture", "ProfilePic")
@@ -1477,8 +3138,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.Navigation("BoothProducts");
 
-                    b.Navigation("Sellers")
-                        .IsRequired();
+                    b.Navigation("Sellers");
                 });
 
             modelBuilder.Entity("App.Domain.Core._Booth.Entities.Medal", b =>
@@ -1488,23 +3148,17 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
             modelBuilder.Entity("App.Domain.Core._Common.Entities.Picture", b =>
                 {
-                    b.Navigation("Admins")
-                        .IsRequired();
+                    b.Navigation("Admins");
 
-                    b.Navigation("Booths")
-                        .IsRequired();
+                    b.Navigation("Booths");
 
-                    b.Navigation("Categories")
-                        .IsRequired();
+                    b.Navigation("Categories");
 
-                    b.Navigation("Comment")
-                        .IsRequired();
+                    b.Navigation("Comment");
 
-                    b.Navigation("Customers")
-                        .IsRequired();
+                    b.Navigation("Customers");
 
-                    b.Navigation("Sellers")
-                        .IsRequired();
+                    b.Navigation("Sellers");
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Attributes", b =>

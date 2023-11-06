@@ -20,7 +20,13 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs
                 .HasForeignKey<Wage>(d => d.OrderitemId)
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Wages_OrderItems");
+
+            entity.HasData(
+                new Wage { Id = 1, OrderitemId = 1, FeePercenteage = 25, WageAmount = 80000 }
+                );
         }
     
     }
 }
+
+

@@ -26,14 +26,14 @@ public partial class Booth
 
 
     #region Navigation properties
-    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
+    public virtual ICollection<Auction> Auctions { get; set; }  
 
     public virtual Picture? AvatarPicture { get; set; } = null!;
 
-    public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
+    public virtual ICollection<BoothProduct> BoothProducts { get; set; } 
 
-    public virtual Medal Medal { get; set; } = null!;
+    public virtual Medal? Medal { get; set; } 
 
-    public virtual Seller Sellers { get; set; } = new Seller();
+    public virtual Seller? Sellers { get; set; }
     #endregion
 }
