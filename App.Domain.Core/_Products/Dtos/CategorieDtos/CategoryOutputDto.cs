@@ -13,11 +13,15 @@ public class CategoryOutputDto
 
     public int? ParentId { get; set; }
 
-    public int PictureId { get; set; }
+    public string PictureFileName { get; set; }
 
-    public virtual ICollection<Category> InverseParent { get; set; } = new List<Category>();
 
-    public virtual Category? Parent { get; set; }
 
-    public virtual Picture Picture { get; set; } = null!;
+    #region Navigation properties
+    public ICollection<Category> Subcategories { get; set; } 
+    public ICollection<Attributes> Attributes { get; set; }  
+    public ICollection<Product> Products { get; set; } 
+    public Category? Parent { get; set; }
+public Picture? Picture { get; set; }
+    #endregion
 }

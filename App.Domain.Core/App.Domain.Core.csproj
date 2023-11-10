@@ -7,17 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="_Booth\Contracts\AppServices\" />
-    <Folder Include="_Booth\Contracts\Services\" />
     <Folder Include="_Booth\Enums\" />
-    <Folder Include="_Common\Contracts\AppServices\" />
-    <Folder Include="_Common\Contracts\Services\" />
     <Folder Include="_Common\Enums\" />
-    <Folder Include="_Products\Contracts\AppServices\" />
-    <Folder Include="_Products\Contracts\Services\" />
     <Folder Include="_Products\Enums\" />
-    <Folder Include="_User\Contracts\AppServices\" />
-    <Folder Include="_User\Contracts\Services\" />
     <Folder Include="_User\Enums\" />
   </ItemGroup>
 

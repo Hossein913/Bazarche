@@ -1,10 +1,18 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
+using App.Infra.Data.SqlServer.Ef.DbCntx;
 
 namespace App.Infra.Data.Repos.Ef.Products;
 
 public class BoothProductRepository : IBoothProductRepository
 {
+    private readonly BazarcheContext _context;
+
+    public BoothProductRepository(BazarcheContext context)
+    {
+        _context = context;
+    }
+
     public Task Create(BoothProductCreateDto boothProduct, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();

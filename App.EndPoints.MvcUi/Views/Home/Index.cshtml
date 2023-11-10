@@ -1,8 +1,2492 @@
-﻿@{
+﻿
+@model IndexViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!--  category Section Start -->
+<!--  For developer (More icons find in https://www.svgrepo.com/) -->
+<section class="section ec-category-section section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 class="ec-title">دسته‌بندی‌های برتر</h2>
+                </div>
+            </div>
+        </div>
+
+         <div class="row mt-1 margin-minus-b-15 margin-minus-t-15">
+            <div id="ec-cat-slider" class="ec-cat-slider owl-carousel">
+                        @foreach (var item in Model.ParentCategories)
+                        {
+                <div class="ec_cat_content ec_cat_content_1">
+                    <div class="ec_cat_inner ec_cat_inner-1">
+
+                            <div>
+                                <img src="~/Upload/Img/Category/@item.PictureFileName"
+                                 class="svg_img"
+                                     alt=@item.Title height="50px" width="70px" />
+                             </div>
+                            <div class="ec-category-desc">
+                                <a href="shop-left-sidebar-col-3.html" class="cat-show-all">
+                                <h3> @item.Title <span title="Category Items">(53)</span></h3>
+                                </a>                                   
+                            </div>
+                        
+                        </div>
+                </div>
+                }
+             </div>
+        </div>
+
+    </div>
+</section>
+<!--category Section End -->
+<!--  لیست غرفه ها Start -->
+<section class="section ec-blog-section section-space-p">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="section-title">
+                <h2 class="ec-title">غرفه ها</h2>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="ec-blog-slider owl-carousel" data-animation="fadeIn">
+                @foreach (var item in Model.boothOutputs)
+                {
+                <div class="ec-blog-block">
+                    <div class="ec-blog-inner">
+                        <div class="ec-blog-image">
+                            <a href="blog-detail-left-sidebar.html">
+                                <img class="blog-image"
+                                         src="~/Upload/Img/BoothAvatar/@item.AvatarPictureFile"
+                                     alt="Blog"  height="180px" />
+                            </a>
+                        </div>
+                        <div class="ec-blog-content">
+                            <h5 class="ec-blog-title">
+                                <a href="blog-detail-left-sidebar.html">
+                                   @item.Name
+                                </a>
+                            </h5>
+
+                            <div class="ec-blog-date">
+                                    @item.Description
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</section>
+<!--  لیست غرفه ها End -->
+<!-- Product tab Area Start -->
+<section class="section ec-product-tab section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar area start -->
+            <div class="ec-side-cat-overlay"></div>
+            <div class="col-lg-3 sidebar-dis-991" data-animation="fadeIn">
+                <div class="cat-sidebar">
+                    <div class="cat-sidebar-box">
+                        <div class="ec-sidebar-wrap">
+                            <!-- Sidebar Category Block -->
+                            <div class="ec-sidebar-block">
+                                <div class="ec-sb-title">
+                                    <h3 class="ec-sidebar-title">
+                                        دسته‌بندی<button class="ec-close">×</button>
+                                    </h3>
+                                </div>
+                                @foreach (var pItem in Model.ParentCategories)
+                                {
+
+                                     <div class="ec-sb-block-content">
+                                    <ul>
+                                        <li>
+                                            <div class="ec-sidebar-block-item">
+                                                <img src="~/Upload/Img/Category/@pItem.PictureFileName"
+                                                     class="svg_img"
+                                                     alt="drink">
+                                                @pItem.Title
+                                            </div>
+                                            <ul>
+                                                @foreach (var chItem in Model.ChildCategories.Where(c => c.ParentId== pItem.Id))
+                                                {     
+                                                    <li>
+                                                        <div class="ec-sidebar-sub-item">
+                                                             <a href="shop-left-sidebar-col-3.html">@chItem.Title</a>
+                                                         </div>
+                                                    </li>
+                                                    }
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                }
+                            </div>
+                            <!-- Sidebar Category Block -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Product area start -->
+            <div class="col-lg-9 col-md-12">
+                <!-- ec New Arrivals, ec Trending, ec Top Rated Start -->
+                <div class="row">
+                    <!-- ec New Arrivals -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-6 ec-all-product-content ec-new-product-content margin-b-30"
+                         data-animation="fadeIn">
+                    </div>
+                </div>
+                <!-- ec New Arrivals, ec Trending, ec Top Rated end -->
+                <!-- Product tab area start -->
+                <div class="row space-t-50">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h2 class="ec-title">محصولات جدید</h2>
+                        </div>
+                    </div>
+
+                    <!-- Tab Start -->
+                    <div class="col-md-12 ec-pro-tab">
+                        <ul class="ec-pro-tab-nav nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#all">همه</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#clothes">لباس</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-bs-toggle="tab" href="#footwear">
+                                    کفش
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   data-bs-toggle="tab"
+                                   href="#accessories">
+                                    لوازم جانبی
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Tab End -->
+                </div>
+                <div class="row margin-minus-b-15">
+                    <div class="col">
+                        <div class="tab-content">
+                            <!-- 1st Product tab start -->
+                            <div class="tab-pane fade show active" id="all">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/88_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/88_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="percentage">20%</span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">تی شرت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        تی شرت آستین کوتاه
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5800 تومان</span>
+                                                        <span class="old-price">6500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/97_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/97_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ورزشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش پیاده روی - سیاه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5800 تومان</span>
+                                                        <span class="old-price">6400 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/107_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/107_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">جواهرات</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">گردنبند قلب گوزن نقره ای</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">65000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/108_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/108_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">عطر</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">تیتان 100 میلی لیتر عطر زنانه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2000 تومان</span>
+                                                        <span class="old-price">2100 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/110_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/110_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">لوازم آرایشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        نرم کننده مو
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5000 تومان</span>
+                                                        <span class="old-price">6000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/94_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/94_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="percentage">15%</span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ژاکت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کت چرم مردانه زمستانی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5900 تومان</span>
+                                                        <span class="old-price">8700 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/98_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/98_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">مهمانی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش زنانه مهمانی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2500 تومان</span>
+                                                        <span class="old-price">3000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/111_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/111_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">جواهرات</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">گوشواره طاووس طلای رز</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">1000 تومان</span>
+                                                        <span class="old-price">1200 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ec 1st Product tab end -->
+                            <!-- ec 2nd Product tab start -->
+                            <div class="tab-pane fade" id="clothes">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/94_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/94_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ژاکت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کت چرم مردانه زمستانی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5900 تومان</span>
+                                                        <span class="old-price">8700 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/95_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/95_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">لباس</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">فرنچ تری سویشرت</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">7800 تومان</span>
+                                                        <span class="old-price">8500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/88_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/88_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">تی شرت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">تی شرت آستین کوتاه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5800 تومان</span>
+                                                        <span class="old-price">6500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/89_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/89_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">تاپ</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        تاپ دخترانه
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">4500 تومان</span>
+                                                        <span class="old-price">5000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/90_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/90_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">دامن</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        سیاه و سفید پوشش گل دامن
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2500 تومان</span>
+                                                        <span class="old-price">3500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/91_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/91_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">پیراهن</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">لباس کتان مردانه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">4500 تومان</span>
+                                                        <span class="old-price">5600 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/92_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/92_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ژاکت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">ژاکت مردانه زیپ دار</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">4900 تومان</span>
+                                                        <span class="old-price">6500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/93_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/93_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ژاکت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کت چرم مردانه زمستانی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">3200 تومان</span>
+                                                        <span class="old-price">4500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ec 2nd Product tab end -->
+                            <!-- ec 3rd Product tab start -->
+                            <div class="tab-pane fade" id="footwear">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/96_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/96_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ورزشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش پیاده روی - سفید</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">8900 تومان</span>
+                                                        <span class="old-price">9500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/97_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/97_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ورزشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش پیاده روی - سیاه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5800 تومان</span>
+                                                        <span class="old-price">6400 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/98_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/98_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">مهمانی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش زنانه مهمانی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2500 تومان</span>
+                                                        <span class="old-price">3000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/99_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/99_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ورزشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش مهمانی کلای</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5000 تومان</span>
+                                                        <span class="old-price">7000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/100_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/100_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ورزشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش دویدن - سفید</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">6200 تومان</span>
+                                                        <span class="old-price">8000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/104_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/104_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">بوت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">بوت با جزییات ریز</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">6500 تومان</span>
+                                                        <span class="old-price">7000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/102_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/102_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">فرمال</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش مردانه فرمال چرمی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5000 تومان</span>
+                                                        <span class="old-price">6500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/103_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/103_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">کژوال</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">کفش کژوال مردانه قهوه ای</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">9900 تومان</span>
+                                                        <span class="old-price">10500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ec 3rd Product tab end -->
+                            <!-- ec 3rd Product tab start -->
+                            <div class="tab-pane fade" id="accessories">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/105_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/105_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ساعت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">ساعت هوشمند ویتال</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">10000 تومان</span>
+                                                        <span class="old-price">12000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/106_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/106_2.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">ساعت</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">ساعت جیبی چرمی</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">15000 تومان</span>
+                                                        <span class="old-price">17000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/107_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/107_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">جواهرات</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">گردنبند قلب گوزن نقره ای</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">65000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/108_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/108_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">عطر</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">تیتان 100 میلی لیتر عطر زنانه</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2000 تومان</span>
+                                                        <span class="old-price">2100 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/109_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/109_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="new">جدید</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">کمربند</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        کمربند چرم مردانه
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">2500 تومان</span>
+                                                        <span class="old-price">3500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/110_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/110_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <span class="flags">
+                                                        <span class="sale">تخفیف</span>
+                                                    </span>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">لوازم آرایشی</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">
+                                                        نرم کننده مو
+                                                    </a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">5000 تومان</span>
+                                                        <span class="old-price">6000 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/111_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/111_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">جواهرات</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">گوشواره طاووس طلای رز</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">1000 تومان</span>
+                                                        <span class="old-price">1200 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                        <div class="ec-product-inner">
+                                            <div class="ec-pro-image-outer">
+                                                <div class="ec-pro-image">
+                                                    <a href="product-left-sidebar.html" class="image">
+                                                        <img class="main-image"
+                                                             src="assets/images/product-image/112_1.jpg"
+                                                             alt="Product" />
+                                                        <img class="hover-image"
+                                                             src="assets/images/product-image/112_1.jpg"
+                                                             alt="Product" />
+                                                    </a>
+                                                    <div class="ec-pro-actions">
+                                                        <a class="ec-btn-group wishlist"
+                                                           title="علاقه‌مندی">
+                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="#"
+                                                           class="ec-btn-group quickview"
+                                                           data-link-action="quickview"
+                                                           title="نمایش سریع"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#ec_quickview_modal">
+                                                            <img src="assets/images/icons/quickview.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="compare.html"
+                                                           class="ec-btn-group compare"
+                                                           title="مقایسه">
+                                                            <img src="assets/images/icons/compare.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                        <a href="javascript:void(0)"
+                                                           title="افزودن به کارت"
+                                                           class="ec-btn-group add-to-cart">
+                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                                 class="svg_img pro_svg"
+                                                                 alt="" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ec-pro-content">
+                                                <a href="shop-left-sidebar-col-3.html">
+                                                    <h6 class="ec-pro-stitle">جواهرات</h6>
+                                                </a>
+                                                <h5 class="ec-pro-title">
+                                                    <a href="product-left-sidebar.html">حلقه پلاتینیوم کلاسیک</a>
+                                                </h5>
+                                                <div class="ec-pro-rat-price">
+                                                    <span class="ec-pro-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star"></i>
+                                                    </span>
+                                                    <span class="ec-price">
+                                                        <span class="new-price">8500 تومان</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ec 3rd Product tab end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Product tab area end -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ec Product tab Area End -->

@@ -17,7 +17,7 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
     public BazarcheContext(DbContextOptions<BazarcheContext> options) : base(options)
     {
     }
-
+    #region DbSets
     public virtual DbSet<Address> Addresses { get; set; }
 
     public virtual DbSet<Admin> Admins { get; set; }
@@ -55,7 +55,7 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
     public virtual DbSet<Seller> Sellers { get; set; }
 
     public virtual DbSet<Wage> Wages { get; set; }
-
+    #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //Note to Myself : relations Methods start with .Has() therfor relation FluentApi should wirretn
@@ -91,3 +91,4 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
     }
 
 }
+

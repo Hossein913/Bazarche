@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Core._User.Contracts.Repositories
 {
-    internal class IWageRepository
+    public interface IWageRepository
     {
     }
 }

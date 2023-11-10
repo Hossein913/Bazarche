@@ -13,7 +13,7 @@ public partial class BoothUpdateDto
 
     public string Name { get; set; } = null!;
 
-    public int AvatarPictureId { get; set; }
+    public int? AvatarPictureId { get; set; }
 
     public int MedalId { get; set; }
 
@@ -25,13 +25,16 @@ public partial class BoothUpdateDto
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
 
-    public virtual Picture AvatarPicture { get; set; } = null!;
+    #region Navigation properties
+    public virtual ICollection<Auction> Auctions { get; set; }
 
-    public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
+    public virtual Picture? AvatarPicture { get; set; } = null!;
 
-    public virtual Medal Medal { get; set; } = null!;
+    public virtual ICollection<BoothProduct> BoothProducts { get; set; }
 
-    public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+    public virtual Medal? Medal { get; set; }
+
+    public virtual Seller? Sellers { get; set; }
+    #endregion
 }
