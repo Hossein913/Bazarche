@@ -57,6 +57,7 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 NormalizedUserName = "ADMIN@MAIL.COM",
                 CreatedAt = DateTime.Now,
                 IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             var sellerUser1 = new AppUser
@@ -68,6 +69,7 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 NormalizedUserName = "SELLER1@MAIL.COM",
                 CreatedAt = DateTime.Now,
                 IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             var sellerUser2 = new AppUser
@@ -79,6 +81,7 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 NormalizedUserName = "SELLER2@MAIL.COM",
                 CreatedAt = DateTime.Now,
                 IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             var customerUser = new AppUser
@@ -90,6 +93,7 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 NormalizedUserName = "CUSTOMER@MAIL.COM",
                 CreatedAt = DateTime.Now,
                 IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             //set user password

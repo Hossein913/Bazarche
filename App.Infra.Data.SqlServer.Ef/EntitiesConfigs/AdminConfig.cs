@@ -13,7 +13,7 @@ public class AdminConfig : IEntityTypeConfiguration<Admin>
         entity.HasKey(e => e.Id);
         entity.Property(e => e.Id).ValueGeneratedOnAdd();
         entity.Property(e => e.Birthdate).HasColumnType("datetime");
-        entity.Property(e => e.Lastname).HasMaxLength(50);
+        entity.Property(e => e.LastName).HasMaxLength(50);
         entity.Property(e => e.ShabaNumber)
             .HasMaxLength(25)
             .IsFixedLength();
@@ -24,11 +24,11 @@ public class AdminConfig : IEntityTypeConfiguration<Admin>
             .HasConstraintName("FK_Admins_Pictures");
 
         entity.HasOne(c => c.AppUser).WithOne(u => u.Admin)
-        .HasForeignKey<Admin>(a => a.AppuserId);
+        .HasForeignKey<Admin>(a => a.AppUserId);
 
 
         entity.HasData(
-            new Admin { Id = 1, Firstname = "حسین", Lastname = "بشارتی", ProfilePicId = 12, Birthdate = new DateTime(1990 , 05 , 05), Wallet = 800000, ShabaNumber = "Ir89752140000007800125", AppuserId = 1 }
+            new Admin { Id = 1, FirstName = "حسین", LastName = "بشارتی", ProfilePicId = 12, Birthdate = new DateTime(1990 , 05 , 05), Wallet = 800000, ShabaNumber = "Ir89752140000007800125", AppUserId = 1 }
             ) ;
     }
 }

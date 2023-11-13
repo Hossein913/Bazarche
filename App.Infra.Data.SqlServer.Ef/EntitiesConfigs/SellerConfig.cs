@@ -14,7 +14,7 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
         entity.HasKey(e => e.Id);
         entity.Property(e => e.Id).ValueGeneratedOnAdd();
         entity.Property(e => e.Birthdate).HasColumnType("datetime");
-        entity.Property(e => e.Lastname).HasMaxLength(50);
+        entity.Property(e => e.LastName).HasMaxLength(50);
         entity.Property(e => e.ShabaNumber)
             .HasMaxLength(25)
             .IsFixedLength();
@@ -35,11 +35,11 @@ public class SellerConfig : IEntityTypeConfiguration<Seller>
             .HasConstraintName("FK_Sellers_Pictures");
 
         entity.HasOne(c => c.AppUser).WithOne(u => u.Seller)
-       .HasForeignKey<Seller>(s => s.AppuserId);
+       .HasForeignKey<Seller>(s => s.AppUserId);
 
         entity.HasData(
-        new Seller { Id = 1, Firstname = "حامد", Lastname = "کریمی", AddressId = 1, ProfilePicId = 13, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppuserId = 2 },
-        new Seller { Id = 2, Firstname = "میلاد", Lastname = "بداقی", AddressId = 2, ProfilePicId = 14, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppuserId = 3 }
+        new Seller { Id = 1, FirstName = "حامد", LastName = "کریمی", AddressId = 1, ProfilePicId = 13, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppUserId = 2 },
+        new Seller { Id = 2, FirstName = "میلاد", LastName = "بداقی", AddressId = 2, ProfilePicId = 14, Birthdate = new DateTime(1990, 05, 05), BoothId = null, ShabaNumber = "Ir89752140000007800125", AppUserId = 3 }
         ) ;
 
     }

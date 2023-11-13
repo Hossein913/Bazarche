@@ -13,7 +13,7 @@ public class CustomerConfig : IEntityTypeConfiguration<Customer>
         entity.HasKey(e => e.Id);
         entity.Property(e => e.Id).ValueGeneratedOnAdd();
         entity.Property(e => e.Birthdate).HasColumnType("datetime");
-        entity.Property(e => e.Lastname).HasMaxLength(50);
+        entity.Property(e => e.LastName).HasMaxLength(50);
 
         entity.HasOne(d => d.Address).WithOne(p => p.Customers)
             .HasForeignKey<Customer>(c => c.AddressId)
@@ -28,7 +28,7 @@ public class CustomerConfig : IEntityTypeConfiguration<Customer>
         entity.HasOne(c => c.AppUser).WithOne(u => u.Customer).HasForeignKey<Customer>(c => c.AppUserId);
 
         entity.HasData(
-        new Customer { Id = 1, Firstname = "جواد  ", Lastname = "بیات", AddressId = 3, ProfilePicId = 15, Birthdate = new DateTime(1990 , 05 , 05), AppUserId = 4 }
+        new Customer { Id = 1, FirstName = "جواد  ", LastName = "بیات", AddressId = 3, ProfilePicId = 15, Birthdate = new DateTime(1990 , 05 , 05), AppUserId = 4 }
         );
     }
 }

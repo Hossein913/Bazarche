@@ -16,18 +16,20 @@ public class Product
 
     public string InformationDetails { get; set; } = null!;
 
-    public string Describtion { get; set; } = null!;
+    public string Description { get; set; } = null!;
 
-    public string IncludedComponentes { get; set; } = null!;
+    public string IncludedComponents { get; set; } = null!;
 
     public bool IsConfirmed { get; set; }
 
-    public int BasePrise { get; set; }
+    public int BasePrice { get; set; }
+    public int CategoryId { get; set; }
 
     public bool IsDeleted { get; set; }
 
 
     #region Navigation properties
+    public virtual Category Category { get; set; } 
     public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     public virtual ICollection<Picture>? Pictures { get; set; }

@@ -9,9 +9,9 @@ public partial class Seller
 {
     public int Id { get; set; }
 
-    public string? Firstname { get; set; }
+    public string? FirstName { get; set; }
 
-    public string? Lastname { get; set; }
+    public string? LastName { get; set; }
 
     public int? AddressId { get; set; }
 
@@ -23,7 +23,7 @@ public partial class Seller
 
     public int? BoothId { get; set; }
 
-    public int AppuserId { get; set; }
+    public int AppUserId { get; set; }
 
 
     #region Navigation properties
