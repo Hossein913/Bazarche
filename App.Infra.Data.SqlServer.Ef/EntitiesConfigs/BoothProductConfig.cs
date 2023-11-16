@@ -26,13 +26,13 @@ public class BoothProductConfig : IEntityTypeConfiguration<BoothProduct>
 
         entity.HasData(
             new BoothProduct { Id = 1 , ProductId = 1, BoothId = 1, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 2 , ProductId = 9, BoothId = 1, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 3 , ProductId = 8, BoothId = 1, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 4 , ProductId = 3, BoothId = 1, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 5 , ProductId = 6, BoothId = 2, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 6 , ProductId = 2, BoothId = 2, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 7 , ProductId = 4, BoothId = 2, Price = 800000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
-            new BoothProduct { Id = 8 , ProductId = 9, BoothId = 2, Price = 800000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false}
+            new BoothProduct { Id = 2 , ProductId = 9, BoothId = 1, Price = 900000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 3 , ProductId = 8, BoothId = 1, Price = 1000000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 4 , ProductId = 3, BoothId = 1, Price = 2000000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 5 , ProductId = 6, BoothId = 2, Price = 3000000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 6 , ProductId = 2, BoothId = 2, Price = 4000000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 7 , ProductId = 4, BoothId = 2, Price = 5000000, Count = 10, Status = true, CreatedAt = DateTime.Now, IsDeleted = false},
+            new BoothProduct { Id = 8 , ProductId = 9, BoothId = 2, Price = 10000000, Count = 5, Status = true, CreatedAt = DateTime.Now, IsDeleted = false}
             );
     }
 }

@@ -11,6 +11,8 @@ public class Comment
 
     public int? CustomerId { get; set; }
 
+    public int? ProductId { get; set; }
+
     public int OrderItemId { get; set; }
 
     public int? PictureId { get; set; }
@@ -26,6 +28,8 @@ public class Comment
 
     #region Navigation properties
     public virtual Customer? Customer { get; set; } = null!;
+
+    public virtual Product? Product { get; set; } = null!;
 
     public virtual OrderItem OrderItem { get; set; } = null!;
 

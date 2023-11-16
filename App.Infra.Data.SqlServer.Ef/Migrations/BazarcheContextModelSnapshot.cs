@@ -165,190 +165,197 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2251),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5834),
                             ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2265),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5850),
                             ImageUrl = "202140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2267),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5852),
                             ImageUrl = "302140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2268),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5854),
                             ImageUrl = "402140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2269),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5863),
                             ImageUrl = "502140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2271),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5865),
                             ImageUrl = "602140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2272),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5866),
                             ImageUrl = "702140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2274),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5876),
                             ImageUrl = "802140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2275),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5890),
                             ImageUrl = "902140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2276),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5891),
                             ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2278),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5893),
                             ImageUrl = "112140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2279),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5894),
                             ImageUrl = "5522140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2281),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5896),
                             ImageUrl = "5502140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2282),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5897),
                             ImageUrl = "5512140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2284),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5898),
                             ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2291),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5900),
                             ImageUrl = "9902140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2293),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5901),
                             ImageUrl = "9912140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2294),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5903),
                             ImageUrl = "8802140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2303),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5904),
                             ImageUrl = "8812140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2315),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5905),
                             ImageUrl = "8822140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2316),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5907),
                             ImageUrl = "8832140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2317),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5908),
                             ImageUrl = "8842140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2319),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5909),
                             ImageUrl = "8852140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2320),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5910),
                             ImageUrl = "8862140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2322),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5912),
                             ImageUrl = "8872140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2323),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5913),
                             ImageUrl = "8882140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 797, DateTimeKind.Local).AddTicks(2324),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5915),
                             ImageUrl = "8892140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 956, DateTimeKind.Local).AddTicks(5916),
+                            ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         });
                 });
@@ -391,7 +398,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool?>("IsConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
@@ -420,13 +427,35 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            BasePrice = 700000,
+                            BasePrice = 22000000,
                             BoothId = 1,
-                            EndTime = new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2023, 11, 17, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(4302),
                             IsConfirmed = true,
                             ProductId = 10,
-                            StartTime = new DateTime(2023, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(4291),
                             Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BasePrice = 350000,
+                            BoothId = 1,
+                            EndTime = new DateTime(2023, 11, 17, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(4315),
+                            IsConfirmed = true,
+                            ProductId = 2,
+                            StartTime = new DateTime(2023, 11, 16, 16, 58, 44, 430, DateTimeKind.Local).AddTicks(4311),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BasePrice = 25000000,
+                            BoothId = 2,
+                            EndTime = new DateTime(2023, 11, 17, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(4318),
+                            IsConfirmed = false,
+                            ProductId = 8,
+                            StartTime = new DateTime(2023, 11, 17, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(4317),
+                            Status = 0
                         });
                 });
 
@@ -443,6 +472,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.Property<int>("BidPrice")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
@@ -502,7 +534,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 1,
                             BoothId = 1,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5285),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9859),
                             IsDeleted = false,
                             Price = 800000,
                             ProductId = 1,
@@ -513,9 +545,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 2,
                             BoothId = 1,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5298),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9865),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 900000,
                             ProductId = 9,
                             Status = true
                         },
@@ -524,9 +556,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 3,
                             BoothId = 1,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5300),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9867),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 1000000,
                             ProductId = 8,
                             Status = true
                         },
@@ -535,9 +567,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 4,
                             BoothId = 1,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5302),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9869),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 2000000,
                             ProductId = 3,
                             Status = true
                         },
@@ -546,9 +578,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 5,
                             BoothId = 2,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5304),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9871),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 3000000,
                             ProductId = 6,
                             Status = true
                         },
@@ -557,9 +589,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 6,
                             BoothId = 2,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5306),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9872),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 4000000,
                             ProductId = 2,
                             Status = true
                         },
@@ -568,9 +600,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 7,
                             BoothId = 2,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5307),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9874),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 5000000,
                             ProductId = 4,
                             Status = true
                         },
@@ -579,9 +611,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 8,
                             BoothId = 2,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 154, DateTimeKind.Local).AddTicks(5309),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 430, DateTimeKind.Local).AddTicks(9876),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 10000000,
                             ProductId = 9,
                             Status = true
                         });
@@ -1604,6 +1636,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasMaxLength(600)
@@ -1619,18 +1654,32 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsUnique()
                         .HasFilter("[PictureId] IS NOT NULL");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("Comments");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 155, DateTimeKind.Local).AddTicks(3077),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 431, DateTimeKind.Local).AddTicks(7925),
                             CustomerId = 1,
-                            IsConfirmed = false,
+                            IsConfirmed = true,
                             IsDeleted = false,
                             OrderItemId = 1,
-                            Text = "محصول فوق العاده ای بود. سپاس"
+                            ProductId = 1,
+                            Text = "محصول فوق العاده ای بود. سپاس1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 431, DateTimeKind.Local).AddTicks(7932),
+                            CustomerId = 2,
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            OrderItemId = 3,
+                            ProductId = 3,
+                            Text = "2محصول فوق العاده ای بود. سپاس"
                         });
                 });
 
@@ -1667,11 +1716,36 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 58, 156, DateTimeKind.Local).AddTicks(1122),
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 432, DateTimeKind.Local).AddTicks(5448),
                             CustomerId = 1,
-                            PayedAt = new DateTime(2023, 11, 13, 23, 42, 58, 156, DateTimeKind.Local).AddTicks(1127),
+                            PayedAt = new DateTime(2023, 11, 16, 16, 28, 44, 432, DateTimeKind.Local).AddTicks(5452),
                             Status = true,
-                            TotalPrice = 1
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 432, DateTimeKind.Local).AddTicks(5459),
+                            CustomerId = 1,
+                            Status = false,
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 432, DateTimeKind.Local).AddTicks(5461),
+                            CustomerId = 2,
+                            PayedAt = new DateTime(2023, 11, 16, 16, 43, 44, 432, DateTimeKind.Local).AddTicks(5461),
+                            Status = true,
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 44, 432, DateTimeKind.Local).AddTicks(5463),
+                            CustomerId = 2,
+                            Status = false,
+                            TotalPrice = 100
                         });
                 });
 
@@ -1712,6 +1786,30 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Count = 1,
                             IsActive = true,
                             OrderId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoothProductid = 3,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BoothProductid = 4,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BoothProductid = 6,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 4
                         });
                 });
 
@@ -1734,6 +1832,12 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(300)
@@ -1752,7 +1856,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool?>("IsConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -1776,6 +1880,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "زاگرس پوش",
                             CategoryId = 52,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1790,6 +1896,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 1800000,
                             Brand = "ال سی من",
                             CategoryId = 67,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1804,6 +1912,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "اسکیچر",
                             CategoryId = 66,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1818,6 +1928,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "کرال",
                             CategoryId = 53,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1832,6 +1944,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "تسکو",
                             CategoryId = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1846,6 +1960,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "آیفون",
                             CategoryId = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1860,6 +1976,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "سامسونگ",
                             CategoryId = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1874,6 +1992,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 100000,
                             Brand = "سونی",
                             CategoryId = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1888,6 +2008,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 32000000,
                             Brand = "آیفون",
                             CategoryId = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1902,6 +2024,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             BasePrice = 28000000,
                             Brand = "اچ پی",
                             CategoryId = 13,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
                             Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
                             IncludedComponents = "",
@@ -1995,6 +2119,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 3,
                             City = "اراک",
                             FullAddress = "خیابان شهید شیرودی ،نبش دبستان دین ودانش",
+                            PostalCode = "3851775124",
+                            ProvinceId = 28
+                        },
+                        new
+                        {
+                            Id = 4,
+                            City = "اراک",
+                            FullAddress = "خیابان شهید شیرودی ،نبش دبستان ",
                             PostalCode = "3851775124",
                             ProvinceId = 28
                         });
@@ -2198,8 +2330,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9aaf9b38-bc75-42e6-a7a0-99d8fa6cedac",
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 798, DateTimeKind.Local).AddTicks(5856),
+                            ConcurrencyStamp = "51bcef4c-5693-49da-b69a-87f4eedaa83c",
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 957, DateTimeKind.Local).AddTicks(9711),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Admin@mail.com",
                             EmailConfirmed = true,
@@ -2207,9 +2339,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEML5rKoe8phbf0amXf6AaLoD+BAkHke0pTumN5anT/wZI8b6CyCtl5cyNB2ZYQD0Yw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGog98brlc/4BdjFPpuD3nC1vhrIt38MPbB2AOlVqrC6MFb0SSb18U1daO1VLm2KHQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f078bd8a-ae9e-4584-acc9-dda37aef1748",
+                            SecurityStamp = "41f60252-d4a0-4cc9-be93-196496ca36f5",
                             TwoFactorEnabled = false,
                             UserName = "Admin@mail.com"
                         },
@@ -2217,8 +2349,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8a2b5827-7023-4400-be7f-bfabbb909546",
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 798, DateTimeKind.Local).AddTicks(5876),
+                            ConcurrencyStamp = "9f9691e6-bc67-4336-8a68-d724bcb5a468",
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 957, DateTimeKind.Local).AddTicks(9726),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Seller1@mail.com",
                             EmailConfirmed = true,
@@ -2226,9 +2358,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "SELLER1@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHCccn1Ctw3EFLsVSnX723Oz9fa11N/anz4QNeEVfL9OvFRKU5+WVcQOETKV9cr1BQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOLARIQuz49KMaLAwHGOOsDr9odP25GgDLVmXsJ4RP5fMPIOHYlSeovdtGgQqfsguQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f67ba206-e6d2-417d-a03d-e073d29876e6",
+                            SecurityStamp = "4b044072-4ba5-482b-8a0d-e26b81e6cdff",
                             TwoFactorEnabled = false,
                             UserName = "Seller1@mail.com"
                         },
@@ -2236,8 +2368,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "76fce0f4-eb0c-4d4d-b944-45ecf88e1943",
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 798, DateTimeKind.Local).AddTicks(5899),
+                            ConcurrencyStamp = "9f997373-d5ed-4f63-a1df-9f9551f6fbec",
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 957, DateTimeKind.Local).AddTicks(9742),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Seller2@mail.com",
                             EmailConfirmed = true,
@@ -2245,9 +2377,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "SELLER2@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO/9seDMwS2I30sXckQMbHmm/6bEi1rOLH1TGXjKBOBKRFu+FtmeYWa1xJduHAVlUA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEmPiJpjdN9VotduUD8mNeWKZbTmKW6WzcLpVWaCRjJ8bufIWpXV70gDlP5Ep7HFIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fd7c85ab-c20d-4da7-b1c8-57a2d1ee48fb",
+                            SecurityStamp = "c1b33b16-cfa1-4ae4-a4d8-70b8c5278569",
                             TwoFactorEnabled = false,
                             UserName = "Seller2@mail.com"
                         },
@@ -2255,20 +2387,39 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "32bd3c5c-b678-41e5-89ec-84af57168e31",
-                            CreatedAt = new DateTime(2023, 11, 13, 23, 42, 57, 798, DateTimeKind.Local).AddTicks(5907),
+                            ConcurrencyStamp = "204a6109-d7e7-4879-b484-542136c32e80",
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 957, DateTimeKind.Local).AddTicks(9756),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "customer@mail.com",
+                            Email = "customer1@mail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            NormalizedUserName = "CUSTOMER@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELAndEELzk+/OI2rzQtuoZcDU1KjpJxaSSn8NwxsLiMi8YYXuxzSv+ZRCHNLCpYTWA==",
+                            NormalizedUserName = "CUSTOMER1@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGcWLBu/92KS7vpY8zBBsLTlPJXwdWCKHOQRhCd6jFzse82lZoEc+steH9uhKrhh5A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "94831f92-066b-4f65-ade8-da6e0d6e0fd9",
+                            SecurityStamp = "b0ac1ada-6de1-467b-9a0f-d1482b5078b7",
                             TwoFactorEnabled = false,
-                            UserName = "customer@mail.com"
+                            UserName = "customer1@mail.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "779f7c59-6139-41c1-a59a-b1755fca562c",
+                            CreatedAt = new DateTime(2023, 11, 16, 15, 58, 43, 957, DateTimeKind.Local).AddTicks(9762),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "customer2@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "CUSTOMER2@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOjWkmPSmBjNrYoa/5GePlgGJ/0Dc9lXMMlO95dIdCxAL6szDw4dn3GuCn5vxweI8w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "57fb0d05-f72f-4ada-9545-8555076a2236",
+                            TwoFactorEnabled = false,
+                            UserName = "customer2@mail.com"
                         });
                 });
 
@@ -2288,6 +2439,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
+
+                    b.Property<int>("CartOrderId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -2327,9 +2481,21 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             AddressId = 3,
                             AppUserId = 4,
                             Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CartOrderId = 2,
                             FirstName = "جواد  ",
                             LastName = "بیات",
                             ProfilePicId = 15
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 4,
+                            AppUserId = 5,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CartOrderId = 4,
+                            FirstName = "محمد",
+                            LastName = "پارسایی",
+                            ProfilePicId = 28
                         });
                 });
 
@@ -2739,6 +2905,11 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             UserId = 4,
                             RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 5,
+                            RoleId = 3
                         });
                 });
 
@@ -2900,11 +3071,19 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .WithOne("Comment")
                         .HasForeignKey("App.Domain.Core._Products.Entities.Comment", "PictureId");
 
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasConstraintName("FK_Comments_Product");
+
                     b.Navigation("Customer");
 
                     b.Navigation("OrderItem");
 
                     b.Navigation("Picture");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
@@ -3226,6 +3405,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Auctions");
 
                     b.Navigation("BoothProducts");
+
+                    b.Navigation("Comments");
 
                     b.Navigation("ProductAttributeValues");
                 });

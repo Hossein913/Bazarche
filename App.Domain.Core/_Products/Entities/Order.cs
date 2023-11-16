@@ -20,7 +20,7 @@ public class Order
 
 
     #region Navigation properties
-    public virtual Customer Customer { get; set; } = null!;
+    public virtual Customer? Customer { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     #endregion

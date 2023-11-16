@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infra.Data.SqlServer.Ef.Migrations
 {
     [DbContext(typeof(BazarcheContext))]
-    [Migration("20231106181921_SeedData")]
+    [Migration("20231116083715_SeedData")]
     partial class SeedData
     {
         /// <inheritdoc />
@@ -168,190 +168,197 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8017),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9402),
                             ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8032),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9417),
                             ImageUrl = "202140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8034),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9419),
                             ImageUrl = "302140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8035),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9420),
                             ImageUrl = "402140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8037),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9430),
                             ImageUrl = "502140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8038),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9432),
                             ImageUrl = "602140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8040),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9433),
                             ImageUrl = "702140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8041),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9439),
                             ImageUrl = "802140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8043),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9448),
                             ImageUrl = "902140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8044),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9450),
                             ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8058),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9451),
                             ImageUrl = "112140ea60e0fd478b09b279976a095c95615b6_1656161174.png",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8059),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9452),
                             ImageUrl = "5522140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8061),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9453),
                             ImageUrl = "5502140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8062),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9455),
                             ImageUrl = "5512140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8063),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9456),
                             ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8072),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9457),
                             ImageUrl = "9902140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8073),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9458),
                             ImageUrl = "9912140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8075),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9460),
                             ImageUrl = "8802140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8081),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9461),
                             ImageUrl = "8812140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8092),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9462),
                             ImageUrl = "8822140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8093),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9464),
                             ImageUrl = "8832140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8095),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9465),
                             ImageUrl = "8842140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8096),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9467),
                             ImageUrl = "8852140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8097),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9468),
                             ImageUrl = "8862140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8099),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9469),
                             ImageUrl = "8872140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8100),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9470),
                             ImageUrl = "8882140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         },
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 808, DateTimeKind.Local).AddTicks(8102),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9472),
                             ImageUrl = "8892140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 28,
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 445, DateTimeKind.Local).AddTicks(9473),
+                            ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg",
                             IsDeleted = false
                         });
                 });
@@ -394,7 +401,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool?>("IsConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
@@ -423,13 +430,35 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            BasePrice = 700000,
+                            BasePrice = 22000000,
                             BoothId = 1,
-                            EndTime = new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndTime = new DateTime(2023, 11, 17, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(224),
                             IsConfirmed = true,
                             ProductId = 10,
-                            StartTime = new DateTime(2023, 6, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartTime = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(213),
                             Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BasePrice = 350000,
+                            BoothId = 1,
+                            EndTime = new DateTime(2023, 11, 17, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(238),
+                            IsConfirmed = true,
+                            ProductId = 2,
+                            StartTime = new DateTime(2023, 11, 16, 13, 7, 14, 880, DateTimeKind.Local).AddTicks(234),
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BasePrice = 25000000,
+                            BoothId = 2,
+                            EndTime = new DateTime(2023, 11, 17, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(241),
+                            IsConfirmed = false,
+                            ProductId = 8,
+                            StartTime = new DateTime(2023, 11, 17, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(240),
+                            Status = 0
                         });
                 });
 
@@ -505,7 +534,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 1,
                             BoothId = 1,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8037),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6139),
                             IsDeleted = false,
                             Price = 800000,
                             ProductId = 1,
@@ -516,9 +545,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 2,
                             BoothId = 1,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8051),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6145),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 900000,
                             ProductId = 9,
                             Status = true
                         },
@@ -527,9 +556,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 3,
                             BoothId = 1,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8053),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6147),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 1000000,
                             ProductId = 8,
                             Status = true
                         },
@@ -538,9 +567,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 4,
                             BoothId = 1,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8055),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6149),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 2000000,
                             ProductId = 3,
                             Status = true
                         },
@@ -549,9 +578,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 5,
                             BoothId = 2,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8056),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6150),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 3000000,
                             ProductId = 6,
                             Status = true
                         },
@@ -560,9 +589,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 6,
                             BoothId = 2,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8058),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6152),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 4000000,
                             ProductId = 2,
                             Status = true
                         },
@@ -571,9 +600,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 7,
                             BoothId = 2,
                             Count = 10,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8060),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6154),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 5000000,
                             ProductId = 4,
                             Status = true
                         },
@@ -582,9 +611,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Id = 8,
                             BoothId = 2,
                             Count = 5,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 190, DateTimeKind.Local).AddTicks(8062),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 880, DateTimeKind.Local).AddTicks(6156),
                             IsDeleted = false,
-                            Price = 800000,
+                            Price = 10000000,
                             ProductId = 9,
                             Status = true
                         });
@@ -683,7 +712,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 11,
-                            PictureId = 1,
+                            PictureId = 11,
                             Title = "محصولات بومی محلی"
                         },
                         new
@@ -695,841 +724,841 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 13,
-                            Title = "لوازم جانبی لپ تاپ"
+                            ParentId = 1,
+                            Title = "لبتاب"
                         },
                         new
                         {
                             Id = 14,
-                            ParentId = 1,
-                            Title = "کامپیوتر"
+                            Title = "لوازم جانبی لپ تاپ"
                         },
                         new
                         {
                             Id = 15,
                             ParentId = 1,
-                            Title = "لوازم جانبی گوشی"
+                            Title = "کامپیوتر"
                         },
                         new
                         {
                             Id = 16,
                             ParentId = 1,
-                            Title = "کتابخوان"
+                            Title = "لوازم جانبی گوشی"
                         },
                         new
                         {
                             Id = 17,
                             ParentId = 1,
-                            Title = "واقعیت مجازی"
+                            Title = "کتابخوان"
                         },
                         new
                         {
                             Id = 18,
                             ParentId = 1,
-                            Title = "ساعت و مچ بند هوشمند"
+                            Title = "واقعیت مجازی"
                         },
                         new
                         {
                             Id = 19,
                             ParentId = 1,
-                            Title = "تلوزیون"
+                            Title = "ساعت و مچ بند هوشمند"
                         },
                         new
                         {
                             Id = 20,
                             ParentId = 1,
-                            Title = "هدفون، هدست، میکروفون"
+                            Title = "تلوزیون"
                         },
                         new
                         {
                             Id = 21,
                             ParentId = 1,
-                            Title = "اسپیکر بلوتوث و با سیم"
+                            Title = "هدفون، هدست، میکروفون"
                         },
                         new
                         {
                             Id = 22,
                             ParentId = 1,
-                            Title = "هارد، فلش و SSD"
+                            Title = "اسپیکر بلوتوث و با سیم"
                         },
                         new
                         {
                             Id = 23,
                             ParentId = 1,
-                            Title = "دوربین"
+                            Title = "هارد، فلش و SSD"
                         },
                         new
                         {
                             Id = 24,
                             ParentId = 1,
-                            Title = "لوازم جانبی دوربین"
+                            Title = "دوربین"
                         },
                         new
                         {
                             Id = 25,
                             ParentId = 1,
-                            Title = "تبلت"
+                            Title = "لوازم جانبی دوربین"
                         },
                         new
                         {
                             Id = 26,
                             ParentId = 1,
-                            Title = "کنسول بازی"
+                            Title = "تبلت"
                         },
                         new
                         {
                             Id = 27,
                             ParentId = 1,
-                            Title = "شارژر تبلت و موبایل"
+                            Title = "کنسول بازی"
                         },
                         new
                         {
                             Id = 28,
                             ParentId = 1,
-                            Title = "کیف، کاور، لوازم جانبی تبلت"
+                            Title = "شارژر تبلت و موبایل"
                         },
                         new
                         {
                             Id = 29,
                             ParentId = 1,
-                            Title = "باتری"
+                            Title = "کیف، کاور، لوازم جانبی تبلت"
                         },
                         new
                         {
                             Id = 30,
                             ParentId = 1,
-                            Title = "دوربین های تحت شبکه"
+                            Title = "باتری"
                         },
                         new
                         {
                             Id = 31,
                             ParentId = 1,
-                            Title = "مودم و تجهیزات شبکه"
+                            Title = "دوربین های تحت شبکه"
                         },
                         new
                         {
                             Id = 32,
                             ParentId = 1,
-                            Title = "ماشین های اداری"
+                            Title = "مودم و تجهیزات شبکه"
                         },
                         new
                         {
                             Id = 33,
-                            ParentId = 2,
-                            Title = "تلویزیون"
+                            ParentId = 1,
+                            Title = "ماشین های اداری"
                         },
                         new
                         {
                             Id = 34,
                             ParentId = 2,
-                            Title = "یخچال و فریزر"
+                            Title = "تلویزیون"
                         },
                         new
                         {
                             Id = 35,
                             ParentId = 2,
-                            Title = "دکوراتیو"
+                            Title = "یخچال و فریزر"
                         },
                         new
                         {
                             Id = 36,
                             ParentId = 2,
-                            Title = "فرش ماشینی، دست بافت، تابلو"
+                            Title = "دکوراتیو"
                         },
                         new
                         {
                             Id = 37,
                             ParentId = 2,
-                            Title = "لوازم برقی خانگی"
+                            Title = "فرش ماشینی، دست بافت، تابلو"
                         },
                         new
                         {
                             Id = 38,
                             ParentId = 2,
-                            Title = "حیوانات خانگی، غذا و لوازم"
+                            Title = "لوازم برقی خانگی"
                         },
                         new
                         {
                             Id = 39,
                             ParentId = 2,
-                            Title = "سرو و پذیرایی"
+                            Title = "حیوانات خانگی، غذا و لوازم"
                         },
                         new
                         {
                             Id = 40,
                             ParentId = 2,
-                            Title = "نور و روشنایی"
+                            Title = "سرو و پذیرایی"
                         },
                         new
                         {
                             Id = 41,
                             ParentId = 2,
-                            Title = "آشپزخانه"
+                            Title = "نور و روشنایی"
                         },
                         new
                         {
                             Id = 42,
                             ParentId = 2,
-                            Title = "مواد شوینده"
+                            Title = "آشپزخانه"
                         },
                         new
                         {
                             Id = 43,
                             ParentId = 2,
-                            Title = "دستمال کاغذی"
+                            Title = "مواد شوینده"
                         },
                         new
                         {
                             Id = 44,
                             ParentId = 2,
-                            Title = "ملحفه، سرویس، لوازم خواب"
+                            Title = "دستمال کاغذی"
                         },
                         new
                         {
                             Id = 45,
                             ParentId = 2,
-                            Title = "حوله و وسایل حمام"
+                            Title = "ملحفه، سرویس، لوازم خواب"
                         },
                         new
                         {
                             Id = 46,
                             ParentId = 2,
-                            Title = "پادری، کمد، لوازم اتاق خواب"
+                            Title = "حوله و وسایل حمام"
                         },
                         new
                         {
                             Id = 47,
                             ParentId = 2,
-                            Title = "لوازم دستشویی، روشویی"
+                            Title = "پادری، کمد، لوازم اتاق خواب"
                         },
                         new
                         {
                             Id = 48,
                             ParentId = 2,
-                            Title = "فندک و لوازم جانبی"
+                            Title = "لوازم دستشویی، روشویی"
                         },
                         new
                         {
                             Id = 49,
                             ParentId = 2,
-                            Title = "گل، خاک، کود، لوازم باغبانی"
+                            Title = "فندک و لوازم جانبی"
                         },
                         new
                         {
                             Id = 50,
                             ParentId = 2,
-                            Title = "کولر گازی"
+                            Title = "گل، خاک، کود، لوازم باغبانی"
                         },
                         new
                         {
                             Id = 51,
                             ParentId = 2,
-                            Title = "کولر آبی"
+                            Title = "کولر گازی"
                         },
                         new
                         {
                             Id = 52,
-                            ParentId = 3,
-                            Title = "مردانه"
+                            ParentId = 2,
+                            Title = "کولر آبی"
                         },
                         new
                         {
                             Id = 53,
                             ParentId = 3,
-                            Title = "لباس مردانه"
+                            Title = "مردانه"
                         },
                         new
                         {
                             Id = 54,
                             ParentId = 3,
-                            Title = "اکسسوری مردانه"
+                            Title = "لباس مردانه"
                         },
                         new
                         {
                             Id = 55,
                             ParentId = 3,
-                            Title = "زنانه"
+                            Title = "اکسسوری مردانه"
                         },
                         new
                         {
                             Id = 56,
                             ParentId = 3,
-                            Title = "لباس زنانه"
+                            Title = "زنانه"
                         },
                         new
                         {
                             Id = 57,
                             ParentId = 3,
-                            Title = "کفش زنانه"
+                            Title = "لباس زنانه"
                         },
                         new
                         {
                             Id = 58,
                             ParentId = 3,
-                            Title = "اکسسوری زنانه"
+                            Title = "کفش زنانه"
                         },
                         new
                         {
                             Id = 59,
                             ParentId = 3,
-                            Title = "طلا"
+                            Title = "اکسسوری زنانه"
                         },
                         new
                         {
                             Id = 60,
                             ParentId = 3,
-                            Title = "زیورآلات زنانه"
+                            Title = "طلا"
                         },
                         new
                         {
                             Id = 61,
                             ParentId = 3,
-                            Title = "زیورآلات نقره زنانه"
+                            Title = "زیورآلات زنانه"
                         },
                         new
                         {
                             Id = 62,
                             ParentId = 3,
-                            Title = "عینک آفتابی زنانه"
+                            Title = "زیورآلات نقره زنانه"
                         },
                         new
                         {
                             Id = 63,
                             ParentId = 3,
-                            Title = "عینک آفتابی مردانه"
+                            Title = "عینک آفتابی زنانه"
                         },
                         new
                         {
                             Id = 64,
                             ParentId = 3,
-                            Title = "پوشاک ورزشی مردانه"
+                            Title = "عینک آفتابی مردانه"
                         },
                         new
                         {
                             Id = 65,
                             ParentId = 3,
-                            Title = "پوشاک ورزشی زنانه"
+                            Title = "پوشاک ورزشی مردانه"
                         },
                         new
                         {
                             Id = 66,
                             ParentId = 3,
-                            Title = "کفش ورزشی مردانه"
+                            Title = "پوشاک ورزشی زنانه"
                         },
                         new
                         {
                             Id = 67,
                             ParentId = 3,
-                            Title = "کفش ورزشی زنانه"
+                            Title = "کفش ورزشی مردانه"
                         },
                         new
                         {
                             Id = 68,
                             ParentId = 3,
-                            Title = "پوشاک ورزشی پسرانه"
+                            Title = "کفش ورزشی زنانه"
                         },
                         new
                         {
                             Id = 69,
                             ParentId = 3,
-                            Title = "پوشاک ورزشی دخترانه"
+                            Title = "پوشاک ورزشی پسرانه"
                         },
                         new
                         {
                             Id = 70,
                             ParentId = 3,
-                            Title = "کفش ورزشی پسرانه"
+                            Title = "پوشاک ورزشی دخترانه"
                         },
                         new
                         {
                             Id = 71,
                             ParentId = 3,
-                            Title = "کفش ورزشی دخترانه"
+                            Title = "کفش ورزشی پسرانه"
                         },
                         new
                         {
                             Id = 72,
                             ParentId = 3,
-                            Title = "کوله پشتی مردانه"
+                            Title = "کفش ورزشی دخترانه"
                         },
                         new
                         {
                             Id = 73,
                             ParentId = 3,
-                            Title = "بچگانه"
+                            Title = "کوله پشتی مردانه"
                         },
                         new
                         {
                             Id = 74,
-                            ParentId = 4,
-                            Title = "کالاهای اساسی و خوار و بار"
+                            ParentId = 3,
+                            Title = "بچگانه"
                         },
                         new
                         {
                             Id = 75,
                             ParentId = 4,
-                            Title = "صبحانه "
+                            Title = "کالاهای اساسی و خوار و بار"
                         },
                         new
                         {
                             Id = 76,
                             ParentId = 4,
-                            Title = "مواد پروتئینی"
+                            Title = "صبحانه "
                         },
                         new
                         {
                             Id = 77,
                             ParentId = 4,
-                            Title = "لبنیات "
+                            Title = "مواد پروتئینی"
                         },
                         new
                         {
                             Id = 78,
                             ParentId = 4,
-                            Title = "نوشیدنی ها"
+                            Title = "لبنیات "
                         },
                         new
                         {
                             Id = 79,
                             ParentId = 4,
-                            Title = "میوه و سبزی"
+                            Title = "نوشیدنی ها"
                         },
                         new
                         {
                             Id = 80,
                             ParentId = 4,
-                            Title = "غذای آماده و نودل"
+                            Title = "میوه و سبزی"
                         },
                         new
                         {
                             Id = 81,
                             ParentId = 4,
-                            Title = "فرآورده‌های منجمد"
+                            Title = "غذای آماده و نودل"
                         },
                         new
                         {
                             Id = 82,
                             ParentId = 4,
-                            Title = "تنقلات"
+                            Title = "فرآورده‌های منجمد"
                         },
                         new
                         {
                             Id = 83,
                             ParentId = 4,
-                            Title = "کنسرو و کمپوت"
+                            Title = "تنقلات"
                         },
                         new
                         {
                             Id = 84,
                             ParentId = 4,
-                            Title = "خشکبار و شیرینی"
+                            Title = "کنسرو و کمپوت"
                         },
                         new
                         {
                             Id = 85,
-                            ParentId = 5,
-                            Title = "کتاب و مجله"
+                            ParentId = 4,
+                            Title = "خشکبار و شیرینی"
                         },
                         new
                         {
                             Id = 86,
                             ParentId = 5,
-                            Title = "کتاب صوتی"
+                            Title = "کتاب و مجله"
                         },
                         new
                         {
                             Id = 87,
                             ParentId = 5,
-                            Title = "محتوای آموزشی"
+                            Title = "کتاب صوتی"
                         },
                         new
                         {
                             Id = 88,
                             ParentId = 5,
-                            Title = "نرم افزار"
+                            Title = "محتوای آموزشی"
                         },
                         new
                         {
                             Id = 89,
                             ParentId = 5,
-                            Title = "بازی کنسول و کامپیوتر"
+                            Title = "نرم افزار"
                         },
                         new
                         {
                             Id = 90,
                             ParentId = 5,
-                            Title = "فیلم سینمایی، سریال و مستند"
+                            Title = "بازی کنسول و کامپیوتر"
                         },
                         new
                         {
                             Id = 91,
                             ParentId = 5,
-                            Title = "آلبوم موسیقی"
+                            Title = "فیلم سینمایی، سریال و مستند"
                         },
                         new
                         {
                             Id = 92,
                             ParentId = 5,
-                            Title = "لوازم تحریر "
+                            Title = "آلبوم موسیقی"
                         },
                         new
                         {
                             Id = 93,
                             ParentId = 5,
-                            Title = "آلات موسیقی"
+                            Title = "لوازم تحریر "
                         },
                         new
                         {
                             Id = 94,
                             ParentId = 5,
-                            Title = "فرش ماشینی، دستبافت، تابلو"
+                            Title = "آلات موسیقی"
                         },
                         new
                         {
                             Id = 95,
+                            ParentId = 5,
+                            Title = "فرش ماشینی، دستبافت، تابلو"
+                        },
+                        new
+                        {
+                            Id = 96,
                             ParentId = 4,
                             Title = "صنایع دستی"
                         },
                         new
                         {
-                            Id = 96,
+                            Id = 97,
                             ParentId = 6,
                             Title = "بهداشت و حمام کودک و نوزاد"
                         },
                         new
                         {
-                            Id = 97,
+                            Id = 98,
                             ParentId = 6,
                             Title = "پوشاک و کفش کودک و نوزاد "
                         },
                         new
                         {
-                            Id = 98,
+                            Id = 99,
                             ParentId = 6,
                             Title = "تبلت"
                         },
                         new
                         {
-                            Id = 99,
+                            Id = 100,
                             ParentId = 6,
                             Title = "پلی استیشن، ایکس باکس و بازی"
                         },
                         new
                         {
-                            Id = 100,
+                            Id = 101,
                             ParentId = 6,
                             Title = "اسباب بازی"
                         },
                         new
                         {
-                            Id = 101,
+                            Id = 102,
                             ParentId = 6,
                             Title = "بازی و سرگرمی کودک "
                         },
                         new
                         {
-                            Id = 102,
+                            Id = 103,
                             ParentId = 6,
                             Title = "سلامت، ایمنی و مراقبت"
                         },
                         new
                         {
-                            Id = 103,
+                            Id = 104,
                             ParentId = 6,
                             Title = "خواب کودک"
                         },
                         new
                         {
-                            Id = 104,
+                            Id = 105,
                             ParentId = 6,
                             Title = "ملزومات گردش و سفر"
                         },
                         new
                         {
-                            Id = 105,
+                            Id = 106,
                             ParentId = 6,
                             Title = "لوازم شخصی"
                         },
                         new
                         {
-                            Id = 106,
+                            Id = 107,
                             ParentId = 6,
                             Title = "غذا خوری"
                         },
                         new
                         {
-                            Id = 107,
+                            Id = 108,
                             ParentId = 7,
                             Title = "لوازم آرایشی"
                         },
                         new
                         {
-                            Id = 108,
+                            Id = 109,
                             ParentId = 7,
                             Title = "مراقبت پوست"
                         },
                         new
                         {
-                            Id = 109,
+                            Id = 110,
                             ParentId = 7,
                             Title = "مراقبت و زیبایی مو"
                         },
                         new
                         {
-                            Id = 110,
+                            Id = 111,
                             ParentId = 7,
                             Title = "لوازم بهداشتی "
                         },
                         new
                         {
-                            Id = 111,
+                            Id = 112,
                             ParentId = 7,
                             Title = "عطر و ادکلن"
                         },
                         new
                         {
-                            Id = 112,
+                            Id = 113,
                             ParentId = 7,
                             Title = "لوازم شخصی برقی"
                         },
                         new
                         {
-                            Id = 113,
+                            Id = 114,
                             ParentId = 7,
                             Title = "ابزار سلامت"
                         },
                         new
                         {
-                            Id = 114,
+                            Id = 115,
                             ParentId = 8,
                             Title = "پوشاک ورزشی "
                         },
                         new
                         {
-                            Id = 115,
+                            Id = 116,
                             ParentId = 8,
                             Title = "کفش ورزشی "
                         },
                         new
                         {
-                            Id = 116,
+                            Id = 117,
                             ParentId = 8,
                             Title = "تجهیزات سفر"
                         },
                         new
                         {
-                            Id = 117,
+                            Id = 118,
                             ParentId = 8,
                             Title = "دوچرخه"
                         },
                         new
                         {
-                            Id = 118,
+                            Id = 119,
                             ParentId = 8,
                             Title = "کوهنوردی و کمپینگ"
                         },
                         new
                         {
-                            Id = 119,
+                            Id = 120,
                             ParentId = 8,
                             Title = "چتر"
                         },
                         new
                         {
-                            Id = 120,
+                            Id = 121,
                             ParentId = 8,
                             Title = "ساک ورزشی"
                         },
                         new
                         {
-                            Id = 121,
+                            Id = 122,
                             ParentId = 8,
                             Title = "قمقمه و شیکر"
                         },
                         new
                         {
-                            Id = 122,
+                            Id = 123,
                             ParentId = 8,
                             Title = "لوازم ورزشی"
                         },
                         new
                         {
-                            Id = 123,
+                            Id = 124,
                             ParentId = 8,
                             Title = "اسکوتر برقی"
                         },
                         new
                         {
-                            Id = 124,
+                            Id = 125,
                             ParentId = 8,
                             Title = "v"
                         },
                         new
                         {
-                            Id = 125,
+                            Id = 126,
                             ParentId = 9,
                             Title = "ابزار برقی "
                         },
                         new
                         {
-                            Id = 126,
+                            Id = 127,
                             ParentId = 9,
                             Title = "ابزار غیر برقی "
                         },
                         new
                         {
-                            Id = 127,
+                            Id = 128,
                             ParentId = 9,
                             Title = "لوازم الکتریکی و یراق آلات"
                         },
                         new
                         {
-                            Id = 128,
+                            Id = 129,
                             ParentId = 9,
                             Title = "لوازم باغبانی و کشاورزی"
                         },
                         new
                         {
-                            Id = 129,
+                            Id = 130,
                             ParentId = 9,
                             Title = "تجهیزات ایمنی و کار "
                         },
                         new
                         {
-                            Id = 130,
+                            Id = 131,
                             ParentId = 9,
                             Title = "حفاظتی و امنیتی"
                         },
                         new
                         {
-                            Id = 131,
+                            Id = 132,
                             ParentId = 9,
                             Title = "دستگاه های حمل و بالابر صنعتی"
                         },
                         new
                         {
-                            Id = 132,
+                            Id = 133,
                             ParentId = 10,
                             Title = "خودرو"
                         },
                         new
                         {
-                            Id = 133,
+                            Id = 134,
                             ParentId = 10,
                             Title = "موتور سیکلت"
                         },
                         new
                         {
-                            Id = 134,
+                            Id = 135,
                             ParentId = 10,
                             Title = "لوازم مصرفی خودرو "
                         },
                         new
                         {
-                            Id = 135,
+                            Id = 136,
                             ParentId = 10,
                             Title = "لوازم یدکی خودرو"
                         },
                         new
                         {
-                            Id = 136,
+                            Id = 137,
                             ParentId = 10,
                             Title = "لوازم صوتی و تصویری"
                         },
                         new
                         {
-                            Id = 137,
+                            Id = 138,
                             ParentId = 10,
                             Title = "لوازم جانبی خودرو "
                         },
                         new
                         {
-                            Id = 138,
+                            Id = 139,
                             ParentId = 10,
                             Title = "لوازم موتور سیکلت"
                         },
                         new
                         {
-                            Id = 139,
+                            Id = 140,
                             ParentId = 11,
                             Title = "مواد غذایی ارگانیک"
                         },
                         new
                         {
-                            Id = 140,
+                            Id = 141,
                             ParentId = 11,
                             Title = "خواروبار محلی"
                         },
                         new
                         {
-                            Id = 141,
+                            Id = 142,
                             ParentId = 11,
                             Title = "صبحانه محلی"
                         },
                         new
                         {
-                            Id = 142,
+                            Id = 143,
                             ParentId = 11,
                             Title = "کیک و شیرینی خانگی"
                         },
                         new
                         {
-                            Id = 143,
+                            Id = 144,
                             ParentId = 11,
                             Title = "تنقلات خانگی"
                         },
                         new
                         {
-                            Id = 144,
+                            Id = 145,
                             ParentId = 11,
                             Title = "لبنیات سنتی "
                         },
                         new
                         {
-                            Id = 145,
+                            Id = 146,
                             ParentId = 11,
                             Title = "خشکبار و آجیل سنتی"
                         },
                         new
                         {
-                            Id = 146,
+                            Id = 147,
                             ParentId = 11,
                             Title = "غلات و حبوبات ارگانیک"
                         },
                         new
                         {
-                            Id = 147,
+                            Id = 148,
                             ParentId = 11,
                             Title = "ادویه و چاشنی ارگانیک"
                         },
                         new
                         {
-                            Id = 148,
+                            Id = 149,
                             ParentId = 11,
                             Title = "عطاری"
                         },
                         new
                         {
-                            Id = 149,
+                            Id = 150,
                             ParentId = 11,
                             Title = "ترشیجات و شور خانگی"
                         },
                         new
                         {
-                            Id = 150,
+                            Id = 151,
                             ParentId = 11,
                             Title = "دکوراتیو سنتی"
                         },
                         new
                         {
-                            Id = 151,
-                            ParentId = 11,
-                            Title = "خانه و کاشانه"
-                        },
-                        new
-                        {
                             Id = 152,
                             ParentId = 11,
-                            Title = "نوشیدنی‌های ارگانیک"
+                            Title = "خانه و کاشانه"
                         },
                         new
                         {
@@ -1541,35 +1570,41 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 154,
                             ParentId = 11,
-                            Title = "اکسسوری و زیورآلات دست ساز"
+                            Title = "نوشیدنی‌های ارگانیک"
                         },
                         new
                         {
                             Id = 155,
                             ParentId = 11,
-                            Title = "پوشاک بومی و محلی"
+                            Title = "اکسسوری و زیورآلات دست ساز"
                         },
                         new
                         {
                             Id = 156,
                             ParentId = 11,
-                            Title = "قالی و قالیچه"
+                            Title = "پوشاک بومی و محلی"
                         },
                         new
                         {
                             Id = 157,
                             ParentId = 11,
-                            Title = "ظروف سنتی"
+                            Title = "قالی و قالیچه"
                         },
                         new
                         {
                             Id = 158,
                             ParentId = 11,
-                            Title = "لوازم آشپزخانه سنتی"
+                            Title = "ظروف سنتی"
                         },
                         new
                         {
                             Id = 159,
+                            ParentId = 11,
+                            Title = "لوازم آشپزخانه سنتی"
+                        },
+                        new
+                        {
+                            Id = 160,
                             ParentId = 11,
                             Title = "رومیزی، رانر و زیربشقابی سنتی"
                         });
@@ -1601,6 +1636,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int?>("PictureId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasMaxLength(600)
@@ -1616,18 +1654,32 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsUnique()
                         .HasFilter("[PictureId] IS NOT NULL");
 
+                    b.HasIndex("ProductId");
+
                     b.ToTable("Comments");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 191, DateTimeKind.Local).AddTicks(4898),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 881, DateTimeKind.Local).AddTicks(4612),
                             CustomerId = 1,
-                            IsConfirmed = false,
+                            IsConfirmed = true,
                             IsDeleted = false,
                             OrderItemId = 1,
-                            Text = "محصول فوق العاده ای بود. سپاس"
+                            ProductId = 1,
+                            Text = "محصول فوق العاده ای بود. سپاس1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 881, DateTimeKind.Local).AddTicks(4619),
+                            CustomerId = 2,
+                            IsConfirmed = false,
+                            IsDeleted = false,
+                            OrderItemId = 3,
+                            ProductId = 3,
+                            Text = "2محصول فوق العاده ای بود. سپاس"
                         });
                 });
 
@@ -1664,11 +1716,36 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 21, 192, DateTimeKind.Local).AddTicks(2020),
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 882, DateTimeKind.Local).AddTicks(1112),
                             CustomerId = 1,
-                            PayedAt = new DateTime(2023, 11, 6, 21, 49, 21, 192, DateTimeKind.Local).AddTicks(2024),
+                            PayedAt = new DateTime(2023, 11, 16, 12, 37, 14, 882, DateTimeKind.Local).AddTicks(1116),
                             Status = true,
-                            TotalPrice = 1
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 882, DateTimeKind.Local).AddTicks(1123),
+                            CustomerId = 1,
+                            Status = false,
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 882, DateTimeKind.Local).AddTicks(1125),
+                            CustomerId = 2,
+                            PayedAt = new DateTime(2023, 11, 16, 12, 52, 14, 882, DateTimeKind.Local).AddTicks(1126),
+                            Status = true,
+                            TotalPrice = 100
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 882, DateTimeKind.Local).AddTicks(1127),
+                            CustomerId = 2,
+                            Status = false,
+                            TotalPrice = 100
                         });
                 });
 
@@ -1709,6 +1786,30 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             Count = 1,
                             IsActive = true,
                             OrderId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BoothProductid = 3,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BoothProductid = 4,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BoothProductid = 6,
+                            Count = 1,
+                            IsActive = true,
+                            OrderId = 4
                         });
                 });
 
@@ -1720,7 +1821,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BasePrise")
+                    b.Property<int>("BasePrice")
                         .HasColumnType("int");
 
                     b.Property<string>("Brand")
@@ -1728,10 +1829,16 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Describtion")
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
@@ -1741,7 +1848,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("IncludedComponentes")
+                    b.Property<string>("IncludedComponents")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1749,7 +1856,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsConfirmed")
+                    b.Property<bool?>("IsConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -1770,11 +1877,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "زاگرس پوش",
-                            Describtion = "محصول عالی",
+                            CategoryId = 52,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "جنس نخ پنبه ای",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1783,11 +1893,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 2,
-                            BasePrise = 1800000,
+                            BasePrice = 1800000,
                             Brand = "ال سی من",
-                            Describtion = "محصول عالی",
+                            CategoryId = 67,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "سایز ها ایکس و ایکس لارج",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1796,11 +1909,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 3,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "اسکیچر",
-                            Describtion = "محصول عالی",
+                            CategoryId = 66,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "جنس زیره پی یو",
                             IsConfirmed = false,
                             IsDeleted = false,
@@ -1809,11 +1925,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 4,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "کرال",
-                            Describtion = "محصول عالی",
+                            CategoryId = 53,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "نمد ضد آب",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1822,11 +1941,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 5,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "تسکو",
-                            Describtion = "محصول عالی",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "مخصوص بازی",
                             IsConfirmed = false,
                             IsDeleted = false,
@@ -1835,11 +1957,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 6,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "آیفون",
-                            Describtion = "محصول عالی",
+                            CategoryId = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "باتری 800 میلی آمپر",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1848,11 +1973,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 7,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "سامسونگ",
-                            Describtion = "محصول عالی",
+                            CategoryId = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "ضد آب",
                             IsConfirmed = false,
                             IsDeleted = false,
@@ -1861,11 +1989,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 8,
-                            BasePrise = 100000,
+                            BasePrice = 100000,
                             Brand = "سونی",
-                            Describtion = "محصول عالی",
+                            CategoryId = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "سنسور 21 مگاپیکسل",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1874,11 +2005,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 9,
-                            BasePrise = 32000000,
+                            BasePrice = 32000000,
                             Brand = "آیفون",
-                            Describtion = "محصول عالی",
+                            CategoryId = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = "ضد آب",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1887,11 +2021,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 10,
-                            BasePrise = 28000000,
+                            BasePrice = 28000000,
                             Brand = "اچ پی",
-                            Describtion = "محصول عالی",
+                            CategoryId = 13,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = 0,
+                            Description = "محصول عالی",
                             Grantee = "زمانت تعویض هفت روزه",
-                            IncludedComponentes = "",
+                            IncludedComponents = "",
                             InformationDetails = " پردازنده نسل 13",
                             IsConfirmed = true,
                             IsDeleted = false,
@@ -1984,6 +2121,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             FullAddress = "خیابان شهید شیرودی ،نبش دبستان دین ودانش",
                             PostalCode = "3851775124",
                             ProvinceId = 28
+                        },
+                        new
+                        {
+                            Id = 4,
+                            City = "اراک",
+                            FullAddress = "خیابان شهید شیرودی ،نبش دبستان ",
+                            PostalCode = "3851775124",
+                            ProvinceId = 28
                         });
                 });
 
@@ -1995,16 +2140,16 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AppuserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -2021,7 +2166,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppuserId")
+                    b.HasIndex("AppUserId")
                         .IsUnique();
 
                     b.HasIndex("ProfilePicId")
@@ -2034,10 +2179,10 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             Id = 1,
-                            AppuserId = 1,
+                            AppUserId = 1,
                             Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Firstname = "حسین",
-                            Lastname = "بشارتی",
+                            FirstName = "حسین",
+                            LastName = "بشارتی",
                             ProfilePicId = 12,
                             ShabaNumber = "Ir89752140000007800125",
                             Wallet = 800000
@@ -2185,8 +2330,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3ff5bed-a006-448e-8f4d-37ec7d737a3f",
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(323),
+                            ConcurrencyStamp = "74bef2d9-ad09-4594-9198-13b1a537c731",
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 446, DateTimeKind.Local).AddTicks(9167),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Admin@mail.com",
                             EmailConfirmed = true,
@@ -2194,8 +2339,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "ADMIN@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGz0GYwWHVTcS6WDst21j4iWOpf5dcXtW5alWd308pwpya/ZgQjxtzzGY9o4C7PYig==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHRsddfTauO+aEDqZu/PagJvSti01YFvu39jOI2t1RYCHrut3vbX4ViiKgXG99oCTw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "027bf6ef-b3ea-47b1-841f-1dc63c639e0c",
                             TwoFactorEnabled = false,
                             UserName = "Admin@mail.com"
                         },
@@ -2203,8 +2349,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d88601a4-f509-4a29-886f-f94832158d21",
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(335),
+                            ConcurrencyStamp = "3f7f15a7-d11a-4384-b599-4cb62b7ea22f",
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 446, DateTimeKind.Local).AddTicks(9180),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Seller1@mail.com",
                             EmailConfirmed = true,
@@ -2212,8 +2358,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "SELLER1@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELOkDVqw5VM9gJkZdbDBUDoDV8G40Ul335omeJREctLlIyYM1I6XjnBJvv3+3bcWjQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAECudeR5m/I/Zc3rEYMMrybFxGKOJNY3VTOp5bGPaBPQUJ0qBKONK04sPBv5NutrylA==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "9aecb35f-5e34-4ec0-a958-8932fa6e67d1",
                             TwoFactorEnabled = false,
                             UserName = "Seller1@mail.com"
                         },
@@ -2221,8 +2368,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4f2efd0f-4ea1-4457-899f-ba39c6453141",
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(340),
+                            ConcurrencyStamp = "a6a6c911-2bcd-4379-9d67-75267efe7d6e",
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 446, DateTimeKind.Local).AddTicks(9415),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "Seller2@mail.com",
                             EmailConfirmed = true,
@@ -2230,8 +2377,9 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             IsDeleted = false,
                             LockoutEnabled = false,
                             NormalizedUserName = "SELLER2@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEE+K6MnprVXAWp5zI9V5q0KqPaAeuaUxP7boxQsUuaj+oSFbXSx32iXrtT/cZS9H9Q==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO5Y46uMuJfSW8cD5l61136tWMxQ6MH8NfHqRHTQAoSJFcLGF4gezoITYWXW1wFUAw==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "4af4988c-0a25-4e5b-8aea-a8d3b33eaf12",
                             TwoFactorEnabled = false,
                             UserName = "Seller2@mail.com"
                         },
@@ -2239,19 +2387,39 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1c3bae04-1a16-475f-8361-3b6922eba736",
-                            CreatedAt = new DateTime(2023, 11, 6, 21, 49, 20, 810, DateTimeKind.Local).AddTicks(352),
+                            ConcurrencyStamp = "c9f7072f-1bcf-4693-a0ac-13ec0e893c99",
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 446, DateTimeKind.Local).AddTicks(9473),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "customer@mail.com",
+                            Email = "customer1@mail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             IsDeleted = false,
                             LockoutEnabled = false,
-                            NormalizedUserName = "CUSTOMER@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBMWN/AKojskUngHVkSwMaS3NJXaNzlrsrbmked8HGKIGtDVBJ5Koso+gO/bGUKDYQ==",
+                            NormalizedUserName = "CUSTOMER1@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH34mVZyzPk0JvgDozAUkkFlX8A8bFY35f3aMjy9+GfDYWVelHy8yYrbGGEON6FCuQ==",
                             PhoneNumberConfirmed = false,
+                            SecurityStamp = "70fa5e63-07e7-42a3-94ad-727727a64193",
                             TwoFactorEnabled = false,
-                            UserName = "customer@mail.com"
+                            UserName = "customer1@mail.com"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "4f59503b-85a5-4124-a36f-2f5e19368fc5",
+                            CreatedAt = new DateTime(2023, 11, 16, 12, 7, 14, 446, DateTimeKind.Local).AddTicks(9479),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "customer2@mail.com",
+                            EmailConfirmed = true,
+                            IsActive = true,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            NormalizedUserName = "CUSTOMER2@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEzk1zdb01XqMzOdvDtkw6eUHkTfwvABxZvc/P3pHF5Smyrp/vcCM4Ur7q3tamt30Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9ac0a6a1-3509-42f9-97b7-060166645d18",
+                            TwoFactorEnabled = false,
+                            UserName = "customer2@mail.com"
                         });
                 });
 
@@ -2272,10 +2440,13 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<DateTime?>("Birthdate")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("Firstname")
+                    b.Property<int>("CartOrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -2310,9 +2481,21 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                             AddressId = 3,
                             AppUserId = 4,
                             Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Firstname = "جواد  ",
-                            Lastname = "بیات",
+                            CartOrderId = 2,
+                            FirstName = "جواد  ",
+                            LastName = "بیات",
                             ProfilePicId = 15
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 4,
+                            AppUserId = 5,
+                            Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CartOrderId = 4,
+                            FirstName = "محمد",
+                            LastName = "پارسایی",
+                            ProfilePicId = 28
                         });
                 });
 
@@ -2502,7 +2685,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("AppuserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Birthdate")
@@ -2511,10 +2694,10 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Property<int?>("BoothId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Lastname")
+                    b.Property<string>("LastName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -2532,7 +2715,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .IsUnique()
                         .HasFilter("[AddressId] IS NOT NULL");
 
-                    b.HasIndex("AppuserId")
+                    b.HasIndex("AppUserId")
                         .IsUnique();
 
                     b.HasIndex("BoothId")
@@ -2550,10 +2733,10 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 1,
                             AddressId = 1,
-                            AppuserId = 2,
+                            AppUserId = 2,
                             Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Firstname = "حامد",
-                            Lastname = "کریمی",
+                            FirstName = "حامد",
+                            LastName = "کریمی",
                             ProfilePicId = 13,
                             ShabaNumber = "Ir89752140000007800125"
                         },
@@ -2561,10 +2744,10 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         {
                             Id = 2,
                             AddressId = 2,
-                            AppuserId = 3,
+                            AppUserId = 3,
                             Birthdate = new DateTime(1990, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Firstname = "میلاد",
-                            Lastname = "بداقی",
+                            FirstName = "میلاد",
+                            LastName = "بداقی",
                             ProfilePicId = 14,
                             ShabaNumber = "Ir89752140000007800125"
                         });
@@ -2721,6 +2904,11 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         new
                         {
                             UserId = 4,
+                            RoleId = 3
+                        },
+                        new
+                        {
+                            UserId = 5,
                             RoleId = 3
                         });
                 });
@@ -2883,11 +3071,19 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                         .WithOne("Comment")
                         .HasForeignKey("App.Domain.Core._Products.Entities.Comment", "PictureId");
 
+                    b.HasOne("App.Domain.Core._Products.Entities.Product", "Product")
+                        .WithMany("Comments")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .HasConstraintName("FK_Comments_Product");
+
                     b.Navigation("Customer");
 
                     b.Navigation("OrderItem");
 
                     b.Navigation("Picture");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Order", b =>
@@ -2925,9 +3121,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.Product", b =>
                 {
-                    b.HasOne("App.Domain.Core._Products.Entities.Category", null)
+                    b.HasOne("App.Domain.Core._Products.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_Products_Categories");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("App.Domain.Core._Products.Entities.ProductAttributeValue", b =>
@@ -2965,7 +3166,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                 {
                     b.HasOne("App.Domain.Core._User.Entities.AppUser", "AppUser")
                         .WithOne("Admin")
-                        .HasForeignKey("App.Domain.Core._User.Entities.Admin", "AppuserId")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Admin", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3017,7 +3218,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
 
                     b.HasOne("App.Domain.Core._User.Entities.AppUser", "AppUser")
                         .WithOne("Seller")
-                        .HasForeignKey("App.Domain.Core._User.Entities.Seller", "AppuserId")
+                        .HasForeignKey("App.Domain.Core._User.Entities.Seller", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -3204,6 +3405,8 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                     b.Navigation("Auctions");
 
                     b.Navigation("BoothProducts");
+
+                    b.Navigation("Comments");
 
                     b.Navigation("ProductAttributeValues");
                 });

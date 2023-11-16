@@ -20,6 +20,8 @@ public partial class Customer
 
     public int? AddressId { get; set; }
 
+    public int CartOrderId { get; set; }
+
     public DateTime? Birthdate { get; set; }
 
     public int? Wallet { get; set; }
@@ -36,7 +38,7 @@ public partial class Customer
 
     public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+    public virtual ICollection<Order> Orders { get; set; } 
 
     public virtual Picture? ProfilePic { get; set; }
 

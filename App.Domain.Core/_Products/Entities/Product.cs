@@ -20,22 +20,27 @@ public class Product
 
     public string IncludedComponents { get; set; } = null!;
 
-    public bool IsConfirmed { get; set; }
+    public bool? IsConfirmed { get; set; }
 
     public int BasePrice { get; set; }
     public int CategoryId { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public int CreatedBy { get; set; }
 
     public bool IsDeleted { get; set; }
 
 
     #region Navigation properties
     public virtual Category Category { get; set; } 
-    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
+    public virtual ICollection<Auction> Auctions { get; set; } 
+    public virtual ICollection<Comment> Comments { get; set; } 
 
     public virtual ICollection<Picture>? Pictures { get; set; }
 
-    public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
+    public virtual ICollection<BoothProduct> BoothProducts { get; set; } 
 
-    public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; } = new List<ProductAttributeValue>();
+    public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; }
     #endregion
 }

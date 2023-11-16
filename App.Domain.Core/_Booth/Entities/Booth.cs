@@ -18,6 +18,8 @@ public partial class Booth
 
     public int AccountBalance { get; set; }
 
+    public int TotalSell { get; set; }
+
     public string? Description { get; set; }
 
     public bool IsActive { get; set; }

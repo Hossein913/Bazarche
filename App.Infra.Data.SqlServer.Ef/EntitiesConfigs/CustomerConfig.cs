@@ -28,7 +28,8 @@ public class CustomerConfig : IEntityTypeConfiguration<Customer>
         entity.HasOne(c => c.AppUser).WithOne(u => u.Customer).HasForeignKey<Customer>(c => c.AppUserId);
 
         entity.HasData(
-        new Customer { Id = 1, FirstName = "جواد  ", LastName = "بیات", AddressId = 3, ProfilePicId = 15, Birthdate = new DateTime(1990 , 05 , 05), AppUserId = 4 }
+        new Customer { Id = 1, FirstName = "جواد  ", LastName = "بیات", AddressId = 3, ProfilePicId = 15, Birthdate = new DateTime(1990 , 05 , 05), CartOrderId =2, AppUserId = 4 },
+        new Customer { Id = 2, FirstName = "محمد", LastName = "پارسایی", AddressId = 4, ProfilePicId = 28, Birthdate = new DateTime(1990 , 05 , 05), CartOrderId =4, AppUserId = 5 }
         );
     }
 }

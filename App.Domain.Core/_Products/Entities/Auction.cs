@@ -23,8 +23,8 @@ public class Auction
 
     public int Status { get; set; }
 
-    public bool IsConfirmed { get; set; }
-
+    public bool? IsConfirmed { get; set; }
+    
     #region Navigation properties
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 

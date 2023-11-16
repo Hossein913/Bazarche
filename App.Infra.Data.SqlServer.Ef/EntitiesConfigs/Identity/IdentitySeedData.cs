@@ -84,13 +84,25 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
-            var customerUser = new AppUser
+            var customerUser1 = new AppUser
             {
                 Id = 4,
-                Email = "customer@mail.com",
+                Email = "customer1@mail.com",
                 EmailConfirmed = true,
-                UserName = "customer@mail.com",
-                NormalizedUserName = "CUSTOMER@MAIL.COM",
+                UserName = "customer1@mail.com",
+                NormalizedUserName = "CUSTOMER1@MAIL.COM",
+                CreatedAt = DateTime.Now,
+                IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString()
+            }; 
+
+            var customerUser2 = new AppUser
+            {
+                Id = 5,
+                Email = "customer2@mail.com",
+                EmailConfirmed = true,
+                UserName = "customer2@mail.com",
+                NormalizedUserName = "CUSTOMER2@MAIL.COM",
                 CreatedAt = DateTime.Now,
                 IsActive = true,
                 SecurityStamp = Guid.NewGuid().ToString()
@@ -98,17 +110,20 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
 
             //set user password
             PasswordHasher<AppUser> ph1 = new PasswordHasher<AppUser>();
+
             adminUser.PasswordHash = ph1.HashPassword(adminUser, "1111@Admin");
 
             sellerUser1.PasswordHash = ph1.HashPassword(sellerUser1, "1111@Seller");
 
             sellerUser2.PasswordHash = ph1.HashPassword(sellerUser2, "1111@Seller");
 
-            customerUser.PasswordHash = ph1.HashPassword(customerUser, "1111@Customer");
+            customerUser1.PasswordHash = ph1.HashPassword(customerUser1, "1111@Customer");
+
+            customerUser2.PasswordHash = ph1.HashPassword(customerUser2, "1111@Customer");
 
 
             //seed user
-            entity.HasData(adminUser, sellerUser1, sellerUser2, customerUser);
+            entity.HasData(adminUser, sellerUser1, sellerUser2, customerUser1, customerUser2);
         }
     }
 
@@ -121,7 +136,8 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 new IdentityUserRole<int>{RoleId = 1,UserId = 1},
                 new IdentityUserRole<int>{RoleId = 2,UserId = 2},
                 new IdentityUserRole<int>{RoleId = 2,UserId = 3},
-                new IdentityUserRole<int>{RoleId = 3,UserId = 4}
+                new IdentityUserRole<int>{RoleId = 3,UserId = 4},
+                new IdentityUserRole<int>{RoleId = 3,UserId = 5}
                 );
         }
     }

@@ -14,6 +14,8 @@ public class Bid
 
     public int BidPrice { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
     public bool IsCancelled { get; set; }
 
 

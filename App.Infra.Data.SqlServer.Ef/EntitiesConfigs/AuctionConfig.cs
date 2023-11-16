@@ -27,7 +27,9 @@ public class AuctionConfig : IEntityTypeConfiguration<Auction>
             .HasConstraintName("FK_Auctions_Products");
 
         entity.HasData(
-            new Auction { Id = 1, ProductId = 10, BoothId = 1, WinnerId = null, StartTime = new DateTime(2023,06,11) ,EndTime = new DateTime(2023, 10, 11) ,BasePrice = 700000 ,Status = 1 ,IsConfirmed = true  }
+            new Auction { Id = 1, ProductId = 10, BoothId = 1, WinnerId = null, StartTime = DateTime.Now,EndTime = DateTime.Now.AddDays(1), BasePrice = 22000000 ,Status = 1 ,IsConfirmed = true  },
+            new Auction { Id = 2, ProductId = 2, BoothId = 1, WinnerId = null, StartTime = DateTime.Now.AddHours(1),EndTime = DateTime.Now.AddDays(1), BasePrice = 350000 ,Status = 0 ,IsConfirmed = true  },
+            new Auction { Id = 3, ProductId = 8, BoothId = 2, WinnerId = null, StartTime = DateTime.Now.AddDays(1),EndTime = DateTime.Now.AddDays(1), BasePrice = 25000000 ,Status = 0 ,IsConfirmed = false }
             );
     }
 }

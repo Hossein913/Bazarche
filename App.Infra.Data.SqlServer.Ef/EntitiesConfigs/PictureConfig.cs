@@ -45,8 +45,11 @@ public class PictureConfig : IEntityTypeConfiguration<Picture>
             new Picture { Id = 24 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "8862140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false },
             new Picture { Id = 25 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "8872140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false },
             new Picture { Id = 26 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "8882140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false },
-            new Picture { Id = 27 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "8892140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false }
-                               
+            new Picture { Id = 27 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "8892140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false },
+            // new Customer Id
+            new Picture { Id = 28 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "5532140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false  }
+
+
             );
     }
 }
