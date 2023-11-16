@@ -24,13 +24,13 @@ public class AuctionOutputDto
 
     public int Status { get; set; }
 
-    public bool IsConfirmed { get; set; }
+    public bool? IsConfirmed { get; set; }
 
+    #region Navigation properties
     public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
     public virtual Booth Booth { get; set; } = null!;
 
-    public virtual Customer BoothNavigation { get; set; } = null!;
-
     public virtual Product Product { get; set; } = null!;
+    #endregion
 }

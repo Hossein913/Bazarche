@@ -8,43 +8,35 @@ namespace App.Domain.Core._User.Dtos.SellersDtos;
 
 public partial class SellerCreateDto
 {
+
     public int Id { get; set; }
 
-    public string Firestname { get; set; } = null!;
+    public string? Firstname { get; set; }
 
-    public string Lastname { get; set; } = null!;
+    public string? Lastname { get; set; }
 
-    public bool Sexuality { get; set; }
+    public int? AddressId { get; set; }
 
-    public string Email { get; set; } = null!;
+    public int? ProfilePicId { get; set; }
 
-    public string Password { get; set; } = null!;
+    public DateTime? Birthdate { get; set; }
 
-    public int ProfilePictureId { get; set; }
+    public string? ShabaNumber { get; set; }
 
-    public int AddressId { get; set; }
+    public int? BoothId { get; set; }
 
-    public string Phonenumber { get; set; } = null!;
+    public int AppuserId { get; set; }
 
-    public string Homenumber { get; set; } = null!;
 
-    public DateTime Birthdate { get; set; }
+    //#region Navigation properties
+    //public virtual Address? Address { get; set; }
 
-    public bool IsActive { get; set; }
+    //public virtual Booth? Booth { get; set; }
 
-    public bool IsDeleted { get; set; }
+    //public virtual Picture? ProfilePic { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    //public virtual AppUser AppUser { get; set; }
 
-    public string ShabaNumber { get; set; } = null!;
+    //#endregion
 
-    public int BoothId { get; set; }
-
-    public int LicenseNumber { get; set; }
-
-    public virtual Address Address { get; set; } = null!;
-
-    public virtual Booth Booth { get; set; } = null!;
-
-    public virtual Picture ProfilePicture { get; set; } = null!;
 }

@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Common.Entities;
+using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -8,27 +9,22 @@ public partial class AdminCreateDto
 {
     public int Id { get; set; }
 
-    public string Firestname { get; set; } = null!;
+    public string? Firstname { get; set; }
 
-    public string Lastname { get; set; } = null!;
+    public string? Lastname { get; set; }
 
-    public string Email { get; set; } = null!;
+    public int? ProfilePicId { get; set; }
 
-    public string Password { get; set; } = null!;
+    public DateTime? Birthdate { get; set; }
 
-    public int ProfilePictureId { get; set; }
+    public int? Wallet { get; set; }
 
-    public string Phonenumber { get; set; } = null!;
+    public string? ShabaNumber { get; set; }
+    public int AppuserId { get; set; }
 
-    public string Homenumber { get; set; } = null!;
+    #region Navigation properties
+    public virtual Picture? ProfilePic { get; set; }
+    public virtual AppUser AppUser { get; set; }
 
-    public DateTime Birthdate { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-
-    public int Wallet { get; set; }
-
-    public string ShabaNumber { get; set; } = null!;
-
-    public virtual Picture ProfilePicture { get; set; } = null!;
+    #endregion
 }

@@ -5,8 +5,7 @@ namespace App.EndPoints.MvcUi.Models.Home
 {
     public class IndexViewModel
     {
-        public List<CategoryOutputDto> ParentCategories { get; set; }
-        public List<CategoryOutputDto> ChildCategories { get; set; }
+        public List<CategoryOutputDto> Categories { get; set; }
         public List<BoothOutputDto> boothOutputs { get; set; }
 
     }

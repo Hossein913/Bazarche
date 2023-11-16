@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="_Booth\Enums\" />
     <Folder Include="_Common\Enums\" />
-    <Folder Include="_Products\Enums\" />
     <Folder Include="_User\Enums\" />
   </ItemGroup>
 

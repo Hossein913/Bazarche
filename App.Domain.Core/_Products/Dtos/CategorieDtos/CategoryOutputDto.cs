@@ -20,8 +20,8 @@ public class CategoryOutputDto
     #region Navigation properties
     public ICollection<Category> Subcategories { get; set; } 
     public ICollection<Attributes> Attributes { get; set; }  
-    public ICollection<Product> Products { get; set; } 
+    public IEnumerable<List<Product>> products { get; set; } 
     public Category? Parent { get; set; }
-public Picture? Picture { get; set; }
+    public Picture? Picture { get; set; }
     #endregion
 }

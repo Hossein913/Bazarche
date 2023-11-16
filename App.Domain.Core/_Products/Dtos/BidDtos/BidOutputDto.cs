@@ -11,13 +11,19 @@ public class BidOutputDto
 
     public int CustomerId { get; set; }
 
-    public int ActionId { get; set; }
+    public int AuctionId { get; set; }
 
     public int BidPrice { get; set; }
 
+    public DateTime CreatedAt { get; set; }
+
     public bool IsCancelled { get; set; }
 
-    public virtual Auction Action { get; set; } = null!;
+
+    #region Navigation properties
+    public virtual Auction Auction { get; set; } = null!;
 
     public virtual Customer Customer { get; set; } = null!;
+
+    #endregion
 }

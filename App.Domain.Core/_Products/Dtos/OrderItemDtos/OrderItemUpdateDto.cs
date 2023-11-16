@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Products.Entities;
+using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -16,7 +17,14 @@ public class OrderItemUpdateDto
 
     public bool IsActive { get; set; }
 
-    public virtual BoothProduct BoothProduct { get; set; } = null!;
 
-    public virtual Order Order { get; set; } = null!;
+    #region Navigation properties
+    public virtual BoothProduct BoothProduct { get; set; }
+
+    public virtual Order Order { get; set; }
+
+    public virtual ICollection<Comment> Comments { get; set; }
+
+    public virtual Wage Wages { get; set; }
+    #endregion
 }

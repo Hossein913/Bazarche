@@ -1,32 +1,98 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._Products.Dtos.OrderDtos;
 using App.Domain.Core._Products.Dtos.OrderItemDtos;
+using App.Domain.Core._Products.Entities;
+using App.Infra.Data.SqlServer.Ef.DbCntx;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace App.Infra.Data.Repos.Ef.Products;
 
 public class OrderItemRepository : IOrderItemRepository
 {
-    public Task Create(OrderItemCreateDto orderItem, CancellationToken cancellationToken)
+    private readonly BazarcheContext _context;
+
+    public OrderItemRepository(BazarcheContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
     }
 
-    public Task<List<OrderItemOutputDto>> GetAll(int OrderId, CancellationToken cancellationToken)
+    public async Task Create(OrderItemCreateDto orderItem, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var newOrderItem = new OrderItem
+        {
+            OrderId = orderItem.OrderId,
+            BoothProductid = orderItem.BoothProductid,
+            Count = orderItem.Count,
+            IsActive = true,
+
+        };
+
+        await _context.OrderItems.AddAsync(newOrderItem, cancellationToken);
+        var result = await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task<OrderItemOutputDto> GetDatail(int OrderItemId, CancellationToken cancellationToken)
+    public async Task<List<OrderItemOutputDto>> GetAll(int OrderId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _context.OrderItems
+        .AsNoTracking()
+        .Where(oi => oi.OrderId == OrderId)
+        .Select<OrderItem, OrderItemOutputDto>(o => new OrderItemOutputDto
+        {
+            Count = o.Count,
+            IsActive = o.IsActive,
+            BoothProduct = o.BoothProduct
+
+        }).ToListAsync(cancellationToken);
+        return result;
     }
 
-    public Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)
+    public async Task<List<OrderItemOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _context.OrderItems
+        .AsNoTracking()
+        .Where(oi => oi.BoothProduct.BoothId == BoothId)
+        .Select<OrderItem, OrderItemOutputDto>(o => new OrderItemOutputDto
+        {
+            Count = o.Count,
+            BoothProduct = o.BoothProduct,
+            Order = o.Order
+
+        }).ToListAsync(cancellationToken);
+        return result;
     }
 
-    public Task Update(OrderItemUpdateDto orderItem, CancellationToken cancellationToken)
+    //public Task<OrderItemOutputDto> GetDetail(int OrderItemId, CancellationToken cancellationToken)
+    //{
+    //    throw new NotImplementedException();
+    //}
+
+    public async Task HardDelete(int OrderItemId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var OrderItemRecord = await _context.OrderItems
+        .FirstOrDefaultAsync(x => x.Id == OrderItemId, cancellationToken);
+
+        if (OrderItemRecord != null)
+        {
+            _context.OrderItems.Remove(OrderItemRecord);
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task Update(OrderItemUpdateDto orderItem, CancellationToken cancellationToken)
+    {
+        var OrderItemRecord = await _context.OrderItems
+        .FirstOrDefaultAsync(x => x.Id == orderItem.Id, cancellationToken);
+        if (OrderItemRecord != null)
+        {
+            OrderItemRecord.OrderId = orderItem.OrderId;
+            OrderItemRecord.BoothProductid = orderItem.BoothProductid;
+            OrderItemRecord.Count = orderItem.Count;
+            OrderItemRecord.IsActive = orderItem.IsActive;
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
+

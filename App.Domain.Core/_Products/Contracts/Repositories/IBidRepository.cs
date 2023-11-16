@@ -8,5 +8,5 @@ public interface IBidRepository
     Task<List<BidOutputDto>> GetUserBids(int userID, CancellationToken cancellationToken);
     Task Create(BidCreateDto bidCreate, CancellationToken cancellationToken);
     Task Delete(int bidId, CancellationToken cancellationToken);
-    Task Delete(BidUpdateDto bidUpdate, CancellationToken cancellationToken);
+    Task Update(BidUpdateDto bidUpdate, CancellationToken cancellationToken);
 }

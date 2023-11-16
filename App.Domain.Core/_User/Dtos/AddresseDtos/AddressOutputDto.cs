@@ -8,7 +8,10 @@ public partial class AddressOutputDto
 {
     public int Id { get; set; }
 
-    public string Province { get; set; } = null!;
+
+    //public int? ProvinceId { get; set; }
+
+    public string ProvinceName { get; set; } 
 
     public string City { get; set; } = null!;
 
@@ -16,7 +19,14 @@ public partial class AddressOutputDto
 
     public string PostalCode { get; set; } = null!;
 
-    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
+    //# region Navigation properties
 
-    public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+    //public virtual Customer Customers { get; set; }
+
+    //public virtual Province? Province { get; set; }
+
+    //public virtual Seller Sellers { get; set; }
+
+
+    //#endregion
 }

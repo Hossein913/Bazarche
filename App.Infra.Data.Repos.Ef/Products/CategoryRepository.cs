@@ -1,8 +1,10 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Dtos.CategorieDtos;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace App.Infra.Data.Repos.Ef.Products;
 
@@ -16,35 +18,101 @@ public class CategoryRepository : ICategoryRepository
     }
     public async Task Create(CategoryCreateDto category, CancellationToken cancellationToken)
     {
+        var newcategory = new Category
+        {
+            Title = category.Title,
+            ParentId = category.ParentId,
+            PictureId = category.PictureId,
+        };
 
+        await _context.Categories.AddAsync(newcategory, cancellationToken);
+        var result = await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
     {
-        return await _context.Categories.AsNoTracking().Select<Category, CategoryOutputDto>(c => new CategoryOutputDto
+        //------Attention ---> I have used the where clause to separate the parent Categories and child ones
+        var result = await _context.Categories
+            .AsNoTracking().Where(c => c.ParentId == null)
+            .Select<Category, CategoryOutputDto>(c => new CategoryOutputDto
+            {
+                 Id = c.Id,
+                 Title = c.Title,
+                 ParentId = c.ParentId,
+                 Subcategories = c.Subcategories.ToList(),
+                 Picture = c.Picture ?? null
+            }).ToListAsync(cancellationToken);
+        return result;
+    }
+
+    //--- Attention --> it will make a larg join in sql Server and isn't optimized
+    //public async Task<CategoryOutputDto> GetAllWithProduct(int categoryId,CancellationToken cancellationToken)
+    //{
+    //    var CategoryRecord = await _context.Categories
+    //        .Include(c => c.Subcategories)
+    //        .ThenInclude(c => c.Products)
+    //        .FirstOrDefaultAsync(c => c.Id == categoryId);
+    //    var newCategory = new CategoryOutputDto
+    //    {
+    //        Id = CategoryRecord.Id,
+    //        Title = CategoryRecord.Title,
+    //        ParentId = CategoryRecord.ParentId,
+    //        Subcategories = CategoryRecord.Subcategories,
+    //        products = CategoryRecord.Subcategories.Select(x => x.Products.ToList()).Where(P => P.Count > 0)
+
+    //    };
+    //    //CategoryRecord.Subcategories.Any(c => newCategory.products.ToList().AddRange(c.Products));
+
+    //    return newCategory;
+    //}
+
+
+    //public async Task<CategoryOutputDto> GetDetail(int categoryId, CancellationToken cancellationToken)
+    //{
+    //    var categoryRecord = await _context.Categories
+    //.Include(c => c.Picture)
+    //.ThenInclude(bp => bp.Booth)
+    //.FirstOrDefaultAsync(p => p.Id == categoryId && p.IsDeleted == false, cancellationToken);
+
+    //    if (categoryRecord != null)
+    //    {
+    //        var newcategory = new ProductOutputDto
+    //        {
+
+    //        };
+    //        return newcategory;
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
+
+    public async Task HardDelte(int categoryId, CancellationToken cancellationToken)
+    {
+        var categoryRecord = await _context.Categories
+        .FirstOrDefaultAsync(x => x.Id == categoryId, cancellationToken);
+
+        if (categoryRecord != null)
         {
-            Id = c.Id,
-            Title = c.Title, 
-            PictureFileName = c.Picture.ImageUrl ?? null,
-            ParentId = c.ParentId
+            _context.Categories.Remove(categoryRecord);
 
-        }).ToListAsync(cancellationToken);
+        }
+        await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public Task<CategoryOutputDto> GetDatail(int categoryId, CancellationToken cancellationToken)
+    public async Task Update(CategoryUpdateDto category, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
-    }
+        var CategoryRecord = await _context.Categories
+        .FirstOrDefaultAsync(x => x.Id == category.Id, cancellationToken);
+        if (CategoryRecord != null)
+        {
+            CategoryRecord.Title = category.Title;
+            CategoryRecord.ParentId = category.ParentId;
+            CategoryRecord.PictureId = category.PictureId;
 
-    public Task HardDelted(int categoryId, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task Update(CategoryUpdateDto categor, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
+        }
+        await _context.SaveChangesAsync(cancellationToken);
     }
 }
-
 

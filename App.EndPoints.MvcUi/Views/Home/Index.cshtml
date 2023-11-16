@@ -19,13 +19,13 @@
 
          <div class="row mt-1 margin-minus-b-15 margin-minus-t-15">
             <div id="ec-cat-slider" class="ec-cat-slider owl-carousel">
-                        @foreach (var item in Model.ParentCategories)
+                        @foreach (var item in Model.Categories)
                         {
                 <div class="ec_cat_content ec_cat_content_1">
                     <div class="ec_cat_inner ec_cat_inner-1">
 
                             <div>
-                                <img src="~/Upload/Img/Category/@item.PictureFileName"
+                                <img src="~/Upload/Img/Category/@item.Picture.ImageUrl"
                                  class="svg_img"
                                      alt=@item.Title height="50px" width="70px" />
                              </div>
@@ -104,20 +104,20 @@
                                         دسته‌بندی<button class="ec-close">×</button>
                                     </h3>
                                 </div>
-                                @foreach (var pItem in Model.ParentCategories)
+                                @foreach (var pItem in Model.Categories)
                                 {
 
                                      <div class="ec-sb-block-content">
                                     <ul>
                                         <li>
                                             <div class="ec-sidebar-block-item">
-                                                <img src="~/Upload/Img/Category/@pItem.PictureFileName"
+                                                <img src="~/Upload/Img/Category/@pItem.Picture.ImageUrl"
                                                      class="svg_img"
                                                      alt="drink">
                                                 @pItem.Title
                                             </div>
                                             <ul>
-                                                @foreach (var chItem in Model.ChildCategories.Where(c => c.ParentId== pItem.Id))
+                                                @foreach (var chItem in pItem.Subcategories)
                                                 {     
                                                     <li>
                                                         <div class="ec-sidebar-sub-item">

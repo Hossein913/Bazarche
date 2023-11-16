@@ -19,7 +19,10 @@ public class OrderUpdateDto
 
     public DateTime? PayedAt { get; set; }
 
+
+    #region Navigation properties
     public virtual Customer Customer { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+    #endregion
 }

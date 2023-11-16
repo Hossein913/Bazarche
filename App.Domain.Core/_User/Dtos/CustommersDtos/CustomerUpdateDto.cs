@@ -10,41 +10,39 @@ public partial class CustomerUpdateDto
 {
     public int Id { get; set; }
 
-    public string Firestname { get; set; } = null!;
+    public string? Firstname { get; set; }
 
-    public string Lastname { get; set; } = null!;
+    public string? Lastname { get; set; }
 
-    public bool Sexuality { get; set; }
+    public bool? Sexuality { get; set; }
 
-    public string Email { get; set; } = null!;
+    public int? ProfilePicId { get; set; }
 
-    public string Password { get; set; } = null!;
+    public int? AddressId { get; set; }
 
-    public int AddressId { get; set; }
+    public int CartOrderId { get; set; }
 
-    public int ProfilePictureId { get; set; }
+    public DateTime? Birthdate { get; set; }
 
-    public string Phonenumber { get; set; } = null!;
+    public int? Wallet { get; set; }
 
-    public string Homenumber { get; set; } = null!;
+    public int AppUserId { get; set; }
 
-    public DateTime Birthdate { get; set; }
 
-    public int Wallet { get; set; }
+    //#region Navigation properties
 
-    public bool IsActive { get; set; }
+    //public virtual Address? Address { get; set; }
+    //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
-    public bool IsDeleted { get; set; }
+    //public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
 
-    public DateTime CreatedAt { get; set; }
+    //public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
 
-    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
+    //public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    public virtual Address Address { get; set; } = null!;
+    //public virtual Picture? ProfilePic { get; set; }
 
-    public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
+    //public virtual AppUser AppUser { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
-
-    public virtual Picture ProfilePicture { get; set; } = null!;
+    //#endregion
 }

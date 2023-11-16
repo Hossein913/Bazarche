@@ -7,6 +7,7 @@ namespace App.Domain.Core._Products.Dtos.BoothProductDtos;
 
 public class BoothProductOutputDto
 {
+
     public int Id { get; set; }
 
     public int ProductId { get; set; }
@@ -23,9 +24,13 @@ public class BoothProductOutputDto
 
     public bool IsDeleted { get; set; }
 
+
+    #region Navigation properties
     public virtual Booth Booth { get; set; } = null!;
 
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
     public virtual Product Product { get; set; } = null!;
+
+    #endregion
 }

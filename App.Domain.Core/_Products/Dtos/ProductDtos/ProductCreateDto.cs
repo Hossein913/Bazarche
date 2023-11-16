@@ -17,18 +17,29 @@ public class ProductCreateDto
 
     public string InformationDetails { get; set; } = null!;
 
-    public string Describtion { get; set; } = null!;
+    public string Description { get; set; } = null!;
 
-    public string IncludedComponentes { get; set; } = null!;
+    public string IncludedComponents { get; set; } = null!;
 
     public bool IsConfirmed { get; set; }
 
-    public int BasePrise { get; set; }
+    public int BasePrice { get; set; }
+    public DateTime CreatedAt { get; set; }
+
+    public int CreatedBy { get; set; }
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Auction> Actions { get; set; } = new List<Auction>();
+
+    #region Navigation properties
+    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
+
+    public virtual ICollection<Comment> Comments { get; set; }
+
+    public virtual ICollection<Picture>? Pictures { get; set; }
 
     public virtual ICollection<BoothProduct> BoothProducts { get; set; } = new List<BoothProduct>();
-    public virtual ICollection<Picture> Pictures { get; set; } = new List<Picture>();
+
+    public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; } = new List<ProductAttributeValue>();
+    #endregion
 }

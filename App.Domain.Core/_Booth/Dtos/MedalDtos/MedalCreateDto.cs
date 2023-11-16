@@ -14,5 +14,7 @@ public partial class MedalCreateDto
 
     public int MinSalesRequired { get; set; }
 
-    public virtual ICollection<Booth> Booths { get; set; } = new List<Booth>();
+    #region Navigation properties
+    public virtual ICollection<Booth> Booths { get; set; }
+    #endregion
 }

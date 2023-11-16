@@ -6,9 +6,9 @@ namespace App.Domain.Core._User.Dtos.AddresseDtos;
 
 public partial class AddressCreateDto
 {
-    public int Id { get; set; }
+    //public int Id { get; set; }
 
-    public string Province { get; set; } = null!;
+    public int? ProvinceId { get; set; } = null!;
 
     public string City { get; set; } = null!;
 
@@ -16,7 +16,7 @@ public partial class AddressCreateDto
 
     public string PostalCode { get; set; } = null!;
 
-    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
+    //public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 
-    public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
+    //public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 }

@@ -14,16 +14,23 @@ public partial class PictureOutputDto
 
     public DateTime CreatedAt { get; set; }
 
-    public int CreatedBy { get; set; }
+    public int? CreatedBy { get; set; }
 
     public bool IsDeleted { get; set; }
 
-    public virtual ICollection<Booth> Booths { get; set; } = new List<Booth>();
 
-    public virtual ICollection<Category> Categories { get; set; } = new List<Category>();
+    #region Navigation properties
+    public virtual Admin? Admins { get; set; }
 
-    public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
+    public virtual Booth? Booths { get; set; }
 
-    public virtual ICollection<Seller> Sellers { get; set; } = new List<Seller>();
-    public virtual ICollection<Product> Products { get; set; } = new List<Product>();
+    public virtual Category? Categories { get; set; }
+
+    public virtual Customer? Customers { get; set; }
+
+    public virtual ICollection<Product>? Products { get; set; }
+
+    public virtual Seller? Sellers { get; set; }
+    public virtual Comment? Comment { get; set; }
+    #endregion
 }

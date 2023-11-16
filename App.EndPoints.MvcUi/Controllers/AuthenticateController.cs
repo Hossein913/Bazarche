@@ -56,7 +56,7 @@ namespace App.EndPoints.MvcUi.Controllers
                             return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
 
                         else if (roles != null && roles.Contains("Customer"))
-                            return RedirectToAction("index", "Panel", new { area = "Customer" });
+                            return RedirectToAction("index", "CustomerPanel", new { area = "Customer" });
 
                         else
                             return RedirectToAction("index", "Home");

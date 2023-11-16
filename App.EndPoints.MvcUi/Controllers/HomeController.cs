@@ -15,11 +15,13 @@ namespace App.EndPoints.MvcUi.Controllers
 
         private readonly ICategoryAppServices _categoryAppServices;
         private readonly IBoothAppServices _BoothAppServices;
-
-
+ 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ICategoryAppServices categoryAppServices, IBoothAppServices boothAppServices)
+        public HomeController(
+            ILogger<HomeController> logger,
+            ICategoryAppServices categoryAppServices,
+            IBoothAppServices boothAppServices)
         {
             _logger = logger;
             _categoryAppServices = categoryAppServices;
@@ -28,12 +30,9 @@ namespace App.EndPoints.MvcUi.Controllers
 
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            var result = await _categoryAppServices.GetAll(cancellationToken);
-
-            IndexViewModel viewModel = new IndexViewModel();
-              viewModel.ParentCategories = result.Where(x => x.ParentId==null).ToList();
-              viewModel.ChildCategories = result.Where(x => x.ParentId != null).ToList();
-              viewModel.boothOutputs = await _BoothAppServices.GetAllHome(cancellationToken);
+                       IndexViewModel viewModel = new IndexViewModel();
+              viewModel.Categories = await _categoryAppServices.GetAll(cancellationToken);
+            viewModel.boothOutputs = await _BoothAppServices.GetAllHome(cancellationToken);
 
             return View(viewModel);
         }
