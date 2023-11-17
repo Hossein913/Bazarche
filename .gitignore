@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 #Ignore test project
+Schaffold/*
 Schaffold/
 ~$*
 *~
@@ -366,3 +367,20 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Schaffold/appsettings.json
+/Schaffold/Scaffold.csproj
+/Schaffold/WeatherForecast.cs
+/Schaffold/Program.cs
+/Schaffold/Services/AddressServices.cs
+/Schaffold/Services/AdminServices.cs
+/Schaffold/Services/CustomerServices.cs
+/Schaffold/Services/SellerServices.cs
+/Schaffold/Services/AddressServices.cs
+/Schaffold/Services/AdminServices.cs
+/Schaffold/Services/CustomerServices.cs
+/Schaffold/Services/SellerServices.cs
+/Schaffold/Services/WageServices.cs
+/Schaffold/IServices/IAddressServices.cs
+/Schaffold/IServices/IAdminServices.cs
+/Schaffold/IServices/ICustomerServices.cs
+/Schaffold/IServices/ISellerServices.cs
