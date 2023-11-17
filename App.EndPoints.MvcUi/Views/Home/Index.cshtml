@@ -19,25 +19,25 @@
 
          <div class="row mt-1 margin-minus-b-15 margin-minus-t-15">
             <div id="ec-cat-slider" class="ec-cat-slider owl-carousel">
-                        @foreach (var item in Model.Categories)
-                        {
-                <div class="ec_cat_content ec_cat_content_1">
-                    <div class="ec_cat_inner ec_cat_inner-1">
+                    @foreach (var item in Model.Categories)
+                    {
+                        <div class="ec_cat_content ec_cat_content_1">
+                            <div class="ec_cat_inner ec_cat_inner-1">
 
-                            <div>
-                                <img src="~/Upload/Img/Category/@item.Picture.ImageUrl"
-                                 class="svg_img"
-                                     alt=@item.Title height="50px" width="70px" />
-                             </div>
-                            <div class="ec-category-desc">
-                                <a href="shop-left-sidebar-col-3.html" class="cat-show-all">
-                                <h3> @item.Title <span title="Category Items">(53)</span></h3>
-                                </a>                                   
-                            </div>
-                        
+                                    <div>
+                                        <img src="~/Upload/Img/Category/@item.Picture.ImageUrl"
+                                         class="svg_img"
+                                             alt=@item.Title height="50px" width="70px" />
+                                     </div>
+                                    <div class="ec-category-desc">
+                                        <a href="shop-left-sidebar-col-3.html" class="cat-show-all">
+                                        <h3> @item.Title <span title="Category Items">(53)</span></h3>
+                                        </a>                                   
+                                    </div>
+                                
+                                </div>
                         </div>
-                </div>
-                }
+                    }
              </div>
         </div>
 

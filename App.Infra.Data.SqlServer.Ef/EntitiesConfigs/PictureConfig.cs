@@ -25,8 +25,8 @@ public class PictureConfig : IEntityTypeConfiguration<Picture>
             new Picture { Id = 7 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "702140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
             new Picture { Id = 8 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "802140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
             new Picture { Id = 9 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "902140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
-            new Picture { Id = 10 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
-            new Picture { Id = 11 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "112140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
+            new Picture { Id = 10 ,CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "102140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
+            new Picture { Id = 11 ,CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "112140ea60e0fd478b09b279976a095c95615b6_1656161174.png", IsDeleted = false  },
             //Profile
             new Picture { Id = 12 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "5522140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false  },
             new Picture { Id = 13 , CreatedAt = DateTime.Now , CreatedBy = null , ImageUrl = "5502140ea60e0fd478b09b279976a095c95615b6_1656161174.jpg", IsDeleted = false  },

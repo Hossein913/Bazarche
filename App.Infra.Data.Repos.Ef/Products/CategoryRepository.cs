@@ -40,7 +40,7 @@ public class CategoryRepository : ICategoryRepository
                  Title = c.Title,
                  ParentId = c.ParentId,
                  Subcategories = c.Subcategories.ToList(),
-                 Picture = c.Picture ?? null
+                 Picture = c.Picture
             }).ToListAsync(cancellationToken);
         return result;
     }

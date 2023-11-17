@@ -195,7 +195,7 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "ParentId", "PictureId", "Title" },
-                values: new object[] { 14, null, null, "لوازم جانبی لپ تاپ" });
+                values: new object[] { 14, 1, null, "لوازم جانبی لپ تاپ" });
 
             migrationBuilder.InsertData(
                 table: "Medals",

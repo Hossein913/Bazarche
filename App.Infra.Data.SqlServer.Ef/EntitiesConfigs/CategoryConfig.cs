@@ -41,7 +41,7 @@ public class CategoryConfig : IEntityTypeConfiguration<Category>
 
             new Category { Id = 12, Title = "موبایل", ParentId = 1 ,PictureId =null},
             new Category { Id = 13, Title = "لبتاب", ParentId = 1 ,PictureId =null},
-            new Category { Id = 14, Title = "لوازم جانبی لپ تاپ", ParentId = null ,PictureId =null},
+            new Category { Id = 14, Title = "لوازم جانبی لپ تاپ", ParentId = 1 ,PictureId =null},
             new Category { Id = 15, Title = "کامپیوتر", ParentId = 1 ,PictureId =null},
             new Category { Id = 16, Title = "لوازم جانبی گوشی", ParentId = 1 ,PictureId =null},
             new Category { Id = 17, Title = "کتابخوان", ParentId = 1 ,PictureId =null},
