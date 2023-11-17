@@ -384,3 +384,5 @@ FodyWeavers.xsd
 /Schaffold/IServices/IAdminServices.cs
 /Schaffold/IServices/ICustomerServices.cs
 /Schaffold/IServices/ISellerServices.cs
+/Schaffold/Properties/launchSettings.json
+/Schaffold/Controllers/WeatherForecastController.cs
