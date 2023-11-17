@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace App.Domain.Core._User.Contracts.Repositories
 {
-    internal class IAppUserRepository
+    public class IAppUserRepository
     {
+
     }
 }

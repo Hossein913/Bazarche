@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Contracts.Repositories;
+using App.Domain.Core._User.Contracts.Services;
 using App.Domain.Core._User.Dtos.SellersDtos;
 using App.Domain.Core._User.Dtos.WageDtos;
 using App.Domain.Core._User.Entities;
