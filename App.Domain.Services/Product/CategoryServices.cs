@@ -13,10 +13,24 @@ public class CategoryServices : ICategoryServices
         _categoryRepository = categoryRepository;
     }
 
+    public async Task Create(CategoryCreateDto category, CancellationToken cancellationToken)
+    {
+        await _categoryRepository.Create(category, cancellationToken);
+    }
+
     public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
     {
         var result = await _categoryRepository.GetAll(cancellationToken);
         return result;
     }
 
+    public async Task HardDelte(int categoryId, CancellationToken cancellationToken)
+    {
+        await _categoryRepository.HardDelte(categoryId, cancellationToken);
+    }
+
+    public async Task Update(CategoryUpdateDto categor, CancellationToken cancellationToken)
+    {
+        await _categoryRepository.Update(categor, cancellationToken);
+    }
 }

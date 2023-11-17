@@ -18,9 +18,31 @@ namespace App.Domain.Services.Booth
             _boothRepository = boothRepository;
         }
 
+        public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
+        {
+            await _boothRepository.Create(boothCreate, cancellationToken);
+        }
+
         public async Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)
         {
-            return await _boothRepository.GetAllHome(cancellationToken);
+            var result = await _boothRepository.GetAllHome(cancellationToken);
+            return result;
+        }
+
+        public async Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
+        {
+            var result = await _boothRepository.GetDetail(BoothId, cancellationToken);
+            return result;
+        }
+
+        public async Task SoftDelete(int BoothId, CancellationToken cancellationToken)
+        {
+            await _boothRepository.SoftDelete(BoothId, cancellationToken);
+        }
+
+        public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken)
+        {
+            await _boothRepository.Update(boothUpdate, cancellationToken);
         }
     }
 }

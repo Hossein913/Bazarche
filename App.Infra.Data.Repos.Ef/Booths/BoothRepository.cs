@@ -51,7 +51,7 @@ public class BoothRepository : IBoothRepository
         return result;
     }
 
-    public Task<BoothOutputDto> GetDatail(int BoothId, CancellationToken cancellationToken)
+    public Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }
