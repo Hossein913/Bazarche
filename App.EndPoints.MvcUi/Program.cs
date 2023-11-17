@@ -16,6 +16,7 @@ using App.Domain.Core._User.Entities;
 using App.Domain.Services.Booth;
 using App.Domain.Services.Common;
 using App.Domain.Services.Product;
+using App.Domain.Services.User;
 using App.Infra.Data.Repos.Ef.Booths;
 using App.Infra.Data.Repos.Ef.Commons;
 using App.Infra.Data.Repos.Ef.Products;
@@ -57,6 +58,7 @@ builder.Services.AddScoped<IAddressRepository, AddressRepository > ();
 builder.Services.AddScoped<IAdminRepository, AdminRepository > ();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository > ();
 builder.Services.AddScoped<ISellerRepository, SellerRepository > ();
+builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
 builder.Services.AddScoped<IWageRepository, WageRepository>();
 #endregion
 
@@ -76,10 +78,12 @@ builder.Services.AddScoped<IOrderItemServices, OrderItemServices>();
 builder.Services.AddScoped<IOrderServices, OrderServices>();
 builder.Services.AddScoped<IProductServices, ProductServices>();
 //--Users
-builder.Services.AddScoped<IAddressRepository, AddressRepository>();
-builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+builder.Services.AddScoped<IAddressServices, AddressServices>();
+builder.Services.AddScoped<IAdminServices, AdminServices>();
+builder.Services.AddScoped<ICustomerServices, CustomerServices>();
+builder.Services.AddScoped<IProvinceServices, ProvinceServices>();
+builder.Services.AddScoped<ISellerServices, SellerServices>();
+builder.Services.AddScoped<IWageServices, WageServices>();
 
 #endregion
 
