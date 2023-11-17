@@ -11,6 +11,7 @@ using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Contracts.Repositories;
+using App.Domain.Core._User.Contracts.Services;
 using App.Domain.Core._User.Entities;
 using App.Domain.Services.Booth;
 using App.Domain.Services.Common;
