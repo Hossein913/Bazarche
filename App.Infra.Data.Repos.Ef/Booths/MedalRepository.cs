@@ -44,22 +44,21 @@ public class MedalRepository : IMedalRepository
         return result;
     }
 
-    //public Task<MedalOutputDto> GetDetail(int medalId, CancellationToken cancellationToken)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
     public async Task HardDelete(int medalId, CancellationToken cancellationToken)
     {
-        var medalRecord = await _context.Medals
-        .FirstOrDefaultAsync(x => x.Id == medalId, cancellationToken);
-
-        if (medalRecord != null)
+        if (medalId != 1)
         {
-            _context.Medals.Remove(medalRecord);
 
+            var medalRecord = await _context.Medals
+            .FirstOrDefaultAsync(x => x.Id == medalId, cancellationToken);
+
+            if (medalRecord != null)
+            {
+                _context.Medals.Remove(medalRecord);
+
+            }
+            await _context.SaveChangesAsync(cancellationToken);
         }
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task Update(MedalUpdateDto medalUpdate, CancellationToken cancellationToken)

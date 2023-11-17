@@ -15,30 +15,21 @@ public class PictureRepository : IPictureRepository
     {
         _context = context;
     }
-    public async Task Create(PictureCreateDto pictureDto, CancellationToken cancellationToken)
+    public async Task<int> Create(PictureCreateDto pictureCreate, CancellationToken cancellationToken)
     {
         var newPicture = new Picture
         {
-
+            ImageUrl= pictureCreate.ImageUrl,
+            CreatedBy = pictureCreate.CreatedBy,
+            CreatedAt = DateTime.Now
         };
 
         await _context.Pictures.AddAsync(newPicture, cancellationToken);
         var result = await _context.SaveChangesAsync(cancellationToken);
         if (result != 0)
-            return newproduct.Id;
-
+            return newPicture.Id;
         return 0;
     }
-
-    //public async Task<PictureOutputDto> GetDetail(int categoryId, CancellationToken cancellationToken)
-    //{
-    //    throw new NotImplementedException();
-    //}
-
-    //public async Task<List<PictureOutputDto>> GetProductPicture(int ProductId, CancellationToken cancellationToken)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
     public async Task HardDeleted(int pictureId, CancellationToken cancellationToken)
     {
