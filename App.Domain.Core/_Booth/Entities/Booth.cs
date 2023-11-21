@@ -39,3 +39,14 @@ public partial class Booth
     public virtual Seller? Sellers { get; set; }
     #endregion
 }
+
+//Id { get; set; }
+//Name { get; set; } 
+//AccountBalance { get; set; }
+//TotalSell { get; set; }
+//Description { get; set; }
+//IsActive { get; set; }
+//Auctions { get; set; }
+//AvatarPicture { get; set; }
+//BoothProducts { get; set; }
+//Medal { get; set; }

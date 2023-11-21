@@ -27,8 +27,8 @@ public class BoothConfig : IEntityTypeConfiguration<Booth>
         .HasConstraintName("FK_Booths_Medals");
 
         entity.HasData(
-        new Booth { Id = 1, Name = "رویال ", AvatarPictureId = 16, MedalId = 1, AccountBalance = 0, Description = "عرضه کننده انواع محصولات", IsActive =true , IsDeleted = false },
-        new Booth { Id = 2, Name = "نوین", AvatarPictureId = 17, MedalId = 2, AccountBalance = 2300000, Description = "شیک پوشی شما با ما", IsActive = true, IsDeleted = false }
+        new Booth { Id = 1, Name = "رویال ", AvatarPictureId = 16, MedalId = 1, AccountBalance = 0,TotalSell=0, Description = "عرضه کننده انواع محصولات", IsActive =true , IsDeleted = false },
+        new Booth { Id = 2, Name = "نوین", AvatarPictureId = 17, MedalId = 2, AccountBalance = 2300000, TotalSell = 2300000, Description = "شیک پوشی شما با ما", IsActive = true, IsDeleted = false }
 
     );
     }

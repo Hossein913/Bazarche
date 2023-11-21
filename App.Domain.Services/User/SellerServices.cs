@@ -25,9 +25,9 @@ public class SellerServices : ISellerServices
         return result;
     }
 
-    public async Task<SellerOutputDto> GetDetail(int sellerId, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
     {
-        var result = await _sellerRepository.GetDetail(sellerId, cancellationToken);
+        var result = await _sellerRepository.GetDetail(sellerAppUserId, cancellationToken);
         return result;
     }
 

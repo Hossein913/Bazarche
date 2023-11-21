@@ -13,8 +13,29 @@ public class CategoryAppServices : ICategoryAppServices
         _categoryServices = categoryRepository;
     }
 
+    public Task Create(CategoryCreateDto category, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
     {
         return await _categoryServices.GetAll(cancellationToken);
+    }
+
+    public async Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken)
+    {
+        var result = await _categoryServices.GetById(Id, cancellationToken);
+        return result;
+    }
+
+    public Task HardDelte(int categoryId, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task Update(CategoryUpdateDto categor, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

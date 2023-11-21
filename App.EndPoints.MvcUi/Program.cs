@@ -1,4 +1,4 @@
-using App.Domain.AppServices.Booth;
+ using App.Domain.AppServices.Booth;
 using App.Domain.AppServices.Product;
 using App.Domain.AppServices.User;
 using App.Domain.Core._Booth.Contracts.AppServices;
@@ -6,6 +6,7 @@ using App.Domain.Core._Booth.Contracts.Repositories;
 using App.Domain.Core._Booth.Contracts.Services;
 using App.Domain.Core._Common.Contracts.Repositories;
 using App.Domain.Core._Common.Contracts.Services;
+using App.Domain.Core._Common.Dtos.AppSettingDtos;
 using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
@@ -27,6 +28,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,12 +40,15 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BazarcheContext>(option =>
 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
 # region Ripository Injections
 //--Booths
 builder.Services.AddScoped<IBoothRepository, BoothRepository > ();
 builder.Services.AddScoped<IMedalRepository, MedalRepository > ();
 //--Commons
 builder.Services.AddScoped<IPictureRepository, PictureRepository > ();
+builder.Services.AddScoped<ISaveChangesRepository, SaveChangesRepository > ();
 //--Products
 builder.Services.AddScoped<IBidRepository, BidRepository > ();
 builder.Services.AddScoped<IBoothProductRepository, BoothProductRepository > ();
@@ -68,6 +73,8 @@ builder.Services.AddScoped<IBoothServices, BoothServices>();
 builder.Services.AddScoped<IMedalServices, MedalServices>();
 //--Commons
 builder.Services.AddScoped<IPictureServices, PictureServices>();
+builder.Services.AddScoped<ISaveChangesService, SaveChangesService>();
+builder.Services.AddScoped<IFileServices, FileServices>();
 //--Products
 builder.Services.AddScoped<IAuctionServices, AuctionServices>();
 builder.Services.AddScoped<IBidServices, BidServices>();
@@ -96,20 +103,20 @@ builder.Services.AddScoped<IBoothAppServices, BoothAppServices>();
 //builder.Services.AddScoped<IPictureServices, PictureServices>();
 
 ////--Products
-//builder.Services.AddScoped<IAuctionServices, AuctionServices>();
+    builder.Services.AddScoped<IAuctionAppServices, AuctionAppServices>();
 //builder.Services.AddScoped<IBidServices, BidServices>();
 //builder.Services.AddScoped<IBoothProductServices, BoothProductServices>();
 builder.Services.AddScoped<ICategoryAppServices, CategoryAppServices>();
-//builder.Services.AddScoped<ICommentServices, CommentServices>();
-//builder.Services.AddScoped<IOrderItemServices, OrderItemServices>();
-//builder.Services.AddScoped<IOrderServices, OrderServices>();
-//builder.Services.AddScoped<IProductServices, ProductServices>();
+//builder.Services.AddScoped<ICommentAppServices, CommentAppServices>();
+//builder.Services.AddScoped<IOrderItemAppServices, OrderItemAppServices>();
+//builder.Services.AddScoped<IOrderAppServices, OrderAppServices>();
+builder.Services.AddScoped<IProductAppServices, ProductAppServices>();
 
 ////--Users
-//builder.Services.AddScoped<IAddressRepository, AddressRepository>();
-//builder.Services.AddScoped<IAdminRepository, AdminRepository>();
-//builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
-//builder.Services.AddScoped<ISellerRepository, SellerRepository>();
+//builder.Services.AddScoped<IAddressAppServices, AddressAppServices>();
+//builder.Services.AddScoped<IAdminAppServices, AdminAppServices>();
+//builder.Services.AddScoped<ICustomerAppServices, CustomerAppServices>();
+builder.Services.AddScoped<ISellerAppServices, SellerAppServices>();
 builder.Services.AddScoped<IIdentityAppServices, IdentityAppServices>();
 #endregion
 
@@ -164,6 +171,11 @@ builder.Services.AddMvc(Option =>
 
 #endregion
 
+#region AppSetting Injectoin
+var uploadPath = builder.Configuration.GetSection("FileUploadPaths").Get<FileUploadPathsDto>();
+builder.Services.AddSingleton(uploadPath);
+#endregion
+
 
 var app = builder.Build();
 
@@ -187,8 +199,13 @@ name: "Admin",
 pattern: "{area:exists}/{controller=AdminPanel}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
-name: "Customer",
-pattern: "{area:exists}/{controller=CustomerPanel}/{action=Index}/{id?}");
+name: "SellerArea",
+pattern: "{area:exists}/{controller=SellerPanel}/{action=Index}/{id?}");
+
+//--------Area as default Route--------////
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{area=SellerArea}/{controller=SellerPanel}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",

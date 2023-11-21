@@ -1,30 +1,25 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.EndPoints.MvcUi.Areas.Customer.Controllers
+namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 {
-    [Area("Customer")]
-    public class CustomerPanelController : Controller
+    public class PriceController : Controller
     {
-        // GET: CustomerPanelController
-        public ActionResult Index()
+         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: CustomerPanelController/Details/5
-        public ActionResult Details(int id)
+         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: CustomerPanelController/Create
-        public ActionResult Create()
+         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CustomerPanelController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -39,13 +34,11 @@ namespace App.EndPoints.MvcUi.Areas.Customer.Controllers
             }
         }
 
-        // GET: CustomerPanelController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: CustomerPanelController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -60,13 +53,11 @@ namespace App.EndPoints.MvcUi.Areas.Customer.Controllers
             }
         }
 
-        // GET: CustomerPanelController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: CustomerPanelController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)

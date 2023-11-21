@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Dtos.BoothDtos;
+using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Dtos.CategorieDtos;
 
 namespace App.EndPoints.MvcUi.Models.Home
@@ -7,6 +8,7 @@ namespace App.EndPoints.MvcUi.Models.Home
     {
         public List<CategoryOutputDto> Categories { get; set; }
         public List<BoothOutputDto> boothOutputs { get; set; }
+        public List<AuctionOutputDto> auctionOutputs { get; set; }
 
     }
 }

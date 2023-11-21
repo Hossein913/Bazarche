@@ -13,9 +13,32 @@ namespace App.Domain.AppServices.Booth
             _boothServices = boothServices;
         }
 
-        public async Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)
+        public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async  Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)
         {
             return await _boothServices.GetAllHome(cancellationToken);
+        }
+
+        public async Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
+        {
+            var result =  await _boothServices.GetDetail(BoothId, cancellationToken);
+            return result;
+        }
+
+
+
+        public async Task SoftDelete(int BoothId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

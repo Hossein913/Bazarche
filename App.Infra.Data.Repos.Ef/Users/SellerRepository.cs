@@ -51,7 +51,7 @@ public class SellerRepository : ISellerRepository
         }).ToListAsync(cancellationToken);
     }
 
-    public async Task<SellerOutputDto> GetDetail(int sellerId, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
     {
         //----Attention ---> when we show the user profile it's possible to decide to
         //                   Update Address and Avatar therefor force to Include object's
@@ -60,7 +60,7 @@ public class SellerRepository : ISellerRepository
         var sellerUser = await _context.Sellers
             .Include(a => a.ProfilePic)
             .Include(a => a.AppUser)
-            .FirstOrDefaultAsync(a => a.Id == sellerId && a.AppUser.IsDeleted == false, cancellationToken);
+            .FirstOrDefaultAsync(a => a.AppUserId == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
 
         if (sellerUser != null)
         {
@@ -74,7 +74,8 @@ public class SellerRepository : ISellerRepository
                 AddressId = sellerUser.AddressId,
                 ShabaNumber = sellerUser.ShabaNumber,
                 ProfilePic = sellerUser.ProfilePic,
-                AppUser = sellerUser.AppUser
+                AppUser = sellerUser.AppUser,
+                BoothId = sellerUser.BoothId
 
             };
             return sellerRecord;

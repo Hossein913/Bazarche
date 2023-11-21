@@ -489,14 +489,14 @@ namespace App.Infra.Data.SqlServer.Ef.Migrations
                 columns: new[] { "Id", "BasePrice", "Brand", "CategoryId", "CreatedAt", "CreatedBy", "Description", "Grantee", "IncludedComponents", "InformationDetails", "IsConfirmed", "IsDeleted", "Name" },
                 values: new object[,]
                 {
-                    { 1, 100000, "زاگرس پوش", 52, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "جنس نخ پنبه ای", true, false, "پیراهن سرمه ای نخی" },
-                    { 2, 1800000, "ال سی من", 67, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "سایز ها ایکس و ایکس لارج", true, false, "هودی آبی" },
-                    { 3, 100000, "اسکیچر", 66, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "جنس زیره پی یو", false, false, "کفش پیاده روی" },
-                    { 4, 100000, "کرال", 53, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "نمد ضد آب", true, false, "کلاه نمدی قهوه ای" },
-                    { 5, 100000, "تسکو", 19, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "مخصوص بازی", false, false, "هدفوت بلوتوث " },
-                    { 6, 100000, "آیفون", 17, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "باتری 800 میلی آمپر", true, false, "ساعت هوشمند" },
-                    { 7, 100000, "سامسونگ", 19, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "ضد آب", false, false, "ایر پاد سامسونگ" },
-                    { 8, 100000, "سونی", 22, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "سنسور 21 مگاپیکسل", true, false, "دوربین کامپکت" },
+                    { 1, 100000, "زاگرس پوش", 54, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "جنس نخ پنبه ای", true, false, "پیراهن سرمه ای نخی" },
+                    { 2, 1800000, "ال سی من", 69, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "سایز ها ایکس و ایکس لارج", true, false, "هودی آبی" },
+                    { 3, 100000, "اسکیچر", 68, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "جنس زیره پی یو", false, false, "کفش پیاده روی" },
+                    { 4, 100000, "کرال", 55, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "نمد ضد آب", true, false, "کلاه نمدی قهوه ای" },
+                    { 5, 100000, "تسکو", 21, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "مخصوص بازی", false, false, "هدفوت بلوتوث " },
+                    { 6, 100000, "آیفون", 19, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "باتری 800 میلی آمپر", true, false, "ساعت هوشمند" },
+                    { 7, 100000, "سامسونگ", 21, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "ضد آب", false, false, "ایر پاد سامسونگ" },
+                    { 8, 100000, "سونی", 24, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", "سنسور 21 مگاپیکسل", true, false, "دوربین کامپکت" },
                     { 10, 28000000, "اچ پی", 13, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0, "محصول عالی", "زمانت تعویض هفت روزه", "", " پردازنده نسل 13", true, false, "لبتاب hp" }
                 });
 

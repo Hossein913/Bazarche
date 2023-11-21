@@ -20,10 +20,12 @@ public class ProductCreateDto
     public string Description { get; set; } = null!;
 
     public string IncludedComponents { get; set; } = null!;
-
-    public bool IsConfirmed { get; set; }
-
     public int BasePrice { get; set; }
+
+    public int CategoryId { get; set; }
+
+    public bool? IsConfirmed { get; set; }
+
     public DateTime CreatedAt { get; set; }
 
     public int CreatedBy { get; set; }
@@ -43,3 +45,17 @@ public class ProductCreateDto
     public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; } = new List<ProductAttributeValue>();
     #endregion
 }
+
+//Id { get; set; }
+//Name { get; set; } 
+//Brand { get; set; } 
+//Grantee { get; set; }
+//InformationDetails { get; set; } 
+//Description { get; set; } 
+//IncludedComponents { get; set; } 
+//BasePrice { get; set; }
+//CategoryId { get; set; }
+//IsConfirmed { get; set; }
+//CreatedAt { get; set; }
+//CreatedBy { get; set; }
+//IsDeleted { get; set; }

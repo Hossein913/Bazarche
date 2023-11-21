@@ -1,0 +1,144 @@
+﻿@inject FileUploadPathsDto UploadPath;
+@model BoothDetailsViewModel;
+
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <!-- بلوک های آمار غرفه -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="ec-vendor-dashboard-sort-card color-blue">
+                            <h5>محصولات</h5>
+                        <h3>@Model.Products.Count</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="ec-vendor-dashboard-sort-card color-pink">
+                            <h5>مزایده </h5>
+                            <h3>@Model.Auctions.Count</span></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="ec-vendor-dashboard-sort-card color-green">
+                            <h5>فروش کل</h5>
+                            <h3>@Model.TotalSell تومان</h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="ec-vendor-dashboard-sort-card color-orange">
+                            <h5>موحودی قابل برداشت</h5>
+                            <h3>@Model.AccountBalance   </h3>
+                        </div>
+                    </div>
+                </div>
+                <!-- بلوک های آمار غرفه -->
+
+                <!-- بلوک لیست محصولات -->
+                <div class="ec-vendor-dashboard-card space-bottom-30">
+                    <div class="ec-vendor-card-header">
+                        <h5>لیست محصولات</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                            <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            <table class="table ec-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">شناسه</th>
+                                        <th scope="col">تصویر</th>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">توضیحات</th>
+                                        <th scope="col">تعداد</th>
+                                        <th scope="col">قیمت فروش</th>
+                                    </tr>
+                                </thead>
+                                @{int Productcounter = 1;}
+                                    <tbody>
+                        @foreach (var item in Model.Products)
+                        {
+                            <tr>
+                                <th scope="row"><span>@Productcounter</span></th>
+                                <td>
+                                    <img class="prod-img" src="~/@UploadPath.Product/@item.Avatar"
+                                    alt="product image">
+                                </td>
+                                <td><span>@item.Name</span></td>
+                                <td><span>@item.Description</span></td>
+                                <td><span>@item.BoothProducts.FirstOrDefault().Count</span></td>
+                                <td><span>@item.BoothProducts.FirstOrDefault().Price</span></td>
+                            </tr>
+
+                            Productcounter++; 
+                                    }
+                                        </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- بلوک لیست محصولات -->
+
+@*                <!-- بلوک لیست مزایده ها -->
+                <div class="ec-vendor-dashboard-card space-bottom-30">
+                    <div class="ec-vendor-card-header">
+                        <h5> لیست محصولات </h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                            <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            <table class="table ec-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">شناسه</th>
+                                        <th scope="col">تصویر</th>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">قیمت</th>
+                                        <th scope="col">وضعیت</th>
+                                        <th scope="col">فعالیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{int auctioncounter = 1;}
+                                    @foreach (var item in Model.Products)
+                                    {
+                                    <tr>
+                                <th scope="row"><span>@auctioncounter</span></th>
+                                        <td>
+                                            <img class="prod-img" src="~/@UploadPath.Product/3.jpg"
+                                                 alt="product image">
+                                        </td>
+                                        <td><span>تی شرت دخترانه</span></td>
+                                        <td><span>آدرس اینترنتی</span></td>
+                                        <td><span>در راه</span></td>
+                                        <td><span>584 تومان</span></td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- بلوک لیست مزایده ها -->*@
+
+                <!-- بلوک نمایش نمودار -->
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5>آمار رشد</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+                <!-- بلوک نمایش نمودار -->
+            
+            </div>
+            <!-- Sidebar Area Start -->
+

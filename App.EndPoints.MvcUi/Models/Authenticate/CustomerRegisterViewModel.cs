@@ -2,7 +2,7 @@
 
 namespace App.EndPoints.MvcUi.Models.Authenticate
 {
-    public class RegisterViewModel
+    public class SellerRegisterViewModel
     {
         [Required]
         [EmailAddress]

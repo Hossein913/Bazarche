@@ -23,6 +23,7 @@ public class Product
     public bool? IsConfirmed { get; set; }
 
     public int BasePrice { get; set; }
+
     public int CategoryId { get; set; }
 
     public DateTime CreatedAt { get; set; }

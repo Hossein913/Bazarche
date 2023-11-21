@@ -1,4 +1,5 @@
-﻿using App.Domain.Core._Common.Contracts.Repositories;
+﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.ProductDtos;
@@ -31,6 +32,24 @@ public class ProductServices : IProductServices
     {
         var result = await _productRepository.GetAllByCategory(cancellationToken, categoriesId);
             return result;
+    }
+
+    public async Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
+    {
+        var result = await _productRepository.GetAllForBooth(BoothId, cancellationToken);
+        return result;
+    }
+
+    public async Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int, int>> ProductPrice, CancellationToken cancellationToken)
+    {
+        var result = await _productRepository.GetAllForOrderItems(ProductPrice, cancellationToken);
+        return result;
+    }
+
+    public async Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken)
+    {
+        var result = await _productRepository.GetAllWithIdList(ProductIdList, cancellationToken);
+        return result;
     }
 
     public async Task<ProductOutputDto> GetDetail(int productId, CancellationToken cancellationToken)

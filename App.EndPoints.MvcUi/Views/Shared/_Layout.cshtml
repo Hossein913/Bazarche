@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="~/assets/Home/css/plugins/bootstrap.css" />
 
     <!-- Main Style -->
+    @if (   ViewData["Title"] == "AllBoothsList")
+    {
+        <link rel="stylesheet" href="~/assets/Home/css/style.css" />
+    }
     <link rel="stylesheet" href="~/assets/Home/css/demo8.css" />
 </head>
 
@@ -87,16 +91,11 @@
                     <!-- Header Top Message Start -->
                     <div class="col text-center header-top-center">
                         <div class="header-top-message text-upper">
-                            <span> ارسال رایگان </span>این هفته برای سفارشات بالای 200 تومان
+                            <span> ارسال رایگان </span>این هفته برای سفارشات بالای 500 هزار تومان
                         </div>
                     </div>
                     <!-- Header Top Message End -->
-                    <!-- Header Top Language Currency -->
-                    <div class="col header-top-right d-none d-lg-block">
-                        <div class="header-top-lan-curr d-flex justify-content-end">
-                        </div>
-                    </div>
-                    <!-- Header Top Language Currency -->
+
                     <!-- Header Top responsive Action -->
                     <div class="col d-lg-none">
                         <div class="ec-header-bottons">
@@ -272,14 +271,22 @@
             </div>
         </div>
         <!-- Header responsive Bottom  End -->
-        <!-- EC Main Menu Start -->
+
+        <!-- منوی اصلی سایت -->
         <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
             <div class="container position-relative">
                 <div class="row">
                     <div class="col-md-12 align-self-center">
                         <div class="ec-main-menu">
                             <ul>
-                                <li><a href="index.html">خانه</a></li>
+                                <li><a asp-controller="Home" asp-action="Index">خانه</a></li>
+                                <li class="dropdown">
+                                    <span class="main-label-note-new"
+                                          data-toggle="tooltip"
+                                          title="NEW"></span><a href="Auction.html">پیشنهادات داغ</a>
+
+                                </li>
+                                @*
                                 <li class="dropdown position-static">
                                     <a href="javascript:void(0)">دسته بندی ها</a>
                                     <ul class="mega-menu d-block">
@@ -322,6 +329,7 @@
 
                                     </ul>
                                 </li>
+                                
                                 <li class="dropdown">
                                     <a href="javascript:void(0)">محصولات</a>
                                     <ul class="sub-menu">
@@ -345,52 +353,41 @@
 
                                     </ul>
                                 </li>
+                                *@
                                 <li class="dropdown">
-                                    <a href="javascript:void(0)">صفحات</a>
+                                    <a href="javascript:void(0)">صفحات دیگر</a>
                                     <ul class="sub-menu">
                                         <li><a href="about-us.html">درباره ما</a></li>
                                         <li><a href="privacy-policy.html">سیاست حفظ حریم خصوصی</a></li>
                                     </ul>
                                 </li>
-                                <li class="dropdown">
-                                    <span class="main-label-note-new"
-                                          data-toggle="tooltip"
-                                          title="NEW"></span><a href="javascript:void(0)">دیگر</a>
-                                    <ul class="sub-menu">
-                                        <li class="dropdown position-static">
-                                            <a href="javascript:void(0)">
-                                                تاییده ایمیل <i class="ecicon eci-angle-left"></i>
-                                            </a>
-                                            <ul class="sub-menu sub-menu-child">
 
-                                                <li>
-                                                    <a href="email-template-confirm-5.html">تاییده ایمیل 5</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown position-static">
-                                            <a href="javascript:void(0)">
-                                                ایمیل ریست رمزعبور
-                                                <i class="ecicon eci-angle-left"></i>
-                                            </a>
-                                            <ul class="sub-menu sub-menu-child">
-                                                <li>
-                                                    <a href="email-template-forgot-password-5.html">ایمیل ریست رمزعبور 5</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                </li>
-                            </ul>
-                            </li>
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a href="index.html">پنل مدیریت </a></li>     
+                                    }
+                                    @if (User.IsInRole("Seller"))
+                                    {
+                                        <li><a href="index.html">پنل غرفه</a></li>
+                                    }
+                                    @if (User.IsInRole("Csutomer"))
+                                    {
+                                        <li><a href="index.html">پروفایل من </a></li>
+                                    }
+                                }
 
-                            <li><a href="offer.html">پیشنهادات داغ</a></li>
                             </ul>
+
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Ec Main Menu End -->
+        <!-- منوی اصلی سایت -->
+
         <!-- منوی حالت موبایل -->
         <div id="ec-mobile-menu" class="ec-side-cart ec-mobile-menu">
             <div class="ec-menu-title">
@@ -591,7 +588,7 @@
         <!-- منوی موبایل -->
     </header>
     <!-- Header End  -->
-    <!-- Ekka Cart Start -->
+    <!-- سبد خرید  -->
     <div class="ec-side-cart-overlay"></div>
     <div id="ec-side-cart" class="ec-side-cart">
         <div class="ec-cart-inner">
@@ -638,10 +635,14 @@
             </div>
         </div>
     </div>
-    <!-- Ekka Cart End -->
+    <!-- سبد خرید -->
+
     <!-- MVC body -->
+    <div class="container">
     @RenderBody()
+    </div>
     <!-- MVC body  -->
+
     <!-- Footer Start -->
     <footer class="ec-footer">
         <div class="footer-newletter section-space-footer-p">
@@ -833,7 +834,7 @@
                             <div class="footer-bottom-copy">
                                 <div class="ec-copy">
                                     کپی رایت ©
-                                    <a class="site-name" href="index.html">اکا</a> همه حقوق
+                                    <a class="site-name">بازارچه</a> همه حقوق
                                     محفوظ است.
                                 </div>
                             </div>

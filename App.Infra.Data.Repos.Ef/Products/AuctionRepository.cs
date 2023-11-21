@@ -35,6 +35,7 @@ public class AuctionRepository : IAuctionRepository
         await _context.Auctions.AddAsync(newAuction, cancellationToken);
         var result = await _context.SaveChangesAsync(cancellationToken);
     }
+    
     public async Task<List<AuctionOutputDto>> GetAll(CancellationToken cancellationToken)
     {
         return await _context.Auctions
@@ -46,7 +47,7 @@ public class AuctionRepository : IAuctionRepository
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
                 BasePrice = a.Id,
-                Product = a.Product,
+                ProductId = a.ProductId,
                 Booth = a.Booth,
                 Status = a.Status
             }).ToListAsync(cancellationToken);
@@ -63,7 +64,7 @@ public class AuctionRepository : IAuctionRepository
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
                 BasePrice = a.Id,
-                Product = a.Product,
+                ProductId = a.ProductId,
                 Booth = a.Booth,
 
             }).ToListAsync(cancellationToken);
@@ -73,6 +74,8 @@ public class AuctionRepository : IAuctionRepository
     {
         return await _context.Auctions
             .AsNoTracking()
+            .Include(a => a.Product)
+            .ThenInclude(p => p.Pictures.FirstOrDefault())
             .Where<Auction>(p => p.BoothId == BoothId)
             .Select<Auction, AuctionOutputDto>(a => new AuctionOutputDto
             {
@@ -80,8 +83,7 @@ public class AuctionRepository : IAuctionRepository
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
                 BasePrice = a.Id,
-                Product = a.Product,
-                Booth = a.Booth,
+
 
             }).ToListAsync(cancellationToken);
     }
@@ -90,8 +92,6 @@ public class AuctionRepository : IAuctionRepository
     {
 
         var auction = await _context.Auctions
-            .Include(a => a.Product)
-            .ThenInclude(p => p.Pictures.FirstOrDefault())
             .Include(a => a.Booth)
             .Include(a => a.Bids)
             .FirstOrDefaultAsync(p => p.Id == auctionId , cancellationToken);
@@ -107,8 +107,8 @@ public class AuctionRepository : IAuctionRepository
                 BasePrice = auction.BasePrice,
                 Status = auction.Status,
                 IsConfirmed = auction.IsConfirmed,
+                ProductId = auction.ProductId,
 
-                Product = auction.Product,
                 Booth = auction.Booth,
                 Bids = auction.Bids
 

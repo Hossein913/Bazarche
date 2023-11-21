@@ -53,10 +53,10 @@ namespace App.EndPoints.MvcUi.Controllers
                         var roles = await _appServices.GetRoles(appUser, cancellationToken);
 
                         if (roles != null && roles.Contains("Admin"))
-                            return RedirectToAction("Index", "AdminPanel", new { area = "Admin" });
+                            return RedirectToAction("Index", "AdminPanel", new { area = "AdminArea", id = appUser.Id });
 
-                        else if (roles != null && roles.Contains("Customer"))
-                            return RedirectToAction("index", "CustomerPanel", new { area = "Customer" });
+                        else if (roles != null && roles.Contains("Seller"))
+                            return RedirectToAction("index", "SellerPanel", new { area = "SellerArea", id= appUser.Id });
 
                         else
                             return RedirectToAction("index", "Home");
@@ -76,6 +76,29 @@ namespace App.EndPoints.MvcUi.Controllers
             return View(LoginModel);
 
         }
+
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult SellerRegister(SellerRegisterViewModel sellerRegisterViewModel)
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult CustomerRegister(CustomerRegisterViewModel customerRegisterVM)
+        {
+            return View();
+        }
+
 
 
         [HttpPost]

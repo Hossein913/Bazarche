@@ -30,7 +30,7 @@
                                              alt=@item.Title height="50px" width="70px" />
                                      </div>
                                     <div class="ec-category-desc">
-                                        <a href="shop-left-sidebar-col-3.html" class="cat-show-all">
+                                <a asp-controller="Home" asp-action="ParentCategoryProducts" asp-route-id="@item.Id" class="cat-show-all">
                                         <h3> @item.Title <span title="Category Items">(53)</span></h3>
                                         </a>                                   
                                     </div>
@@ -44,12 +44,247 @@
     </div>
 </section>
 <!--category Section End -->
+
+<!--  ردیف مزایده و خدمات ماStart -->
+<div class="row">
+    <div class="col-md-9">
+        <!-- پیشنهاد ویژه روز Start -->
+        <div class="row" data-animation="fadeIn">
+            <!--  Special Section Start -->
+            <div class="ec-spe-section col-lg-12 col-md-12 col-sm-12 sectopn-spc-mb">
+                <div class="col-md-12">
+                    <div class="section-title">
+                        <h2 class="ec-title">پیشنهاد ویژه </h2>
+                    </div>
+                </div>
+
+                <div class="ec-spe-products">
+                    @foreach (var item in Model.auctionOutputs)
+                    {
+                        
+                        <!---  مزایده اول --->
+                        <div class="ec-spe-product">
+                            <div class="ec-spe-pro-inner">
+                                <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
+                                    <div class="ec-spe-pro-image">
+                                        <img class="img-responsive"
+                                             src="~/Upload/Img/Product/@item.ProductDto.Avatar"
+                                             alt="" />
+                                    </div>
+                                </div>
+                                <div class="ec-spe-pro-content col-md-6 col-sm-12 mx-1">
+                                    <div class="ec-spe-pro-rating">
+                                        <span class="ec-spe-rating-icon">
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star fill"></i>
+                                            <i class="ecicon eci-star"></i>
+                                            <i class="ecicon eci-star"></i>
+                                        </span>
+                                    </div>
+                                    <h5 class="ec-spe-pro-title">
+                                        <a href="product-left-sidebar.html">
+                                            @item.ProductDto.Name
+                                        </a>
+                                    </h5>
+                                    <div class="ec-spe-pro-desc">
+                                            @item.ProductDto.Description
+                                    </div>
+                                    @if (item.Bids.Count > 0)
+                                    {
+                                        <div class="ec-spe-price">
+                                            <span class="new-price">بالاتربین پیشنهاد  @item.Bids.Max(b => b.BidPrice)</span>
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                       <div class="ec-spe-price">
+                                            <span class="new-price">اولین پیشنهاد را شما دهید</span>
+
+                                        </div>
+                                        
+                                    }
+
+                                    <div class="ec-spe-pro-btn">
+                                        <a href="#" class="btn btn-lg btn-primary">
+                                            ارسال پیشنهاد
+                                        </a>
+                                    </div>
+                                    <div class="ec-spe-pro-progress">
+                                        <span class="ec-spe-pro-progress-desc">
+                                            <span> فروخته شده: <b>15</b></span><span>موجودی: <b>40</b></span>
+                                        </span>
+                                        <span class="ec-spe-pro-progressbar"></span>
+                                    </div>
+                                    <div class="countdowntimer">
+                                        <span class="ec-spe-count-desc">
+                                            عجله کن! پیشنهاد به پایان می رسد در:
+                                        </span>
+                                        <span id="ec-spe-count-1"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!---  مزایده اول --->
+                    }
+
+                    <!---  مزایده دوم --->
+                    <div class="ec-spe-product">
+                        <div class="ec-spe-pro-inner">
+                            <div class="ec-spe-pro-image-outer col-md-6 col-sm-12">
+                                <div class="ec-spe-pro-image">
+                                    <img class="img-responsive"
+                                         src="assets/Home/images/product-image/110_1.jpg"
+                                         alt="" />
+                                </div>
+                            </div>
+                            <div class="ec-spe-pro-content col-md-6 col-sm-12">
+                                <div class="ec-spe-pro-rating">
+                                    <span class="ec-spe-rating-icon">
+                                        <i class="ecicon eci-star fill"></i>
+                                        <i class="ecicon eci-star fill"></i>
+                                        <i class="ecicon eci-star fill"></i>
+                                        <i class="ecicon eci-star"></i>
+                                        <i class="ecicon eci-star"></i>
+                                    </span>
+                                </div>
+                                <h5 class="ec-spe-pro-title">
+                                    <a href="product-left-sidebar.html">شامپو ، نرم کننده مو و فیس واش</a>
+                                </h5>
+                                <div class="ec-spe-pro-desc">
+                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ
+                                    و با استفاده از طراحان گرافیک است.
+                                </div>
+                                <div class="ec-spe-price">
+                                    <span class="new-price">15000 تومان</span>
+                                    <span class="old-price">20000 تومان</span>
+                                </div>
+                                <div class="ec-spe-pro-btn">
+                                    <a href="#" class="btn btn-lg btn-primary">
+                                        افزودن به سبد خرید
+                                    </a>
+                                </div>
+                                <div class="ec-spe-pro-progress">
+                                    <span class="ec-spe-pro-progress-desc">
+                                        <span> فروخته شده: <b>20</b></span><span>موجودی: <b>40</b></span>
+                                    </span>
+                                    <span class="ec-spe-pro-progressbar"></span>
+                                </div>
+                                <div class="countdowntimer">
+                                    <span class="ec-spe-count-desc">
+                                        عجله کن! پیشنهاد به پایان می رسد در:
+                                    </span>
+                                    <span id="ec-spe-count-2"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---  مزایده دوم --->
+                
+                </div>
+            </div>
+            <!--  Special Section End -->
+        </div>
+        <!-- پیشنهاد ویژه روز end -->
+    </div>
+    <!--start  ستون معرفی خدمات ما -->
+    <div class="ec-services-section col-lg-3 col-md-3 col-sm-3"
+         data-animation="slideInLeft">
+        <div class="col-md-12">
+            <div class="section-title">
+                <h2 class="ec-title">خدمات ما</h2>
+            </div>
+        </div>
+        <div class="ec_ser_block">
+            <div class="ec_ser_content ec_ser_content_1 col-sm-12">
+                <div class="ec_ser_inner">
+                    <div class="ec-service-image">
+                        <img src="assets/Home/images/icons/service_4_1.svg"
+                             class="svg_img ser_svg"
+                             alt="" />
+                    </div>
+                    <div class="ec-service-desc">
+                        <h2>تحویل در سراسر جهان</h2>
+                        <p>برای سفارش بالای 100 تومان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ec_ser_content ec_ser_content_2 col-sm-12">
+                <div class="ec_ser_inner">
+                    <div class="ec-service-image">
+                        <img src="assets/Home/images/icons/service_4_2.svg"
+                             class="svg_img ser_svg"
+                             alt="" />
+                    </div>
+                    <div class="ec-service-desc">
+                        <h2>تحویل روز بعد</h2>
+                        <p>تنها در کشور</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ec_ser_content ec_ser_content_3 col-sm-12">
+                <div class="ec_ser_inner">
+                    <div class="ec-service-image">
+                        <img src="assets/Home/images/icons/service_4_3.svg"
+                             class="svg_img ser_svg"
+                             alt="" />
+                    </div>
+                    <div class="ec-service-desc">
+                        <h2>بهترین پشتیبانی آنلاین</h2>
+                        <p>ساعت: 8 صبح - 11 عصر</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ec_ser_content ec_ser_content_4 col-sm-12">
+                <div class="ec_ser_inner">
+                    <div class="ec-service-image">
+                        <img src="assets/Home/images/icons/service_4_4.svg"
+                             class="svg_img ser_svg"
+                             alt="" />
+                    </div>
+                    <div class="ec-service-desc">
+                        <h2>سیاست بازگشت</h2>
+                        <p>بازگشت آسان و رایگان</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ec_ser_content ec_ser_content_5 col-sm-12">
+                <div class="ec_ser_inner">
+                    <div class="ec-service-image">
+                        <img src="assets/Home/images/icons/service_4_5.svg"
+                             class="svg_img ser_svg"
+                             alt="" />
+                    </div>
+                    <div class="ec-service-desc">
+                        <h2>30% برگشت پول</h2>
+                        <p>برای سفارش بالای 100 تومان</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End ستون معرفی خدمات ما -->
+</div>
+<!--  ردیف مزایده و خدمات ما End-->
+
 <!--  لیست غرفه ها Start -->
 <section class="section ec-blog-section section-space-p">
     <div class="container">
+                 
         <div class="col-md-12">
-            <div class="section-title">
-                <h2 class="ec-title">غرفه ها</h2>
+             <div class="section-title">
+                <div class="row d-flex justify-content-between">
+                     <div class="col-1">
+                    <h2 class="ec-title">غرفه ها</h2>
+                 
+              </div>
+                     <div class="col-2">
+                    <h5 class="ec-blog-title">
+                            <a asp-controller="Home" asp-action="AllBoothsList"> لیست تمام غرفه ها </a>
+                    </h5>
+                </div>
+                 </div>
             </div>
         </div>
 
@@ -121,7 +356,7 @@
                                                 {     
                                                     <li>
                                                         <div class="ec-sidebar-sub-item">
-                                                             <a href="shop-left-sidebar-col-3.html">@chItem.Title</a>
+                                                             <a asp-controller="Home" asp-action="ChildCategoryProducts" asp-route-id="@chItem.Id" >@chItem.Title</a>
                                                          </div>
                                                     </li>
                                                     }
@@ -193,17 +428,17 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/88_1.jpg"
+                                                             src="assets/Home/images/product-image/88_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/88_1.jpg"
+                                                             src="assets/Home/images/product-image/88_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="percentage">20%</span>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -213,21 +448,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -265,16 +500,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/97_1.jpg"
+                                                             src="assets/Home/images/product-image/97_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/97_2.jpg"
+                                                             src="assets/Home/images/product-image/97_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -284,21 +519,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -334,10 +569,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/107_1.jpg"
+                                                             src="assets/Home/images/product-image/107_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/107_1.jpg"
+                                                             src="assets/Home/images/product-image/107_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -346,7 +581,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -356,21 +591,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -405,10 +640,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/108_1.jpg"
+                                                             src="assets/Home/images/product-image/108_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/108_1.jpg"
+                                                             src="assets/Home/images/product-image/108_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -417,7 +652,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -427,21 +662,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -477,10 +712,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/110_1.jpg"
+                                                             src="assets/Home/images/product-image/110_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/110_1.jpg"
+                                                             src="assets/Home/images/product-image/110_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -489,7 +724,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -499,21 +734,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -551,17 +786,17 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/94_1.jpg"
+                                                             src="assets/Home/images/product-image/94_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/94_2.jpg"
+                                                             src="assets/Home/images/product-image/94_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="percentage">15%</span>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -571,21 +806,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -621,10 +856,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/98_1.jpg"
+                                                             src="assets/Home/images/product-image/98_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/98_2.jpg"
+                                                             src="assets/Home/images/product-image/98_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -633,7 +868,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -643,21 +878,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -693,16 +928,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/111_1.jpg"
+                                                             src="assets/Home/images/product-image/111_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/111_1.jpg"
+                                                             src="assets/Home/images/product-image/111_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -712,21 +947,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -768,16 +1003,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/94_1.jpg"
+                                                             src="assets/Home/images/product-image/94_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/94_2.jpg"
+                                                             src="assets/Home/images/product-image/94_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -787,21 +1022,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -837,10 +1072,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/95_1.jpg"
+                                                             src="assets/Home/images/product-image/95_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/95_2.jpg"
+                                                             src="assets/Home/images/product-image/95_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -849,7 +1084,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -859,21 +1094,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -909,10 +1144,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/88_1.jpg"
+                                                             src="assets/Home/images/product-image/88_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/88_1.jpg"
+                                                             src="assets/Home/images/product-image/88_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -921,7 +1156,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -931,21 +1166,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -981,10 +1216,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/89_1.jpg"
+                                                             src="assets/Home/images/product-image/89_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/89_1.jpg"
+                                                             src="assets/Home/images/product-image/89_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -993,7 +1228,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1003,21 +1238,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1055,10 +1290,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/90_1.jpg"
+                                                             src="assets/Home/images/product-image/90_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/90_2.jpg"
+                                                             src="assets/Home/images/product-image/90_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1067,7 +1302,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1077,21 +1312,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1129,10 +1364,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/91_1.jpg"
+                                                             src="assets/Home/images/product-image/91_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/91_2.jpg"
+                                                             src="assets/Home/images/product-image/91_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1141,7 +1376,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1151,21 +1386,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1201,16 +1436,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/92_1.jpg"
+                                                             src="assets/Home/images/product-image/92_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/92_2.jpg"
+                                                             src="assets/Home/images/product-image/92_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1220,21 +1455,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1270,16 +1505,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/93_1.jpg"
+                                                             src="assets/Home/images/product-image/93_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/93_2.jpg"
+                                                             src="assets/Home/images/product-image/93_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1289,21 +1524,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1345,16 +1580,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/96_1.jpg"
+                                                             src="assets/Home/images/product-image/96_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/96_2.jpg"
+                                                             src="assets/Home/images/product-image/96_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1364,21 +1599,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1414,10 +1649,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/97_1.jpg"
+                                                             src="assets/Home/images/product-image/97_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/97_2.jpg"
+                                                             src="assets/Home/images/product-image/97_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1426,7 +1661,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1436,21 +1671,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1486,10 +1721,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/98_1.jpg"
+                                                             src="assets/Home/images/product-image/98_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/98_2.jpg"
+                                                             src="assets/Home/images/product-image/98_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1498,7 +1733,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1508,21 +1743,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1558,10 +1793,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/99_1.jpg"
+                                                             src="assets/Home/images/product-image/99_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/99_1.jpg"
+                                                             src="assets/Home/images/product-image/99_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1570,7 +1805,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1580,21 +1815,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1630,10 +1865,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/100_1.jpg"
+                                                             src="assets/Home/images/product-image/100_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/100_1.jpg"
+                                                             src="assets/Home/images/product-image/100_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1642,7 +1877,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1652,21 +1887,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1702,16 +1937,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/104_1.jpg"
+                                                             src="assets/Home/images/product-image/104_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/104_2.jpg"
+                                                             src="assets/Home/images/product-image/104_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1721,21 +1956,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1771,16 +2006,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/102_1.jpg"
+                                                             src="assets/Home/images/product-image/102_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/102_1.jpg"
+                                                             src="assets/Home/images/product-image/102_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1790,21 +2025,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1840,16 +2075,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/103_1.jpg"
+                                                             src="assets/Home/images/product-image/103_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/103_1.jpg"
+                                                             src="assets/Home/images/product-image/103_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1859,21 +2094,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1915,16 +2150,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/105_1.jpg"
+                                                             src="assets/Home/images/product-image/105_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/105_2.jpg"
+                                                             src="assets/Home/images/product-image/105_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1934,21 +2169,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -1984,10 +2219,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/106_1.jpg"
+                                                             src="assets/Home/images/product-image/106_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/106_2.jpg"
+                                                             src="assets/Home/images/product-image/106_2.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -1996,7 +2231,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2006,21 +2241,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2056,10 +2291,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/107_1.jpg"
+                                                             src="assets/Home/images/product-image/107_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/107_1.jpg"
+                                                             src="assets/Home/images/product-image/107_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -2068,7 +2303,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2078,21 +2313,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2127,10 +2362,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/108_1.jpg"
+                                                             src="assets/Home/images/product-image/108_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/108_1.jpg"
+                                                             src="assets/Home/images/product-image/108_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -2139,7 +2374,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2149,21 +2384,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2199,10 +2434,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/109_1.jpg"
+                                                             src="assets/Home/images/product-image/109_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/109_1.jpg"
+                                                             src="assets/Home/images/product-image/109_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -2211,7 +2446,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2221,21 +2456,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2273,10 +2508,10 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/110_1.jpg"
+                                                             src="assets/Home/images/product-image/110_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/110_1.jpg"
+                                                             src="assets/Home/images/product-image/110_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <span class="flags">
@@ -2285,7 +2520,7 @@
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2295,21 +2530,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2347,16 +2582,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/111_1.jpg"
+                                                             src="assets/Home/images/product-image/111_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/111_1.jpg"
+                                                             src="assets/Home/images/product-image/111_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2366,21 +2601,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2416,16 +2651,16 @@
                                                 <div class="ec-pro-image">
                                                     <a href="product-left-sidebar.html" class="image">
                                                         <img class="main-image"
-                                                             src="assets/images/product-image/112_1.jpg"
+                                                             src="assets/Home/images/product-image/112_1.jpg"
                                                              alt="Product" />
                                                         <img class="hover-image"
-                                                             src="assets/images/product-image/112_1.jpg"
+                                                             src="assets/Home/images/product-image/112_1.jpg"
                                                              alt="Product" />
                                                     </a>
                                                     <div class="ec-pro-actions">
                                                         <a class="ec-btn-group wishlist"
                                                            title="علاقه‌مندی">
-                                                            <img src="assets/images/icons/pro_wishlist.svg"
+                                                            <img src="assets/Home/images/icons/pro_wishlist.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
@@ -2435,21 +2670,21 @@
                                                            title="نمایش سریع"
                                                            data-bs-toggle="modal"
                                                            data-bs-target="#ec_quickview_modal">
-                                                            <img src="assets/images/icons/quickview.svg"
+                                                            <img src="assets/Home/images/icons/quickview.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="compare.html"
                                                            class="ec-btn-group compare"
                                                            title="مقایسه">
-                                                            <img src="assets/images/icons/compare.svg"
+                                                            <img src="assets/Home/images/icons/compare.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>
                                                         <a href="javascript:void(0)"
                                                            title="افزودن به کارت"
                                                            class="ec-btn-group add-to-cart">
-                                                            <img src="assets/images/icons/pro_cart.svg"
+                                                            <img src="assets/Home/images/icons/pro_cart.svg"
                                                                  class="svg_img pro_svg"
                                                                  alt="" />
                                                         </a>

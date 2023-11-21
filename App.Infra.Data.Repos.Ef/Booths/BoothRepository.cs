@@ -2,6 +2,8 @@
 using App.Domain.Core._Booth.Dtos.BoothDtos;
 using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Products.Dtos.ProductDtos;
+using App.Domain.Core._Products.Entities;
+using App.Domain.Core._User.Dtos.SellersDtos;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
 using System.Net.WebSockets;
@@ -41,19 +43,46 @@ public class BoothRepository : IBoothRepository
             .AsNoTracking()
             .Where(p => p.IsDeleted == false && p.IsActive == true)
             .Select<Booth, BoothOutputDto>(b => new BoothOutputDto
-        {
+            {
             Id = b.Id,
             Name = b.Name,
             AvatarPictureFile = b.AvatarPicture.ImageUrl,
             Description = b.Description,
-        }).ToListAsync(cancellationToken);
+            }).ToListAsync(cancellationToken);
 
         return result;
     }
 
-    public Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
+    public async Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var booth = await _context.Booths
+        .Include(a => a.Auctions)
+        .Include(a => a.BoothProducts)
+        .Include(a => a.AvatarPicture)
+        .Include(a => a.Medal)
+        .FirstOrDefaultAsync(a => a.Id == BoothId, cancellationToken);
+
+        if (booth != null)
+        {
+            var boothRecord = new BoothOutputDto
+            {
+                Id = booth.Id,
+                Name = booth.Name,
+                AccountBalance = booth.AccountBalance,
+                TotalSell = booth.TotalSell,
+                Description = booth.Description,
+                IsActive = booth.IsActive,
+                Auctions = booth.Auctions,
+                AvatarPicture = booth.AvatarPicture,
+                BoothProducts = booth.BoothProducts,
+                Medal = booth.Medal,
+            };
+            return boothRecord;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public async Task SoftDelete(int BoothId, CancellationToken cancellationToken)

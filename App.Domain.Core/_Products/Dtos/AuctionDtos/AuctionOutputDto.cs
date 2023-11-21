@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
 using System;
@@ -31,6 +32,6 @@ public class AuctionOutputDto
 
     public virtual Booth Booth { get; set; } = null!;
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual ProductOutputDto ProductDto { get; set; } = null!;
     #endregion
 }

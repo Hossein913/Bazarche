@@ -24,9 +24,15 @@ public class CategoryServices : ICategoryServices
         return result;
     }
 
+    public async Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken)
+    {
+        var result = await _categoryRepository.GetById(Id, cancellationToken);
+        return result;
+    }
+
     public async Task HardDelte(int categoryId, CancellationToken cancellationToken)
     {
-        await _categoryRepository.HardDelte(categoryId, cancellationToken);
+        await _categoryRepository.HardDelete(categoryId, cancellationToken);
     }
 
     public async Task Update(CategoryUpdateDto categor, CancellationToken cancellationToken)

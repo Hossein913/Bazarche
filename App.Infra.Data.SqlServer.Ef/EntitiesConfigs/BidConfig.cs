@@ -23,5 +23,7 @@ public class BidConfig : IEntityTypeConfiguration<Bid>
             .HasForeignKey(d => d.CustomerId)
             .OnDelete(DeleteBehavior.NoAction)
             .HasConstraintName("FK_Bids_Customers");
+
+
     }
 }

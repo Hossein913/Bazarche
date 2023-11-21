@@ -1,0 +1,62 @@
+﻿@inject FileUploadPathsDto Uploadpath;
+
+@model List<ProductListViewModel>
+
+@{
+    int counter = 1;
+}
+<div class="col-9">
+<div class="ec-vendor-dashboard-card space-bottom-30">
+    <div class="ec-vendor-card-header">
+        <h5>لیست محصولات</h5>
+        <div class="ec-header-btn">
+        </div>
+    </div>
+    <div class="ec-vendor-card-body">
+        <div class="ec-vendor-card-table">
+            <table class="table ec-table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">تصویر</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">روش</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">نوع فروش </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row"><span> @counter </span></th>
+                            <td>
+                                <img class="prod-img" src="~/@Uploadpath.Product/@item.Avatar" with="50px"
+                                alt="product image">
+                            </td>
+                            <td><span>@item.Name</span></td>
+                            <td><span>تسویه موقع تحویل</span></td>
+                            <td><span>در انتظار</span></td>
+                            <td><span>
+                                    <div class="ec-header-btn">
+                                        <a class="btn btn-lg btn-info" 
+                                        asp-area="SellerArea" asp-controller="Price" asp-action="Create" asp-route-productId="@item.Id"> ثبت قیمت</a>
+                                        <a class="btn btn-lg btn-warning"
+                                        asp-area="SellerArea" asp-controller="Auction" asp-action="Create" asp-route-productId="@item.Id">فروش در مزایده</a>
+                                    </div>
+                            
+                            </span></td>
+                        </tr>
+
+                        counter++;
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+<!-- بلوک لیست آخزین سفارش -->

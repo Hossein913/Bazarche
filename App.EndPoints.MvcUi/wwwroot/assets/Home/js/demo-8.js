@@ -206,6 +206,7 @@ function ecCheckCookie() {
             }
         }]
     });
+
     var a = e(".qty-plus-minus");
     a.prepend('<div class="dec ec_qtybtn">-</div>'), a.append('<div class="inc ec_qtybtn">+</div>'), e(".ec_qtybtn").on("click", function () {
         var s = e(this),
@@ -397,6 +398,9 @@ function ecCheckCookie() {
     }), e(".ec-tools-sidebar .ec-fullscreen-mode .ec-fullscreen-switch").click(function (s) {
         s.preventDefault(), e(this).parent().toggleClass("active"), document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : document.documentElement.requestFullscreen ? document.documentElement.requestFullscreen() : document.documentElement.msRequestFullscreen ? document.documentElement.msRequestFullscreen() : document.documentElement.mozRequestFullScreen ? document.documentElement.mozRequestFullScreen() : document.documentElement.webkitRequestFullscreen && document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
     });
+
+
+
     var l = location.href;
     e(".ec-main-menu ul li a").each(function () {
         if ("#" !== e(this).attr("href") && e(this).prop("href") == l) return e(".ec-main-menu a").parents("li, ul").removeClass("active"), e(this).parent("li").addClass("active"), !1

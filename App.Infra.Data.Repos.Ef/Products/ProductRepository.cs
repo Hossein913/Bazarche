@@ -32,6 +32,7 @@ public class ProductRepository : IProductRepository
             BasePrice = product.BasePrice,
             IsDeleted = false,
             Pictures = product.Pictures,
+            CategoryId = product.CategoryId
         };
 
                      await _context.Products.AddAsync(newproduct, cancellationToken);
@@ -105,7 +106,6 @@ public class ProductRepository : IProductRepository
         return result;
     }
 
-
     public async Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int,int>> ProductPrice, CancellationToken cancellationToken)
     {
 
@@ -123,6 +123,24 @@ public class ProductRepository : IProductRepository
                 Description = c.Description,
                 BoothProducts = c.BoothProducts.Where( bp => ProductPrice.Any(pp => pp.Values.Equals(bp.Id))).ToList(),
                 IsConfirmed = c.IsConfirmed,
+
+            }).ToListAsync(cancellationToken);
+        return result;
+    }
+    public async Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken)
+    {
+
+        var result = await _context.Products
+            .AsNoTracking()
+            .Where(p => p.IsDeleted == false && ProductIdList.Contains(p.Id))
+            .Select<Product, ProductOutputDto>(c => new ProductOutputDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Brand = c.Brand,
+                Avatar = c.Pictures.FirstOrDefault().ImageUrl,
+                Grantee = c.Grantee,
+                Description = c.Description,
 
             }).ToListAsync(cancellationToken);
         return result;

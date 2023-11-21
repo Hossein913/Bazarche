@@ -45,6 +45,25 @@ public class CategoryRepository : ICategoryRepository
         return result;
     }
 
+    public async Task<CategoryOutputDto> GetById(int Id,CancellationToken cancellationToken)
+    {
+        var result = await _context.Categories
+            .Include(c => c.Subcategories)
+            .Include(c => c.Picture)
+            .FirstOrDefaultAsync(c => c.Id == Id);
+
+             CategoryOutputDto categorydto= new CategoryOutputDto
+            {
+                Id = result.Id,
+                Title = result.Title,
+                ParentId = result.ParentId,
+                Subcategories = result.Subcategories.ToList(),
+                Picture = result.Picture
+            };
+
+        return categorydto;
+    }
+
     //--- Attention --> it will make a larg join in sql Server and isn't optimized
     //public async Task<CategoryOutputDto> GetAllWithProduct(int categoryId,CancellationToken cancellationToken)
     //{
@@ -88,7 +107,7 @@ public class CategoryRepository : ICategoryRepository
     //    }
     //}
 
-    public async Task HardDelte(int categoryId, CancellationToken cancellationToken)
+    public async Task HardDelete(int categoryId, CancellationToken cancellationToken)
     {
         var categoryRecord = await _context.Categories
         .FirstOrDefaultAsync(x => x.Id == categoryId, cancellationToken);
