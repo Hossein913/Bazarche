@@ -1,0 +1,42 @@
+﻿@model BoothSidebarViewModel
+@inject FileUploadPathsDto UploadPath;
+
+<!-- Sidebar Area Start -->
+<div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+    <div class="ec-sidebar-wrap">
+        <div class="ec-sidebar-block">
+            <div class="ec-vendor-block">
+                <div class="ec-vendor-block-bg"></div>
+
+                <!-- معرفی غرفه -->
+                <div class="ec-vendor-block-detail">
+                    <img class="v-img" src="~/@UploadPath.BoothAvatar/@Model.AvatarPictureFile" alt="vendor image">
+                    <h5>@Model.Name</h5>
+                    @Model.Description
+                </div>
+                <!-- معرفی غرفه -->
+                <!-- معرفی ستون راست -->
+                <div class="ec-vendor-block-items">
+                    <ul>
+                        <li><a asp-area="sellerArea" asp-controller="SellerPanel" asp-action="Index">داشبرد</a></li>
+                        <li><a asp-area="sellerArea" asp-controller="Product" asp-action="Create">ثبت محصول</a></li>
+                        <li><a asp-area="sellerArea" asp-controller="Product" asp-action="ParentCategories">فروش قطعی و مزایده</a></li>
+                        <li>
+                            <a href="#" data-link-action="editmodal"
+                               title="ویرایش جزییات" data-bs-toggle="modal"
+                               data-bs-target="#edit_modal">پروفایل عمومی</a>
+                        </li>
+                        <li>
+                            <a href="#" data-link-action="editmodal"
+                               title="ویرایش جزییات" data-bs-toggle="modal"
+                               data-bs-target="#2edit_modal">پروفایل غرفه</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- معرفی ستون راست -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sidebar Area End -->

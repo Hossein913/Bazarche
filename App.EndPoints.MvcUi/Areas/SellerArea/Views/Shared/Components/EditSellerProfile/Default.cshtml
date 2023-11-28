@@ -1,0 +1,93 @@
+﻿@model EditSellerProfileViewModel;
+@inject FileUploadPathsDto UploadPath;
+<!-- Modal -->
+
+<div class="ec-vendor-block-img space-bottom-30">
+    <label>
+        <img src="~/@UploadPath.Profiles/@Model.ProfilePicUrl" class="svg_img header_svg"
+             alt="edit">
+    </label>
+    <form asp-controller="SellerPanel" asp-action="EditProfile" method="post" enctype="multipart/form-data" class="row g-3">
+        @Html.HiddenFor(m => m.ProfilePicId)
+
+        <div class="ec-vendor-upload-detail">
+            <h4 class="ec-title-lbg"><span>اطلاعات شخصی</span></h4>
+
+            <div class="col-md-6 space-t-15">
+                <label asp-for="@Model.FirstName" class="form-label"></label>
+                <input asp-for="@Model.FirstName" type="text" class="form-control">
+            </div>
+            <div class="col-md-6 space-t-15">
+                <label asp-for="@Model.LastName" class="form-label"></label>
+                <input asp-for="@Model.LastName" type="text" class="form-control">
+            </div>
+            <div class="col-md-6 space-t-15">
+                <label asp-for="@Model.Birthdate" class="form-label"></label>
+                <input asp-for="@Model.Birthdate" type="text" class="form-control">
+            </div>
+            <div class="col-md-6 space-t-15">
+                <label asp-for="@Model.ShabaNumber" class="form-label"></label>
+                <input asp-for="@Model.ShabaNumber" type="text" class="form-control">
+            </div>
+
+            <div class="col-md-6 space-t-15">
+                <label asp-for="@Model.ProfilePicFile" class="form-label"></label>
+                <input asp-for="@Model.ProfilePicFile" class="form-control"
+                       accept=".png, .jpg, .jpeg">
+            </div>
+            <h4 class="ec-title-lbg"><span>ویرایش آدرس </span></h4>
+
+            <div class="col-md-4 space-t-15">
+                <label  class="form-label">نام استان</label>
+                <select name="categories" class="form-select">
+
+                    <option value="individual">تهران</option>
+
+
+                </select>
+            </div>
+
+            <div class="col-md-4 space-t-15">
+                <label asp-for="@Model.City" class="form-label">نام شهر</label>
+                <input asp-for="@Model.City" type="text" class="form-control">
+            </div>
+
+            <div class="col-md-4 space-t-15">
+                <label asp-for="@Model.PostalCode" class="form-label">کد پستی</label>
+                <input asp-for="@Model.PostalCode" type="text" class="form-control">
+            </div>
+
+            <div class="col-md-12 space-t-15">
+                <label asp-for="@Model.FullAddress" class="form-label">آدرس کامل</label>
+                <textarea asp-for="@Model.FullAddress" class="form-control" id="exampleFormControlTextarea1"
+                          rows="3"></textarea>
+            </div>
+
+@*            <h4 class="ec-title-lbg"><span>ویرایش اطلاعات غرفه </span></h4>
+
+            <div class="col-md-4 space-t-15">
+                <label asp-for="@Model.BoothName" class="form-label"> نام غرفه</label>
+                <input asp-for="@Model.BoothName" type="text" class="form-control">
+            </div>
+            <div class="col-md-12 space-t-15">
+                <label asp-for="@Model.Description" class="form-label">معرفی غرفه</label>
+                <input asp-for="@Model.Description" type="text" class="form-control">
+            </div>*@
+
+
+
+
+
+
+            <div class="col-md-12 space-t-15">
+                <button type="submit" class="btn btn-primary">به روز رسانی</button>
+                <a href="#" class="btn btn-lg btn-secondary qty_close" data-bs-dismiss="modal"
+                   aria-label="Close">بستن</a>
+            </div>
+
+    </form>
+
+</div>
+
+
+<!-- Modal end -->
