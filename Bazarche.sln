@@ -32,12 +32,15 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoints.MvcUi", "App.EndPoints.MvcUi\App.EndPoints.MvcUi.csproj", "{B81C36A6-46B8-44B9-86FD-3F047E47EE01}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scaffold", "Scaffold", "{7E9584F4-0399-4FB7-941C-788DACD48412}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\hosse\OneDrive\Desktop\Bazarche.sql = C:\Users\hosse\OneDrive\Desktop\Bazarche.sql
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaffold", "Schaffold\Scaffold.csproj", "{20A47867-A33E-4D39-BCD8-2F6D7C30757A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{3730A21C-7443-4E04-B8B0-5C7F8DD2C32F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infra.Configs", "App.Infra.Configs\App.Infra.Configs.csproj", "{C36C123D-D1B4-4BC7-86C8-B4904793FF33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Configs", "App.Infra.Configs\App.Infra.Configs.csproj", "{C36C123D-D1B4-4BC7-86C8-B4904793FF33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

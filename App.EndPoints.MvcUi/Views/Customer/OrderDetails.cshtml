@@ -1,0 +1,80 @@
+﻿@model List<OrderItemViewModel>;
+@inject FileUploadPathsDto filePaths;
+@{
+    ViewData["Style"] = "Style.css";
+}
+
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5> جزئیات سفارش</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" asp-controller="Customer" asp-action="Index">بازگشت  </a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            <table class="table ec-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">شناسه</th>
+                                        <th scope="col">تصویر</th>
+                                        <th scope="col">نام محصول</th>
+                                        <th scope="col">برند محصول</th>
+                                        <th scope="col"> تعداد</th>
+                                        <th scope="col">مبلغ واحد</th>
+                                        <th scope="col">دسترسی ها</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        int counter = 1;
+                                    }
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr>
+                                            <th scope="row"><span>@counter</span></th>
+                                            <td>
+                                                <img class="prod-img" src="~/@filePaths.Product/@item.ProductPictureUrl"
+                                                     alt="product image">
+                                            </td>
+                                            <td><span>@item.ProductName</span></td>
+                                            <td><span>@item.Productbrand</span></td>
+                                            <td><span>@item.count</span></td>
+                                            <td><span>@item.price تومان</span></td>
+
+                                            <td>
+                                                
+                                                <span class="tbl-btn">
+                                                    <a class="btn btn-lg btn-success"
+                                                       asp-controller="Customer"
+                                                       asp-action="CreateComent" asp-route-orderItemId=""> ثبت نظر </a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        counter++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End User history section -->

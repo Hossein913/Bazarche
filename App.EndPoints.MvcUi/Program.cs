@@ -48,6 +48,7 @@ builder.Services.AddScoped<IBoothRepository, BoothRepository > ();
 builder.Services.AddScoped<IMedalRepository, MedalRepository > ();
 //--Commons
 builder.Services.AddScoped<IPictureRepository, PictureRepository > ();
+builder.Services.AddScoped<ISaveChangesRepository, SaveChangesRepository>();
 builder.Services.AddScoped<ISaveChangesRepository, SaveChangesRepository > ();
 //--Products
 builder.Services.AddScoped<IBidRepository, BidRepository > ();
@@ -108,14 +109,14 @@ builder.Services.AddScoped<IBoothAppServices, BoothAppServices>();
 //builder.Services.AddScoped<IBoothProductServices, BoothProductServices>();
 builder.Services.AddScoped<ICategoryAppServices, CategoryAppServices>();
 //builder.Services.AddScoped<ICommentAppServices, CommentAppServices>();
-//builder.Services.AddScoped<IOrderItemAppServices, OrderItemAppServices>();
-//builder.Services.AddScoped<IOrderAppServices, OrderAppServices>();
+builder.Services.AddScoped<IOrderItemAppServices, OrderItemAppServices>();
+builder.Services.AddScoped<IOrderAppServices, OrderAppServices>();
 builder.Services.AddScoped<IProductAppServices, ProductAppServices>();
 
 ////--Users
 //builder.Services.AddScoped<IAddressAppServices, AddressAppServices>();
 //builder.Services.AddScoped<IAdminAppServices, AdminAppServices>();
-//builder.Services.AddScoped<ICustomerAppServices, CustomerAppServices>();
+builder.Services.AddScoped<ICustomerAppServices, CustomerAppServices>();
 builder.Services.AddScoped<ISellerAppServices, SellerAppServices>();
 builder.Services.AddScoped<IIdentityAppServices, IdentityAppServices>();
 #endregion
@@ -157,7 +158,7 @@ builder.Services.ConfigureApplicationCookie(option =>
     option.ExpireTimeSpan = TimeSpan.FromMinutes(10);
 
     option.LoginPath = "/Authenticate/login";
-    option.AccessDeniedPath = "/Authenticate/AccessDenied";
+    option.AccessDeniedPath = "/Home/Index";
     option.SlidingExpiration = true;
 });
 
@@ -192,6 +193,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

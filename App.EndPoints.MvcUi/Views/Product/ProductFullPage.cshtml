@@ -1,0 +1,258 @@
+﻿@model ProductViewModel;
+@inject FileUploadPathsDto filePath;
+
+@{
+    ViewData["Title"] = "ProductfullPage";
+}
+<!-- Sart Single product -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12">
+
+                <!-- Single product content Start -->
+                <div class="single-pro-block">
+                    <div class="single-pro-inner">
+                        <div class="row">
+                            <div class="single-pro-img single-pro-img-no-sidebar">
+                                <div class="single-product-scroll">
+                                    <div class="single-product-cover">
+                                        @foreach (var item in Model.Pictures)
+                                        {
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="~/@filePath.Product/@item.ImageUrl"
+                                                     alt="">
+                                            </div>
+
+                                        }
+
+
+                                    </div>
+                                    <div class="single-nav-thumb">
+                                        @if (Model.Pictures.Count > 1)
+                                        {
+                                            @foreach (var item in Model.Pictures)
+                                            {
+                                                <div class="single-slide">
+                                                    <img class="img-responsive" src="~/@filePath.Product/@item.ImageUrl"
+                                                         alt="">
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="single-slide">
+                                                <img class="img-responsive" src="~/@filePath.Product/@Model.Pictures.FirstOrDefault().ImageUrl"
+                                                     alt="">
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-pro-desc single-pro-desc-no-sidebar">
+                                <div class="single-pro-content">
+                                    <h5 class="ec-single-title">@Model.Name</h5>
+                                    <div class="ec-single-rating-wrap">
+                                        <div class="ec-single-rating">
+                                            <h5 class="ec-single-title">برند :@Model.Brand</h5>
+                                        </div>
+                                        <span class="ec-read-review">
+                                            @Model.Grantee
+                                        </span>
+                                    </div>
+                                    <div class="ec-single-desc">
+                                        @Model.Description
+                                    </div>
+                                    @foreach (var item in Model.BoothProducts)
+                                    {
+                                        
+                                    
+                                    <div class="ec-single-price-stoke">
+                                        <div class="m-2 ec-single-stoke col-3">
+                                            <span class="ec-single-ps-title">غرفه</span>
+                                            <span class="ec-single-sku">@item.Booth.Name </span>
+                                        </div>
+                                            <div class="m-2 ec-single-stoke col-3">
+                                            <span class="ec-single-ps-title">رتبه فروشنده </span>
+                                                <span class="ec-single-sku">@item.Booth.MedalName</span>
+                                        </div>
+                                            <div class="m-2 ec-single-price col-3">
+                                            <span class="ec-single-ps-title"> قیمت</span>
+                                                <span class="new-price">@item.Price تومان</span>
+                                        </div>
+                                            <div class="m-2 ec-single-qty col-3">
+                                                     <div class="ec-single-cart ">
+                                                    <a asp-controller="Cart" asp-action="CreateOrderItem" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
+                                                     </div>
+
+@*                                                     <div class=" qty-plus-minus">
+                                                         <input asp-for="@Model.CreateOrder.Count" class="qty-input" type="text" name="ec_qtybtn" value="1">
+                                                     </div>*@
+                                        </div>
+
+                                    </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Single product content End -->
+                <!-- Single product tab start -->
+                <div class="ec-single-pro-tab">
+                    <div class="ec-single-pro-tab-wrapper">
+                        <div class="ec-single-pro-tab-nav">
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab"
+                                       data-bs-target="#ec-spt-nav-details" role="tablist">جزییات</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-info"
+                                       role="tablist">اطلاعات بیشتر</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" data-bs-target="#ec-spt-nav-review"
+                                       role="tablist">نظرات</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content  ec-single-pro-tab-content">
+                            <div id="ec-spt-nav-details" class="tab-pane fade show active">
+                                <div class="ec-single-pro-tab-desc">
+                                    <p>
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
+                                        طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
+                                        لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع
+                                        با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
+                                        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت
+                                        بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی
+                                        و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام
+                                        و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد
+                                        نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
+                                        اهل دنیای موجود طراحی اساسا
+                                    </p>
+                                    <ul>
+                                        <li> هر نوع محصول که می خواهید - ساده، قابل تنظیم </li>
+                                        <li> محصولات الکترونیکی و دیجیتال قابل دانلود</li>
+                                        <li> مدیریت موجودی با موارد نخصصی</li>
+                                        <li> موجود در تمامی شعبه ها</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="ec-spt-nav-info" class="tab-pane fade">
+                                <div class="ec-single-pro-tab-moreinfo">
+                                    <ul>
+                                        <li><span>وزن</span> 1000 گرم</li>
+                                        <li><span>ابعاد</span> 35 × 30 × 7 cm</li>
+                                        <li><span>رنگ</span> سیاه، صورتی، قرمز، سفید</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div id="ec-spt-nav-review" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="ec-t-review-wrapper">
+                                        <div class="ec-t-review-item">
+                                            <div class="ec-t-review-avtar">
+                                                <img src="~/assets/Home/images/review-image/1.jpg" alt="">
+                                            </div>
+                                            <div class="ec-t-review-content">
+                                                <div class="ec-t-review-top">
+                                                    <div class="ec-t-review-name">جانان دارا</div>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-t-review-bottom">
+                                                    <p>
+                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                                                        با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
+                                                        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                        تکنولوژی مورد نیاز
+                                                        و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                        فراوان جامعه و متخصصان را می طلبد
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ec-t-review-item">
+                                            <div class="ec-t-review-avtar">
+                                                <img src="~/assets/Home/images/review-image/2.jpg" alt="">
+                                            </div>
+                                            <div class="ec-t-review-content">
+                                                <div class="ec-t-review-top">
+                                                    <div class="ec-t-review-name">لیندا کیانی</div>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-t-review-bottom">
+                                                    <p>
+                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
+                                                        با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
+                                                        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                                        تکنولوژی مورد نیاز
+                                                        و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
+                                                        فراوان جامعه و متخصصان را می طلبد
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="ec-ratting-content">
+                                        <h3>افزودن نظر</h3>
+                                        <div class="ec-ratting-form">
+                                            <form action="#">
+                                                <div class="ec-ratting-star">
+                                                    <span>امتیاز شما:</span>
+                                                    <div class="ec-t-review-rating">
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star fill"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                        <i class="ecicon eci-star-o"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-ratting-input">
+                                                    <input name="your-name" placeholder="نام" type="text">
+                                                </div>
+                                                <div class="ec-ratting-input">
+                                                    <input name="your-email" placeholder="ایمیل" type="email"
+                                                           required="">
+                                                </div>
+                                                <div class="ec-ratting-input form-submit">
+                                                    <textarea name="your-commemt" placeholder="نظر شما"></textarea>
+                                                    <button class="btn btn-primary" type="submit"
+                                                            value="Submit">
+                                                        ارسال
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- product details description area end -->
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End Single product -->

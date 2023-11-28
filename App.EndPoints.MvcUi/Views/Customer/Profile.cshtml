@@ -1,0 +1,78 @@
+﻿@model EditCustomerViewModel;
+
+
+@{
+    ViewData["Style"] = "Style.css";
+}
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5> پروفایل من</h5>
+                    </div>
+                    <div class="ec-vendor-block-img space-bottom-30">
+                    
+                        <form asp-controller="Customer" asp-action="EditProfile" method="post" enctype="multipart/form-data" class="row g-3">
+
+                    <div class="ec-vendor-upload-detail">
+                        <div class="col-md-6 space-t-15">
+                            <label asp-for="@Model.FirstName" class="form-label"></label>
+                            <input asp-for="@Model.FirstName" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6 space-t-15">
+                            <label asp-for="@Model.LastName" class="form-label"></label>
+                            <input asp-for="@Model.LastName" type="text" class="form-control">
+                        </div>
+                        <div class="col-md-6 space-t-15">
+                            <label asp-for="@Model.Birthdate" class="form-label"></label>
+                            <input asp-for="@Model.Birthdate" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 space-t-15">
+                            <label  class="form-label">نام استان</label>
+                            <select name="categories" class="form-select">
+                                <option value="individual">تهران</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 space-t-15">
+                            <label asp-for="@Model.City" class="form-label">نام شهر</label>
+                            <input asp-for="@Model.City" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md-4 space-t-15">
+                            <label asp-for="@Model.PostalCode" class="form-label">کد پستی</label>
+                            <input asp-for="@Model.PostalCode" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md-12 space-t-15">
+                            <label asp-for="@Model.FullAddress" class="form-label">آدرس کامل</label>
+                            <textarea asp-for="@Model.FullAddress" class="form-control" id="exampleFormControlTextarea1"
+                                      rows="3"></textarea>
+                        </div>
+
+
+                        <div class="col-md-12 space-t-15 mt-2">
+                            <button type="submit" class="btn btn-primary">به روز رسانی</button>
+                        </div>
+
+                        </form>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal end -->

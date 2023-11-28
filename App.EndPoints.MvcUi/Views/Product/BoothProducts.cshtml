@@ -1,0 +1,146 @@
+﻿@model BoothWithProductsViewModel
+@inject FileUploadPathsDto FilePath
+
+@{
+    ViewData["Title"] = "BoothProducts";
+}
+
+
+@await Component.InvokeAsync("ParentCategoryNavbar")
+
+<!-- Vendor list Section Start -->
+
+    <div class="container">
+        <div class="row">
+            <div class="ec-multi-vendor-detail">
+                <div class="ec-page-description ec-page-description-info description-info-list">
+                    <div class="ec-catalog-vendor">
+                        <img src="~/@FilePath.BoothAvatar/@Model.AvatarUrl" alt="vendor img">
+                    </div>
+                    <div class="ec-catalog-vendor-info">
+                        <div class="row vendor-card-height">
+                            <div class="col-lg-4 col-md-6 detail-card-space">
+                                <div class="seller-name-level catalog-detail-card">
+
+                                    <a href="catalog-single-vendor.html">
+                                        <h6 class="name">@Model.Name</h6>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 detail-card-space">
+                                <div class="ec-catalog-ratings catalog-detail-card">
+                                    <h6>سطح</h6>
+                                    <p>@Model.MedalName</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 detail-card-space">
+                                <div class="ec-catalog-pro-count catalog-detail-card">
+                                    <h6>معرفی</h6>
+                                    <p>@Model.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Vendor list Section End -->
+
+<!-- Product tab Area Start -->
+            <!-- Product area start -->
+            <div class="col-lg-9 col-md-12">
+                <!-- Product tab area start -->
+                <div class="row space-t-50">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h2 class="ec-title">لیست محصولات </h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row margin-minus-b-15">
+                    <div class="col">
+                        <div class="tab-content">
+                            <!-- 1st Product tab start -->
+                            <div class="tab-pane fade show active" id="all">
+                                <div class="row">
+                                    @if (Model.products.Count > 0)
+                                    {
+                                        @foreach (var item in Model.products)
+                                        {
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                                <div class="ec-product-inner">
+                                                    <div class="ec-pro-image-outer">
+                                                        <div class="ec-pro-image">
+                                                <a class="image">
+                                                                <img class="main-image"
+                                                                     src="~/Upload/Img/Product/@item.AvatarFileUrl"
+                                                                     alt="@item.Name" />
+                                                                <img class="hover-image"
+                                                                     src="~/Upload/Img/Product/@item.AvatarFileUrl"
+                                                                     alt="@item.Name" />
+                                                            </a>
+                                                            <div class="ec-pro-actions">
+                                                    <a asp-controller="Product"
+                                                       asp-action="ProductFullPage"
+                                                       asp-route-productId="@item.Id"
+                                                                   class="ec-btn-group quickview" 
+                                                                   title="نمایش سریع" >
+                                                                    <img src="~/assets/Home/images/icons/quickview.svg"
+                                                                         class="svg_img pro_svg"
+                                                                         alt="" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ec-pro-content">
+                                                        <a href="shop-left-sidebar-col-3.html">
+                                                <h6 asp-controller="Product" asp-action="ProductFullPage" asp-route-productId="@item.Id">@item.Name</h6>
+                                                        </a>
+                                                        <h5 class="ec-pro-title">
+                                                <a asp-controller="Product" asp-action="ProductFullPage" asp-route-productId="@item.Id">
+                                                                @item.Description
+                                                            </a>
+                                                        </h5>
+                                                        <div class="ec-pro-rat-price">
+                                                @if (@item.MinPrice != @item.MaxPrice)
+                                                {
+                                                    <span class="ec-price">
+                                                        <span class="new-price"> از @item.MinPrice تومان تا @item.MaxPrice تومان</span>
+
+                                                    </span>
+
+                                                }
+                                                else
+                                                {
+                                                    <span class="ec-price">
+                                                        <span class="new-price"> @item.MaxPrice تومان</span>
+
+                                                    </span>
+                                                }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="ec-spe-price">
+                                            <span class="new-price">غرفه کالایی برای فروش ندارد !</span>
+
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            <!-- ec 1st Product tab end -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Product tab area end -->
+            </div>
+
+<!-- ec Product tab Area End -->

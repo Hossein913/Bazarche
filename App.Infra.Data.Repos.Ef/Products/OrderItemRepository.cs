@@ -1,7 +1,9 @@
-﻿using App.Domain.Core._Products.Contracts.Repositories;
+﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Dtos.OrderDtos;
 using App.Domain.Core._Products.Dtos.OrderItemDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -39,6 +41,7 @@ public class OrderItemRepository : IOrderItemRepository
         .Where(oi => oi.OrderId == OrderId)
         .Select<OrderItem, OrderItemOutputDto>(o => new OrderItemOutputDto
         {
+            Id = o.Id,
             Count = o.Count,
             IsActive = o.IsActive,
             BoothProduct = o.BoothProduct
@@ -59,6 +62,21 @@ public class OrderItemRepository : IOrderItemRepository
             Order = o.Order
 
         }).ToListAsync(cancellationToken);
+        return result;
+    }
+
+    public async Task<List<int>> GetPopularOrderedProductsId(int countOfProduct, CancellationToken cancellationToken)
+    {
+        var result = await _context.OrderItems
+         .AsNoTracking()
+         .Where(oi => oi.Order.Status == Convert.ToBoolean((int)OrderStatus.Payed))
+         .GroupBy(oi => oi.BoothProduct.ProductId)
+         .OrderBy(g => g.Count())
+         .Take(countOfProduct)
+         .Select(x => new { productId = x.Key })
+         .Select(x => x.productId)
+         .ToListAsync();         
+
         return result;
     }
 

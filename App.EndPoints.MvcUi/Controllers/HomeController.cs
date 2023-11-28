@@ -1,36 +1,29 @@
 ﻿using App.Domain.Core._Booth.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.AppServices;
+using App.Domain.Core._Products.Dtos.AuctionDtos;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.EndPoints.MvcUi.Models;
 using App.EndPoints.MvcUi.Models.Home;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Drawing.Drawing2D;
 
 namespace App.EndPoints.MvcUi.Controllers
 {
-
     [AllowAnonymous]
     public class HomeController : Controller
     {
 
-        private readonly ICategoryAppServices _categoryAppServices;
-        private readonly IBoothAppServices _boothAppServices;
+
         private readonly IAuctionAppServices _auctionAppServices;
         private readonly IProductAppServices _productAppServices;
- 
-        private readonly ILogger<HomeController> _logger;
 
         public HomeController(
-            ILogger<HomeController> logger,
-            ICategoryAppServices categoryAppServices,
-            IBoothAppServices boothAppServices,
             IAuctionAppServices auctionAppServices,
             IProductAppServices productAppServices)
         {
-            _logger = logger;
-            _categoryAppServices = categoryAppServices;
-            _boothAppServices = boothAppServices;
             _auctionAppServices = auctionAppServices;
             _productAppServices = productAppServices;
         }
@@ -38,45 +31,39 @@ namespace App.EndPoints.MvcUi.Controllers
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             IndexViewModel viewModel = new IndexViewModel();
-            viewModel.Categories = await _categoryAppServices.GetAll(cancellationToken);
-            viewModel.boothOutputs = await _boothAppServices.GetAllHome(cancellationToken);
-            viewModel.auctionOutputs = await _auctionAppServices.GetAllAuctions(cancellationToken);
-
-            return View(viewModel);
-        }
-
-
-            [HttpGet]
-        public async Task<IActionResult> ParentCategoryProducts(int id, CancellationToken cancellationToken)
-        {
-            CategoryProductsViewModel CategoryProducts = new CategoryProductsViewModel();
             
-            CategoryProducts.Id = id;
-            CategoryProducts.Categories = await _categoryAppServices.GetAll(cancellationToken);
-            CategoryProducts.Products = await _productAppServices.GetAllByParentCategory(id, cancellationToken);
-            return View("CategoryProduct",CategoryProducts);
+            var auctions = await _auctionAppServices.GetAllAuctions(cancellationToken);
+            var auctionViewModelList = auctions.Select<AuctionOutputDto, AuctionViewModel>( a => new AuctionViewModel
+            {
+                Id = a.Id,
+                ProductId = a.ProductId,
+                BoothId = a.BoothId,
+                StartTime = a.StartTime,
+                EndTime = a.EndTime,
+                Bids = a.Bids,
+                BoothName = a.Booth.Name , 
+                ProductDto = a.ProductDto,
+            }).ToList();
+
+            var products = await _productAppServices.GetPopularOrderedProducts(4, cancellationToken);
+            var productsViewModelList = products.Select<ProductOutputDto,ProductViewModel>(p => new ProductViewModel
+            {
+                Id = p.Id,
+                Name = p.Name,
+                Brand = p.Grantee,
+                AvatarFileUrl = p.Avatar,
+                Description = p.Description,
+                MaxPrice = p.MinPrice,
+                MinPrice = p.MaxPrice,
+
+            }).ToList();
+
+            IndexViewModel indexViewModel = new IndexViewModel();
+            indexViewModel.auctionViewModels = auctionViewModelList;
+            indexViewModel.productsViewModels = productsViewModelList;
+
+            return View(indexViewModel);
         }
-
-        [HttpGet]
-        public async Task<IActionResult> ChildCategoryProducts(int id, CancellationToken cancellationToken)
-        {
-            CategoryProductsViewModel CategoryProducts = new CategoryProductsViewModel();
-
-            CategoryProducts.Id = id;
-            CategoryProducts.Categories = await _categoryAppServices.GetAll(cancellationToken);
-            CategoryProducts.Products = await _productAppServices.GetAllByChildCategory(id, cancellationToken);
-            return View("CategoryProduct", CategoryProducts);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> AllBoothsList(CancellationToken cancellationToken)
-        {
-            var Boothlist = await _boothAppServices.GetAllHome(cancellationToken);
-            return View(Boothlist);
-        }
-
-
-
 
         public IActionResult Privacy()
         {
@@ -90,3 +77,4 @@ namespace App.EndPoints.MvcUi.Controllers
         }
     }
 }
+

@@ -1,0 +1,130 @@
+﻿@model List<ProductViewModel>
+
+
+@await Component.InvokeAsync("ParentCategoryNavbar");
+
+
+<!-- Product tab Area Start -->
+<section class="section ec-product-tab section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar area start -->
+            <div class="ec-side-cat-overlay"></div>
+            <div class="col-lg-3 sidebar-dis-991" data-animation="fadeIn">
+                <div class="cat-sidebar">
+                    <div class="cat-sidebar-box">
+                        <div class="ec-sidebar-wrap">
+                            @await Component.InvokeAsync("CategorySidebar");
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Product area start -->
+            <div class="col-lg-9 col-md-12">
+                <!-- ec New Arrivals, ec Trending, ec Top Rated Start -->
+                <div class="row">
+                    <!-- ec New Arrivals -->
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-6 ec-all-product-content ec-new-product-content margin-b-30"
+                         data-animation="fadeIn">
+                    </div>
+                </div>
+                <!-- ec New Arrivals, ec Trending, ec Top Rated end -->
+                <!-- Product tab area start -->
+                <div class="row space-t-50">
+                    <div class="col-md-12">
+                        <div class="section-title">
+                            <h2 class="ec-title">لیست محصولات </h2>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row margin-minus-b-15">
+                    <div class="col">
+                        <div class="tab-content">
+                            <!-- 1st Product tab start -->
+                            <div class="tab-pane fade show active" id="all">
+                                <div class="row">
+                                    @if (Model.Count>0) { 
+                                    @foreach (var item in Model)
+                                    {
+                                        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 ec-product-content">
+                                            <div class="ec-product-inner">
+                                                <div class="ec-pro-image-outer">
+                                                    <div class="ec-pro-image">
+                                                            <a  class="image">
+                                                            <img class="main-image"
+                                                                 src="~/Upload/Img/Product/@item.AvatarFileUrl"
+                                                                 alt="@item.Name" />
+                                                            <img class="hover-image"
+                                                                     src="~/Upload/Img/Product/@item.AvatarFileUrl"
+                                                                 alt="@item.Name" />
+                                                        </a>
+                                                        <div class="ec-pro-actions">
+                                                            <a asp-controller="Product"
+                                                                   asp-action="ProductFullPage"
+                                                                   asp-route-productId="@item.Id"
+                                                               class="ec-btn-group quickview"
+                                                               title="نمایش سریع">
+                                                                <img src="~/assets/Home/images/icons/quickview.svg"
+                                                                     class="svg_img pro_svg"
+                                                                     alt="" />
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="ec-pro-content">
+                                                        <a asp-controller="Product" asp-action="ProductFullPage" asp-route-productId="@item.Id">
+                                                        <h6 class="ec-pro-stitle">@item.Name</h6>
+                                                    </a>
+                                                    <h5 class="ec-pro-title">
+                                                            <a asp-controller="Product" asp-action="ProductFullPage" asp-route-productId="@item.Id">
+                                                            @item.Description
+                                                        </a>
+                                                    </h5>
+                                                    <div class="ec-pro-rat-price">
+                                                            @if (@item.MinPrice != @item.MaxPrice)
+                                                            {
+                                                                <span class="ec-price">
+                                                                    <span class="new-price"> از @item.MinPrice تومان تا @item.MaxPrice تومان</span>
+
+                                                                </span>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="ec-price">
+                                                                    <span class="new-price"> @item.MaxPrice تومان</span>
+
+                                                                </span>
+                                                            }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="ec-spe-price">
+                                            <span class="new-price">کالایی در این دسته بندی تعریف نشده است !</span>
+
+                                        </div>
+                                    
+                                    }
+                                </div>
+                            </div>
+                            <!-- ec 1st Product tab end -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Product tab area end -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ec Product tab Area End -->

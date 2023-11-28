@@ -6,9 +6,7 @@ namespace App.EndPoints.MvcUi.Models.Home
 {
     public class IndexViewModel
     {
-        public List<CategoryOutputDto> Categories { get; set; }
-        public List<BoothOutputDto> boothOutputs { get; set; }
-        public List<AuctionOutputDto> auctionOutputs { get; set; }
-
+        public List<AuctionViewModel> auctionViewModels { get; set; }
+        public List<ProductViewModel> productsViewModels   { get; set; }
     }
 }

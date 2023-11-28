@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace App.EndPoints.MvcUi.Controllers
 {
+    [AllowAnonymous]
     public class AuthenticateController : Controller
     {
         private readonly IIdentityAppServices _appServices;
@@ -20,14 +21,12 @@ namespace App.EndPoints.MvcUi.Controllers
             _appServices = appServices;
         }
 
-        [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
-        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel LoginModel, CancellationToken cancellationToken)
@@ -52,11 +51,12 @@ namespace App.EndPoints.MvcUi.Controllers
                     {
                         var roles = await _appServices.GetRoles(appUser, cancellationToken);
 
+
                         if (roles != null && roles.Contains("Admin"))
-                            return RedirectToAction("Index", "AdminPanel", new { area = "AdminArea", id = appUser.Id });
+                            return RedirectToAction("Index", "AdminPanel", new { area = "AdminArea" });
 
                         else if (roles != null && roles.Contains("Seller"))
-                            return RedirectToAction("index", "SellerPanel", new { area = "SellerArea", id= appUser.Id });
+                            return RedirectToAction("Index", "SellerPanel", new { area = "SellerArea" });
 
                         else
                             return RedirectToAction("index", "Home");
@@ -77,22 +77,20 @@ namespace App.EndPoints.MvcUi.Controllers
 
         }
 
-
-        [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public ActionResult SellerRegister(SellerRegisterViewModel sellerRegisterViewModel)
         {
             return View();
         }
 
-        [AllowAnonymous]
+
         [HttpPost]
         public ActionResult CustomerRegister(CustomerRegisterViewModel customerRegisterVM)
         {

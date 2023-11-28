@@ -1,0 +1,67 @@
+﻿
+@model List<CustomerOrderViewModel>;
+ 
+@{
+    ViewData["Style"] = "Style.css";
+}
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5>تاریخچه خرید</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="Index">خرید </a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            <table class="table ec-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">شناسه</th>
+                                        <th scope="col">تاریخ پرداخت</th>
+                                        <th scope="col">مبلغ کل سبد</th>
+                                        <th scope="col">دسترسی ها</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{ int counter = 1;}
+                                    @foreach (var item in Model)
+                                    {
+                                        
+                                        <tr>
+                                            <th scope="row"><span>@counter</span></th>
+                                            <td><span>@item.PayedAt</span></td>
+                                            <td><span>@item.TotalPrice تومان</span></td>
+                                            <td>
+                                                <span class="tbl-btn">
+                                              <a class="btn btn-lg btn-warning"
+                                             asp-controller="Customer"
+                                                       asp-action="OrderDetails" asp-route-OrderId="@item.Id"> جزئیات سفارش</a>
+                                             </span>
+                                            </td>
+                                        </tr>
+                                        counter++;
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End User history section -->

@@ -1,0 +1,37 @@
+﻿@model List<CategoriesViewModel>;
+
+<!-- Sidebar Category Block -->
+<div class="ec-sidebar-block">
+    <div class="ec-sb-title">
+        <h3 class="ec-sidebar-title">
+            دسته‌بندی<button class="ec-close">×</button>
+        </h3>
+    </div>
+    @foreach (var pItem in Model)
+    {
+
+        <div class="ec-sb-block-content">
+            <ul>
+                <li>
+                    <div class="ec-sidebar-block-item">
+                        <img src="~/Upload/Img/Category/@pItem.Picture.ImageUrl"
+                             class="svg_img"
+                             alt="drink">
+                        @pItem.Title
+                    </div>
+                    <ul>
+                        @foreach (var chItem in pItem.Subcategories)
+                        {
+                            <li>
+                                <div class="ec-sidebar-sub-item">
+                                    <a asp-controller="Product" asp-action="ChildCategoryProducts" asp-route-id="@chItem.Id">@chItem.Title</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    }
+</div>
+<!-- Sidebar Category Block -->

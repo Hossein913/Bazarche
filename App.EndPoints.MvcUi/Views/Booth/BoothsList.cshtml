@@ -1,6 +1,6 @@
 ﻿
-@model List<BoothOutputDto>
-
+@model List<BoothOutputDto>;
+@inject FileUploadPathsDto filePath;
 @{
     ViewData["Title"] = "AllBoothsList";
 }
@@ -17,13 +17,13 @@
                      <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="ec-vendor-card">
                         <div class="ec-vendor-card-avtar">
-                            <img src="~/assets/Home/images/common/5.jpg" alt="vendor img">
+                                <img src="~/assets/Home/images/common/1.jpg" alt="vendor img">
                             <div class="ec-vendor-card-img">
-                                <img src="~/Upload/Img/BoothAvatar/@item.AvatarPictureFile" alt="vendor img">
+                                    <img src="~/@filePath.BoothAvatar/@item.AvatarPictureFile" alt="vendor img">
                             </div>
                         </div>
                         <div class="ec-vendor-card-info">
-                            <a href="catalog-single-vendor.html">
+                                <a asp-controller="Product" asp-action="BoothProducts" asp-route-boothid="@item.Id">
                                 <h6 class="name">@item.Name</h6>
                             </a>
                             <p class="des">(@item.Description )</p>
@@ -31,7 +31,7 @@
                                 <div class="col-md-6 col-sm-6 border-rt">
                                     <div class="ec-catalog-ratings catalog-detail-card">
                                         <h6>سطح</h6>
-                                        <p>9 / 10</p>
+                                        <p>@item.MedalName</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
