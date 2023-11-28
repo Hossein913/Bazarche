@@ -24,14 +24,14 @@ public partial class CustomerUpdateDto
 
     public DateTime? Birthdate { get; set; }
 
-    public int? Wallet { get; set; }
+    public int? Wallet { get; set; } = null;
 
     public int AppUserId { get; set; }
 
 
-    //#region Navigation properties
 
-    //public virtual Address? Address { get; set; }
+    public virtual Address? Address { get; set; }
+
     //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     //public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
@@ -44,5 +44,5 @@ public partial class CustomerUpdateDto
 
     //public virtual AppUser AppUser { get; set; }
 
-    //#endregion
+
 }

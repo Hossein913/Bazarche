@@ -11,15 +11,15 @@ public partial class BoothUpdateDto
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
     public int? AvatarPictureId { get; set; }
 
     public int MedalId { get; set; }
 
-    public int AccountBalance { get; set; }
+    public int? AccountBalance { get; set; }
 
-    public int TotalSell { get; set; }
+    public int? TotalSell { get; set; }
 
     public string? Description { get; set; }
 

@@ -16,6 +16,7 @@ public partial class BoothOutputDto
     public string AvatarPictureFile { get; set; }
 
     public int MedalId { get; set; }
+    public string MedalName{ get; set; }
 
     public int AccountBalance { get; set; }
 
