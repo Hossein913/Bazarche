@@ -1,4 +1,5 @@
-﻿using App.Domain.Core._Common.Contracts.Services;
+﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Contracts.Services;
 using App.Domain.Core._Common.Dtos.PictureDtos;
 using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Common.Enums;
@@ -8,6 +9,7 @@ using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +20,21 @@ namespace App.Domain.AppServices.Product
     {
         protected readonly ICategoryServices _categoryServices;
         protected readonly IProductServices _productServices;
+        protected readonly IOrderItemServices _orderItemServices;
+        protected readonly IBoothProductServices _boothProductServices;
         protected readonly IFileServices _fileServices;
         public ProductAppServices(
             ICategoryServices categoryServices,
             IProductServices productServices,
-            IFileServices fileServices)
+            IFileServices fileServices,
+            IOrderItemServices orderItemServices,
+            IBoothProductServices boothProductServices)
         {
             _categoryServices = categoryServices;
             _productServices = productServices;
             _fileServices = fileServices;
+            _orderItemServices = orderItemServices;
+            _boothProductServices = boothProductServices;
         }
 
         public async Task<int> Create(ProductAppServiceDto product,int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken)
@@ -83,20 +91,23 @@ namespace App.Domain.AppServices.Product
             {
                 categoryIds.Add(item.Id);
             }
-            var Products = await _productServices.GetAllByCategory(cancellationToken, categoryIds.ToArray());
-            return Products;
+            var products = await _productServices.GetAllByCategory(cancellationToken, categoryIds.ToArray());
+            var ConfirmedProducts = products.Where(p => p.IsConfirmed==true).ToList();
+            return ConfirmedProducts;
         }
 
         public async Task<List<ProductOutputDto>> GetAllByChildCategory(int ChildCategoryId, CancellationToken cancellationToken)
         {
-            var Products = await _productServices.GetAllByCategory(cancellationToken, ChildCategoryId);
-            return Products;
+            var products = await _productServices.GetAllByCategory(cancellationToken, ChildCategoryId);
+            var ConfirmedProducts = products.Where(p => p.IsConfirmed == true).ToList();
+            return ConfirmedProducts;
         }
 
         public async Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
         {
-            var result = await _productServices.GetAllForBooth(BoothId, cancellationToken);
-            return result;
+            var products = await _productServices.GetAllForBooth(BoothId, cancellationToken);
+            var ConfirmedProducts = products.Where(p => p.IsConfirmed == true).ToList();
+            return ConfirmedProducts;
         }
 
         public async Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int, int>> ProductPrice, CancellationToken cancellationToken)
@@ -106,12 +117,34 @@ namespace App.Domain.AppServices.Product
 
         public async Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var products = await _productServices.GetAllWithIdList(ProductIdList, cancellationToken);
+            var ConfirmedProducts = products.Where(p => p.IsConfirmed == true).ToList();
+            return ConfirmedProducts;
+        }
+        public async Task<List<ProductOutputDto>> GetPopularOrderedProducts(int ProductCount, CancellationToken cancellationToken)
+        {
+           var ProductId = await _orderItemServices.GetPopularOrderedProductsId(ProductCount, cancellationToken);
+           var products = await _productServices.GetAllWithIdList(ProductId, cancellationToken);
+           var ConfirmedProducts = products.Where(p => p.IsConfirmed == true).ToList();
+           return ConfirmedProducts;
         }
 
-        public async Task<ProductOutputDto> GetDetail(int productId, CancellationToken cancellationToken)
+        public async Task<ProductOutputDto> GetDetails(int productId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           var product = await _productServices.GetDetails(productId, cancellationToken);
+           var productPrices =await _boothProductServices.GetAllForProduct(productId, cancellationToken);
+           product.BoothProducts = productPrices.Select(bp => new BoothProduct
+           {
+               Id = bp.Id,
+               Price = bp.Price,
+               Count = bp.Count,
+               Status = bp.Status,
+               CreatedAt = bp.CreatedAt,
+               Booth = bp.Booth,
+
+           }).ToList();
+
+            return product;
         }
 
         public async Task SoftDelete(int productId, CancellationToken cancellationToken)
@@ -123,5 +156,7 @@ namespace App.Domain.AppServices.Product
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
