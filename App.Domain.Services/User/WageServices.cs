@@ -18,9 +18,9 @@ namespace App.Domain.Services.User
             _wageRepository = wageRepository;
         }
 
-        public async Task Create(WageCreateDto WageCreate, CancellationToken cancellationToken)
+        public async Task Create(List<WageCreateDto> WageCreate, CancellationToken cancellationToken, bool saveChange = true)
         {
-            await _wageRepository.Create(WageCreate, cancellationToken);
+            await _wageRepository.Create(WageCreate, cancellationToken,saveChange);
         }
 
         public async Task<List<WageOutputDto>> GetAll(CancellationToken cancellationToken)

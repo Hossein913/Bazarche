@@ -35,8 +35,8 @@ public class CustomerServices : ICustomerServices
         await _customerRepository.SoftDelete(customerId, cancellationToken);
     }
 
-    public async Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken)
+    public async Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
-        await _customerRepository.Update(customerUpdate, cancellationToken);
+        await _customerRepository.Update(customerUpdate, cancellationToken, saveChanges);
     }
 }

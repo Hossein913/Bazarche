@@ -23,13 +23,17 @@ namespace App.Domain.AppServices.Booth
             return await _boothServices.GetAllHome(cancellationToken);
         }
 
-        public async Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
+        public async Task<BoothOutputDto> GetDetails(int BoothId, CancellationToken cancellationToken)
         {
             var result =  await _boothServices.GetDetail(BoothId, cancellationToken);
             return result;
         }
 
-
+        public async Task<BoothOutputDto> GetDetailsWithRelations(int BoothId, CancellationToken cancellationToken)
+        {
+            var result = await _boothServices.GetDetailsWithRelations(BoothId, cancellationToken);
+            return result;
+        }
 
         public async Task SoftDelete(int BoothId, CancellationToken cancellationToken)
         {

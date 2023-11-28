@@ -14,10 +14,10 @@ public class OrderServices : IOrderServices
         _orderRepository = orderRepository;
     }
 
-    public async Task Create(OrderCreateDto order, CancellationToken cancellationToken)
+    public async Task<int> Create(OrderCreateDto order, CancellationToken cancellationToken)
     {
-        await _orderRepository.Create(order, cancellationToken);
-
+        var result = await _orderRepository.Create(order, cancellationToken);
+        return result;
     }
 
     public async Task<List<OrderOutputDto>> GetAllOrders(CancellationToken cancellationToken)
@@ -26,9 +26,9 @@ public class OrderServices : IOrderServices
             return result;
     }
 
-    public async Task<List<OrderOutputDto>> GetAllUserOrders(int userId, CancellationToken cancellationToken)
+    public async Task<List<OrderOutputDto>> GetUserAllOrders(int userId, CancellationToken cancellationToken)
     {
-        var result = await _orderRepository.GetAllUserOrders(userId, cancellationToken);
+        var result = await _orderRepository.GetUserAllOrders(userId, cancellationToken);
             return result;
     }
 
@@ -37,8 +37,9 @@ public class OrderServices : IOrderServices
         await _orderRepository.SoftDelete(orderId, cancellationToken);
     }
 
-    public async Task Update(OrderUpdateDto order, CancellationToken cancellationToken)
+    public async Task Update(OrderUpdateDto order, CancellationToken cancellationToken, bool saveChange = true)
     {
-        await _orderRepository.Update(order, cancellationToken);
+         await _orderRepository.Update(order, cancellationToken, saveChange);
+
     }
 }

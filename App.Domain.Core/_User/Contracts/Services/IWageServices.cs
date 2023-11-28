@@ -10,7 +10,7 @@ namespace App.Domain.Core._User.Contracts.Services
 {
     public interface IWageServices
     {
-        Task Create(WageCreateDto WageCreate, CancellationToken cancellationToken);
+        Task Create(List<WageCreateDto> WageCreate, CancellationToken cancellationToken, bool saveChange = true);
 
         Task<List<WageOutputDto>> GetAll(CancellationToken cancellationToken);
 

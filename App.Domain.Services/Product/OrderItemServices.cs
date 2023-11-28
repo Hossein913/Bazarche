@@ -2,6 +2,7 @@
 using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.OrderItemDtos;
+using App.Domain.Core._Products.Entities;
 
 namespace App.Domain.Services.Product;
 
@@ -29,6 +30,12 @@ public class OrderItemServices : IOrderItemServices
     {
         var result = await _orderItemRepository.GetAllForBooth(BoothId, cancellationToken);
             return result;
+    }
+
+    public async Task<List<int>> GetPopularOrderedProductsId(int countOfProduct, CancellationToken cancellationToken)
+    {
+        var result = await _orderItemRepository.GetPopularOrderedProductsId(countOfProduct, cancellationToken);
+        return result;
     }
 
     public async Task HardDelete(int BoothProductId, CancellationToken cancellationToken)

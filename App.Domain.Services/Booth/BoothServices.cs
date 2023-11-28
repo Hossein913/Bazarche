@@ -29,9 +29,21 @@ namespace App.Domain.Services.Booth
             return result;
         }
 
+        public async Task<List<BoothOutputDto>> GetAllWithListId(List<int> boothId,CancellationToken cancellationToken)
+        {
+            var result = await _boothRepository.GetAllWithListId(boothId, cancellationToken);
+            return result;
+        }
+
         public async Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken)
         {
-            var result = await _boothRepository.GetDetail(BoothId, cancellationToken);
+            var result = await _boothRepository.GetDetails(BoothId, cancellationToken);
+            return result;
+        }
+
+        public async Task<BoothOutputDto> GetDetailsWithRelations(int BoothId, CancellationToken cancellationToken)
+        {
+            var result = await _boothRepository.GetDetailsWithRelations(BoothId, cancellationToken);
             return result;
         }
 
@@ -44,5 +56,11 @@ namespace App.Domain.Services.Booth
         {
             await _boothRepository.Update(boothUpdate, cancellationToken);
         }
+
+        public async Task GroupUpdate(List<BoothUpdateDto> boothsUpdate, CancellationToken cancellationToken, bool saveChanges = true)
+        {
+            await _boothRepository.GroupUpdate(boothsUpdate, cancellationToken, saveChanges );
+        }
+
     }
 }

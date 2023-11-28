@@ -18,6 +18,13 @@ public class BoothProductServices : IBoothProductServices
         await _boothProduct.Create(boothProduct, cancellationToken);
     }
 
+    public async Task<List<BoothProductOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken)
+    {
+        var result = await _boothProduct.GetAllForProduct(ProductId, cancellationToken);
+        return result;
+
+    }
+
     public async Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)
     {
         await _boothProduct.SoftDelete(BoothProductId, cancellationToken);
