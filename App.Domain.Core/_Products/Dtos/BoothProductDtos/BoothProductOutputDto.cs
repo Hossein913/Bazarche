@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,3 +35,15 @@ public class BoothProductOutputDto
 
     #endregion
 }
+
+
+//Id { get; set; }
+//ProductId { get; set; }
+//BoothId { get; set; }
+//Price { get; set; }
+//Count { get; set; }
+//Status { get; set; }
+//CreatedAt { get; set; }
+//Booth { get; set; } 
+//OrderItems { get; set; } 
+//Product { get; set; }
