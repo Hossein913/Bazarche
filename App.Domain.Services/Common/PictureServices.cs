@@ -25,6 +25,12 @@ namespace App.Domain.Services.Common
                 return result;
         }
 
+        public async Task<PictureOutputDto> GetDetails(int pictureId, CancellationToken cancellationToken)
+        {
+            var result = await _pictureRepository.GetDetails(pictureId, cancellationToken);
+            return result;
+        }
+
         public async Task HardDeleted(int picturedto, CancellationToken cancellationToken)
         {
             await _pictureRepository.HardDeleted(picturedto, cancellationToken);

@@ -52,7 +52,7 @@ public class ProductServices : IProductServices
         return result;
     }
 
-    public async Task<ProductOutputDto> GetDetail(int productId, CancellationToken cancellationToken)
+    public async Task<ProductOutputDto> GetDetails(int productId, CancellationToken cancellationToken)
     {
         var result = await _productRepository.GetDetail(productId, cancellationToken);
             return result;

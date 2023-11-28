@@ -12,6 +12,6 @@ namespace App.Domain.Core._Common.Contracts.Services
     {
         Task<string> FileUploadAsync(IFormFile file, FileServicesEntityType entityType, string ProjectRouteAddress);
         Task FileDeleteAsync();
-        Task<bool> FileUpdateAsync();
+        Task FileUpdateAsync(IFormFile file,string OldFileName, FileServicesEntityType entityType, string ProjectRouteAddress);
     }
 }

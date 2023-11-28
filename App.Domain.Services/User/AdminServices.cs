@@ -13,15 +13,15 @@ public class AdminServices : IAdminServices
         _adminRepository = adminRepository;
     }
 
-    public async Task<AdminOutputDto> GetDetail(int adminId, CancellationToken cancellationToken)
+    public async Task<AdminOutputDto> GetDetail(CancellationToken cancellationToken)
     {
-        var result = await _adminRepository.GetDetail(adminId, cancellationToken);
+        var result = await _adminRepository.GetDetail(cancellationToken);
         return result;
     }
 
-    public async Task Update(AdminUpdateDto adminUpdate, CancellationToken cancellationToken)
+    public async Task Update(AdminUpdateDto adminUpdate, CancellationToken cancellationToken, bool saveChange = true)
     {
-        await _adminRepository.Update(adminUpdate, cancellationToken);
+        await _adminRepository.Update(adminUpdate, cancellationToken,saveChange);
 
     }
 }
