@@ -25,9 +25,30 @@ namespace App.Domain.Services.Common
             throw new NotImplementedException();
         }
 
-        public async Task<bool> FileUpdateAsync()
+        public async Task FileUpdateAsync(IFormFile file, string OldFileName, FileServicesEntityType entityType, string ProjectRouteAddress)
         {
-            throw new NotImplementedException();
+            string uploadPath = Path.Combine(ProjectRouteAddress, _fileUploadPaths.Default);
+            switch (entityType)
+            {
+                case FileServicesEntityType.Product:
+                    uploadPath = Path.Combine(ProjectRouteAddress, _fileUploadPaths.Product, OldFileName);
+                    break;
+                case FileServicesEntityType.BoothAvatar:
+                    uploadPath = Path.Combine(ProjectRouteAddress, _fileUploadPaths.BoothAvatar, OldFileName);
+                    break;
+                case FileServicesEntityType.Category:
+                    uploadPath = Path.Combine(ProjectRouteAddress, _fileUploadPaths.Category, OldFileName);
+                    break;
+                case FileServicesEntityType.Profiles:
+                    uploadPath = Path.Combine(ProjectRouteAddress, _fileUploadPaths.Profiles, OldFileName);
+                    break;
+            }
+
+            using (var stream = new FileStream(uploadPath, FileMode.OpenOrCreate,FileAccess.ReadWrite))
+            {
+                await file.CopyToAsync(stream);
+            }
+
         }
 
         public async Task<string> FileUploadAsync(IFormFile file, FileServicesEntityType entityType, string ProjectRouteAddress)
