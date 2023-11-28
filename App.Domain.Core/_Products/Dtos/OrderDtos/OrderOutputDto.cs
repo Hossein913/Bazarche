@@ -17,7 +17,7 @@ public class OrderOutputDto
 
     public DateTime CreatedAt { get; set; }
 
-    public DateTime? PayedAt { get; set; }
+    public DateTime PayedAt { get; set; }
 
 
     #region Navigation properties
