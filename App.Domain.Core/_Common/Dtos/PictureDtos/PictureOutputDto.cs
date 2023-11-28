@@ -16,21 +16,4 @@ public partial class PictureOutputDto
 
     public int? CreatedBy { get; set; }
 
-    public bool IsDeleted { get; set; }
-
-
-    #region Navigation properties
-    public virtual Admin? Admins { get; set; }
-
-    public virtual Booth? Booths { get; set; }
-
-    public virtual Category? Categories { get; set; }
-
-    public virtual Customer? Customers { get; set; }
-
-    public virtual ICollection<Product>? Products { get; set; }
-
-    public virtual Seller? Sellers { get; set; }
-    public virtual Comment? Comment { get; set; }
-    #endregion
 }

@@ -29,6 +29,8 @@ namespace App.Domain.Core._Products.Dtos.ProductDtos
         public List<IFormFile> Pictures { get; set; }
 
         public int CategoryId { get; set; }
+
+        public int CreatedBy { get; set; }
     }
 }
 

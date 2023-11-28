@@ -50,3 +50,11 @@ public class ProductOutputDto
     public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; } = new List<ProductAttributeValue>();
     #endregion
 }
+
+//Id { get; set; }
+//Name { get; set; }
+//Brand { get; set; } 
+//Avatar { get; set; } 
+//Description { get; set; }
+//MaxPrice { get; set; }
+//MinPrice { get; set; }
