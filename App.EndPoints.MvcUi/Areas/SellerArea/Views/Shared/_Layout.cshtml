@@ -497,36 +497,7 @@
         <section class="ec-page-content ec-vendor-dashboard section-space-p">
             <div class="container">
                 <div class="row">
-                    <!-- Sidebar Area Start -->
-                    <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
-                        <div class="ec-sidebar-wrap">
-                            <div class="ec-sidebar-block">
-                                <div class="ec-vendor-block">
-                                    <div class="ec-vendor-block-bg"></div>
-
-                                    <!-- معرفی غرفه -->
-                                    <div class="ec-vendor-block-detail">
-                                        <img class="v-img" src="~/assets/Home/images/vendor/2.jpg" alt="vendor image">
-                                        <h5>نئون</h5>
-                                    </div>
-                                    <!-- معرفی غرفه -->
-                                    <!-- معرفی ستون راست -->
-                                    <div class="ec-vendor-block-items">
-                                        <ul>
-                                            <li><a asp-area="seller" asp-controller="SellerPanel" asp-action="Index">داشبرد</a></li>
-                                            <li><a asp-area="seller" asp-controller="Product" asp-action="Create">ثبت محصول</a></li>
-                                            <li><a asp-area="seller" asp-controller="Product" asp-action="ParentCategories">فروش قطعی و مزایده</a></li>
-                                            <li><a asp-area="seller" asp-controller="" asp-action="">پروفایل عمومی</a></li>
-                                            <li><a asp-area="seller" asp-controller="" asp-action="">تنظیمات</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- معرفی ستون راست -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    @await Component.InvokeAsync("BoothSidebar")
                         @RenderBody()
 
                 </div>
@@ -714,6 +685,31 @@
         </div>
     </footer>
     <!-- Footer Area End -->
+
+    <div class="modal fade" id="edit_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        @await Component.InvokeAsync("EditSellerProfile",new {SellerAppUserId = @ViewBag.SellerAppUserId})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="2edit_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row">
+                        @await Component.InvokeAsync("EditSellerProfile",new {SellerAppUserId = @ViewBag.SellerAppUserId})
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer navigation panel for responsive display -->
     <div class="ec-nav-toolbar">

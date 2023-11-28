@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 {
-    public class AuctionController : Controller
+    public class AuctionController : BaseController
     {
+
         protected readonly IProductAppServices _productAppService;
         public AuctionController(IProductAppServices productAppService)
         {
@@ -20,7 +21,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 
         public ActionResult Create(int Id, CancellationToken cancellationToken)
         {
-            var result = _productAppService.GetDetail(Id, cancellationToken);
+            var result = _productAppService.GetDetails(Id, cancellationToken);
             return View();
         }
 
@@ -28,7 +29,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection, CancellationToken cancellationToken)
         {
-
+            return View();
         }
 
         public ActionResult Edit(int id, CancellationToken cancellationToken)

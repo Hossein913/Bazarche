@@ -46,6 +46,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> Create(CancellationToken cancellationToken)
         {
+            ViewBag.BoothId = CurrentBoothId;
             CreateProductFormViewModel viewModel = new CreateProductFormViewModel();
             viewModel.Product = new ProductCreateViewModel();
             viewModel.Categories = await _categoryAppServices.GetAll(cancellationToken);
@@ -72,6 +73,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                         BasePrice = productViewModel.Product.BasePrice,
                         Pictures = productViewModel.Product.Pictures,
                         CategoryId = productViewModel.Product.CategoryId,
+                        CreatedBy = CurrentUserId,
                     };
 
                     var result = await _productAppServices.Create(productAppService, CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
@@ -82,7 +84,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     }
                     else if (result > 0)
                     {
-                        return RedirectToAction("ProductController", "Create");
+                        return RedirectToAction("Product", "Create");
                     }
 
                 }
@@ -97,6 +99,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> ParentCategories(CancellationToken cancellationToken)
         {
+            ViewBag.BoothId = CurrentBoothId;
             var Categories = await _categoryAppServices.GetAll(cancellationToken);
             var CategoriesViewModel = Categories.Select(c => new ParentCategoriesViewModel
             {
