@@ -18,17 +18,25 @@ namespace App.Infra.Data.Repos.Ef.Users
             _context = context;
         }
 
-        public async Task Create(WageCreateDto WageCreate, CancellationToken cancellationToken)
+        public async Task Create(List<WageCreateDto> WagesCreate, CancellationToken cancellationToken,bool saveChange = true)
         {
-            var newrecord = new Wage
+            foreach (var WageCreate in WagesCreate)
             {
-                OrderitemId = WageCreate.OrderitemId,
-                FeePercenteage = WageCreate.FeePercenteage,
-                WageAmount = WageCreate.WageAmount
-            };
+                var newrecord = new Wage
+                {
+                    OrderitemId = WageCreate.OrderitemId,
+                    FeePercenteage = WageCreate.FeePercenteage,
+                    WageAmount = WageCreate.WageAmount
+                };
 
-            await _context.Wages.AddAsync(newrecord, cancellationToken);
-            var result = await _context.SaveChangesAsync(cancellationToken);
+                await _context.Wages.AddAsync(newrecord, cancellationToken);
+
+            }
+
+            if (saveChange)
+            {
+             await _context.SaveChangesAsync(cancellationToken);
+            }
         }
 
         public async Task<List<WageOutputDto>> GetAll(CancellationToken cancellationToken)

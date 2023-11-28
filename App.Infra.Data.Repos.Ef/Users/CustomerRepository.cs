@@ -61,7 +61,7 @@ public class CustomerRepository : ICustomerRepository
     public async Task<CustomerOutputDto> GetDetail(int customerId, CancellationToken cancellationToken)
     {
         var customerUser = await _context.Customers
-            .Include(a => a.ProfilePic)
+            .Include(a => a.Address)
             .Include(a => a.AppUser)
             .FirstOrDefaultAsync(a => a.Id == customerId && a.AppUser.IsDeleted == false, cancellationToken);
 
@@ -75,7 +75,7 @@ public class CustomerRepository : ICustomerRepository
                 Sexuality = customerUser.Sexuality,
                 Birthdate = customerUser.Birthdate,
                 Wallet = customerUser.Wallet,
-                ProfilePic = customerUser.ProfilePic,
+                Address = customerUser.Address,
                 AppUser = customerUser.AppUser
             };
             return customerrecord;
@@ -99,20 +99,22 @@ public class CustomerRepository : ICustomerRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken)
+    public async Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken,bool saveChanges = true)
     {
         var customerRecord = await _context.Customers
         .FirstOrDefaultAsync(x => x.Id == customerUpdate.Id, cancellationToken);
         if (customerRecord != null)
         {
-            customerRecord.FirstName = customerUpdate.Firstname;
-            customerRecord.LastName = customerUpdate.Lastname;
-            customerRecord.Sexuality = customerUpdate.Sexuality;
-            customerRecord.ProfilePicId = customerUpdate.ProfilePicId;
-            customerRecord.Birthdate = customerUpdate.Birthdate;
-            customerRecord.Wallet = customerUpdate.Wallet;
+            customerRecord.FirstName = customerUpdate.Firstname != null ? customerUpdate.Firstname: customerRecord.FirstName;
+            customerRecord.LastName = customerUpdate.Lastname != null ? customerUpdate.Lastname : customerRecord.LastName;
+            customerRecord.Birthdate = customerUpdate.Birthdate != null ? customerUpdate.Birthdate : customerRecord.Birthdate;
+            customerRecord.Wallet = customerUpdate.Wallet != null ? customerUpdate.Wallet : customerRecord.Wallet;
+            customerRecord.Address = customerUpdate.Address != null ? customerUpdate.Address : customerRecord.Address;
         }
-        await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
 

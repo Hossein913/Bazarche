@@ -38,6 +38,26 @@ public class BoothProductRepository : IBoothProductRepository
         var result = await _context.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task<List<BoothProductOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken)
+    {
+            var boothProductRecord = await _context.BoothProducts
+            .AsNoTracking()
+            .Include(bp => bp.Booth)
+            .ThenInclude(b => b.Medal)
+            .Where( p => p.ProductId == ProductId && p.IsDeleted == false )
+             .Select<BoothProduct, BoothProductOutputDto>(c => new BoothProductOutputDto
+                {
+                 Id = c.Id,
+                 Price = c.Price,
+                 Count = c.Count,
+                 Status = c.Status,
+                 CreatedAt = c.CreatedAt,
+                 Booth = c.Booth
+
+             }).ToListAsync(cancellationToken);
+            return boothProductRecord;
+    }
+
 
     // ------- Attention --> Boothproducts are not seprated entities therefor the shoulde load with its product
     //public async Task<List<BoothProductOutputDto>> GetAllForBooth(int boothId, CancellationToken cancellationToken)
@@ -63,11 +83,6 @@ public class BoothProductRepository : IBoothProductRepository
     //}
 
     //------Attention --> Product price is part of a product properties therefor it should be inside the product
-
-    //public Task<List<BoothProductOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken)
-    //{
-    //    throw new NotImplementedException();
-    //}
 
     //public Task<BoothProductOutputDto> GetDetail(int boothProductId, CancellationToken cancellationToken)
     //{

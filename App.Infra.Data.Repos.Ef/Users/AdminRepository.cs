@@ -23,18 +23,19 @@ public class AdminRepository : IAdminRepository
     //    throw new NotImplementedException();
     //}
 
-    public async Task<AdminOutputDto> GetDetail(int adminId, CancellationToken cancellationToken)
+    public async Task<AdminOutputDto> GetDetail(CancellationToken cancellationToken)
     {
 
         var adminUser = await _context.Admins
             .Include(a => a.ProfilePic)
             .Include(a => a.AppUser)
-            .FirstOrDefaultAsync(a => a.Id == adminId && a.AppUser.IsDeleted == false, cancellationToken);
+            .FirstOrDefaultAsync(cancellationToken);
 
         if (adminUser != null)
         {
             var adminrecord = new AdminOutputDto
             {
+                Id = adminUser.Id,
                 Firstname = adminUser.FirstName,
                 Lastname = adminUser.LastName,
                 Birthdate = adminUser.Birthdate,
@@ -64,20 +65,24 @@ public class AdminRepository : IAdminRepository
     //    await _context.SaveChangesAsync(cancellationToken);
     //}
 
-    public async Task Update(AdminUpdateDto adminUpdate, CancellationToken cancellationToken)
+    public async Task Update(AdminUpdateDto adminUpdate, CancellationToken cancellationToken,bool saveChange = true)
     {
         var AdminRecord = await _context.Admins
             .FirstOrDefaultAsync(x => x.Id == adminUpdate.Id,cancellationToken);
         if (AdminRecord != null)
         {
-            AdminRecord.FirstName = adminUpdate.Firstname;
-            AdminRecord.LastName = adminUpdate.Lastname;
-            AdminRecord.ProfilePicId = adminUpdate.ProfilePicId;
-            AdminRecord.Birthdate = adminUpdate.Birthdate;
-            AdminRecord.Wallet = adminUpdate.Wallet;
-            AdminRecord.ShabaNumber = adminUpdate.ShabaNumber;
+            AdminRecord.FirstName = adminUpdate.Firstname != null ? adminUpdate.Firstname : AdminRecord.FirstName;
+            AdminRecord.LastName = adminUpdate.Lastname  != null ? adminUpdate.Lastname : AdminRecord.LastName;
+            AdminRecord.ProfilePicId = adminUpdate.ProfilePicId  != null ? adminUpdate.ProfilePicId : AdminRecord.ProfilePicId;
+            AdminRecord.Birthdate = adminUpdate.Birthdate  != null ? adminUpdate.Birthdate : AdminRecord.Birthdate;
+            AdminRecord.Wallet = adminUpdate.Wallet  != null ? adminUpdate.Wallet : AdminRecord.Wallet;
+            AdminRecord.ShabaNumber = adminUpdate.ShabaNumber  != null ? adminUpdate.ShabaNumber : AdminRecord.ShabaNumber;
         }
-        await _context.SaveChangesAsync(cancellationToken);
+        
+        if (saveChange)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
 

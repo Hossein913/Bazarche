@@ -60,6 +60,8 @@ public class SellerRepository : ISellerRepository
         var sellerUser = await _context.Sellers
             .Include(a => a.ProfilePic)
             .Include(a => a.AppUser)
+            .Include(a => a.Address)
+            .ThenInclude(ad => ad.Province)
             .FirstOrDefaultAsync(a => a.AppUserId == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
 
         if (sellerUser != null)
@@ -71,7 +73,7 @@ public class SellerRepository : ISellerRepository
                 Firstname = sellerUser.FirstName,
                 Lastname = sellerUser.LastName,
                 Birthdate = sellerUser.Birthdate,
-                AddressId = sellerUser.AddressId,
+                Address = sellerUser.Address,
                 ShabaNumber = sellerUser.ShabaNumber,
                 ProfilePic = sellerUser.ProfilePic,
                 AppUser = sellerUser.AppUser,

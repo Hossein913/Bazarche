@@ -86,6 +86,7 @@ public class ProductRepository : IProductRepository
         return result;
     }
 
+    //-------BoothProduct are list to show the Price hostory in seller panel
     public async Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
     {
         var result = await _context.Products
@@ -112,7 +113,7 @@ public class ProductRepository : IProductRepository
         var result = await _context.Products
             .AsNoTracking()
             //.Where(p => p.IsDeleted == false && p.BoothProducts.Any(bp => bp.BoothId == BoothId))
-            .Where(p => p.IsDeleted == false && ProductPrice.Any(pp => pp.Keys.Equals(p.Id)))
+            .Where(p => p.IsDeleted == false && p.IsConfirmed == true && ProductPrice.Any(pp => pp.Keys.Equals(p.Id)))
             .Select<Product, ProductOutputDto>(c => new ProductOutputDto
             {
                 Id = c.Id,
@@ -122,7 +123,6 @@ public class ProductRepository : IProductRepository
                 Grantee = c.Grantee,
                 Description = c.Description,
                 BoothProducts = c.BoothProducts.Where( bp => ProductPrice.Any(pp => pp.Values.Equals(bp.Id))).ToList(),
-                IsConfirmed = c.IsConfirmed,
 
             }).ToListAsync(cancellationToken);
         return result;
@@ -141,7 +141,9 @@ public class ProductRepository : IProductRepository
                 Avatar = c.Pictures.FirstOrDefault().ImageUrl,
                 Grantee = c.Grantee,
                 Description = c.Description,
-
+                IsConfirmed = c.IsConfirmed,
+                MaxPrice = c.BoothProducts.Max(p => p.Price) >= c.BasePrice ? c.BoothProducts.Max(p => p.Price) : c.BasePrice,
+                MinPrice = c.BoothProducts.Min(p => p.Price) >= c.BasePrice ? c.BoothProducts.Min(p => p.Price) : c.BasePrice
             }).ToListAsync(cancellationToken);
         return result;
     }
@@ -151,8 +153,6 @@ public class ProductRepository : IProductRepository
         var product = await _context.Products
             .Include(p => p.Pictures)
             .Include(p => p.Comments.Where(c => c.IsConfirmed == true))
-            .Include(p => p.BoothProducts)
-            .ThenInclude(bp => bp.Booth)
             .FirstOrDefaultAsync(p => p.Id ==productId && p.IsDeleted == false, cancellationToken);
 
         if (product != null)
@@ -168,15 +168,13 @@ public class ProductRepository : IProductRepository
                 IsConfirmed = product.IsConfirmed,
                 BasePrice = product.BasePrice,
                 Pictures = product.Pictures,
-                BoothProducts = product.BoothProducts.ToList(),
                 Comments = product.Comments
             };
             return productrecord;
         }
-        else 
-        {
+
             return null;
-        }
+
 
     }
 

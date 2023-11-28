@@ -1,9 +1,11 @@
 ﻿using App.Domain.Core._Common.Contracts.Repositories;
 using App.Domain.Core._Common.Dtos.PictureDtos;
 using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Products.Dtos.BidDtos;
 using App.Domain.Core._Products.Entities;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace App.Infra.Data.Repos.Ef.Commons;
 
@@ -29,6 +31,19 @@ public class PictureRepository : IPictureRepository
         if (result != 0)
             return newPicture.Id;
         return 0;
+    }
+
+    public async Task<PictureOutputDto> GetDetails(int pictureId, CancellationToken cancellationToken)
+    {
+        var pictureRecord = await _context.Pictures
+        .FirstOrDefaultAsync(p => p.Id == pictureId);
+        PictureOutputDto pictureOutput = new PictureOutputDto
+        {
+            ImageUrl = pictureRecord.ImageUrl,
+            CreatedBy = pictureRecord.CreatedBy,
+            CreatedAt = pictureRecord.CreatedAt,
+        };
+        return pictureOutput;
     }
 
     public async Task HardDeleted(int pictureId, CancellationToken cancellationToken)
