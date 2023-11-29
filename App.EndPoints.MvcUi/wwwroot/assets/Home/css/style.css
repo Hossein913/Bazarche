@@ -17236,7 +17236,7 @@ h6,
     max-width: 290px;
     height: auto;
     margin: auto;
-    background-color: green;
+    background-color: darkred;
     color: #ffffff;
     text-align: center;
     border-radius: 2px;
@@ -54036,7 +54036,7 @@ h6,
     max-width: 290px;
     height: auto;
     margin: auto;
-    background-color: green;
+    background-color: rgb(178, 0, 0,0.80);
     color: #ffffff;
     text-align: center;
     border-radius: 2px;
@@ -80413,10 +80413,10 @@ h6,
 #addtocart_toast,
 #wishlist_toast {
     visibility: hidden;
-    max-width: 290px;
+    max-width: 350px;
     height: auto;
     margin: auto;
-    background-color: green;
+    background-color: rgba(200,0,0,0.80);
     color: #ffffff;
     text-align: center;
     border-radius: 2px;

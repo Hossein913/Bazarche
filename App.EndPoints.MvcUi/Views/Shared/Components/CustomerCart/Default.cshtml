@@ -1,7 +1,7 @@
 ﻿
 @model List<CustomerCartViewModel>;
 @inject FileUploadPathsDto FilePath;
-
+@inject SignInManager<AppUser> signInManager;
 
 
 <div class="ec-cart-top">
@@ -9,66 +9,78 @@
         <span class="cart_title">سبد خرید</span>
         <button class="ec-close">×</button>
     </div>
-    @if (Model.Count > 0)
+
+    @if (signInManager.IsSignedIn(User))
     {
-        @foreach (var item in Model)
+
+        @if (Model.Count > 0)
+        {
+            @foreach (var item in Model)
+            {
+                <ul class="eccart-pro-items">
+                    <li>
+                        <a href="product-left-sidebar.html" class="sidecart_pro_img">
+                            <img src="~/@FilePath.Product/@item.ProductPictureUrl" alt="product" />
+                        </a>
+                        <div class="ec-pro-content">
+                            <a href="single-product-left-sidebar.html"
+                            class="cart_pro_title">@item.ProductName</a>
+                            <span class="cart-price"><span>@item.price تومان</span> x 1</span>
+                            <div class="qty-plus-minus">
+                                <input class="qty-input"
+                                type="text"
+                                name="ec_qtybtn"
+                                value="1" />
+                            </div>
+                            <a href="#" class="remove">×</a>
+                        </div>
+                    </li>
+                </ul>
+            }
+
+        }
+        @if (Model.Count == 0)
         {
             <ul class="eccart-pro-items">
                 <li>
-                    <a href="product-left-sidebar.html" class="sidecart_pro_img">
-                        <img src="~/@FilePath.Product/@item.ProductPictureUrl" alt="product" />
-                    </a>
+
                     <div class="ec-pro-content">
-                        <a href="single-product-left-sidebar.html"
-                        class="cart_pro_title">@item.ProductName</a>
-                        <span class="cart-price"><span>@item.price تومان</span> x 1</span>
-                        <div class="qty-plus-minus">
-                            <input class="qty-input"
-                            type="text"
-                            name="ec_qtybtn"
-                            value="1" />
-                        </div>
-                        <a href="#" class="remove">×</a>
+                        <a class="cart_pro_title"> سبد خرید شما خالی است.</a>
                     </div>
                 </li>
             </ul>
+
         }
-    }
-    @if (Model.Count == 0)
-    {
-        <ul class="eccart-pro-items">
-            <li>
-
-                <div class="ec-pro-content">
-                    <a class="cart_pro_title"> سبد خرید شما خالی است.</a>
-                </div>
-            </li>
-        </ul>
 
     }
-
- </div>
-
-
-
-    @if (Model.Count > 0)
+    else
     {
-    <div class="ec-cart-bottom">
-        @*     <div class="cart-sub-total">
-            <table class="table cart-table">
-                <tbody>
-                    <tr>
-                        <td class="text-left">کل:</td>
-                        <td class="text-right primary-color">36000 تومان</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>*@
-
-        <div class="cart_btn">
-            <a href="cart.html" class="btn btn-primary">مشاهده سبد خرید</a>
-            <a asp-controller="Cart" asp-action="Payment" class="btn btn-secondary"> پرداخت  </a>
+        <div class="ec-pro-content">
+            <a class="cart_pro_title"> برای افزودن محصول به سبد خرید ابتدا وارد حساب خود شوید.</a>
         </div>
-    </div>   
+    }
+</div>
+
+
+
+    @if (signInManager.IsSignedIn(User)&& Model.Count > 0)
+    {
+         <div class="ec-cart-bottom">
+             @*     <div class="cart-sub-total">
+                 <table class="table cart-table">
+                     <tbody>
+                         <tr>
+                             <td class="text-left">کل:</td>
+                             <td class="text-right primary-color">36000 تومان</td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>*@
+
+             <div class="cart_btn">
+                 <a href="cart.html" class="btn btn-primary">مشاهده سبد خرید</a>
+                 <a asp-controller="Cart" asp-action="Payment" class="btn btn-secondary"> پرداخت  </a>
+             </div>
+         </div>   
         
-}
+    }

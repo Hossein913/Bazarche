@@ -1,6 +1,6 @@
 ﻿@model ProductViewModel;
 @inject FileUploadPathsDto filePath;
-
+@inject SignInManager<AppUser> signInManager;
 @{
     ViewData["Title"] = "ProductfullPage";
 }
@@ -83,7 +83,13 @@
                                         </div>
                                             <div class="m-2 ec-single-qty col-3">
                                                      <div class="ec-single-cart ">
-                                                    <a asp-controller="Cart" asp-action="CreateOrderItem" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
+                                                         @if (signInManager.IsSignedIn(User))
+                                                         {
+                                                            <a asp-controller="Cart" asp-action="CreateOrderItem" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
+                                                         }
+                                                            <a href="javascript:void(0)" title="افزودن به کارت"
+                                                       class="ec-btn-group add-to-cart btn btn-lg btn-primary" type="submit">افزودن به سبد خرید</a>
+
                                                      </div>
 
 @*                                                     <div class=" qty-plus-minus">

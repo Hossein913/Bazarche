@@ -160,13 +160,10 @@ function ecCheckCookie() {
     }), e(".ec-remove-compare").on("click", function () {
         e(this).parents(".pro-gl-content").remove(), 0 == e(".pro-gl-content").length && e(".ec-compare-rightside").html('<p class="emp-wishlist-msg">Your Compare list is empty!</p>')
     }), e("body").on("click", ".add-to-cart", function () {
-        e(".ec-cart-float").fadeIn();
-        var t = e(".cart-count-lable").html();
-        t++, e(".cart-count-lable").html(t), e(".emp-cart-msg").parent().remove(), setTimeout(function () {
+          e(".emp-cart-msg").parent().remove(), setTimeout(function () {
             e(".ec-cart-float").fadeOut()
         }, 5e3);
-        var o = '<li><a href="product-left-sidebar.html" class="sidekka_pro_img"><img src="' + e(this).parents().parents().children(".image").find(".main-image").attr("src") + '" alt="product"></a><div class="ec-pro-content"><a href="product-left-sidebar.html" class="cart_pro_title">' + e(this).parents().parents().parents().children(".ec-pro-content").children("h5").children("a").html() + '</a><span class="cart-price"><span>' + e(this).parents().parents().parents().children(".ec-pro-content").children(".ec-price").children(".new-price").html() + '</span> x 1</span><div class="qty-plus-minus"><div class="dec ec_qtybtn">-</div><input class="qty-input" type="text" name="ec_qtybtn" value="1"><div class="inc ec_qtybtn">+</div></div><a href="javascript:void(0)" class="remove">×</a></div></li>';
-        e(".eccart-pro-items").append(o)
+
     }), o = e(".ec-side-toggle"), s = e(".ec-side-cart"), i = e(".mobile-menu-toggle"), o.on("click", function (t) {
         t.preventDefault();
         var o = e(this),
@@ -649,7 +646,7 @@ function ecCheckCookie() {
 
     function v(t, o) {
         e("body").removeClass("body-bg-1"), e("body").removeClass("body-bg-2"), e("body").removeClass("body-bg-3"), e("body").removeClass("body-bg-4"), e("body").addClass(o), e("#bg-switcher-css").attr("href", "assets/css/backgrounds/" + t + ".css"), ecCreateCookie("bgImageModeCookie", t + "||" + o, 1)
-    }
+    }button.add-to-cart
     e(".cart-qty-plus-minus").append('<div class="ec_cart_qtybtn"><div class="inc ec_qtybtn">+</div><div class="dec ec_qtybtn">-</div></div>'), e(".cart-qty-plus-minus .ec_cart_qtybtn .ec_qtybtn").on("click", function () {
         var t = e(this),
             o = t.parent().parent().find("input").val();
