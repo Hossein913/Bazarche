@@ -1,5 +1,6 @@
 ﻿
 @inject SignInManager<AppUser> signInManager;
+@inject UserManager<AppUser> userManager;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -233,16 +234,22 @@
                                     </ul>
                                 </div>
                                 <!-- Header User End -->
-
-                                <!-- Header Cart Start -->
-                                <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
-                                    <div class="header-icon">
-                                        <img src="~/assets/Home/images/icons/cart.svg"
-                                             class="svg_img header_svg"
-                                             alt="" />
-                                    </div>
-                                </a>
-                                <!-- Header Cart End -->
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                                    if (await userManager.IsInRoleAsync(userManager.GetUserAsync(User).Result, "Customer"))
+                                    {
+                                        
+                                        <!-- Header Cart Start -->
+                                        <a href="#ec-side-cart" class="ec-header-btn ec-side-toggle">
+                                            <div class="header-icon">
+                                                <img src="~/assets/Home/images/icons/cart.svg"
+                                                     class="svg_img header_svg"
+                                                     alt="" />
+                                            </div>
+                                        </a>
+                                        <!-- Header Cart End -->
+                                    }
+                                }
 
                             </div>
                         </div>
