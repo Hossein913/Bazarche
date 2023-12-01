@@ -85,7 +85,7 @@
                                                      <div class="ec-single-cart ">
                                                          @if (signInManager.IsSignedIn(User))
                                                          {
-                                                            <a asp-controller="Cart" asp-action="CreateOrderItem" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
+                                                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
                                                          }
                                                             <a href="javascript:void(0)" title="افزودن به کارت"
                                                        class="ec-btn-group add-to-cart btn btn-lg btn-primary" type="submit">افزودن به سبد خرید</a>
@@ -129,21 +129,12 @@
                             <div id="ec-spt-nav-details" class="tab-pane fade show active">
                                 <div class="ec-single-pro-tab-desc">
                                     <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                        طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که
-                                        لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع
-                                        با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته،
-                                        حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت
-                                        بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی
-                                        و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام
-                                        و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد
-                                        نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته
-                                        اهل دنیای موجود طراحی اساسا
+                                        @Model.InformationDetails
                                     </p>
                                     <ul>
                                         <li> هر نوع محصول که می خواهید - ساده، قابل تنظیم </li>
-                                        <li> محصولات الکترونیکی و دیجیتال قابل دانلود</li>
-                                        <li> مدیریت موجودی با موارد نخصصی</li>
+                                        <li> محصولات الکترونیکی و دیجیتال</li>
+                                        <li> مدیریت موجودی</li>
                                         <li> موجود در تمامی شعبه ها</li>
                                     </ul>
                                 </div>
@@ -151,105 +142,60 @@
                             <div id="ec-spt-nav-info" class="tab-pane fade">
                                 <div class="ec-single-pro-tab-moreinfo">
                                     <ul>
-                                        <li><span>وزن</span> 1000 گرم</li>
-                                        <li><span>ابعاد</span> 35 × 30 × 7 cm</li>
-                                        <li><span>رنگ</span> سیاه، صورتی، قرمز، سفید</li>
+                                        <li><span>@Model.IncludedComponents</span></li>
+
                                     </ul>
                                 </div>
                             </div>
 
                             <div id="ec-spt-nav-review" class="tab-pane fade">
                                 <div class="row">
+                                    <!--بخش نمایش نظرات مشتریان-->
                                     <div class="ec-t-review-wrapper">
-                                        <div class="ec-t-review-item">
-                                            <div class="ec-t-review-avtar">
-                                                <img src="~/assets/Home/images/review-image/1.jpg" alt="">
-                                            </div>
-                                            <div class="ec-t-review-content">
-                                                <div class="ec-t-review-top">
-                                                    <div class="ec-t-review-name">جانان دارا</div>
-                                                    <div class="ec-t-review-rating">
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star-o"></i>
+                                        @if (Model.Comments.Count != 0)
+                                        { 
+                                            @foreach (var item in Model.Comments)
+                                            {
+                                                    <p>
+                                                        @item.CreatedAt <hr/>
+                                                    </p>
+                                            <div class="ec-t-review-item">
+                                                <div class="ec-t-review-avtar">
+                                                    <img src="~/assets/Home/images/review-image/1.jpg" alt="">
+                                                </div>
+                                                <div class="ec-t-review-content">
+                                                        <div class="ec-t-review-name">@item.Customer.FirstName @item.Customer.LastName </div>
+                                                    <div class="ec-t-review-bottom">
+                                                        <p>
+                                                            @item.Text
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <div class="ec-t-review-bottom">
-                                                    <p>
-                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                                                        با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                                                        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                        تکنولوژی مورد نیاز
-                                                        و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                        فراوان جامعه و متخصصان را می طلبد
-                                                    </p>
-                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="ec-t-review-item">
-                                            <div class="ec-t-review-avtar">
-                                                <img src="~/assets/Home/images/review-image/2.jpg" alt="">
-                                            </div>
-                                            <div class="ec-t-review-content">
-                                                <div class="ec-t-review-top">
-                                                    <div class="ec-t-review-name">لیندا کیانی</div>
-                                                    <div class="ec-t-review-rating">
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star-o"></i>
-                                                        <i class="ecicon eci-star-o"></i>
+                                                
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="ec-t-review-item">
+                                                <div class="ec-t-review-content">
+
+                                                    <div class="ec-t-review-bottom">
+                                                        <p>
+                                                            هنوز خریداری بازخود خود را ثبت نکرده است.
+                                                        </p>
                                                     </div>
                                                 </div>
-                                                <div class="ec-t-review-bottom">
-                                                    <p>
-                                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و
-                                                        با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه
-                                                        و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                                        تکنولوژی مورد نیاز
-                                                        و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                                        کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت
-                                                        فراوان جامعه و متخصصان را می طلبد
-                                                    </p>
-                                                </div>
                                             </div>
-                                        </div>
+                                        }
 
                                     </div>
-                                    <div class="ec-ratting-content">
-                                        <h3>افزودن نظر</h3>
-                                        <div class="ec-ratting-form">
-                                            <form action="#">
-                                                <div class="ec-ratting-star">
-                                                    <span>امتیاز شما:</span>
-                                                    <div class="ec-t-review-rating">
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star fill"></i>
-                                                        <i class="ecicon eci-star-o"></i>
-                                                        <i class="ecicon eci-star-o"></i>
-                                                        <i class="ecicon eci-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="ec-ratting-input">
-                                                    <input name="your-name" placeholder="نام" type="text">
-                                                </div>
-                                                <div class="ec-ratting-input">
-                                                    <input name="your-email" placeholder="ایمیل" type="email"
-                                                           required="">
-                                                </div>
-                                                <div class="ec-ratting-input form-submit">
-                                                    <textarea name="your-commemt" placeholder="نظر شما"></textarea>
-                                                    <button class="btn btn-primary" type="submit"
-                                                            value="Submit">
-                                                        ارسال
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
+                                       
+                                        <!--بخش نمایش نظرات مشتریان پایان-->
+
+
+
+
                                 </div>
                             </div>
                         </div>

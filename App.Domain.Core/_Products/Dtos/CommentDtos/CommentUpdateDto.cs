@@ -18,21 +18,21 @@ public class CommentUpdateDto
 
     public int? PictureId { get; set; }
 
-    public string Text { get; set; } = null!;
+    public string? Text { get; set; } = null!;
 
-    public DateTime CreatedAt { get; set; }
+    //public DateTime CreatedAt { get; set; }
 
-    public bool IsConfirmed { get; set; }
+    public bool? IsConfirmed { get; set; }
 
-    public bool IsDeleted { get; set; }
+    //public bool IsDeleted { get; set; }
 
 
     #region Navigation properties
-    public virtual Customer? Customer { get; set; } = null!;
+    //public virtual Customer? Customer { get; set; } = null!;
 
-    public virtual Product? Product { get; set; } = null!;
+    //public virtual Product? Product { get; set; } = null!;
 
-    public virtual OrderItem OrderItem { get; set; } = null!;
+    //public virtual OrderItem OrderItem { get; set; } = null!;
 
     public virtual Picture Picture { get; set; } = null!;
     #endregion

@@ -4,6 +4,7 @@ using App.Domain.AppServices.User;
 using App.Domain.Core._Booth.Contracts.AppServices;
 using App.Domain.Core._Booth.Contracts.Repositories;
 using App.Domain.Core._Booth.Contracts.Services;
+using App.Domain.Core._Common.Contracts.AppServices;
 using App.Domain.Core._Common.Contracts.Repositories;
 using App.Domain.Core._Common.Contracts.Services;
 using App.Domain.Core._Common.Dtos.AppSettingDtos;
@@ -101,14 +102,14 @@ builder.Services.AddScoped<IBoothAppServices, BoothAppServices>();
 //builder.Services.AddScoped<IMedalServices, MedalServices>();
 
 ////--Commons
-//builder.Services.AddScoped<IPictureServices, PictureServices>();
+//builder.Services.AddScoped<IPictureAppServices, PictureAppServices>();
 
 ////--Products
     builder.Services.AddScoped<IAuctionAppServices, AuctionAppServices>();
-//builder.Services.AddScoped<IBidServices, BidServices>();
-//builder.Services.AddScoped<IBoothProductServices, BoothProductServices>();
+//builder.Services.AddScoped<IBidAppServices, BidAppServices>();
+builder.Services.AddScoped<IBoothProductServices, BoothProductServices>();
 builder.Services.AddScoped<ICategoryAppServices, CategoryAppServices>();
-//builder.Services.AddScoped<ICommentAppServices, CommentAppServices>();
+builder.Services.AddScoped<ICommentAppServices, CommentAppServices>();
 builder.Services.AddScoped<IOrderItemAppServices, OrderItemAppServices>();
 builder.Services.AddScoped<IOrderAppServices, OrderAppServices>();
 builder.Services.AddScoped<IProductAppServices, ProductAppServices>();
@@ -155,7 +156,7 @@ builder.Services.Configure<IdentityOptions>(option =>
 builder.Services.ConfigureApplicationCookie(option =>
 {
     // cookie setting
-    option.ExpireTimeSpan = TimeSpan.FromMinutes(10);
+    option.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
     option.LoginPath = "/Authenticate/login";
     option.AccessDeniedPath = "/Home/Index";

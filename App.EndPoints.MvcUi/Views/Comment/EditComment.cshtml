@@ -1,0 +1,56 @@
+﻿@model UpdateCommentViewModel;
+
+@{
+    ViewData["Style"] = "Style.css";
+}
+
+
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5> ویرایش نظر</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary"
+                               asp-controller="Comment"
+                               asp-action="GetAll">بازگشت  </a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+
+                            <!--افزودن نظر-->
+                            <div class="ec-ratting-content">
+                                <div class="ec-ratting-form">
+                                    <form asp-controller="Comment" asp-action="EditComment" method="post">
+                                        @Html.HiddenFor(m => m.Id)
+                                        <div class="ec-ratting-input form-submit">
+                                            <textarea asp-for="@Model.Text" placeholder="نظر شما"></textarea>
+                                            <button class="btn btn-primary" type="submit"
+                                                    value="Submit">
+                                                ارسال
+                                            </button>
+                                            <span class="new-price">نظر شما بعد از تایید مدیر در صفحه محصول نمایش داده خواهد شد.</span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--افزودن نظر-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End User history section -->

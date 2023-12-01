@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Entities;
 
 namespace App.EndPoints.MvcUi.Models.Home
@@ -40,7 +41,7 @@ namespace App.EndPoints.MvcUi.Models.Home
         #region Navigation properties
         //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual List<CommentOutputDto> Comments { get; set; }
 
         public virtual ICollection<Picture>? Pictures { get; set; }
 

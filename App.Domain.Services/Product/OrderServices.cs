@@ -32,6 +32,12 @@ public class OrderServices : IOrderServices
             return result;
     }
 
+    //public async Task<int> GetCustomerOrdreItemByProductId(int customerId, int productId, CancellationToken cancellationToken)
+    //{
+    //    var result = await _orderRepository.GetOrderItemsByCustomerAndProductId(customerId, productId, cancellationToken);
+    //    return result;
+    //}
+
     public async Task SoftDelete(int orderId, CancellationToken cancellationToken)
     {
         await _orderRepository.SoftDelete(orderId, cancellationToken);

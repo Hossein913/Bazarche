@@ -15,17 +15,23 @@ namespace App.Domain.AppServices.Product
     public class OrderItemAppServices : IOrderItemAppServices
     {
         protected readonly IOrderItemServices _orderItemServices;
+        protected readonly IBoothProductServices _boothProductServices;
         protected readonly IProductServices  _productServices;
 
 
-        public OrderItemAppServices(IOrderItemServices orderItemServices, IProductServices productServices)
+        public OrderItemAppServices(
+            IOrderItemServices orderItemServices,
+            IProductServices productServices, 
+            IBoothProductServices boothProductServices)
         {
             this._orderItemServices = orderItemServices;
             _productServices = productServices;
+            _boothProductServices = boothProductServices;
         }
 
         public async Task Create(OrderItemCreateDto orderItem, CancellationToken cancellationToken)
         {
+            orderItem.ProductId = await _boothProductServices.GetProductIdAsync(orderItem.Id,cancellationToken);
            await  _orderItemServices.Create(orderItem, cancellationToken);
         }
 
@@ -46,6 +52,7 @@ namespace App.Domain.AppServices.Product
             orderItems.ForEach(x => {
                 ProductsId.Add(x.BoothProduct.ProductId);
             });
+
             var products = await _productServices.GetAllWithIdList(ProductsId,cancellationToken);
 
             orderItems.ForEach(
@@ -57,8 +64,9 @@ namespace App.Domain.AppServices.Product
                         Brand = productOutputDto.Brand,
                         Pictures = new List<Picture> { 
                             new Picture { ImageUrl = productOutputDto.Avatar }
-                        }   ,
-                    };});
+                        }
+                    };}
+                );
 
 
                 return orderItems;
@@ -68,11 +76,16 @@ namespace App.Domain.AppServices.Product
         {
             throw new NotImplementedException();
         }
-
-        public async Task<List<int>> GetPopularOrderedProductsId(int countOfProduct, CancellationToken cancellationToken)
+        public Task<OrderItemOutputDto> GetDetail(int OrderItemId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = _orderItemServices.GetDetail(OrderItemId, cancellationToken);
+            return result;
         }
+
+        //public async Task<List<int>> GetPopularOrderedProductsId(int countOfProduct, CancellationToken cancellationToken)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public async Task HardDelete(int BoothProductId, CancellationToken cancellationToken)
         {
@@ -83,5 +96,7 @@ namespace App.Domain.AppServices.Product
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

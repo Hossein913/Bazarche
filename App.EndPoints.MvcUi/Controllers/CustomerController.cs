@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
+using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Dtos.OrderItemDtos;
 using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Dtos.CustomersDtos.CustomerAppServiceDto;
@@ -13,6 +14,7 @@ namespace App.EndPoints.MvcUi.Controllers
         protected readonly IOrderAppServices _orderAppServices;
         protected readonly IOrderItemAppServices _orderItemAppServices;
         protected readonly ICustomerAppServices _customerAppServices;
+        protected readonly ICommentAppServices _commentAppServices;
 
         public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices)
         {
@@ -47,6 +49,7 @@ namespace App.EndPoints.MvcUi.Controllers
                 price = oi.BoothProduct.Price,
                 count = oi.BoothProduct.Count,
                 ProductName = oi.BoothProduct.Product.Name,
+                ProductId= oi.BoothProduct.Product.Id,
                 Productbrand = oi.BoothProduct.Product.Brand,
                 ProductPictureUrl = oi.BoothProduct.Product.Pictures.FirstOrDefault().ImageUrl,
 
@@ -87,26 +90,6 @@ namespace App.EndPoints.MvcUi.Controllers
             };
             await _customerAppServices.Update(customerAppServiceDto, cancellationToken);
             return RedirectToAction("Profile", "Customer");
-        }
-
-
-
-        //[HttpGet]
-        //public async Task<ActionResult> CreateComment(int orderItemId,CancellationToken cancellationToken)
-        //{
-        //    var customer = await _customerAppServices.GetDetail(CurrentCustomerId, cancellationToken);
-        //    var Orderitem = await _customerAppServices.GetDetail(CurrentCustomerId, cancellationToken);
-        //    CommentViewModel commentView = new CommentViewModel
-        //    {
-        //      CustomerFullName = customer.Firstname + customer.Lastname
-        //    };
-        //    return View(commentView);
-        //}
-
-        [HttpPost]
-        public async Task<ActionResult> DeleteComment(int id)
-        {
-            return View();
         }
 
     }

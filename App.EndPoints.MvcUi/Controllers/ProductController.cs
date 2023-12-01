@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Booth.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.AppServices;
+using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
@@ -108,7 +109,7 @@ namespace App.EndPoints.MvcUi.Controllers
                 InformationDetails = product.InformationDetails,
                 Description = product.Description,
                 IncludedComponents = product.IncludedComponents,
-                Comments = product.Comments,
+                Comments = product.Comments.ToList(),
                 Pictures = product.Pictures,
                 BoothProducts = product.BoothProducts
                       .OrderBy(p => p.Price)

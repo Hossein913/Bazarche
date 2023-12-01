@@ -1,6 +1,5 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Dtos.OrderDtos;
-using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
@@ -73,6 +72,23 @@ public class OrderRepository : IOrderRepository
         }).ToListAsync(cancellationToken);
         return result;
     }
+
+    //public async Task<int> GetOrderItemsByCustomerAndProductId(int customerId,int productId, CancellationToken cancellationToken)
+    //{
+    //    var orderItemCollection = await _context.Orders
+    //        .Where(o => o.CustomerId == customerId )
+    //        .Select(o => o.OrderItems)
+    //        .FirstOrDefaultAsync(oic => oic.Any(oi => oi.ProductId== productId));
+
+    //    var orderItem = orderItemCollection.FirstOrDefault(oi  => oi.ProductId== productId);
+
+    //    if (orderItem != null)
+    //    { 
+    //        return orderItem.Id;
+    //    }
+
+    //    return 0;
+    //}
 
     //public Task<OrderOutputDto> GetDetail(int orderId, CancellationToken cancellationToken)
     //{

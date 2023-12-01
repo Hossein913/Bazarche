@@ -7,6 +7,7 @@
         public int price { get; set; }
 
         public int count { get; set; }
+        public int ProductId { get; set; }
 
         public string ProductName { get; set; }
 

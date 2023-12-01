@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Entities;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ public class ProductOutputDto
     #region Navigation properties
     //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
-    public virtual ICollection<Comment> Comments { get; set; }
+    public virtual ICollection<CommentOutputDto> Comments { get; set; }
 
     public virtual ICollection<Picture>? Pictures { get; set; }
 

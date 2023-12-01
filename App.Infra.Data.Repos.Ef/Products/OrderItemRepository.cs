@@ -70,7 +70,7 @@ public class OrderItemRepository : IOrderItemRepository
         var result = await _context.OrderItems
          .AsNoTracking()
          .Where(oi => oi.Order.Status == Convert.ToBoolean((int)OrderStatus.Payed))
-         .GroupBy(oi => oi.BoothProduct.ProductId)
+         .GroupBy(oi => oi.ProductId)
          .OrderBy(g => g.Count())
          .Take(countOfProduct)
          .Select(x => new { productId = x.Key })
@@ -80,10 +80,26 @@ public class OrderItemRepository : IOrderItemRepository
         return result;
     }
 
-    //public Task<OrderItemOutputDto> GetDetail(int OrderItemId, CancellationToken cancellationToken)
-    //{
-    //    throw new NotImplementedException();
-    //}
+    public async Task<OrderItemOutputDto> GetDetail(int OrderItemId, CancellationToken cancellationToken)
+    {
+        var OrderItem = await _context.OrderItems
+            .Include(oi => oi.BoothProduct)
+            .FirstOrDefaultAsync(oi => oi.Id == OrderItemId, cancellationToken);
+
+        if (OrderItem != null)
+        {
+            var orderItemRecord = new OrderItemOutputDto
+            {              
+                BoothProduct = OrderItem.BoothProduct,
+                ProductId = OrderItem.ProductId,
+                OrderId = OrderItem.OrderId
+            };
+            return orderItemRecord;
+        }
+
+        return null;
+
+    }
 
     public async Task HardDelete(int OrderItemId, CancellationToken cancellationToken)
     {
@@ -106,6 +122,7 @@ public class OrderItemRepository : IOrderItemRepository
         {
             OrderItemRecord.OrderId = orderItem.OrderId;
             OrderItemRecord.BoothProductid = orderItem.BoothProductid;
+            OrderItemRecord.ProductId = orderItem.ProductId;
             OrderItemRecord.Count = orderItem.Count;
             OrderItemRecord.IsActive = orderItem.IsActive;
 

@@ -27,10 +27,10 @@ public class OrderItemConfig : IEntityTypeConfiguration<OrderItem>
             .HasConstraintName("FK_OrderItems_Orders");
 
         entity.HasData(
-            new OrderItem { Id = 1, OrderId = 1, BoothProductid = 1, Count = 1, IsActive = true },
-            new OrderItem { Id = 2, OrderId = 2, BoothProductid = 3, Count = 1, IsActive = true },
-            new OrderItem { Id = 3, OrderId = 3, BoothProductid = 4, Count = 1, IsActive = true },
-            new OrderItem { Id = 4, OrderId = 4, BoothProductid = 6, Count = 1, IsActive = true }
+            new OrderItem { Id = 1, OrderId = 1, BoothProductid = 1, ProductId = 1,Count = 1, IsActive = true },
+            new OrderItem { Id = 2, OrderId = 2, BoothProductid = 3, ProductId = 8,Count = 1, IsActive = true },
+            new OrderItem { Id = 3, OrderId = 3, BoothProductid = 7, ProductId = 4,Count = 2, IsActive = true },
+            new OrderItem { Id = 4, OrderId = 4, BoothProductid = 6, ProductId = 1,Count = 1, IsActive = true }
             );
     }
 }

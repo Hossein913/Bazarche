@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
 using System;
@@ -22,7 +23,7 @@ public class CommentOutputDto
 
     public DateTime CreatedAt { get; set; }
 
-    public bool IsConfirmed { get; set; }
+    public bool? IsConfirmed { get; set; }
 
     public bool IsDeleted { get; set; }
 
@@ -30,7 +31,7 @@ public class CommentOutputDto
     #region Navigation properties
     public virtual Customer? Customer { get; set; } = null!;
 
-    public virtual Product? Product { get; set; } = null!;
+    public virtual ProductOutputDto? Product { get; set; } = null!;
 
     public virtual OrderItem OrderItem { get; set; } = null!;
 

@@ -1,0 +1,242 @@
+﻿@model List<CommentViewModel>;
+@inject FileUploadPathsDto filePaths;
+@{
+    ViewData["Style"] = "Style.css";
+}
+
+
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+
+                <!--نظرات تایید شده-->
+                    <div class="ec-vendor-dashboard-card mt-2">
+                        <div class="ec-vendor-card-header">
+                            <h5>نظرهای تایید شده</h5>
+@*                            <div class="ec-header-btn">
+                                <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="Index">خرید </a>
+                            </div>*@
+                        </div>
+                        <div class="ec-vendor-card-body">
+                            <div class="ec-vendor-card-table">
+                                @if (Model.Where(c => c.IsConfirmed == true).ToList().Count > 0)
+                                {
+                                    <table class="table ec-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-1">شناسه</th>
+                                        <th scope="col-1">تصویرمحصول</th>
+                                        <th scope="col-1">نام محصول</th>
+                                        <th scope="col-1">برند محصول</th>
+                                        <th scope="col"> متن نظر</th>
+                                        <th scope="col">دسترسی ها</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @{
+                                        int counter = 1;
+                                    }
+                                        @foreach (var item in Model.Where(c => c.IsConfirmed == true).ToList())
+                                    {
+
+                                        <tr>
+                                            <th scope="row"><span>@counter</span></th>
+                                            <td>
+                                                <img class="prod-img" src="~/@filePaths.Product/@item.Product.Avatar"
+                                                     alt="product image">
+                                            </td>
+                                            <td><span>@item.Product.Name</span></td>
+                                            <td><span>@item.Product.Brand</span></td>
+                                            <td><span>@item.Text</span></td>
+
+                                            <td >
+
+                                                    <span class="tbl-btn">
+                                                        <a class="btn btn-lg btn-info"
+                                                           asp-controller="Comment"
+                                                           asp-action="EditComment" asp-route-commentId="@item.Id" width="80px"> ویرایش </a>
+
+                                                        <a class="btn btn-lg btn-danger" asp-controller="Comment" asp-action="DeleteComment" asp-route-commentId="@item.Id"> حذف  </a>
+                                                    </span>
+                                            </td>
+                                        </tr>
+                                        counter++;
+                                    }
+
+                                </tbody>
+                                </table>
+
+                                }
+                                else
+                                {
+                                    <span> نظر تایید شده ای ندارید.</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                <!--نظرات تایید شده-->
+
+                 <!--نظرات رد شده-->
+                <div class="ec-vendor-dashboard-card mt-2">
+                        <div class="ec-vendor-card-header">
+                        <h5>نظرهای رد شده</h5>
+                            @*                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="Index">خرید </a>
+                            </div>*@
+                        </div>
+                        <div class="ec-vendor-card-body">
+                            <div class="ec-vendor-card-table">
+                            @if (Model.Where(c => c.IsConfirmed == false).ToList().Count > 0)
+                                {
+                                    <table class="table ec-table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">شناسه</th>
+                                                <th scope="col">تصویرمحصول</th>
+                                                <th scope="col">نام محصول</th>
+                                                <th scope="col">برند محصول</th>
+                                                <th scope="col"> متن نظر</th>
+                                                <th scope="col">دسترسی ها</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{
+                                                int counter = 1;
+                                            }
+                                        @foreach (var item in Model.Where(c => c.IsConfirmed == false).ToList())
+                                            {
+
+
+                                            <tr>
+                                                <th scope="row"><span>@counter</span></th>
+                                                <td>
+                                                    <img class="prod-img" src="~/@filePaths.Product/@item.Product.Avatar"
+                                                         alt="product image">
+                                                </td>
+                                                <td><span>@item.Product.Name</span></td>
+                                                <td><span>@item.Product.Brand</span></td>
+                                                <td><span>@item.Text</span></td>
+
+                                                <td >
+
+                                                    <span class="tbl-btn">
+                                                        <a class="btn btn-lg btn-info"
+                                                           asp-controller="Comment"
+                                                           asp-action="EditComment" asp-route-commentId="@item.Id" width="80px"> ویرایش </a>
+
+                                                        <a class="btn btn-lg btn-danger"
+                                                           asp-controller="Comment"
+                                                           asp-action="DeleteComment" asp-route-commentId="@item.Id" width="80px"> حذف  </a>
+
+                                                           </span>
+                                                </td>
+                                            </tr>
+                                                counter++;
+                                            }
+
+                                        </tbody>
+                                    </table>
+
+                                }
+                                else
+                                {
+                                    <span> نظر تایید نشده ای ندارید.</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--نظرات رد شده-->
+
+                <!--نظرات منتظر تایید-->
+
+                <div class="ec-vendor-dashboard-card mt-2">
+                    <div class="ec-vendor-card-header">
+                        <h5>نظرهای منتظر تایید</h5>
+                        @*                        <div class="ec-header-btn">
+                        <a class="btn btn-lg btn-primary" asp-controller="Home" asp-action="Index">خرید </a>
+                        </div>*@
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            @if (Model.Where(c => c.IsConfirmed == null).ToList().Count > 0)
+                            {
+                                <table class="table ec-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">شناسه</th>
+                                            <th scope="col">تصویرمحصول</th>
+                                            <th scope="col">نام محصول</th>
+                                            <th scope="col">برند محصول</th>
+                                            <th scope="col"> متن نظر</th>
+                                            <th scope="col">دسترسی ها</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @{
+                                            int counter = 1;
+                                        }
+                                        @foreach (var item in Model.Where(c => c.IsConfirmed == null))
+                                        {
+
+
+                                            <tr>
+                                                <th scope="row"><span>@counter</span></th>
+                                                <td>
+                                                    <img class="prod-img" src="~/@filePaths.Product/@item.Product.Avatar"
+                                                         alt="product image">
+                                                </td>
+                                                <td><span>@item.Product.Name</span></td>
+                                                <td><span>@item.Product.Brand</span></td>
+                                                <td><span>@item.Text</span></td>
+
+                                                <td>
+
+                                                    <span class="tbl-btn">
+                                                        <a class="btn btn-lg btn-info"
+                                                           asp-controller="Comment"
+                                                           asp-action="EditComment" asp-route-commentId="@item.Id" width="80px"> ویرایش </a>
+
+                                                        <a class="btn btn-lg btn-danger"
+                                                           asp-controller="Comment"
+                                                           asp-action="DeleteComment" asp-route-commentId="@item.Id" width="80px"> حذف  </a>
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            counter++;
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                            }
+                            else
+                            {
+                                <span> نظر منتظر تایید ندارید.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--نظرات منتظر تایید -->
+                
+             </div>  
+             
+        </div>
+
+    </div>
+</section>
+<!-- End User history section -->

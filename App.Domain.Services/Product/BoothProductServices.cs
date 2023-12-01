@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
+using App.Domain.Core._Products.Entities;
 
 namespace App.Domain.Services.Product;
 
@@ -23,6 +24,12 @@ public class BoothProductServices : IBoothProductServices
         var result = await _boothProduct.GetAllForProduct(ProductId, cancellationToken);
         return result;
 
+    }
+
+    public async Task<int> GetProductIdAsync(int boothProductId, CancellationToken cancellationToken)
+    {
+        var resutl = await _boothProduct.GetProductIdAsync(boothProductId, cancellationToken);
+        return resutl;
     }
 
     public async Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)

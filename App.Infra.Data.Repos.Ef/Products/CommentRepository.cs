@@ -25,10 +25,11 @@ public class CommentRepository : ICommentRepository
         {
             CustomerId = comment.CustomerId,
             OrderItemId = comment.OrderItemId,
+            ProductId = comment.ProductId,
             PictureId = null,
             Text = comment.Text,
             CreatedAt = DateTime.Now,
-            IsConfirmed = false,
+            IsConfirmed = null,
             IsDeleted = false,
 
 
@@ -37,25 +38,26 @@ public class CommentRepository : ICommentRepository
         var result = await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<CommentOutputDto>> GetAllForConfirm(CancellationToken cancellationToken)
     {
-        var result = await _context.Comments
-    .AsNoTracking()
-    .Where(p => p.IsDeleted == false)
-    .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
-    {
-        Id = c.Id,
-        Customer = c.Customer,
-        Product = c.Product,
-        OrderItemId = 1,
-        PictureId = null,
-        Text = c.Text,
-        CreatedAt = c.CreatedAt,
-        IsConfirmed = c.IsConfirmed,
-        
-    }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
-        return result;
+            var result = await _context.Comments
+        .AsNoTracking()
+        .Where(p => p.IsDeleted == false && p.IsConfirmed == null)
+        .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
+        {
+            Id = c.Id,
+            Customer = c.Customer,
+            //Product = c.Product,
+            OrderItemId = c.OrderItemId,
+            PictureId = null,
+            Text = c.Text,
+            CreatedAt = c.CreatedAt,
+            IsConfirmed = c.IsConfirmed,
+            
+        }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
+            return result;
     }
+    
     public async Task<List<CommentOutputDto>> GetAllForBooth(int BoothId,CancellationToken cancellationToken)
     {
         var result = await _context.Comments
@@ -65,13 +67,46 @@ public class CommentRepository : ICommentRepository
         {
             Id = c.Id,
             Customer = c.Customer,
-            Product = c.Product,
+            //Product = c.Product,
             OrderItemId = 1,
             PictureId = null,
             Text = c.Text,
             CreatedAt = c.CreatedAt,
-            IsConfirmed = c.IsConfirmed,
 
+        }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
+        return result;
+    }
+
+    public async Task<List<CommentOutputDto>> GetAllCustomer(int CustomerId, CancellationToken cancellationToken)
+    {
+        var result = await _context.Comments
+        .AsNoTracking()
+        .Where(p => p.IsDeleted == false && p.CustomerId == CustomerId)
+        .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
+        {
+            Id = c.Id,
+            OrderItem = c.OrderItem,
+            Text = c.Text,
+            CreatedAt = c.CreatedAt,
+            ProductId = c.ProductId,
+            IsConfirmed = c.IsConfirmed,
+        
+        }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
+                return result;
+    }
+
+    public async Task<List<CommentOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken)
+    {
+        var result = await _context.Comments
+        .AsNoTracking()
+        .Where(p => p.IsDeleted == false && p.IsConfirmed == true && p.ProductId == ProductId)
+        .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
+        {
+        Id = c.Id,
+        Customer = c.Customer,
+        Text = c.Text,
+        CreatedAt = c.CreatedAt,
+        
         }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
         return result;
     }
@@ -79,24 +114,14 @@ public class CommentRepository : ICommentRepository
     public async Task<CommentOutputDto> GetDetail(int commentId, CancellationToken cancellationToken)
     {
         var comment = await _context.Comments
-    .Include(c => c.Customer)
-    .Include(c => c.Product)
-    .Include(c => c.OrderItem)
-    .ThenInclude(oi => oi.BoothProductid)
-    .FirstOrDefaultAsync(c => c.Id == commentId && c.IsDeleted == false, cancellationToken);
+        .FirstOrDefaultAsync(c => c.Id == commentId && c.IsDeleted == false, cancellationToken);
 
         if (comment != null)
         {
             var productRecord = new CommentOutputDto
             {
                 Id = comment.Id,
-                Customer = comment.Customer,
-                Product = comment.Product,
-                OrderItem = comment.OrderItem,
-                PictureId = null,
                 Text = comment.Text,
-                CreatedAt = comment.CreatedAt,
-                IsConfirmed = comment.IsConfirmed,
             };
             return productRecord;
         }
@@ -132,20 +157,20 @@ public class CommentRepository : ICommentRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(CommentUpdateDto comment, CancellationToken cancellationToken)
+    public async Task Update(CommentUpdateDto commentDto, CancellationToken cancellationToken)
     {
         var CommentRecord = await _context.Comments
-        .FirstOrDefaultAsync(x => x.Id == comment.Id, cancellationToken);
+        .FirstOrDefaultAsync(x => x.Id == commentDto.Id, cancellationToken);
         if (CommentRecord != null)
         {
-            CommentRecord.CustomerId = comment.CustomerId;
-            CommentRecord.OrderItemId = comment.OrderItemId;
-            CommentRecord.PictureId = comment.ProductId;
-            CommentRecord.Text = comment.Text;
-            CommentRecord.IsConfirmed = comment.IsConfirmed;
+
+            CommentRecord.Text = commentDto.Text == null ? CommentRecord.Text : commentDto.Text;
+            CommentRecord.IsConfirmed = null;
 
         }
         await _context.SaveChangesAsync(cancellationToken);
     }
+
+
 }
 

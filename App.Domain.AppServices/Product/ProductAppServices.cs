@@ -23,18 +23,21 @@ namespace App.Domain.AppServices.Product
         protected readonly IOrderItemServices _orderItemServices;
         protected readonly IBoothProductServices _boothProductServices;
         protected readonly IFileServices _fileServices;
+        protected readonly ICommentServices _commentServices;
         public ProductAppServices(
             ICategoryServices categoryServices,
             IProductServices productServices,
             IFileServices fileServices,
             IOrderItemServices orderItemServices,
-            IBoothProductServices boothProductServices)
+            IBoothProductServices boothProductServices,
+            ICommentServices commentServices)
         {
-            _categoryServices = categoryServices;
+            this._categoryServices = categoryServices;
             _productServices = productServices;
             _fileServices = fileServices;
             _orderItemServices = orderItemServices;
             _boothProductServices = boothProductServices;
+            _commentServices = commentServices;
         }
 
         public async Task<int> Create(ProductAppServiceDto product,int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken)
@@ -131,6 +134,7 @@ namespace App.Domain.AppServices.Product
 
         public async Task<ProductOutputDto> GetDetails(int productId, CancellationToken cancellationToken)
         {
+            var comments = await _commentServices.GetAllForProduct(productId, cancellationToken);
            var product = await _productServices.GetDetails(productId, cancellationToken);
            var productPrices =await _boothProductServices.GetAllForProduct(productId, cancellationToken);
            product.BoothProducts = productPrices.Select(bp => new BoothProduct
@@ -141,11 +145,14 @@ namespace App.Domain.AppServices.Product
                Status = bp.Status,
                CreatedAt = bp.CreatedAt,
                Booth = bp.Booth,
+               
 
            }).ToList();
 
+           product.Comments = comments.OrderBy(c => c.CreatedAt).ToList();
+
             return product;
-        }
+            }
 
         public async Task SoftDelete(int productId, CancellationToken cancellationToken)
         {

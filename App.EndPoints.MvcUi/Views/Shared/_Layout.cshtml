@@ -236,7 +236,7 @@
                                 <!-- Header User End -->
                                 @if (signInManager.IsSignedIn(User))
                                 {
-                                    if (await userManager.IsInRoleAsync(userManager.GetUserAsync(User).Result, "Customer"))
+                                    if(await userManager.IsInRoleAsync(userManager.GetUserAsync(User).Result, "Customer"))
                                     {
                                         
                                         <!-- Header Cart Start -->

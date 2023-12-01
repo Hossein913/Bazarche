@@ -16,7 +16,7 @@ public class CommentCreateDto
 
     public int OrderItemId { get; set; }
 
-    public int? PictureId { get; set; }
+    ////public int? PictureId { get; set; }
 
     public string Text { get; set; } = null!;
 
@@ -28,12 +28,12 @@ public class CommentCreateDto
 
 
     #region Navigation properties
-    public virtual Customer? Customer { get; set; } = null!;
+    //public virtual Customer? Customer { get; set; } = null!;
 
-    public virtual Product? Product { get; set; } = null!;
+    //public virtual Product? Product { get; set; } = null!;
 
-    public virtual OrderItem OrderItem { get; set; } = null!;
+    //public virtual OrderItem OrderItem { get; set; } = null!;
 
-    public virtual Picture Picture { get; set; } = null!;
+    //public virtual Picture Picture { get; set; } = null!;
     #endregion
 }

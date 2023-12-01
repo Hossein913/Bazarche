@@ -152,13 +152,13 @@ public class ProductRepository : IProductRepository
     {
         var product = await _context.Products
             .Include(p => p.Pictures)
-            .Include(p => p.Comments.Where(c => c.IsConfirmed == true))
             .FirstOrDefaultAsync(p => p.Id ==productId && p.IsDeleted == false, cancellationToken);
 
         if (product != null)
         {
-            var productrecord = new ProductOutputDto
+            var productRecord = new ProductOutputDto
             {
+                Id = product.Id,
                 Name = product.Name,
                 Brand = product.Brand,
                 Grantee = product.Grantee,
@@ -168,9 +168,8 @@ public class ProductRepository : IProductRepository
                 IsConfirmed = product.IsConfirmed,
                 BasePrice = product.BasePrice,
                 Pictures = product.Pictures,
-                Comments = product.Comments
             };
-            return productrecord;
+            return productRecord;
         }
 
             return null;

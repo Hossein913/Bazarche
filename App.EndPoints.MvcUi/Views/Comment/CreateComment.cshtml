@@ -1,0 +1,84 @@
+﻿@model CommentViewModel;
+
+@{
+    ViewData["Style"] = "Style.css";
+}
+
+
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+                <div class="ec-vendor-dashboard-card">
+                    <div class="ec-vendor-card-header">
+                        <h5> ارسال نظر</h5>
+                        <div class="ec-header-btn">
+                            <a class="btn btn-lg btn-primary"
+                            asp-controller="Customer"
+                            asp-action="OrderDetails"
+                               asp-route-OrderId="@Model.OrderId">بازگشت  </a>
+                        </div>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+
+                            <!--خلاصه محصول و فرشونده-->
+                            <div class="single-pro-desc single-pro-desc-no-sidebar">
+                                <div class="single-pro-content">
+
+                                        <div class="ec-single-price-stoke">
+                                            <div class="m-2 ec-single-stoke col-3">
+                                                <span class="ec-single-ps-title">نام محصول</span>
+                                            <span class="ec-single-sku">@Model.Product.Name </span>
+                                            </div>
+                                            <div class="m-2 ec-single-stoke col-3">
+                                                <span class="ec-single-ps-title">برند </span>
+                                            <span class="ec-single-sku">@Model.Product.Brand</span>
+                                            </div>
+                                            <div class="m-2 ec-single-price col-3">
+                                                <span class="ec-single-ps-title"> قیمت</span>
+                                            <span class="new-price">@Model.OrderItemPrice تومان</span>
+                                            </div>
+
+
+                                        </div>
+
+                                </div>
+                            </div>
+                            <!--خلاسه محصول و فروشنده-->
+                            <!--افزودن نظر-->
+                            <div class="ec-ratting-content">
+                                <h3>افزودن نظر</h3>
+                                <div class="ec-ratting-form">
+                                    <form asp-controller="Comment" asp-action="CreateComment" method="post">
+                                        @Html.HiddenFor(m => m.Product.Id)
+                                        @Html.HiddenFor(m => m.OrderItemId)
+                                        @Html.HiddenFor(m => m.OrderId)
+                                        <div class="ec-ratting-input form-submit">
+                                            <textarea asp-for="@Model.Text" placeholder="نظر شما"></textarea>
+                                            <button class="btn btn-primary" type="submit"
+                                                    value="Submit">
+                                                ارسال
+                                            </button>
+                                            <span class="new-price">نظر شما بعد از تایید مدیر در صفحه محصول نمایش داده خواهد شد.</span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--افزودن نظر-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End User history section -->

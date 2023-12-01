@@ -58,6 +58,13 @@ public class BoothProductRepository : IBoothProductRepository
             return boothProductRecord;
     }
 
+    public async Task<int> GetProductIdAsync(int boothProductId, CancellationToken cancellationToken)
+    {
+        var boothProductRecord = await _context.BoothProducts
+        .FirstOrDefaultAsync(p => p.Id == boothProductId && p.IsDeleted == false);
+               return boothProductRecord.ProductId;
+    }
+
 
     // ------- Attention --> Boothproducts are not seprated entities therefor the shoulde load with its product
     //public async Task<List<BoothProductOutputDto>> GetAllForBooth(int boothId, CancellationToken cancellationToken)

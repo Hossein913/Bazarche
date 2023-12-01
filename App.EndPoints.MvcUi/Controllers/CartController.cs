@@ -14,6 +14,7 @@ namespace App.EndPoints.MvcUi.Controllers
     {
         protected readonly IOrderItemAppServices _orderItemApp;
         protected readonly IOrderAppServices _orderAppServices;
+
         protected readonly UserManager<AppUser> _userManager;
         protected readonly SignInManager<AppUser> _signInManager;
 
@@ -26,7 +27,7 @@ namespace App.EndPoints.MvcUi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateOrderItem(int priceId, CancellationToken cancellationToken)
+        public async Task<IActionResult> AddToCart(int priceId, CancellationToken cancellationToken)
         {
             OrderItemCreateDto orderItem = new OrderItemCreateDto
             {

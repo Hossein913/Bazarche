@@ -9,10 +9,12 @@ namespace App.Domain.Services.Product;
 public class OrderItemServices : IOrderItemServices
 {
     protected readonly IOrderItemRepository _orderItemRepository;
+    protected readonly IProductRepository _productRepository;
 
-    public OrderItemServices(IOrderItemRepository orderItemRepository)
+    public OrderItemServices(IOrderItemRepository orderItemRepository, IProductRepository productRepository)
     {
         _orderItemRepository = orderItemRepository;
+        _productRepository = productRepository;
     }
 
     public async Task Create(OrderItemCreateDto orderItem, CancellationToken cancellationToken)
@@ -30,6 +32,31 @@ public class OrderItemServices : IOrderItemServices
     {
         var result = await _orderItemRepository.GetAllForBooth(BoothId, cancellationToken);
             return result;
+    }
+
+    public async Task<OrderItemOutputDto> GetDetail(int OrderItemId, CancellationToken cancellationToken)
+    {
+
+        var OrderItem = await _orderItemRepository.GetDetail(OrderItemId, cancellationToken);
+        if (OrderItem != null)
+        {
+            var product = await _productRepository.GetDetail(OrderItem.ProductId, cancellationToken);
+            if (product != null)
+            {
+                OrderItem.BoothProduct.Product = new Core._Products.Entities.Product
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Brand = product.Brand,
+                    
+
+                };
+                return OrderItem;
+
+            }
+
+        }
+        return null;
     }
 
     public async Task<List<int>> GetPopularOrderedProductsId(int countOfProduct, CancellationToken cancellationToken)

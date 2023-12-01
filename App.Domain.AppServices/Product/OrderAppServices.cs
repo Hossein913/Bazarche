@@ -5,6 +5,7 @@ using App.Domain.Core._Common.Contracts.Services;
 using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.OrderDtos;
+using App.Domain.Core._Products.Dtos.OrderItemDtos;
 using App.Domain.Core._Products.Enums;
 using App.Domain.Core._User.Contracts.Services;
 using App.Domain.Core._User.Dtos.AdminsDtos;
@@ -47,6 +48,7 @@ namespace App.Domain.AppServices.Product
             _adminServices = adminServices;
             this.saveChangesService = saveChangesService;
         }
+
 
         public async Task<int> PaymentOrder(int orderId,int CustomerId, CancellationToken cancellationToken)
         {
@@ -180,6 +182,13 @@ namespace App.Domain.AppServices.Product
         }
 
 
+
+        //public async Task<int> GetCustomerOrdreItemByProductId(int customerId, int productId, CancellationToken cancellationToken)
+        //{
+        //    var result = await _orderServices.GetCustomerOrdreItemByProductId(customerId, productId, cancellationToken);
+        //    return result;
+        //}
+
         public async Task SoftDelete(int orderId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
@@ -189,5 +198,7 @@ namespace App.Domain.AppServices.Product
         {
             throw new NotImplementedException();
         }
+
+
     }
 }
