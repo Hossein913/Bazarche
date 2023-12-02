@@ -36,11 +36,17 @@
     <link rel="stylesheet" href="~/assets/Home/css/plugins/owl.theme.default.min.css" />
 
     <!-- Main Style -->
+    @if (ViewData["Style"] == "demo5")
+    {
+        <link rel="stylesheet" href="~/assets/Home/css/demo5.css">
+    }
     <link rel="stylesheet" href="~/assets/Home/css/demo8.css">
     @if (ViewData["title"] == "ProductfullPage" || ViewData["title"] == "BoothProducts" || ViewData["title"] == "ParentCategoryNavbar" || ViewData["Style"] == "Style.css")
     {
         <link rel="stylesheet" href="~/assets/Home/css/style.css">
     }
+
+
     <link rel="stylesheet" href="~/assets/Home/css/rtl.css">
     <link rel="stylesheet" href="~/assets/Home/css/responsive.css">
 
@@ -307,7 +313,7 @@
                                 <li class="dropdown">
                                     <span class="main-label-note-new"
                                           data-toggle="tooltip"
-                                          title="NEW"></span><a href="Auction.html">پیشنهادات داغ</a>
+                                          title="NEW"></span><a asp-controller="Home" asp-action="GetAuctions">پیشنهادات داغ</a>
 
                                 </li>
                                 @*
@@ -908,17 +914,18 @@
     <!-- Main Js -->
     <script src="~/assets/Home/js/vendor/index.js"></script>
     <script src="~/assets/Home/js/demo-8.js"></script>
-    @if (ViewData["title"] == "ProductfullPage")
+    @await RenderSectionAsync("Scripts", required: false)
+    @if (ViewData["title"] == "ProductfullPage" && ViewData["Style"] == "demo5")
     {
         <script src="~/assets/Home/js/main.js"></script>
         
     }
 
+
     <!-- MVC Js -->
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 
 </body>
 </html>

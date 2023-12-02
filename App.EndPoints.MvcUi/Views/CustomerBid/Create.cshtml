@@ -1,0 +1,162 @@
+﻿
+@model CreateBidViewModel;
+@inject SignInManager<AppUser> signInManager;
+@inject FileUploadPathsDto filePath;
+@{
+    ViewData["Style"] = "demo5";
+}
+
+
+<!--  Feature & Special Section Start -->
+<section class="ec-exe-spe-section ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            @if (Model != null)
+            {
+                <!--  Special Section Start -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 margin-b-30 mb-3">
+                        <div class="ec-fs-pro-inner ">
+                       
+                            <!--لیست پیشنهادات-->
+                            <div class="ec-pro-content col-lg-4 col-md-4 col-sm-4">
+                            <div class="ec-vendor-dashboard-card">
+                                    <div class="ec-vendor-card-body mt-2">
+                                        <div class="ec-vendor-card-table">
+                                            <table class="table ec-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">شناسه</th>
+                                                        <th scope="col">مبلغ پیشنهاد</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                     @if (Model.Bids.Count > 0)
+                                                     {
+                                                                         
+                                                        int counter = 1;
+                                                        @foreach (var item in Model.Bids)
+                                                        {
+                                                        
+                                                            <tr>
+                                                                <th scope="row"><span>@counter</span></th>
+                                                                <td><span>@item.BidPrice تومان</span></td>
+                                                            </tr>
+                                                            counter++;
+                                                        }
+
+                                                     }
+
+                                                </tbody>
+                                            </table>
+                                            @if (Model.Bids.Count == 0)
+                                            {
+                                                <p>
+                                                    شما اولین پیشنهاد را ثبت کنید.
+                                                </p>
+                                            }
+                                        </div>
+                                    </div>
+                            </div>
+                            </div>
+                        <!--لیست پیشنهادات-->
+
+                        <!--فرم ارسال پیشنهاد-->
+                            <div class="ec-pro-content col-lg-4 col-md-4 col-sm-4">
+
+                            <h4 class="ec-pro-title">
+                                    <b class="ec-pro-stitle">@Model.ProductDto.Name</b>
+
+                            </h4>
+                            <h6 class="ec-pro-stitle">@Model.ProductDto.Brand</h6>
+                            <br />
+
+
+                            <hr />
+                            <div class="countdowntimer">
+                                <span class="ec-fs-count-desc">
+                                    <b>
+                                        عجله کنید، زمان پیشنهاد شگفت انگیز در حال پایان
+                                        است:
+                                    </b>
+                                </span>
+                                <span id="ec-fs-count-1"></span>
+                            </div>
+                            <div class="ec-pro-actions mt-3">
+                                @if (@Model.Bids.Count > 0 && @Model.Bids.Any(b => b.CustomerId == @Model.CurrentCustomerId))
+                                {
+                                    <span class="ec-fs-count-desc">
+                                        <b class="text-danger">
+                                            پیشنهادشما ثبت شده است، جهت ویرایش پیشنهاد قبلی را حذف کنید.
+                                        </b>
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <form method="post">
+                                        @Html.HiddenFor(m => m.AuctionId)
+                                        <input asp-for="BidPrice" type="text">
+                                        <button class="ec-btn-group btn btn-lg btn-primary mt-2" type="submit">ثبت پیشنهاد</button>
+                                        <a asp-controller="Home" asp-action="GetAuctions" asp-route-auctionId="" title="بازگشت" class="add-to-cart btn btn-danger mt-2"> بازگشت </a>
+                                    </form>
+                                }
+
+
+
+                            </div>
+                        </div>
+                        <!--فرم ارسال پیشنهاد-->
+
+                        <!--تصویر مزایده-->
+                        <div class="ec-fs-pro-image-outer col-lg-4 col-md-4 col-sm-4">
+                                <div class="ec-fs-pro-image">
+                                        <img class="main-image"
+                                             src="~/@filePath.Product/@Model.ProductDto.Avatar" alt="Product">
+                                </div>
+                            </div>
+                        <!--تصویر مزایده-->
+                    </div>
+
+                    </div>
+                <!--  Special Section End -->
+            }
+            else
+            {
+                
+            }
+
+        </div>
+    </div>
+</section>
+<!-- Feature & Special Section End -->
+@if (ViewData["result"] == "Succeeded")
+{
+    <script>
+        alert("پیشنهاد شما با موفقیت ثبت شد.");
+     </script>
+}
+else if (ViewData["result"] == "LessThanBasePrice")
+{
+    <script>
+        alert("خطا: مبلغ پیشنهادی از حداقل مبلغ مزایده کمتر می باشد.");
+    </script>
+}
+else if (ViewData["result"] == "LessThanMaxBid")
+{
+    <script>
+        alert("خطا: مبلغ پیشنهادی از آخرین پیشنهاد مزایده کمتر می باشد");
+    </script>
+}
+@section Scripts{
+    <script src="assets/js/demo-5.js"></script>
+
+        <script>
+            $("#ec-fs-count-1").countdowntimer({
+                startDate: "2023/10/01 12:00:00",
+                dateAndTime: "@Html.Raw(Model.EndTime)",
+                labelsFormat: true,
+                displayFormat: "DHMS",
+                isRTL: true
+            });
+        </script>
+}

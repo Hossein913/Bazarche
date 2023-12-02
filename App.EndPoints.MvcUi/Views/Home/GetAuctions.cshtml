@@ -1,0 +1,111 @@
+﻿@model List<GatAllAuctionsViewModel>;
+@inject SignInManager<AppUser> signInManager
+@inject FileUploadPathsDto filePath;
+
+@{
+    ViewData["Style"] = "demo5";
+}
+
+
+<!--  Feature & Special Section Start -->
+<section class="ec-exe-spe-section ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+
+            @{
+                int counterMain = 1;
+            }
+            <!--  Special Section Start -->
+            @foreach (var item in Model)
+            {    
+            <div class="col-lg-6 col-md-12 col-sm-12 margin-b-30 mb-3">
+                <div class="ec-fs-pro-inner ">
+                    <div class="ec-fs-pro-image-outer col-lg-6 col-md-6 col-sm-6">
+                        <div class="ec-fs-pro-image">
+                            <a href="product-left-sidebar.html" class="image">
+                                <img class="main-image"
+                                     src="~/@filePath.Product/@item.ProductDto.Avatar" alt="Product">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ec-pro-content col-lg-6 col-md-6 col-sm-6">
+
+                        <h4 class="ec-pro-title">
+                            <a href="product-left-sidebar.html">
+                                    <b class="ec-pro-stitle">@item.ProductDto.Name</b>
+                            </a>
+                        </h4>
+                            <h6 class="ec-pro-stitle"><a href="shop-left-sidebar-col-3.html">@item.ProductDto.Brand</a></h6>
+                          <br/>
+                            @if (item.Bids.Count > 0)
+                            {
+                                <div class="ec-pro-rat-price">
+                                     <span class="ec-price">
+                                        <span class="new-price">بالاترین پیشنهاد:<b> @item.Bids.Max(b => b.BidPrice)</b> تومان </span>
+                                     </span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="ec-spe-price">
+                                    <span class="new-price">اولین پیشنهاد را شما دهید</span>
+
+                                </div>
+
+                            }
+                        <hr/>
+                            <div class="countdowntimer">
+                            <span class="ec-fs-count-desc">
+                               <b> عجله کنید، زمان پیشنهاد شگفت انگیز در حال پایان
+                                        است:
+                                    </b>
+                            </span>
+                                <span id="ec-fs-count-@counterMain"></span>
+                        </div>
+                        <div class="ec-pro-actions">
+                                @if (signInManager.IsSignedIn(User))
+                                {
+                                    <a asp-controller="CustomerBid" asp-action="Create" asp-route-auctionId="@item.Id" title="افزودن پیشنهاد" class="add-to-cart btn btn-lg btn-primary"> افزودن پیشنهاد</a>
+                                }
+                                else
+                                {          
+                                    <a href="javascript:void(0)" title="افزودن پیشنهاد"
+                                   class="ec-btn-group add-to-cart btn btn-lg btn-primary" type="submit">افزودن پیشنهاد</a>
+                                }
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                counterMain++;
+            }
+            <!--  Special Section End -->
+
+        </div>
+    </div>
+</section>
+<!-- Feature & Special Section End -->
+
+@{
+    int counter = 1;
+}
+
+@section Scripts{
+    <script src="assets/js/demo-5.js"></script>
+@foreach (var item in Model)
+{    
+    <script>     
+        $("#ec-fs-count-@counter").countdowntimer({
+                startDate: "@Html.Raw(DateTime.Now)",
+            dateAndTime: "@Html.Raw(item.EndTime)",
+            labelsFormat: true,
+            displayFormat: "DHMS",
+            isRTL: true
+        });  
+        </script>
+        counter++;
+    }
+}

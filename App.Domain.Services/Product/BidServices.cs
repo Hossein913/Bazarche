@@ -1,21 +1,35 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.BidDtos;
+using App.Domain.Core._Products.Enums;
+using App.Infra.Data.Repos.Ef.Products;
 
 namespace App.Domain.Services.Product;
 
 public class BidServices : IBidServices
 {
     protected readonly IBidRepository _bidRepository;
+    protected readonly IAuctionRepository _auctionRepository;
 
-    public BidServices(IBidRepository bidRepository)
+    public BidServices(IBidRepository bidRepository, IAuctionRepository auctionRepository)
     {
         _bidRepository = bidRepository;
+        _auctionRepository = auctionRepository;
     }
 
-    public async Task Create(BidCreateDto bidCreate, CancellationToken cancellationToken)
+    public async Task<AddBidResult> Create(BidCreateDto bidCreate, CancellationToken cancellationToken)
     {
-        await _bidRepository.Create(bidCreate, cancellationToken);
+        var auction = await _auctionRepository.GetDetail(bidCreate.AuctionId, cancellationToken);
+        if (bidCreate.BidPrice >= auction.BasePrice) {
+
+            if ((auction.Bids.Count == 0 ) ||(auction.Bids.Count > 0 && bidCreate.BidPrice > auction.Bids.Max(b => b.BidPrice)))
+            {
+                await _bidRepository.Create(bidCreate, cancellationToken);
+                return AddBidResult.Succeeded;
+            }
+            return AddBidResult.LessThanMaxBid;
+        }
+        return AddBidResult.LessThanBasePrice;
     }
 
     public async Task Delete(int bidId, CancellationToken cancellationToken)

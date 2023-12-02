@@ -4,9 +4,11 @@ using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.EndPoints.MvcUi.Models;
+using App.EndPoints.MvcUi.Models._Auctions;
 using App.EndPoints.MvcUi.Models.Home;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using System.Drawing.Drawing2D;
 
@@ -31,9 +33,9 @@ namespace App.EndPoints.MvcUi.Controllers
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
             IndexViewModel viewModel = new IndexViewModel();
-            
+
             var auctions = await _auctionAppServices.GetAllAuctions(cancellationToken);
-            var auctionViewModelList = auctions.Select<AuctionOutputDto, AuctionViewModel>( a => new AuctionViewModel
+            var auctionViewModelList = auctions.Select<AuctionOutputDto, AuctionViewModel>(a => new AuctionViewModel
             {
                 Id = a.Id,
                 ProductId = a.ProductId,
@@ -41,12 +43,12 @@ namespace App.EndPoints.MvcUi.Controllers
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
                 Bids = a.Bids,
-                BoothName = a.Booth.Name , 
+                BoothName = a.Booth.Name,
                 ProductDto = a.ProductDto,
             }).ToList();
 
             var products = await _productAppServices.GetPopularOrderedProducts(4, cancellationToken);
-            var productsViewModelList = products.Select<ProductOutputDto,ProductViewModel>(p => new ProductViewModel
+            var productsViewModelList = products.Select<ProductOutputDto, ProductViewModel>(p => new ProductViewModel
             {
                 Id = p.Id,
                 Name = p.Name,
@@ -65,7 +67,25 @@ namespace App.EndPoints.MvcUi.Controllers
             return View(indexViewModel);
         }
 
-        public IActionResult Privacy()
+
+        [HttpGet]
+        public async Task<IActionResult> GetAuctions(CancellationToken cancellationToken)
+        {
+            var auctions = await _auctionAppServices.GetAllAuctions(cancellationToken);
+            var auctionViewModelList = auctions.Select<AuctionOutputDto, GatAllAuctionsViewModel>(a => new GatAllAuctionsViewModel
+            {
+                Id = a.Id,
+                StartTime = a.StartTime,
+                EndTime = a.EndTime,
+                BoothName = a.Booth.Name,
+                ProductDto = a.ProductDto,
+                Bids = a.Bids.ToList(),
+            }).ToList();
+            return View(auctionViewModelList);
+        }
+
+
+            public IActionResult Privacy()
         {
             return View();
         }

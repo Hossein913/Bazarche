@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
+using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
@@ -94,6 +95,8 @@ public class AuctionRepository : IAuctionRepository
         var auction = await _context.Auctions
             .Include(a => a.Booth)
             .Include(a => a.Bids)
+            .Include(a => a.Product)
+            .ThenInclude(p => p.Pictures)
             .FirstOrDefaultAsync(p => p.Id == auctionId , cancellationToken);
 
         if (auction != null)
@@ -107,8 +110,12 @@ public class AuctionRepository : IAuctionRepository
                 BasePrice = auction.BasePrice,
                 Status = auction.Status,
                 IsConfirmed = auction.IsConfirmed,
-                ProductId = auction.ProductId,
-
+                ProductDto = new ProductOutputDto {
+                                  Name = auction.Product.Name,
+                                  Brand = auction.Product.Brand,
+                                  Description = auction.Product.Description,
+                                 Avatar = auction.Product.Pictures.FirstOrDefault().ImageUrl,
+                },
                 Booth = auction.Booth,
                 Bids = auction.Bids
 

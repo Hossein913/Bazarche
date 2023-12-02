@@ -207,6 +207,7 @@ function ecCheckCookie() {
         }]
     });
 
+
     var a = e(".qty-plus-minus");
     a.prepend('<div class="dec ec_qtybtn">-</div>'), a.append('<div class="inc ec_qtybtn">+</div>'), e(".ec_qtybtn").on("click", function () {
         var s = e(this),
@@ -249,6 +250,11 @@ function ecCheckCookie() {
     }), e("#ec-spe-count-2").countdowntimer({
         startDate: "2021/01/01 12:00:00",
         dateAndTime: "2021/11/10 12:00:00",
+        labelsFormat: !0,
+        displayFormat: "DHMS"
+    }), e("#ec-spe-count-3").countdowntimer({
+        startDate: "2023/12/01 12:00:00",
+        dateAndTime: "2023/12/02 12:00:00",
         labelsFormat: !0,
         displayFormat: "DHMS"
     }), e(".ec-blog-slider, #ec-cat-slider").owlCarousel({
@@ -374,6 +380,8 @@ function ecCheckCookie() {
         animation: "fade"
     }), e(".ec-change-color").on("click", "li", function () {
         e('link[href^="assets/demo-4/css/skin-"]').remove(), e("link.dark").remove(), e(".ec-change-mode").removeClass("active");
+
+
         var s = e(this).attr("data-color");
         if (!e(this).hasClass("active")) return e(this).toggleClass("active").siblings().removeClass("active"), null != s && (e("link[href='assets/demo-4/css/responsive.css']").before('<link rel="stylesheet" href="assets/demo-4/css/skin-' + s + '.css" rel="stylesheet">'), ecCreateCookie("themeColorCookie", s, 1)), !1
     }), e(".ec-tools-sidebar .ec-change-rtl .ec-rtl-switch").click(function (s) {
@@ -398,8 +406,6 @@ function ecCheckCookie() {
     }), e(".ec-tools-sidebar .ec-fullscreen-mode .ec-fullscreen-switch").click(function (s) {
         s.preventDefault(), e(this).parent().toggleClass("active"), document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement ? document.exitFullscreen ? document.exitFullscreen() : document.msExitFullscreen ? document.msExitFullscreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitExitFullscreen && document.webkitExitFullscreen() : document.documentElement.requestFullscreen ? document.documentElement.requestFullscreen() : document.documentElement.msRequestFullscreen ? document.documentElement.msRequestFullscreen() : document.documentElement.mozRequestFullScreen ? document.documentElement.mozRequestFullScreen() : document.documentElement.webkitRequestFullscreen && document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT)
     });
-
-
 
     var l = location.href;
     e(".ec-main-menu ul li a").each(function () {

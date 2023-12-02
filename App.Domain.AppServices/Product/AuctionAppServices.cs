@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
+using App.Domain.Core._Products.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,22 +42,23 @@ namespace App.Domain.AppServices.Product
             return auctions;
         }
 
-        public Task Create(AuctionCreateDto auction, CancellationToken cancellationToken)
+        public async Task Create(AuctionCreateDto auction, CancellationToken cancellationToken)
+        {
+             await _auctionServices.Create(auction, cancellationToken);
+        }
+
+        public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)
+        {
+            var auctions = await _auctionServices.GetDetail(auctionId,cancellationToken);
+            return auctions;
+        }
+
+        public async Task SoftDelete(int ProductActionId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SoftDelete(int ProductActionId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken)
+        public async Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

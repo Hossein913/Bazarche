@@ -6,8 +6,8 @@ using System.Collections.Generic;
 namespace App.Domain.Core._Products.Dtos.BidDtos;
 
 public class BidCreateDto
-{
-    public int Id { get; set; }
+    {
+    //public int Id { get; set; }
 
     public int CustomerId { get; set; }
 
@@ -15,16 +15,16 @@ public class BidCreateDto
 
     public int BidPrice { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    //public DateTime CreatedAt { get; set; }
 
-    public bool IsCancelled { get; set; }
+    //public bool IsCancelled { get; set; }
 
 
-    #region Navigation properties
-    public virtual Auction Auction { get; set; } = null!;
+    //#region Navigation properties
+    //public virtual Auction Auction { get; set; } = null!;
 
-    public virtual Customer Customer { get; set; } = null!;
+    //public virtual Customer Customer { get; set; } = null!;
 
-    #endregion
+    //#endregion
 
 }

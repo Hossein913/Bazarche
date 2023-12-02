@@ -105,8 +105,8 @@ builder.Services.AddScoped<IBoothAppServices, BoothAppServices>();
 //builder.Services.AddScoped<IPictureAppServices, PictureAppServices>();
 
 ////--Products
-    builder.Services.AddScoped<IAuctionAppServices, AuctionAppServices>();
-//builder.Services.AddScoped<IBidAppServices, BidAppServices>();
+builder.Services.AddScoped<IAuctionAppServices, AuctionAppServices>();
+builder.Services.AddScoped<IBidAppServices, BidAppServices>();
 builder.Services.AddScoped<IBoothProductServices, BoothProductServices>();
 builder.Services.AddScoped<ICategoryAppServices, CategoryAppServices>();
 builder.Services.AddScoped<ICommentAppServices, CommentAppServices>();
