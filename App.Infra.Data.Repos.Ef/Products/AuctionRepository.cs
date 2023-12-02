@@ -50,7 +50,7 @@ public class AuctionRepository : IAuctionRepository
                 BasePrice = a.Id,
                 ProductId = a.ProductId,
                 Booth = a.Booth,
-                Status = a.Status
+                Status = (AuctionStatus)a.Status
             }).ToListAsync(cancellationToken);
     }
 
@@ -89,6 +89,31 @@ public class AuctionRepository : IAuctionRepository
             }).ToListAsync(cancellationToken);
     }
 
+    public async Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken)
+    {
+        return await _context.Auctions
+            .AsNoTracking()
+            .Include(a => a.Bids) 
+            .Include(a => a.Product) 
+            .ThenInclude(p => p.Pictures)
+            .Where<Auction>(p => p.Bids.Any(b => b.CustomerId == customerId))
+            .Select<Auction, AuctionOutputDto>(a => new AuctionOutputDto
+            {
+                Id = a.Id ,
+                WinnerId = a.WinnerId ,
+                Status = (AuctionStatus)a.Status ,
+                Bids = a.Bids.Where(b => b.CustomerId == customerId).ToList(),
+                ProductDto = new ProductOutputDto
+                {
+                    Name = a.Product.Name,
+                    Brand = a.Product.Brand,
+                    Description = a.Product.Description,
+                    Avatar = a.Product.Pictures.FirstOrDefault().ImageUrl,
+                },
+
+            }).ToListAsync(cancellationToken);
+    }
+
     public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)
     {
 
@@ -108,7 +133,7 @@ public class AuctionRepository : IAuctionRepository
                 StartTime = auction.StartTime,
                 EndTime = auction.EndTime,
                 BasePrice = auction.BasePrice,
-                Status = auction.Status,
+                Status = (AuctionStatus)auction.Status,
                 IsConfirmed = auction.IsConfirmed,
                 ProductDto = new ProductOutputDto {
                                   Name = auction.Product.Name,
@@ -162,3 +187,4 @@ public class AuctionRepository : IAuctionRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 }
+

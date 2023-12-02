@@ -24,6 +24,12 @@ public class AuctionServices : IAuctionServices
             return result;
     }
 
+    public async Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken)
+    {
+       var result = await _auctionRepository.GetAllForCustomer(customerId, cancellationToken);
+        return result;
+    }
+
     public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)
     {
         var result = await _auctionRepository.GetDetail(auctionId, cancellationToken);

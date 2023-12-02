@@ -1,8 +1,10 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Dtos.OrderItemDtos;
+using App.Domain.Core._Products.Enums;
 using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Dtos.CustomersDtos.CustomerAppServiceDto;
+using App.EndPoints.MvcUi.Models._Auctions;
 using App.EndPoints.MvcUi.Models._Customer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +17,14 @@ namespace App.EndPoints.MvcUi.Controllers
         protected readonly IOrderItemAppServices _orderItemAppServices;
         protected readonly ICustomerAppServices _customerAppServices;
         protected readonly ICommentAppServices _commentAppServices;
+        protected readonly IAuctionAppServices _auctionAppServices;
 
-        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices)
+        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices, IAuctionAppServices auctionAppServices)
         {
             _orderAppServices = orderAppServices;
             _orderItemAppServices = orderItemAppServices;
             _customerAppServices = customerAppServices;
+            _auctionAppServices = auctionAppServices;
         }
 
         [HttpGet]
@@ -57,7 +61,37 @@ namespace App.EndPoints.MvcUi.Controllers
 
             return View(CartViewModel);
         }
-        
+
+        [HttpGet]
+        public async Task<ActionResult> AllAuctions(CancellationToken cancellationToken)
+        {
+            var result = await _auctionAppServices.GetAllForCustomer(CurrentCustomerId, cancellationToken);
+
+            List<CustomerAuctionsBidViewModel> customerAuctionsBid = null;
+            if (result != null)
+            {
+                customerAuctionsBid = new List<CustomerAuctionsBidViewModel>();
+                result.ForEach( a => 
+                {
+                     customerAuctionsBid.Add(
+                         new CustomerAuctionsBidViewModel
+                         {
+                             Id = a.Id,
+                             Status = a.Status ,
+                             WinnerId = a.WinnerId,
+                             CurrentCustomerId = CurrentCustomerId,
+                             Bids = a.Bids,
+                             ProductDto = a.ProductDto
+                         }
+                     );
+                });
+
+
+            }
+
+            return View(customerAuctionsBid);
+        }
+
         [HttpGet]
         public async Task<ActionResult> Profile(CancellationToken cancellationToken)
         {

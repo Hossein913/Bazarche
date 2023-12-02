@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class AuctionOutputDto
 
     public int BasePrice { get; set; }
 
-    public int Status { get; set; }
+    public AuctionStatus Status { get; set; }
 
     public bool? IsConfirmed { get; set; }
 
@@ -35,3 +36,16 @@ public class AuctionOutputDto
     public virtual ProductOutputDto ProductDto { get; set; } = null!;
     #endregion
 }
+
+//Id { get; set; }
+//ProductId { get; set; }
+//BoothId { get; set; }
+//WinnerId { get; set; }
+//StartTime { get; set; }
+//EndTime { get; set; }
+//BasePrice { get; set; }
+//Status { get; set; }
+//IsConfirmed { get; set; }
+//Bids { get; set; }
+//Booth { get; set; }
+//ProductDto { get; set; }

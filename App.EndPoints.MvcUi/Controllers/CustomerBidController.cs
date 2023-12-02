@@ -91,31 +91,12 @@ namespace App.EndPoints.MvcUi.Controllers
 
         }
 
-        // GET: CustomerBidController/Edit/5
-        public  async Task<IActionResult> Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CustomerBidController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public  async Task<IActionResult> Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: CustomerBidController/Delete/5
-        public  async Task<IActionResult> Delete(int id)
+        public  async Task<IActionResult> Delete(int bidId, CancellationToken cancellationToken)
         {
-            return View();
+            await _bidApp.Delete(bidId, cancellationToken);
+            return RedirectToAction("AllAuctions", "Customer");
         }
 
         // POST: CustomerBidController/Delete/5

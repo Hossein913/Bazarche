@@ -2,6 +2,7 @@
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Entities;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,6 +62,12 @@ namespace App.Domain.AppServices.Product
         public async Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken)
+        {
+            var result = await _auctionServices.GetAllForCustomer(customerId, cancellationToken);
+            return result;
         }
     }
 }

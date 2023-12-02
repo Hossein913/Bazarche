@@ -1,0 +1,148 @@
+﻿
+@model List<CustomerAuctionsBidViewModel>;
+@inject FileUploadPathsDto filePaths;
+@{
+    ViewData["Style"] = "Style.css";
+}
+
+
+<section class="ec-page-content ec-vendor-uploads ec-user-account section-space-p">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Area Start -->
+            <div class="ec-shop-leftside ec-vendor-sidebar col-lg-3 col-md-12">
+                <div class="ec-sidebar-wrap">
+
+                    @await Component.InvokeAsync("CustomerPanelSidebar")
+
+                </div>
+            </div>
+
+            <div class="ec-shop-rightside col-lg-9 col-md-12">
+
+                <!--مزایده های فعال-->
+                <div class="ec-vendor-dashboard-card mt-2">
+                    <div class="ec-vendor-card-header">
+                        <h5>نتایح مزایده ها</h5>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            @if (Model.Where(a => a.Status == AuctionStatus.Runing).ToList().Count > 0)
+                            {
+                                <table class="table ec-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col-1">شناسه</th>
+                                            <th scope="col-1">تصویرمحصول</th>
+                                            <th scope="col-1">نام محصول</th>
+                                            <th scope="col-1">پیشنهاد من</th>
+                                            <th scope="col">دسترسی ها</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @{
+                                            int counter = 1;
+                                        }
+
+                                        @foreach (var item in Model.Where(a => a.Status == AuctionStatus.Runing).ToList())
+                                        {
+
+                                            <tr>
+                                                <th scope="row"><span>@counter</span></th>
+                                                <td>
+                                                    <img class="prod-img" src="~/@filePaths.Product/@item.ProductDto.Avatar"
+                                                         alt="product image">
+                                                </td>
+                                                <td><span>@item.ProductDto.Name</span></td>
+                                                <td><span>@item.Bids.FirstOrDefault().BidPrice</span></td>
+
+                                                <td>
+                                                    <span class="tbl-btn">
+                                                        <a class="btn btn-lg btn-danger" asp-controller="CustomerBid" asp-action="Delete" asp-route-bidId="@item.Id"> حذف  </a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            counter++;
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                            }
+                            else
+                            {
+                                <span> پیشنهادی برای مزایده های فعال ثبت نکرده ای.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--مزایده های فعال-->
+
+                <!--مزایده های تمام شده-->
+                <div class="ec-vendor-dashboard-card mt-2">
+                    <div class="ec-vendor-card-header">
+                        <h5>نتایح مزایده ها</h5>
+                    </div>
+                    <div class="ec-vendor-card-body">
+                        <div class="ec-vendor-card-table">
+                            @if (Model.Where(a => a.Status == AuctionStatus.Ended).ToList().Count > 0)
+                            {
+                                <table class="table ec-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col-1">شناسه</th>
+                                            <th scope="col-1">تصویرمحصول</th>
+                                            <th scope="col-1">نام محصول</th>
+                                            <th scope="col-1">پیشنهاد من</th>
+                                            <th scope="col"> وضعیت</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @{
+                                            int counter = 1;
+                                        }
+                                        @foreach (var item in Model.Where(a => a.Status == AuctionStatus.Ended).ToList())
+                                        {
+
+                                            <tr>
+                                                <th scope="row"><span>@counter</span></th>
+                                                <td>
+                                                    <img class="prod-img" src="~/@filePaths.Product/@item.ProductDto.Avatar"
+                                                         alt="product image">
+                                                </td>
+                                                <td><span>@item.ProductDto.Name</span></td>
+                                                <td><span>@item.Bids.FirstOrDefault().BidPrice</span></td>
+                                                <td>
+                                                    @if (item.WinnerId == item.CurrentCustomerId)
+                                                    {
+                                                        <b class="text-primary"> پیروز </b>
+                                                    }else
+                                                    {
+                                                        <b class="text-danger"> بازنده </b>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            counter++;
+                                        }
+
+                                    </tbody>
+                                </table>
+
+                            }
+                            else
+                            {
+                                <span> سابقه ای از پیشنهاد شما برای یک مزایده وجود ندارد.</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!--مزایده های تمام شده-->
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- End User history section -->

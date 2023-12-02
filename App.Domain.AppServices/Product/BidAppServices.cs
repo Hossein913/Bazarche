@@ -25,9 +25,9 @@ namespace App.Domain.AppServices.Product
             return result;
         }
 
-        public Task Delete(int bidId, CancellationToken cancellationToken)
+        public async Task Delete(int bidId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _bidServices.Delete(bidId, cancellationToken);
         }
 
         public Task<List<BidOutputDto>> GetAll(int producAuctiontId, CancellationToken cancellationToken)

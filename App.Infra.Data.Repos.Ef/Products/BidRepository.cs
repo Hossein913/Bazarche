@@ -65,7 +65,8 @@ public class BidRepository : IBidRepository
 
         if (commentRecord != null)
         {
-            commentRecord.IsCancelled = true;
+             _context.Bids.Remove(commentRecord);
+            //commentRecord.IsCancelled = true;
 
         }
         await _context.SaveChangesAsync(cancellationToken);
