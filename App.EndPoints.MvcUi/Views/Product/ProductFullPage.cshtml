@@ -64,24 +64,25 @@
                                     <div class="ec-single-desc">
                                         @Model.Description
                                     </div>
-                                    @foreach (var item in Model.BoothProducts)
+                                    @if (Model.BoothProducts.Count > 0)
                                     {
-                                        
-                                    
-                                    <div class="ec-single-price-stoke">
-                                        <div class="m-2 ec-single-stoke col-3">
-                                            <span class="ec-single-ps-title">غرفه</span>
-                                            <span class="ec-single-sku">@item.Booth.Name </span>
-                                        </div>
-                                            <div class="m-2 ec-single-stoke col-3">
+                                        @foreach (var item in Model.BoothProducts)
+                                        {
+
+                                            <div class="ec-single-price-stoke">
+                                                    <div class="m-2 ec-single-stoke col-3">
+                                                    <span class="ec-single-ps-title">غرفه</span>
+                                                    <span class="ec-single-sku">@item.Booth.Name </span>
+                                                </div>
+                                                    <div class="m-2 ec-single-stoke col-3">
                                             <span class="ec-single-ps-title">رتبه فروشنده </span>
                                                 <span class="ec-single-sku">@item.Booth.MedalName</span>
                                         </div>
-                                            <div class="m-2 ec-single-price col-3">
+                                                    <div class="m-2 ec-single-price col-3">
                                             <span class="ec-single-ps-title"> قیمت</span>
                                                 <span class="new-price">@item.Price تومان</span>
                                         </div>
-                                            <div class="m-2 ec-single-qty col-3">
+                                                    <div class="m-2 ec-single-qty col-3">
                                                      <div class="ec-single-cart ">
                                                          @if(signInManager.IsSignedIn(User))
                                                          {
@@ -102,6 +103,14 @@
                                                      </div>*@
                                         </div>
 
+                                            </div>
+                                        }
+                                    }else
+                                    {
+                                    <div class="ec-single-price-stoke">
+                                                    <div class="m-2 ec-single-stoke col">
+                                                    <span class="ec-single-ps-title text-danger">هیچ فروشنده ای برای کالا یافت نشد.</span>
+                                                    </div>
                                     </div>
                                     }
 
