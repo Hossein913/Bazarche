@@ -32,7 +32,7 @@
                                 name="ec_qtybtn"
                                 value="1" />
                             </div>
-                            <a href="#" class="remove">×</a>
+                            <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-orderItem="@item.OrderItemId" class="remove">×</a>
                         </div>
                     </li>
                 </ul>
@@ -78,7 +78,7 @@
              </div>*@
 
              <div class="cart_btn">
-                 <a href="cart.html" class="btn btn-primary">مشاهده سبد خرید</a>
+@*                 <a href="cart.html" class="btn btn-primary">مشاهده سبد خرید</a>*@
                  <a asp-controller="Cart" asp-action="Payment" class="btn btn-secondary"> پرداخت  </a>
              </div>
          </div>   

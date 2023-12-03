@@ -31,7 +31,7 @@ namespace App.Domain.AppServices.Product
 
         public async Task Create(OrderItemCreateDto orderItem, CancellationToken cancellationToken)
         {
-            orderItem.ProductId = await _boothProductServices.GetProductIdAsync(orderItem.Id,cancellationToken);
+            orderItem.ProductId = await _boothProductServices.GetProductIdAsync(orderItem.BoothProductid,cancellationToken);
            await  _orderItemServices.Create(orderItem, cancellationToken);
         }
 
@@ -87,9 +87,9 @@ namespace App.Domain.AppServices.Product
         //    throw new NotImplementedException();
         //}
 
-        public async Task HardDelete(int BoothProductId, CancellationToken cancellationToken)
+        public async Task HardDelete(int orderItemId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _orderItemServices.HardDelete(orderItemId, cancellationToken);
         }
 
         public async Task Update(OrderItemUpdateDto orderItem, CancellationToken cancellationToken)

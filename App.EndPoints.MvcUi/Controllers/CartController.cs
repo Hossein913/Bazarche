@@ -13,7 +13,7 @@ namespace App.EndPoints.MvcUi.Controllers
     public class CartController : CustomerBaseController
     {
         protected readonly IOrderItemAppServices _orderItemApp;
-        protected readonly IOrderAppServices _orderAppServices;
+        protected readonly IOrderAppServices _orderApp;
 
         protected readonly UserManager<AppUser> _userManager;
         protected readonly SignInManager<AppUser> _signInManager;
@@ -21,7 +21,7 @@ namespace App.EndPoints.MvcUi.Controllers
         public CartController(IOrderItemAppServices orderItemApp, IOrderAppServices orderAppServices, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _orderItemApp = orderItemApp;
-            _orderAppServices = orderAppServices;
+            _orderApp = orderAppServices;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -41,20 +41,21 @@ namespace App.EndPoints.MvcUi.Controllers
               return Redirect(Request.Headers["Referer"].ToString());
         }
 
-        public async Task<ActionResult> DeleteOrderItem(int BoothProductId, CancellationToken cancellationToken)
+        public async Task<ActionResult> RemoveFromCart(int orderItem, CancellationToken cancellationToken)
         {
-            return View();
+            await _orderItemApp.HardDelete(orderItem, cancellationToken);
+            return Redirect(Request.Headers["Referer"].ToString());
         }
         
         [HttpGet]
         public async Task<IActionResult> Payment(CancellationToken cancellationToken)
         {
-            int newCartid = await _orderAppServices.PaymentOrder(CurrentCartId, CurrentCustomerId, cancellationToken);
+            int newCartId = await _orderApp.PaymentOrder(CurrentCartId, CurrentCustomerId, cancellationToken);
 
-            if (newCartid > 0 ) 
+            if (newCartId > 0 ) 
             {
                 var user = await _userManager.GetUserAsync(User);
-                var claim = new Claim("CartId", newCartid.ToString());
+                var claim = new Claim("CartId", newCartId.ToString());
                 var oldClaim = User.FindFirst("CartId");
                 var result = await _userManager.ReplaceClaimAsync(user, oldClaim, claim);
 

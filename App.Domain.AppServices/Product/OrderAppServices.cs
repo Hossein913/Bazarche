@@ -159,6 +159,7 @@ namespace App.Domain.AppServices.Product
             await _orderServices.Update(orderUpdateDto,cancellationToken,false);
 
             await saveChangesService.SaveChanges(cancellationToken);
+            await _boothServices.ChangeMedal(boothsId, cancellationToken);
 
             OrderCreateDto newOrder = new OrderCreateDto
             {

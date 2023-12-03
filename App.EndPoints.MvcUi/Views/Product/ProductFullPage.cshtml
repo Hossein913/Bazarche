@@ -83,12 +83,17 @@
                                         </div>
                                             <div class="m-2 ec-single-qty col-3">
                                                      <div class="ec-single-cart ">
-                                                         @if (signInManager.IsSignedIn(User))
+                                                         @if(signInManager.IsSignedIn(User))
                                                          {
-                                                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-priceId="@item.Id" type="submit">افزودن به سبد خرید</a>
+                                                                <a asp-controller="Cart"
+                                                                asp-action="AddToCart"
+                                                                asp-route-priceId="@item.Id"
+                                                                class="ec-btn-group btn btn-success">افزودن به سبد خرید</a>
+                                                         }else
+                                                         {
+                                                               <a href="javascript:void(0)" title="افزودن به کارت"
+                                                              class="ec-btn-group add-to-cart btn btn-lg btn-primary" type="submit">افزودن به سبد خرید</a>   
                                                          }
-                                                            <a href="javascript:void(0)" title="افزودن به کارت"
-                                                       class="ec-btn-group add-to-cart btn btn-lg btn-primary" type="submit">افزودن به سبد خرید</a>
 
                                                      </div>
 

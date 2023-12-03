@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Booth.Contracts.Repositories;
 using App.Domain.Core._Booth.Contracts.Services;
 using App.Domain.Core._Booth.Dtos.BoothDtos;
+using App.Infra.Data.Repos.Ef.Booths;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace App.Domain.Services.Booth
     public class BoothServices : IBoothServices
     {
         protected readonly IBoothRepository _boothRepository;
+        protected readonly IMedalRepository _medalRepository;
 
-        public BoothServices(IBoothRepository boothRepository)
+        public BoothServices(IBoothRepository boothRepository, IMedalRepository medalRepository)
         {
             _boothRepository = boothRepository;
+            _medalRepository = medalRepository;
         }
 
         public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
@@ -62,5 +65,40 @@ namespace App.Domain.Services.Booth
             await _boothRepository.GroupUpdate(boothsUpdate, cancellationToken, saveChanges );
         }
 
+        public async Task ChangeMedal(List<int> boothsId, CancellationToken cancellationToken)
+        {
+
+            var medals = await _medalRepository.GetAll(cancellationToken);
+
+            if (medals.Count > 1)
+            {
+                var booths = await _boothRepository.GetAllWithListId(boothsId, cancellationToken);
+
+                List<BoothUpdateDto> BoothWithMedalId= new List<BoothUpdateDto>();
+                booths.ForEach(b => {
+                    int indexMedalId = 1;
+
+                    medals.ForEach(m => {
+                        if (m.MinSalesRequired <= b.TotalSell){
+                            indexMedalId = m.Id;
+                        }
+                        else
+                        {  
+                            BoothWithMedalId.Add(new BoothUpdateDto
+                            {
+                                Id = b.Id,
+                                MedalId = indexMedalId
+                            });
+                        }
+                    });
+                });
+
+                await _boothRepository.GroupUpdate(BoothWithMedalId, cancellationToken);
+
+
+            }
+
+
+        }
     }
 }

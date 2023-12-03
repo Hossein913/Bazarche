@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Dtos.BoothDtos;
+using System.Net;
 
 namespace App.Domain.Core._Booth.Contracts.Services;
 
@@ -10,6 +11,7 @@ public interface IBoothServices
     Task<BoothOutputDto> GetDetail(int BoothId, CancellationToken cancellationToken);
     Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken);
     Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken);
+    Task ChangeMedal(List<int> BoothIds, CancellationToken cancellationToken);
     Task GroupUpdate(List<BoothUpdateDto> boothUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task SoftDelete(int BoothId, CancellationToken cancellationToken);
 }

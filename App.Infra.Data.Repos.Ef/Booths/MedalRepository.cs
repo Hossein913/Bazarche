@@ -41,7 +41,7 @@ public class MedalRepository : IMedalRepository
 
         }).ToListAsync(cancellationToken);
 
-        return result;
+        return result.OrderBy(m => m.MinSalesRequired).ToList();
     }
 
     public async Task HardDelete(int medalId, CancellationToken cancellationToken)
