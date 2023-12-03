@@ -3,11 +3,11 @@
 <div class="ec-shop-rightside col-lg-9 col-md-12">
     <div class="ec-vendor-dashboard-card">
         <div class="ec-vendor-card-body">
-            <div class="row">
-                <div class="col-lg-3">
+            <div class="col-lg-12">
+                 <div class=" row d-flex ">
                     @foreach (var item in Model)
                     {
-                        <div class="ec_cat_content ec_cat_content_1">
+                        <div class="ec_cat_content ec_cat_content_1 col-3 mt-1 mb-1">
                             <div class="ec_cat_inner ec_cat_inner-1">
                     
                                 <div>
@@ -16,7 +16,7 @@
                                          alt=@item.Title height="50px" width="70px" />
                                 </div>
                                 <div class="ec-category-desc">
-                                    <a asp-area="Seller" asp-controller="Product" asp-action="CategoryProducts" asp-route-categoryId="@item.Id" class="cat-show-all">
+                                    <a asp-controller="Product" asp-action="CategoryProducts" asp-route-categoryId="@item.Id" class="cat-show-all">
                                         <h3> @item.Title <span title="Category Items">(53)</span></h3>
                                     </a>
                                 </div>

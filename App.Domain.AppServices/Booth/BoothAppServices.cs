@@ -15,7 +15,7 @@ namespace App.Domain.AppServices.Booth
 
         public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _boothServices.Create(boothCreate, cancellationToken);
         }
 
         public async  Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)

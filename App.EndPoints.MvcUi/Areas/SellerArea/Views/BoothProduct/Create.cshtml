@@ -1,0 +1,73 @@
+﻿@model CreateBoothProductViewModel;
+@inject FileUploadPathsDto filePath;
+@inject SignInManager<AppUser> signInManager;
+@{
+    ViewData["Title"] = "ProductfullPage";
+}
+<!-- Sart Single product -->
+<div class="ec-shop-rightside col-lg-9 col-md-12">
+
+    <div class="ec-vendor-dashboard-card">
+
+        <div class="ec-vendor-card-body">
+            <div class="ec-vendor-card-header">
+                <h5> جزئیات سفارش</h5>
+                <div class="ec-header-btn">
+                    <a class="btn btn-lg btn-primary" asp-controller="Customer" asp-action="Index">بازگشت  </a>
+                    <a href="@Model.MainUrl" class="ec-btn-group btn btn-success">بازگشت></a>
+
+                </div>
+            </div>
+                <!-- Single product content Start -->
+            <div class="row">
+                <div class=" single-pro-img-no-sidebar">
+                                <div class="single-product-scroll">
+                                    <div class="single-product-cover">
+
+                                            <div class="single-slide zoom-image-hover">
+                                                <img class="img-responsive" src="~/@filePath.Product/@Model.Avatar.ImageUrl"
+                                                     alt="">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                <div class=" single-pro-desc-no-sidebar">
+                    <div class="single-pro-content">
+
+                        <h5 class="ec-single-title">@Model.ProductName</h5>
+                        <h5 class="ec-single-title">برند :@Model.ProductBrand</h5>
+
+                        <form method="post">
+                            @Html.HiddenFor(m => m.ProductId)
+                            <div class="row d-flex align-items-end">
+                                <div class=" col-4">
+                                     <label asp-for="@Model.Price" class="form-label"></label>
+                                     <input asp-for="@Model.Price" class="form-control" type="text"/>
+                                </div>
+
+                                <div class=" col-4">
+                                    <label asp-for="@Model.Count" class="form-label"></label>
+                                <input asp-for="@Model.Count" class="form-control" type="text" />
+                                </div>
+
+                                <div class="col-4 justify">
+                                  <button type="submit"  class="ec-btn-group btn btn-success"> ثبت قبمت</button>
+                                </div>
+                        
+                            </div>
+
+                        </form>
+
+
+                     </div>
+
+                   
+                </div>
+            </div>
+                <!--Single product content End -->
+        </div>
+       
+        </div>
+    </div>
+</div>
+<!-- End Single product -->

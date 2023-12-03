@@ -62,7 +62,7 @@ public class SellerRepository : ISellerRepository
             .Include(a => a.AppUser)
             .Include(a => a.Address)
             .ThenInclude(ad => ad.Province)
-            .FirstOrDefaultAsync(a => a.AppUserId == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
+            .FirstOrDefaultAsync(a => a.Id == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
 
         if (sellerUser != null)
         {

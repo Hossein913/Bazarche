@@ -1,45 +1,88 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
+using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
+using App.Domain.Core._Products.Entities;
+using App.EndPoints.MvcUi.Areas.SellerArea.Models.AuctionViewModels;
+using App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothProductViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 {
     public class AuctionController : BaseController
     {
 
-        protected readonly IProductAppServices _productAppService;
-        public AuctionController(IProductAppServices productAppService)
+        protected readonly IProductAppServices _productApp;
+        protected readonly IAuctionAppServices _auctionApp;
+
+        public AuctionController(IProductAppServices productAppService, IAuctionAppServices auctionApp)
         {
-            _productAppService = productAppService;
+            _productApp = productAppService;
+            _auctionApp = auctionApp;
         }
 
-        public ActionResult Details(int id,CancellationToken  cancellationToken)
+        [HttpGet]
+        public async Task<ActionResult> Create(int productId, CancellationToken cancellationToken)
+        {
+
+            var product = await _productApp.GetDetails(productId, cancellationToken);
+            CreateAuctionViewModels createAuction = null;
+            if (product != null)
+            {
+                createAuction = new CreateAuctionViewModels
+                {
+                    ProductId = product.Id,
+                    BoothId = CurrentBoothId,
+                    BasePrice = 0,
+                    ProductName = product.Name,
+                    ProductBrand = product.Brand,
+                    Avatar = product.Pictures.FirstOrDefault(),
+                    MainUrl = Request.Headers["Referer"].ToString(),
+                };
+            }
+
+            return View(createAuction);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(CreateAuctionViewModels createAuction, CancellationToken cancellationToken)
+        {
+            PersianCalendar persianCalendarStart = new PersianCalendar();
+            DateTime StartDateTime = persianCalendarStart.ToDateTime(createAuction.StartYear, createAuction.StartMonth, createAuction.StartDay, createAuction.StartHour, 0, 0, 0);
+
+            PersianCalendar EndpersianCalendar = new PersianCalendar();
+            DateTime EndDateTime = EndpersianCalendar.ToDateTime(createAuction.EndYear, createAuction.EndMonth, createAuction.EndDay, createAuction.EndHour, 0, 0, 0);
+
+            AuctionCreateDto auctionCreate = new AuctionCreateDto
+            {
+                ProductId = createAuction.ProductId,
+                BoothId = CurrentBoothId,
+                StartTime = StartDateTime,
+                EndTime = EndDateTime,
+                BasePrice = createAuction.BasePrice,
+            };
+
+            await _auctionApp.Create(auctionCreate, cancellationToken);
+            return View();
+        }
+
+
+        public async Task<ActionResult> Details(int id, CancellationToken cancellationToken)
         {
             return View();
         }
 
-        public ActionResult Create(int Id, CancellationToken cancellationToken)
+
+        public async Task<ActionResult> Edit(int id, CancellationToken cancellationToken)
         {
-            var result = _productAppService.GetDetails(Id, cancellationToken);
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection, CancellationToken cancellationToken)
-        {
-            return View();
-        }
-
-        public ActionResult Edit(int id, CancellationToken cancellationToken)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection, CancellationToken cancellationToken)
+        public async Task<ActionResult> Edit(int id, IFormCollection collection, CancellationToken cancellationToken)
         {
             try
             {
@@ -54,7 +97,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, CancellationToken cancellationToken)
+        public async Task<ActionResult> Delete(int id, CancellationToken cancellationToken)
         {
             try
             {

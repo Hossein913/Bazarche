@@ -10,10 +10,12 @@
     <div class="ec-vendor-card-header">
         <h5>لیست محصولات</h5>
         <div class="ec-header-btn">
+                <a asp-controller="Product" asp-action="ParentCategories" class="btn btn-lg btn-primary">بازگشت -></a>
         </div>
     </div>
     <div class="ec-vendor-card-body">
         <div class="ec-vendor-card-table">
+
             <table class="table ec-table">
                 <thead>
                     <tr>
@@ -40,10 +42,10 @@
                             <td><span>در انتظار</span></td>
                             <td><span>
                                     <div class="ec-header-btn">
-                                        <a class="btn btn-lg btn-info" 
-                                        asp-area="SellerArea" asp-controller="Price" asp-action="Create" asp-route-productId="@item.Id"> ثبت قیمت</a>
+                                        <a class="btn btn-lg btn-info"
+                                        asp-controller="BoothProduct" asp-action="Create" asp-route-productId="@item.Id"> ثبت قیمت</a>
                                         <a class="btn btn-lg btn-warning"
-                                        asp-area="SellerArea" asp-controller="Auction" asp-action="Create" asp-route-productId="@item.Id">فروش در مزایده</a>
+                                         asp-controller="Auction" asp-action="Create" asp-route-productId="@item.Id">فروش در مزایده</a>
                                     </div>
                             
                             </span></td>
