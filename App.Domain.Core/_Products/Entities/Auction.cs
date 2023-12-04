@@ -32,6 +32,6 @@ public class Auction
 
     public virtual Product Product { get; set; } = null!;
 
-    public virtual Product Wage { get; set; } = null!;
+    public virtual Wage Wage { get; set; } = null!;
     #endregion
 }

@@ -21,9 +21,14 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Wages_OrderItems");
 
-            entity.HasData(
-                new Wage { Id = 1, OrderitemId = 1, FeePercenteage = 25, WageAmount = 80000 }
-                );
+            entity.HasOne(w => w.Auction).WithOne(a => a.Wage)
+                .HasForeignKey<Wage>(w => w.AuctionId)
+                .OnDelete(DeleteBehavior.NoAction)
+                .HasConstraintName("FK_Wages_Auction");
+
+            //entity.HasData(
+            //    new Wage { Id = 1, OrderitemId = 1, AuctionId = null, FeePercenteage = 25, WageAmount = 80000 }
+            //    );
         }
     
     }
