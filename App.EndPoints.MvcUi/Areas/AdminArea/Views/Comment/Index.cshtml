@@ -1,0 +1,90 @@
+﻿@model List<AllCommentViewModel>
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper breadcrumb-wrapper-2 d-flex align-items-center justify-content-between">
+            <h1>نظرات</h1>
+            <p class="breadcrumbs">
+                <span><a href="index.html">خانه</a></span> <span>
+                    <i class="mdi mdi-chevron-left"></i>
+                </span>نظرات
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>کاربر</th>
+                                        <th>محصول</th>
+                                        <th>وضعیت نظر</th>
+                                        <th>متن نظر</th>
+                                        <th>امتیازات</th>
+                                        <th>تاریخ</th>
+                                        <th>فعالیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <td> @item.ProductName </td>
+
+                                            <td>@item.CsutomerName </td>
+
+                                            @if (@item.IsConfirmed == null)
+                                            {
+                                                <td><b class="badge badge-warning">منتظر تایید</b> </td>
+                                            }
+                                            else if (@item.IsConfirmed == true)
+                                            {
+                                                <td><b class="badge badge-success">تایید شده</b></td>
+                                            }
+                                            else
+                                            {
+                                                <td><b class="badge badge-danger">رد شده</b></td>
+                                            }
+
+                                            <td>
+                                                <div class="ec-t-rate">
+                                                    @item.CommentText
+                                                </div>
+                                            </td>
+
+                                            <td>@item.CreatedAt.</td>
+
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <button type="button"
+                                                            class="btn btn-outline-success">
+                                                        اطلاعات
+                                                    </button> <button type="button"
+                                                                      class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                      data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                      aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">اطلاعات</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item"
+                                                           href="#">ویرایش</a> <a class="dropdown-item"
+                                                                                  href="#">حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

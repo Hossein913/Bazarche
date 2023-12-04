@@ -21,9 +21,9 @@ public class CommentServices : ICommentServices
 
     }
 
-    public async Task<List<CommentOutputDto>> GetAllForConfirm(CancellationToken cancellationToken)
+    public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
     {
-        var result = await _commentRepository.GetAllForConfirm(cancellationToken);
+        var result = await _commentRepository.GetAll(cancellationToken);
             return result;
     }
 

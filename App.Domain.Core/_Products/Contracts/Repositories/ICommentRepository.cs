@@ -4,7 +4,7 @@ namespace App.Domain.Core._Products.Contracts.Repositories;
 
 public interface ICommentRepository
 {
-    Task<List<CommentOutputDto>> GetAllForConfirm(CancellationToken cancellationToken);
+    Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken);
     Task<List<CommentOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);
     Task<List<CommentOutputDto>> GetAllCustomer(int CustomerId, CancellationToken cancellationToken);
     Task<List<CommentOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken);

@@ -38,16 +38,16 @@ public class CommentRepository : ICommentRepository
         var result = await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<CommentOutputDto>> GetAllForConfirm(CancellationToken cancellationToken)
+    public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
     {
             var result = await _context.Comments
         .AsNoTracking()
-        .Where(p => p.IsDeleted == false && p.IsConfirmed == null)
+        .Where(p => p.IsDeleted != false)
         .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
         {
             Id = c.Id,
             Customer = c.Customer,
-            //Product = c.Product,
+            Product = new ProductOutputDto { Id= c.Product.Id,Name = c.Product.Name },
             OrderItemId = c.OrderItemId,
             PictureId = null,
             Text = c.Text,
@@ -55,7 +55,7 @@ public class CommentRepository : ICommentRepository
             IsConfirmed = c.IsConfirmed,
             
         }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
-            return result;
+            return result.OrderBy(c => c.IsConfirmed).ToList();
     }
     
     public async Task<List<CommentOutputDto>> GetAllForBooth(int BoothId,CancellationToken cancellationToken)

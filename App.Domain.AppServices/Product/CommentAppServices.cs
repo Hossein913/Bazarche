@@ -27,7 +27,8 @@ namespace App.Domain.AppServices.Product
 
         public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _commentServices.GetAll(cancellationToken);
+            return result;
         }
 
         public async Task<List<CommentOutputDto>> GetAllCustomer(int CustomerId, CancellationToken cancellationToken)
@@ -41,10 +42,11 @@ namespace App.Domain.AppServices.Product
             throw new NotImplementedException();
         }
 
-        public async Task<List<CommentOutputDto>> GetAllForConfirm(CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        //public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)
+        //{
+        //    var result = await _commentServices.GetAll( cancellationToken);
+        //    return result;
+        //}
 
         public async Task<List<CommentOutputDto>> GetAllForProduct(int ProductId, CancellationToken cancellationToken)
         {
