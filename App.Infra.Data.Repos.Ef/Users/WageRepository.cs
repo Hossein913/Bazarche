@@ -42,9 +42,9 @@ namespace App.Infra.Data.Repos.Ef.Users
 
         public async Task<List<WageOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            return await _context.Wages.AsNoTracking().Select<Wage, WageOutputDto>(w => new WageOutputDto
+            var result = await _context.Wages.AsNoTracking().Select<Wage, WageOutputDto>(w => new WageOutputDto
             {
-                //Id = c.Id,//Will we be requared to Edite the Table records later?
+                //Id = c.Id,//Will we be required to Edit the Table records later?
                 Booth = w.Orderitem.BoothProduct.Booth.Name,
                 customerfullName = w.Orderitem.Order.Customer.FirstName +' '+ w.Orderitem.Order.Customer.FirstName,
                 product = w.Orderitem.BoothProduct.Product.Name,
@@ -55,6 +55,8 @@ namespace App.Infra.Data.Repos.Ef.Users
 
 
             }).ToListAsync(cancellationToken);
+
+            return result;
         }
     
     

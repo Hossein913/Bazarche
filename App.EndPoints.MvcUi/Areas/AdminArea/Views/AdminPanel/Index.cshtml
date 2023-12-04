@@ -1,1 +1,58 @@
-﻿
+﻿@model List<GetAllWageViewModel>
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper breadcrumb-wrapper-2 d-flex align-items-center justify-content-between">
+            <h1>گزارش تراکنش ها</h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="responsive-data-table" class="table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>کاربر</th>
+                                        <th> غرفه</th>
+                                        <th>محصول</th>
+                                        <th>قیمت </th>
+                                        <th>درصد سود</th>
+                                        <th>مبلغ کارمزد</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+
+                                            <td> @item.CustomerName </td>
+
+                                            <td>@item.BoothName </td>
+
+                                            <td> @item.ProductName </td>
+
+
+                                            <td>
+                                                    @item.Price تومان
+                                            </td>
+
+                                            <td>@item.FeePercenteage درصد</td>
+
+                                            <td>
+                                                  @item.FeePercenteage تومان
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

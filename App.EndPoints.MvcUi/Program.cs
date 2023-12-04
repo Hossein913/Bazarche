@@ -120,6 +120,7 @@ builder.Services.AddScoped<IProductAppServices, ProductAppServices>();
 ////--Users
 //builder.Services.AddScoped<IAddressAppServices, AddressAppServices>();
 //builder.Services.AddScoped<IAdminAppServices, AdminAppServices>();
+builder.Services.AddScoped<IWageAppServices, WageAppServices>();
 builder.Services.AddScoped<ICustomerAppServices, CustomerAppServices>();
 builder.Services.AddScoped<ISellerAppServices, SellerAppServices>();
 builder.Services.AddScoped<IIdentityAppServices, IdentityAppServices>();

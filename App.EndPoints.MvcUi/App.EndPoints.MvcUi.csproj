@@ -28,4 +28,9 @@
     <ProjectReference Include="..\App.Infra.Hangfire\App.Infra.Hangfire.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\AdminArea\ViewComponents\" />
+    <Folder Include="Areas\AdminArea\Views\Shared\Components\" />
+  </ItemGroup>
+
 </Project>
