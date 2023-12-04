@@ -145,7 +145,7 @@ public class BoothRepository : IBoothRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken)
+    public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
         var BoothRecord = await _context.Booths
         .FirstOrDefaultAsync(x => x.Id == boothUpdate.Id, cancellationToken);
@@ -161,7 +161,8 @@ public class BoothRepository : IBoothRepository
             BoothRecord.IsDeleted = boothUpdate.IsDeleted != null ? boothUpdate.IsDeleted : BoothRecord.IsDeleted;
 
         }
-        await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        { await _context.SaveChangesAsync(cancellationToken); }
     }
 
     public async Task GroupUpdate(List<BoothUpdateDto> boothsUpdate, CancellationToken cancellationToken, bool saveChanges = true)

@@ -24,6 +24,7 @@ namespace App.Infra.Data.Repos.Ef.Users
             {
                 var newrecord = new Wage
                 {
+                    AuctionId = WageCreate.AuctionId,
                     OrderitemId = WageCreate.OrderitemId,
                     FeePercenteage = WageCreate.FeePercenteage,
                     WageAmount = WageCreate.WageAmount

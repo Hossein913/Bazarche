@@ -18,7 +18,7 @@ public class AuctionRepository : IAuctionRepository
         _context = context;
     }
 
-    public async Task Create(AuctionCreateDto auction, CancellationToken cancellationToken)
+    public async Task<int> Create(AuctionCreateDto auction, CancellationToken cancellationToken)
     {
         var newAuction = new Auction
         {
@@ -28,13 +28,18 @@ public class AuctionRepository : IAuctionRepository
             StartTime = auction.StartTime,
             EndTime = auction.EndTime,
             BasePrice = auction.BasePrice,
-            Status = (int)AuctionStatus.Runing ,
+            Status = (int)AuctionStatus.Defined ,
             IsConfirmed = null,
 
         };
 
         await _context.Auctions.AddAsync(newAuction, cancellationToken);
         var result = await _context.SaveChangesAsync(cancellationToken);
+        if (result > 0 )
+        {
+            return newAuction.Id;
+        }
+        return 0;
     }
     
     public async Task<List<AuctionOutputDto>> GetAll(CancellationToken cancellationToken)
@@ -120,6 +125,7 @@ public class AuctionRepository : IAuctionRepository
         var auction = await _context.Auctions
             .Include(a => a.Booth)
             .Include(a => a.Bids)
+            .ThenInclude(b => b.CustomerId)
             .Include(a => a.Product)
             .ThenInclude(p => p.Pictures)
             .FirstOrDefaultAsync(p => p.Id == auctionId , cancellationToken);
@@ -142,7 +148,7 @@ public class AuctionRepository : IAuctionRepository
                                  Avatar = auction.Product.Pictures.FirstOrDefault().ImageUrl,
                 },
                 Booth = auction.Booth,
-                Bids = auction.Bids
+                Bids = auction.Bids.OrderByDescending(b => b.BidPrice).ToList(),
 
             };
             return auctionRecord;
@@ -168,23 +174,24 @@ public class AuctionRepository : IAuctionRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken)
+    public async Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken,bool saveChanges = true)
     {
         var AuctionRecord = await _context.Auctions
         .FirstOrDefaultAsync(x => x.Id == auction.Id, cancellationToken);
         if (AuctionRecord != null)
         {
-            AuctionRecord.ProductId = auction.ProductId;
-            AuctionRecord.BoothId = auction.BoothId;
-            AuctionRecord.WinnerId = auction.WinnerId;
-            AuctionRecord.StartTime = auction.StartTime;
-            AuctionRecord.EndTime = auction.EndTime;
-            AuctionRecord.BasePrice = auction.BasePrice;
-            AuctionRecord.Status = auction.Status;
-            AuctionRecord.IsConfirmed = auction.IsConfirmed;
+            AuctionRecord.ProductId = auction.ProductId == null ? AuctionRecord.ProductId : auction.ProductId;
+            AuctionRecord.BoothId = auction.BoothId == null ? AuctionRecord.BoothId : auction.BoothId;
+            AuctionRecord.WinnerId = auction.WinnerId == null ? AuctionRecord.WinnerId : auction.WinnerId;
+            AuctionRecord.StartTime = auction.StartTime == null ? AuctionRecord.StartTime : auction.StartTime;
+            AuctionRecord.EndTime = auction.EndTime == null ? AuctionRecord.EndTime : auction.EndTime;
+            AuctionRecord.BasePrice = auction.BasePrice == null ? AuctionRecord.BasePrice : auction.BasePrice;
+            AuctionRecord.Status = auction.Status == null ? AuctionRecord.Status : (int)auction.Status;
+            AuctionRecord.IsConfirmed = auction.IsConfirmed == null ? AuctionRecord.IsConfirmed : auction.IsConfirmed;
 
         }
-        await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        { await _context.SaveChangesAsync(cancellationToken);}
     }
 }
 

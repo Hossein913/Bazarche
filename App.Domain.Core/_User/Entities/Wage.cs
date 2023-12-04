@@ -8,7 +8,9 @@ public partial class Wage
 {
     public int Id { get; set; }
 
-    public int OrderitemId { get; set; }
+    public int? OrderitemId { get; set; }
+
+    public int? AuctionId { get; set; }
 
     public int FeePercenteage { get; set; }
 
@@ -16,5 +18,7 @@ public partial class Wage
 
     #region Navigation properties
     public virtual OrderItem Orderitem { get; set; } = null!;
+
+    public virtual Auction Auction { get; set; } = null!;
     #endregion
 }

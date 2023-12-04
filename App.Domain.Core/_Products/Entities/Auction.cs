@@ -31,5 +31,7 @@ public class Auction
     public virtual Booth Booth { get; set; } = null!;
 
     public virtual Product Product { get; set; } = null!;
+
+    public virtual Product Wage { get; set; } = null!;
     #endregion
 }

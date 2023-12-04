@@ -4,6 +4,7 @@ using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.AuctionViewModels;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothProductViewModels;
+using Hangfire;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
@@ -65,6 +66,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             };
 
             await _auctionApp.Create(auctionCreate, cancellationToken);
+
+            
             return View();
         }
 

@@ -1,4 +1,5 @@
-﻿using App.Domain.Core._Products.Contracts.AppServices;
+﻿using App.Domain.Core._Common.Contracts.Services;
+using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Entities;
@@ -15,6 +16,7 @@ namespace App.Domain.AppServices.Product
     {
         protected readonly IAuctionServices _auctionServices;
         protected readonly IProductServices _productServices;
+        protected readonly IJobServices jobServices;
 
 
         public AuctionAppServices(IAuctionServices auctionServices, IProductServices productServices)
@@ -43,9 +45,11 @@ namespace App.Domain.AppServices.Product
             return auctions;
         }
 
-        public async Task Create(AuctionCreateDto auction, CancellationToken cancellationToken)
+        public async Task Create(AuctionCreateDto createAuction, CancellationToken cancellationToken)
         {
-             await _auctionServices.Create(auction, cancellationToken);
+            var auctionId = await _auctionServices.Create(createAuction, cancellationToken);
+            jobServices.AddNewJub<IAuctionServices>(a => a.GetStartAuction(auctionId, cancellationToken), createAuction.StartTime);
+            jobServices.AddNewJub<IAuctionServices>(a => a.GetEndAuction(auctionId, cancellationToken), createAuction.StartTime);
         }
 
         public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)

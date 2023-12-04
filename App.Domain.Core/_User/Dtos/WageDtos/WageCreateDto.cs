@@ -13,6 +13,8 @@ namespace App.Domain.Core._User.Dtos.WageDtos
 
         public int OrderitemId { get; set; }
 
+        public int AuctionId { get; set; }
+
         public int FeePercenteage { get; set; }
 
         public int WageAmount { get; set; }

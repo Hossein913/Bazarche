@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class AuctionUpdateDto
 
     public int BasePrice { get; set; }
 
-    public int Status { get; set; }
+    public AuctionStatus Status { get; set; }
 
     public bool? IsConfirmed { get; set; }
 

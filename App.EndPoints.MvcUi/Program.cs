@@ -24,6 +24,9 @@ using App.Infra.Data.Repos.Ef.Commons;
 using App.Infra.Data.Repos.Ef.Products;
 using App.Infra.Data.Repos.Ef.Users;
 using App.Infra.Data.SqlServer.Ef.DbCntx;
+using App.Infra.Hangfire;
+using Hangfire;
+using Hangfire.Dashboard.BasicAuthorization;
 using Infrastructure.IdentityConfigs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -179,6 +182,19 @@ builder.Services.AddSingleton(uploadPath);
 #endregion
 
 
+#region Hangfire config
+builder.Services.AddHangfire(x =>
+{
+    x.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
+builder.Services.AddHangfireServer();
+
+builder.Services.AddScoped<IJobServices, HangfireServices>();
+
+
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
@@ -196,6 +212,20 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+ app.UseHangfireDashboard("/dashboard", new DashboardOptions
+ {
+        Authorization = new[] {
+            new BasicAuthAuthorizationFilter(
+                new BasicAuthAuthorizationFilterOptions {
+                    RequireSsl = false,
+                    SslRedirect = false,
+                    LoginCaseSensitive = true,
+                    Users = new [] { new BasicAuthAuthorizationUser {Login = "Admin",PasswordClear = "Admin"} }
+                     })
+        }
+ });
 
 app.MapControllerRoute(
 name: "Admin",
