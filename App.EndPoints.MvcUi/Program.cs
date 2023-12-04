@@ -228,7 +228,7 @@ app.UseAuthorization();
  });
 
 app.MapControllerRoute(
-name: "Admin",
+name: "AdminArea",
 pattern: "{area:exists}/{controller=AdminPanel}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
@@ -236,12 +236,12 @@ name: "SellerArea",
 pattern: "{area:exists}/{controller=SellerPanel}/{action=Index}/{id?}");
 
 //--------Area as default Route--------////
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{area=SellerArea}/{controller=SellerPanel}/{action=Index}/{id?}");
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=AdminArea}/{controller=AdminPanel}/{action=Index}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using App.EndPoints.MvcUi.Areas.AdminArea.Controllers;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.EndPoints.MvcUi.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    public class AdminPanelController : Controller
+    
+    public class AdminPanelController : AdminBaseController
     {
         // GET: AdminPanelController
         public ActionResult Index()
