@@ -37,8 +37,8 @@
                     <div class="ec-vendor-card-header">
                         <h5>لیست محصولات</h5>
                         <div class="ec-header-btn">
-                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
-                            <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>
+@*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                            <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
                         </div>
                     </div>
                     <div class="ec-vendor-card-body">
@@ -52,6 +52,7 @@
                                         <th scope="col">توضیحات</th>
                                         <th scope="col">تعداد</th>
                                         <th scope="col">قیمت فروش</th>
+                                        <th scope="col">  فعالیت </th>
                                     </tr>
                                 </thead>
                                 @{int Productcounter = 1;}
@@ -68,6 +69,7 @@
                                 <td><span>@item.Description</span></td>
                                 <td><span>@item.BoothProducts.FirstOrDefault().Count</span></td>
                                 <td><span>@item.BoothProducts.FirstOrDefault().Price</span></td>
+                                <td><span><a class="btn btn-lg btn-danger" asp-controller="BoothProduct" asp-action="Cancel" asp-route-boothProdcutId="@item.Id"> غیر فعال کردن قیمت</a></span></td>
                             </tr>
 
                             Productcounter++; 
