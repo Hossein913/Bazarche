@@ -28,9 +28,9 @@ public class ProductOutputDto
 
     public int BasePrice { get; set; }
 
-    public int MaxPrice { get; set; }
+    public int? MaxPrice { get; set; }
 
-    public int MinPrice { get; set; }
+    public int? MinPrice { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

@@ -10,6 +10,8 @@ namespace App.Domain.Core._Products.Contracts.AppServices
     public interface IProductAppServices
     {
         Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken);
+
+        Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken);
         public Task<List<ProductOutputDto>> GetAllByParentCategory(int parentCategoryId, CancellationToken cancellationToken);
         public Task<List<ProductOutputDto>> GetAllByChildCategory(int ChildCategoryId, CancellationToken cancellationToken);
         Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);

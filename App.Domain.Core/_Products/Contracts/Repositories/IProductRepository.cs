@@ -5,6 +5,7 @@ namespace App.Domain.Core._Products.Contracts.Repositories;
 public interface IProductRepository
 {
     Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken);
+    Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken);
     Task<List<ProductOutputDto>> GetAllByCategory(CancellationToken cancellationToken, params int[] categoriesId);
     Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);
     Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int, int>> ProductPrice, CancellationToken cancellationToken);

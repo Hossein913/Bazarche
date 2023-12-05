@@ -65,7 +65,28 @@ public class ProductRepository : IProductRepository
              }).ToListAsync(cancellationToken);
         return result;
     }
-    
+
+    public async Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken)
+    {
+
+        var result = await _context.Products
+            .AsNoTracking()
+            .Where(p => p.IsDeleted == false && p.IsConfirmed == null)
+            .Select<Product, ProductOutputDto>(c => new ProductOutputDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Brand = c.Brand,
+                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Grantee = c.Grantee,
+                Description = c.Description,
+                IsConfirmed = c.IsConfirmed,
+                MaxPrice = c.BoothProducts.Max(p => p.Price),
+                MinPrice = c.BoothProducts.Min(p => p.Price),
+            }).ToListAsync(cancellationToken);
+        return result;
+    }
+
     public async Task<List<ProductOutputDto>> GetAllByCategory(CancellationToken cancellationToken,params int[] categoriesId)
     {
         var result = await _context.Products

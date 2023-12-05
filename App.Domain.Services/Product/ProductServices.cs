@@ -46,6 +46,11 @@ public class ProductServices : IProductServices
         return result;
     }
 
+    public Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken)
     {
         var result = await _productRepository.GetAllWithIdList(ProductIdList, cancellationToken);

@@ -83,7 +83,8 @@ namespace App.Domain.AppServices.Product
 
         public async Task<List<ProductOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _productServices.GetAll(cancellationToken);
+            return result;
         }
 
         public async Task<List<ProductOutputDto>> GetAllByParentCategory(int parentCategoryId, CancellationToken cancellationToken)
@@ -164,6 +165,9 @@ namespace App.Domain.AppServices.Product
             throw new NotImplementedException();
         }
 
-
+        public Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

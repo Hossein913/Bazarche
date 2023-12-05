@@ -55,8 +55,8 @@ namespace App.EndPoints.MvcUi.Controllers
                 Brand = p.Grantee,
                 AvatarFileUrl = p.Avatar,
                 Description = p.Description,
-                MaxPrice = p.MinPrice,
-                MinPrice = p.MaxPrice,
+                MaxPrice = Convert.ToInt32(p.MinPrice),
+                MinPrice = Convert.ToInt32(p.MaxPrice),
 
             }).ToList();
 
