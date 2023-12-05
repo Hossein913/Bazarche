@@ -42,9 +42,9 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> Index(CancellationToken cancellationToken)
         {
-            ViewBag.BoothId = CurrentBoothId;
-            ViewBag.SellerAppUserId = CurrentUserId;
-            var SellerUser = await _sellerAppServices.GetDetails(CurrentUserId, cancellationToken);
+            //ViewBag.BoothId = CurrentBoothId;
+            //ViewBag.SellerAppUserId = CurrentUserId;
+            var SellerUser = await _sellerAppServices.GetDetails(CurrentSellerId, cancellationToken);
             
             if (SellerUser != null)
             {

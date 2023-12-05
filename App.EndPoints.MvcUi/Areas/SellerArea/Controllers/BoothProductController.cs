@@ -55,7 +55,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 
             await _boothProductApp.Create(createBoothProductCreateDto, cancellationToken);
 
-            return View();
+            return RedirectToAction("Create", new { ProductId = boothProduct.ProductId });
         }
 
         public async Task<ActionResult> Index()

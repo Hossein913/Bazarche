@@ -4,6 +4,7 @@ using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.AuctionViewModels;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothProductViewModels;
+using App.Frameworks.Web;
 using Hangfire;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,27 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             _productApp = productAppService;
             _auctionApp = auctionApp;
         }
+
+        public async Task<ActionResult> Index(CancellationToken cancellationToken)
+        {
+            var result = await _auctionApp.GetAllForBooth(CurrentBoothId, cancellationToken);
+            List<GetAllAuctionViewModel> auctionViewModel = result.Select<AuctionOutputDto, GetAllAuctionViewModel>(a =>
+                new GetAllAuctionViewModel
+                {
+                    Id = a.Id ,
+                    WinnerId = a.WinnerId ,
+                    StartTime = a.StartTime.ToPersianDate() ,
+                    EndTime = a.EndTime.ToPersianDate(),
+                    BasePrice = a.BasePrice ,
+                    Status = a.Status ,
+                    IsConfirmed = a.IsConfirmed ,
+                    ProductDto = a.ProductDto,
+                    MaxBid = a.Bids.Count > 0 ? a.Bids.FirstOrDefault(): null,
+                }
+            ).ToList();
+            return View(auctionViewModel);
+        }
+
 
         [HttpGet]
         public async Task<ActionResult> Create(int productId, CancellationToken cancellationToken)
@@ -68,9 +90,15 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             await _auctionApp.Create(auctionCreate, cancellationToken);
 
             
-            return View();
+            return RedirectToAction("Create", new { productId = createAuction.ProductId });
         }
 
+
+        public async Task<ActionResult> Cancel(int auctionId, CancellationToken cancellationToken)
+        {
+            await _auctionApp.Cancel(auctionId, cancellationToken);
+            return RedirectToAction("Index");
+        }
 
         public async Task<ActionResult> Details(int id, CancellationToken cancellationToken)
         {

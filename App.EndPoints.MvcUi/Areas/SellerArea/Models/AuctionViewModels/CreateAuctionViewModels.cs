@@ -8,26 +8,27 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.AuctionViewModels
         public int ProductId { get; set; }
 
         public int BoothId { get; set; } 
-        [Display(Name ="سال"),MaxLength(1500,ErrorMessage ="سال اغاز را اشتباه وارد کرده اید.")]
+
+        [Display(Name ="سال")]
         public int StartYear { get; set; } 
-        [Display(Name = "ماه"), MaxLength(12, ErrorMessage = "ماه اغاز را اشتباه وارد کرده اید.")]
+        [Display(Name = "ماه")]
         public int StartMonth { get; set;  }
-        [Display(Name = "روز"), MaxLength(29, ErrorMessage = "روز اغاز را اشتباه وارد کرده اید.")]
+        [Display(Name = "روز") ]
         public int StartDay { get; set; }
-        [Display(Name = "ساعت"), MaxLength(24, ErrorMessage = "ساعت اغاز را اشتباه وارد کرده اید.")]
+        [Display(Name = "ساعت")]
         public int StartHour { get; set; }
 
 
-        [Display(Name = "سال"), MaxLength(1500, ErrorMessage = "سال پایان را اشتباه وارد کرده اید.")]
+        [Display(Name = "سال")]
         public int EndYear { get; set; }
-        [Display(Name = "ماه"), MaxLength(12, ErrorMessage = "ماه پایان را اشتباه وارد کرده اید.")]
+        [Display(Name = "ماه")]
         public int EndMonth { get; set; }
-        [Display(Name = "روز"), MaxLength(29, ErrorMessage = "روز پایان را اشتباه وارد کرده اید.")]
+        [Display(Name = "روز")]
         public int EndDay { get; set; }
-        [Display(Name = "ساعت"), MaxLength(24, ErrorMessage = "ساعت پایان را اشتباه وارد کرده اید.")]
+        [Display(Name = "ساعت")]
         public int EndHour { get; set; }
 
-        [Display(Name = "قیمت پایه"), MinLength(1, ErrorMessage = "قیمت پایه را وارده نکرده اید.")]
+        [Display(Name = "قیمت پایه")]
         public int BasePrice { get; set; }
 
         public string ProductName { get; set; }

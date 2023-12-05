@@ -1,0 +1,277 @@
+﻿@model List<GetAllAuctionViewModel>;
+@inject FileUploadPathsDto filePath;
+
+<!-- Sidebar Area Start -->
+<div class="ec-shop-rightside col-lg-9 col-md-12">
+   
+    @if (Model.Count == 0)
+    {
+        <div class="ec-vendor-dashboard-card space-bottom-30">
+            <div class="ec-vendor-card-header">
+                <h5> شما هیچ مزایده ای تعریف نکرده اید!</h5>
+            </div>
+        </div>
+     }
+
+
+    @if (Model.Where(a => a.Status == AuctionStatus.Runing && a.IsConfirmed == true).ToList().Count > 0)
+    {
+        <!-- بلوک لیست مزایده ها فعال -->
+        <div class="ec-vendor-dashboard-card space-bottom-30">
+        <div class="ec-vendor-card-header">
+                <h5>مزایده های فعال</h5>
+            <div class="ec-header-btn">
+                @*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
+            </div>
+        </div>
+        <div class="ec-vendor-card-body">
+            <div class="ec-vendor-card-table">
+                <table class="table ec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">شناسه</th>
+                            <th scope="col">تصویر</th>
+                            <th scope="col">نام محصول</th>
+                            <th scope="col">قیمت پایه</th>
+                            <th scope="col">تاریخ آغاز </th>
+                            <th scope="col">تاریخ پایان</th>
+                            <th scope="col"> بیشترین پیشنهاد</th>
+                        </tr>
+                    </thead>
+                    @{
+                        int Productcounter = 1;
+                    }
+                    <tbody>
+
+                        @foreach (var item in Model.Where(a => a.Status == AuctionStatus.Runing && a.IsConfirmed == true))
+                        {
+                            <tr>
+                                <th scope="row"><span>@Productcounter</span></th>
+                                <td>
+                                    <img class="prod-img" src="~/@filePath.Product/@item.ProductDto.Avatar"
+                                         alt="product image">
+                                </td>
+                                <td><span>@item.ProductDto.Name</span></td>
+                                <td><span>@item.BasePrice تومان</span></td>
+                                <td><span>@item.StartTime</span></td>
+                                <td><span>@item.EndTime</span></td>
+                                <td>
+                                        @if (@item.MaxBid !=null)
+                                        {
+                                            <span>
+                                            @item.MaxBid.BidPrice
+                                            </span>
+                                        }else
+                                         {
+                                            <span>
+                                            بدون پیشنهاد
+                                            </span>
+                                         }
+
+                                </td>
+                            </tr>
+
+                            Productcounter++;
+                        }
+                   
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+        <!--  بلوک لیست مزایده ها فعال -->
+     
+    }
+
+
+    @if (Model.Where(a => a.IsConfirmed == null && a.Status != AuctionStatus.Cancelled).ToList().Count > 0)
+    {   
+        <!-- بلوک لیست مزایده ها منتظر تایید -->
+        <div class="ec-vendor-dashboard-card space-bottom-30">
+        <div class="ec-vendor-card-header">
+                <h5>مزایده های انتظار تایید</h5>
+            <div class="ec-header-btn">
+                @*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
+            </div>
+        </div>
+        <div class="ec-vendor-card-body">
+            <div class="ec-vendor-card-table">
+                <table class="table ec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">شناسه</th>
+                            <th scope="col">تصویر</th>
+                            <th scope="col">نام محصول</th>
+                            <th scope="col">قیمت پایه</th>
+                            <th scope="col">تاریخ آغاز </th>
+                            <th scope="col">تاریخ پایان</th>
+                            <th scope="col"> فعالیت </th>
+                        </tr>
+                    </thead>
+                    @{
+                        int Productcounter2 = 1;
+                    }
+                    <tbody>
+                        @foreach (var item in Model.Where(a => a.IsConfirmed == null  && a.Status != AuctionStatus.Cancelled))
+                        {
+                            <tr>
+                                <th scope="row"><span>@Productcounter2</span></th>
+                                <td>
+                                    <img class="prod-img" src="~/@filePath.Product/@item.ProductDto.Avatar"
+                                         alt="product image">
+                                </td>
+                                <td><span>@item.ProductDto.Name</span></td>
+                                <td><span>@item.BasePrice تومان</span></td>
+                                <td><span>@item.StartTime</span></td>
+                                <td><span>@item.EndTime</span></td>
+                                    <td><span><a asp-controller="Auction" asp-action="Cancel" asp-route-auctionId="@item.Id" class="btn btn-lg btn-danger"> انصراف</a> </span></td>
+                            </tr>
+
+                            Productcounter2++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+        <!-- بلوک لیست مزایده ها منتظر تایید -->
+    }
+
+
+    @if (Model.Where(a => a.Status == AuctionStatus.Ended && a.IsConfirmed == true).ToList().Count > 0)
+    {
+        <!-- بلوک لیست مزایده ها تمام شده -->
+        <div class="ec-vendor-dashboard-card space-bottom-30">
+        <div class="ec-vendor-card-header">
+                <h5> مزایده های تمام شده</h5>
+            <div class="ec-header-btn">
+                @*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
+            </div>
+        </div>
+        <div class="ec-vendor-card-body">
+            <div class="ec-vendor-card-table">
+                <table class="table ec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">شناسه</th>
+                            <th scope="col">تصویر</th>
+                            <th scope="col">نام محصول</th>
+                            <th scope="col">قیمت پایه</th>
+                            <th scope="col">تاریخ آغاز </th>
+                            <th scope="col">تاریخ پایان</th>
+                            <th scope="col"> بیشترین پیشنهاد</th>
+                            <th scope="col"> برنده</th>
+                        </tr>
+                    </thead>
+                    @{
+                        int Productcounter3 = 1;
+                    }
+                    <tbody>
+                        @foreach (var item in Model.Where(a => a.Status == AuctionStatus.Ended && a.IsConfirmed == true))
+                        {
+                            <tr>
+                                <th scope="row"><span>@Productcounter3</span></th>
+                                <td>
+                                    <img class="prod-img" src="~/@filePath.Product/@item.ProductDto.Avatar"
+                                         alt="product image">
+                                </td>
+                                <td><span>@item.ProductDto.Name</span></td>
+                                <td><span>@item.BasePrice تومان</span></td>
+                                <td><span>@item.StartTime</span></td>
+                                <td><span>@item.EndTime</span></td>
+                                <td>
+                                    @if (@item.MaxBid != null)
+                                    {
+                                        <span>
+                                            @item.MaxBid.BidPrice
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            بدون پیشنهاد
+                                        </span>
+                                    }
+
+                                </td>
+                                <td><span>برنده</span></td>
+                            </tr>
+
+                            Productcounter3++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+        <!-- بلوک لیست مزایده ها تمام شده -->
+
+    }
+
+
+    @if (Model.Where(a => a.IsConfirmed == false).ToList().Count > 0)
+    {
+        <!-- بلوک لیست مزایده ها رد شده -->
+        <div class="ec-vendor-dashboard-card space-bottom-30">
+        <div class="ec-vendor-card-header">
+                <h5>مزایده های رد شده </h5>
+            <div class="ec-header-btn">
+                @*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+                <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
+            </div>
+        </div>
+        <div class="ec-vendor-card-body">
+            <div class="ec-vendor-card-table">
+                <table class="table ec-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">شناسه</th>
+                            <th scope="col">تصویر</th>
+                            <th scope="col">نام محصول</th>
+                            <th scope="col">قیمت پایه</th>
+                            <th scope="col">تاریخ آغاز </th>
+                            <th scope="col">تاریخ پایان</th>
+
+                            <th scope="col"> فعالیت </th>
+                        </tr>
+                    </thead>
+                    @{
+                        int Productcounter4 = 1;
+                    }
+                    <tbody>
+                        @foreach (var item in Model.Where(a => a.IsConfirmed == false))
+                        {
+                            <tr>
+                                <th scope="row"><span>@Productcounter4</span></th>
+                                <td>
+                                    <img class="prod-img" src="~/@filePath.Product/@item.ProductDto.Avatar"
+                                         alt="product image">
+                                </td>
+                                <td><span>@item.ProductDto.Name</span></td>
+                                <td><span>@item.BasePrice تومان</span></td>
+                                <td><span>@item.StartTime</span></td>
+                                <td><span>@item.EndTime</span></td>
+
+                                <td><span>دکمه 1 </span></td>
+                            </tr>
+
+                            Productcounter4++;
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+        <!-- بلوک لیست مزایده ها رد شده -->
+        
+    }
+
+</div>
+<!-- Sidebar Area Start -->

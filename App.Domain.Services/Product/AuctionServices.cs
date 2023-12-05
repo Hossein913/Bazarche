@@ -56,6 +56,12 @@ public class AuctionServices : IAuctionServices
             return result;
     }
 
+    public  async Task<List<AuctionOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
+    {
+        var result = await _auctionRepository.GetAllForBooth(BoothId, cancellationToken);
+        return result;
+    }
+
     public async Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken)
     {
        var result = await _auctionRepository.GetAllForCustomer(customerId, cancellationToken);
@@ -178,5 +184,11 @@ public class AuctionServices : IAuctionServices
     public async Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken)
     {
         await _auctionRepository.Update(auction, cancellationToken);
+    }
+
+    public async Task Cancel(int auctionId, CancellationToken cancellationToken)
+    {
+        AuctionUpdateDto auctionUpdate = new AuctionUpdateDto { Id = auctionId, Status = AuctionStatus.Cancelled };
+        await _auctionRepository.Update(auctionUpdate, cancellationToken);
     }
 }

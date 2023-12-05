@@ -11,5 +11,6 @@ namespace App.Domain.Core._Products.Enums
         Defined = 0,
         Runing = 1,
         Ended = 2,
+        Cancelled = 3,
     }
 }

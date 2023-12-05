@@ -80,16 +80,18 @@ public class AuctionRepository : IAuctionRepository
     {
         return await _context.Auctions
             .AsNoTracking()
-            .Include(a => a.Product)
-            .ThenInclude(p => p.Pictures.FirstOrDefault())
-            .Where<Auction>(p => p.BoothId == BoothId)
+            .Where<Auction>(p => p.BoothId == BoothId )
             .Select<Auction, AuctionOutputDto>(a => new AuctionOutputDto
             {
                 Id = a.Id,
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
-                BasePrice = a.Id,
-
+                BasePrice = a.BasePrice,
+                ProductDto = new ProductOutputDto() { Name = a.Product.Name, Avatar = a.Product.Pictures.FirstOrDefault().ImageUrl },
+                Bids = a.Bids ,
+                WinnerId = a.WinnerId,
+                IsConfirmed = a.IsConfirmed,
+                Status = (AuctionStatus)a.Status,
 
             }).ToListAsync(cancellationToken);
     }

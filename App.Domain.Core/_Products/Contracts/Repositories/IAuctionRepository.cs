@@ -6,6 +6,7 @@ public interface IAuctionRepository
 {
     Task<List<AuctionOutputDto>> GetAllActive( CancellationToken cancellationToken);
     Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken);
+    Task<List<AuctionOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);
     Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken);
     Task<int> Create(AuctionCreateDto auction, CancellationToken cancellationToken);
     Task Update(AuctionUpdateDto auction, CancellationToken cancellationToken, bool saveChanges = true);

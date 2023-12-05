@@ -3,6 +3,7 @@ using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._User.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,11 @@ namespace App.Domain.AppServices.Product
         protected readonly IJobServices jobServices;
 
 
-        public AuctionAppServices(IAuctionServices auctionServices, IProductServices productServices)
+        public AuctionAppServices(IAuctionServices auctionServices, IProductServices productServices, IJobServices jobServices)
         {
             _auctionServices = auctionServices;
-            this._productServices = productServices;
+            _productServices = productServices;
+            this.jobServices = jobServices;
         }
 
         public async Task<List<AuctionOutputDto>> GetAllAuctions(CancellationToken cancellationToken)
@@ -72,6 +74,17 @@ namespace App.Domain.AppServices.Product
         {
             var result = await _auctionServices.GetAllForCustomer(customerId, cancellationToken);
             return result;
+        }
+
+        public async Task<List<AuctionOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken)
+        {
+            var result = await _auctionServices.GetAllForBooth(BoothId, cancellationToken);
+            return result;
+        }
+
+        public async Task Cancel(int auctionId, CancellationToken cancellationToken)
+        {
+            await _auctionServices.Cancel(auctionId, cancellationToken);
         }
     }
 }
