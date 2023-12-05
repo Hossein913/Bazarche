@@ -51,7 +51,7 @@ namespace App.Domain.AppServices.Product
         {
             var auctionId = await _auctionServices.Create(createAuction, cancellationToken);
             jobServices.AddNewJub<IAuctionServices>(a => a.GetStartAuction(auctionId, cancellationToken), createAuction.StartTime);
-            jobServices.AddNewJub<IAuctionServices>(a => a.GetEndAuction(auctionId, cancellationToken), createAuction.StartTime);
+            jobServices.AddNewJub<IAuctionServices>(a => a.GetEndAuction(auctionId, cancellationToken), createAuction.EndTime);
         }
 
         public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)
