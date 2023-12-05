@@ -127,7 +127,7 @@ public class AuctionRepository : IAuctionRepository
         var auction = await _context.Auctions
             .Include(a => a.Booth)
             .Include(a => a.Bids)
-            .ThenInclude(b => b.CustomerId)
+            .ThenInclude(b => b.Customer)
             .Include(a => a.Product)
             .ThenInclude(p => p.Pictures)
             .FirstOrDefaultAsync(p => p.Id == auctionId , cancellationToken);
