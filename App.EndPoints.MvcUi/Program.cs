@@ -237,12 +237,12 @@ name: "SellerArea",
 pattern: "{area:exists}/{controller=SellerPanel}/{action=Index}/{id?}");
 
 //--------Area as default Route--------////
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{area=AdminArea}/{controller=AdminPanel}/{action=Index}/{id?}");
-
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=AdminArea}/{controller=AdminPanel}/{action=Index}/{id?}");
+
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
