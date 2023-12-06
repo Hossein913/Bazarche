@@ -46,7 +46,7 @@ namespace App.Infra.Data.Repos.Ef.Users
             {
                 //Id = c.Id,//Will we be required to Edit the Table records later?
                 Booth = w.Orderitem.BoothProduct.Booth.Name,
-                customerfullName = w.Orderitem.Order.Customer.FirstName +' '+ w.Orderitem.Order.Customer.FirstName,
+                customerfullName = w.Orderitem.Order.Customer.FirstName +' '+ w.Orderitem.Order.Customer.LastName,
                 product = w.Orderitem.BoothProduct.Product.Name,
                 price = w.Orderitem.BoothProduct.Price,
                 Count = w.Orderitem.Count,
