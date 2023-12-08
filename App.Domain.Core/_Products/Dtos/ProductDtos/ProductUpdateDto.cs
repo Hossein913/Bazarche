@@ -25,7 +25,9 @@ public class ProductUpdateDto
 
     public int BasePrice { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public int CategoryId { get; set; }
+
+    //public DateTime CreatedAt { get; set; }
 
     public int CreatedBy { get; set; }
 
@@ -44,3 +46,13 @@ public class ProductUpdateDto
     public virtual ICollection<ProductAttributeValue> ProductAttributeValues { get; set; } = new List<ProductAttributeValue>();
     #endregion
 }
+
+//Id { get; set; }
+//Name { get; set; }
+//Brand { get; set; } 
+//Grantee { get; set; } 
+//InformationDetails { get; set; } 
+//Description { get; set; } 
+//IncludedComponents { get; set; } 
+//BasePrice { get; set; }
+//Pictures { get; set; }

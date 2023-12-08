@@ -11,7 +11,7 @@ namespace App.Infra.Data.Repos.Ef.Commons;
 
 public class PictureRepository : IPictureRepository
 {
-    private readonly BazarcheContext _context;
+    protected readonly BazarcheContext _context;
 
     public PictureRepository(BazarcheContext context)
     {
@@ -60,14 +60,21 @@ public class PictureRepository : IPictureRepository
 
     public async Task SoftDeleted(int pictureId, CancellationToken cancellationToken)
     {
-        var pictureRecord = await _context.Pictures
-    .FirstOrDefaultAsync(x => x.Id == pictureId, cancellationToken);
+         try
+         {
+            var pictureRecord = await _context.Pictures
+            .FirstOrDefaultAsync(x => x.Id == pictureId, cancellationToken);             
+             if (pictureRecord != null)
+             {
+                 pictureRecord.IsDeleted = true;
+                int result = await _context.SaveChangesAsync(cancellationToken);            
+             }
+         }
+         catch (Exception ex) 
+         {
+            string text = ex.Message;        
+         }
 
-        if (pictureRecord != null)
-        {
-            pictureRecord.IsDeleted = true;
-        }
-        await _context.SaveChangesAsync(cancellationToken);
     }
 
     public async Task Update(PictureUpdateDto pictureDto, CancellationToken cancellationToken)

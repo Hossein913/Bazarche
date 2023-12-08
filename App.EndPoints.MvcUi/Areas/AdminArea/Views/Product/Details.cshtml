@@ -1,0 +1,222 @@
+﻿@model GetProductDetailsViewModel;
+@inject FileUploadPathsDto Filepath;
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>جزییات محصول</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">خانه</a></span> <span>
+                        <i class="mdi mdi-chevron-left"></i>
+                    </span>محصولات
+                </p>
+            </div>
+            <div><a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a></div>
+            @if (Model.IsConfirmed == null)
+            {
+                <div><a asp-controller="Product" asp-action="GetAllToConfirm" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a></div>
+            }
+            else
+            {  
+                <div><a asp-controller="Product" asp-action="Index" asp-route-id="@Model.Id" class="btn btn-primary">ویرایش</a></div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>جزییات محصول</h2>
+                        @if (Model.IsConfirmed == true)
+                        {
+                            <a class="btn btn-success mx-3">تاییده شده</a>
+                        }
+                        @if (Model.IsConfirmed == null)
+                        {
+                            <a class="btn btn-info mx-3">درانتظار</a>
+                        }
+                        @if (Model.IsConfirmed == false)
+                        {
+                            <a class="btn btn-danger mx-3">رد شده</a>
+                        }
+                    </div>
+                    <div class="card-body product-detail">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <div class="row product-overview">
+                                    <div class="col-12">
+                                        <h4 class="product-title">@Model.Name </h4>
+                                        <div class="col mx-2">
+                                            <h5 class="product-title ">@Model.Brand</h5>
+                                            <hr/>
+                                            <h6 class="product-title">@Model.Grantee</h6>
+
+                                            <p class="product-desc">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است </p>
+
+                                            <p class="product-price">قیمت: @Model.BasePrice تومان</p>
+
+                                            <div class="product-stock">
+                                            <div class="stock">
+                                                <p class="title">در دسترس</p>
+                                                <p class="text">180</p>
+                                            </div>
+                                            <div class="stock">
+                                                <p class="title"> در انتظار </p>
+                                                <p class="text">50</p>
+                                            </div>
+                                            <div class="stock">
+                                                <p class="title">پیش سفارش</p>
+                                                <p class="text">20</p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6">
+                                <div class="row">
+                                    <div class="single-pro-img">
+                                        <div class="single-product-scroll">
+                                            <div class="single-product-cover">
+                                                @foreach (var item in Model.Pictures)
+                                                {
+                                                    <div class="single-slide zoom-image-hover">
+                                                        <img class="img-responsive"
+                                                             src="~/@Filepath.Product/@item.ImageUrl" alt="">
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="single-nav-thumb">
+                                                @foreach (var item in Model.Pictures)
+                                                {
+                                                    <div class="single-slide">
+                                                        <img class="img-responsive"
+                                                             src="~/@Filepath.Product/@item.ImageUrl" alt="">
+                                                    </div>   
+                                                }
+   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-12 u-card">
+                                <div class="card card-default seller-card">
+                                    <div class="card-body text-center">
+                                        <a href="javascript:0"
+                                           class="text-secondary d-inline-block">
+                                            <div class="image mb-3">
+                                                <img src="assets/img/user/u-xl-4.jpg"
+                                                     class="img-fluid rounded-circle" alt="Avatar Image">
+                                            </div>
+                                            <h5 class="text-dark">جان کارتر</h5>
+                                            <p class="product-rate">
+                                                <i class="mdi mdi-star is-rated"></i> <i class="mdi mdi-star is-rated"></i> <i class="mdi mdi-star is-rated"></i> <i class="mdi mdi-star is-rated"></i> <i class="mdi mdi-star"></i>
+                                            </p>
+                                            <ul class="list-unstyled">
+                                                <li class="d-flex mb-1">
+                                                    <i class="mdi mdi-map mr-1"></i>
+                                                    <span>یک آدرس کاملا فرضی.</span>
+                                                </li>
+                                                <li class="d-flex mb-1">
+                                                    <i class="mdi mdi-email mr-1"></i>
+                                                    <span>
+                                                        <span class="__cf_email__"
+                                                              data-cfemail="d4b1acb5b9a4b8b194b1b9b5bdb8fab7bbb9">john.example@gmail.com</span>
+                                                    </span>
+                                                </li>
+                                                <li class="d-flex">
+                                                    <i class="mdi mdi-whatsapp mr-1"></i>
+                                                    <span>+00 987-654-3210</span>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row review-rating mt-4">
+                            <div class="col-12">
+                                <ul class="nav nav-tabs" id="myRatingTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="product-detail-tab"
+                                           data-bs-toggle="tab" data-bs-target="#productdetail"
+                                           href="#productdetail" role="tab" aria-selected="true">
+                                            <i class="mdi mdi-library-books mr-1"></i> جزئیات
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="product-information-tab"
+                                           data-bs-toggle="tab" data-bs-target="#productinformation"
+                                           href="#productinformation" role="tab" aria-selected="false">
+                                            <i class="mdi mdi-information mr-1"></i>اطلاعات
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="product-reviews-tab"
+                                           data-bs-toggle="tab" data-bs-target="#productreviews"
+                                           href="#productreviews" role="tab" aria-selected="false">
+                                            <i class="mdi mdi-star-half mr-1"></i> قیمت های غرفه ها
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent2">
+                                    <div class="tab-pane pt-3 fade show active" id="productdetail"
+                                         role="tabpanel">
+                                        <p>@Model.InformationDetails</p>
+
+                                    </div>
+                                    <div class="tab-pane pt-3 fade" id="productinformation" role="tabpanel">
+                                        <ul>
+                                            <li>@Model.IncludedComponents</li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="tab-pane pt-3 fade" id="productreviews" role="tabpanel">
+                                        <div class="ec-t-review-wrapper">
+                                            @if (Model.BoothProducts.Count > 0)
+                                            {
+                                                @foreach (var item in Model.BoothProducts)
+                                                {
+
+                                                    <div class="ec-single-price-stoke">
+                                                        <div class="m-2 ec-single-stoke col-3">
+                                                            <span class="ec-single-ps-title">غرفه</span>
+                                                            <span class="ec-single-sku">@item..Booth.Name </span>
+                                                        </div>
+                                                        <div class="m-2 ec-single-price col-3">
+                                                            <span class="ec-single-ps-title"> قیمت</span>
+                                                            <span class="new-price">@item.Price تومان</span>
+                                                        </div>
+                                                        <div class="m-2 ec-single-qty col-3">
+                                                            <div class="ec-single-cart ">
+                                                                    <a asp-controller="Product"
+                                                                    asp-action="EditBoothProduct"
+                                                                    asp-route-boothProductId="@item.Id"
+                                                                    asp-route-status="false"
+                                                                    class="ec-btn-group btn btn-danger">غیر فعال</a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <div class="ec-single-price-stoke">
+                                                    <div class="m-2 ec-single-stoke col">
+                                                        <span class="ec-single-ps-title text-danger">هیچ فروشنده ای برای کالا قیمت ثبت نکرده است.</span>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

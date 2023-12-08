@@ -11,8 +11,10 @@ public interface IProductServices
     Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int, int>> ProductPrice, CancellationToken cancellationToken);
     Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken);
     Task<ProductOutputDto> GetDetails(int productId, CancellationToken cancellationToken);
+    Task<ProductOutputDto> GetDetailWithRelation(int productId, CancellationToken cancellationToken);
     Task<int> Create(ProductCreateDto product, CancellationToken cancellationToken);
     Task Update(ProductUpdateDto product, CancellationToken CancellationToken);
     Task SoftDelete(int productId, CancellationToken cancellationToken);
+    Task ConfirmProduct(int productId, bool status, CancellationToken cancellationToken);
 
 }

@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
+using App.Domain.Core._Products.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,20 @@ namespace App.Domain.AppServices.Product
         public BoothProductAppServices(IBoothProductServices boothProductServices)
         {
             _boothProductServices = boothProductServices;
+        }
+
+        public async Task ChangeBoothProductState(int boothProductId, bool status, CancellationToken cancellationToken)
+        {
+            BoothProductStatus boothProductStatus;
+            if (status)
+            {
+                boothProductStatus = BoothProductStatus.Active;
+            }
+            else
+            {
+                boothProductStatus = BoothProductStatus.Active;
+            }
+            await _boothProductServices.ChangeBoothProductState(boothProductId, boothProductStatus, cancellationToken);
         }
 
         public async Task Create(BoothProductCreateDto boothProduct, CancellationToken cancellationToken)

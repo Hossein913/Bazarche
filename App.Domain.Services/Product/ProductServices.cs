@@ -46,9 +46,10 @@ public class ProductServices : IProductServices
         return result;
     }
 
-    public Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken)
+    public async Task<List<ProductOutputDto>> GetAllToConfirm(CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _productRepository.GetAllToConfirm(cancellationToken);
+        return result;
     }
 
     public async Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken)
@@ -63,6 +64,12 @@ public class ProductServices : IProductServices
             return result;
     }
 
+    public async Task<ProductOutputDto> GetDetailWithRelation(int productId, CancellationToken cancellationToken)
+    {
+        var result = await _productRepository.GetDetailWithRelation(productId, cancellationToken);
+        return result;
+    }
+
     public async Task SoftDelete(int productId, CancellationToken cancellationToken)
     {
         await _productRepository.SoftDelete(productId, cancellationToken);
@@ -72,4 +79,11 @@ public class ProductServices : IProductServices
     {
         await _productRepository.Update(product, cancellationToken);
     }
+
+    public async Task ConfirmProduct(int productId, bool status, CancellationToken cancellationToken)
+    {
+        ProductUpdateDto productUpdateDto = new ProductUpdateDto { Id = productId , IsConfirmed = status };
+        await _productRepository.Update(productUpdateDto, cancellationToken);
+    }
+
 }

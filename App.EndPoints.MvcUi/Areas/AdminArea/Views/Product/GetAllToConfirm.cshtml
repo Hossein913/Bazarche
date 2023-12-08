@@ -1,0 +1,82 @@
+﻿@model List<GetAllProductViewModel>
+@inject FileUploadPathsDto filePath;
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>محصولات</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">خانه</a></span> <span>
+                        <i class="mdi mdi-chevron-left"></i>
+                    </span>محصولات
+                </p>
+            </div>
+            <div><a href="product-list.html" class="btn btn-primary">افزودن محصول</a></div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @if (Model.Count > 0)
+                            {
+                                <table id="responsive-data-table" class="table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>محصولات</th>
+                                        <th>نام</th>
+                                        <th>قیمت پایه </th>
+                                        <th>توضیحات</th>
+                                        <th>فعالیت</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in @Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <img class="tbl-thumb" src="~/@filePath.Product/@item.Avatar"
+                                                     alt="Product Image">
+                                            </td>
+                                            <td>@item.Name</td>
+                                            <td>@item.BasePrice تومان</td>
+                                            <td>@item.Description</td>
+
+                                            <td>
+                                                <div class="btn-group mb-1">
+                                                    <button type="button"
+                                                            class="btn btn-outline-success">
+                                                        اطلاعات
+                                                    </button> <button type="button"
+                                                                      class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                      data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                      aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">اطلاعات</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                            <a class="dropdown-item text-success" asp-controller="Product" asp-action="Confirm" asp-route-productId="@item.Id" asp-route-status="true">تایید محصول</a>
+                                                            <a class="dropdown-item text-success" asp-controller="Product" asp-action="Confirm" asp-route-productId="@item.Id" asp-route-status="false">رد محصول</a>
+                                                            <a class="dropdown-item" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">جزئیات</a>
+                                                            <a class="dropdown-item" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                                </table>
+                            }else
+                            {
+                                <span>محصول تایید نشده ای یافت نشد.</span> 
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

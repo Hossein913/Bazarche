@@ -120,7 +120,7 @@ public class BoothProductRepository : IBoothProductRepository
             BoothProductRecord.BoothId = boothProduct.BoothId;
             BoothProductRecord.Price = boothProduct.Price;
             BoothProductRecord.Count = boothProduct.Count;
-            BoothProductRecord.Status = boothProduct.Status;
+            BoothProductRecord.Status = Convert.ToBoolean( (int)boothProduct.Status );
             BoothProductRecord.IsDeleted = boothProduct.IsDeleted;
         }
         await _context.SaveChangesAsync(cancellationToken);

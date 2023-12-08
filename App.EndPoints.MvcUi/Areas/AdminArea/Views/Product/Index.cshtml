@@ -64,9 +64,16 @@
                                                     <span class="sr-only">اطلاعات</span>
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item"
-                                                       href="#">ویرایش</a> <a class="dropdown-item"
-                                                                              href="#">حذف</a>
+                                                    @if(item.IsConfirmed == true)
+                                                    {
+                                                        <a class="dropdown-item text-success" asp-controller="Product" asp-action="Confirm" asp-route-productId="@item.Id" asp-route-status="false">رد محصول</a>    
+                                                    }
+                                                    else{
+                                                        <a class="dropdown-item text-success" asp-controller="Product" asp-action="Confirm" asp-route-productId="@item.Id" asp-route-status="true">تایید محصول</a>
+                                                    }
+
+                                                    <a class="dropdown-item" asp-controller="Product" asp-action="Details" asp-route-id="@item.Id">جزئیات</a>
+                                                    <a class="dropdown-item" asp-controller="Product" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
                                                 </div>
                                             </div>
                                         </td>

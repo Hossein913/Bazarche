@@ -36,11 +36,13 @@ public class ProductOutputDto
 
     public int CreatedBy { get; set; }
 
+    public int CategoryId { get; set; }
+
     //public bool IsDeleted { get; set; }
 
 
     #region Navigation properties
-    //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
+    public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     public virtual ICollection<CommentOutputDto> Comments { get; set; }
 

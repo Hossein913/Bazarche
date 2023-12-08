@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +18,7 @@ public class BoothProductUpdateDto
 
     public int Count { get; set; }
 
-    public bool Status { get; set; }
+    public BoothProductStatus Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

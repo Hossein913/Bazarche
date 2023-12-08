@@ -14,6 +14,8 @@
     <link href="~/assets/Admin/css/materialdesignicons.min.css" rel="stylesheet">
     <link href="~/assets/Admin/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
     <link href="~/assets/Admin/plugins/simplebar/simplebar.css" rel="stylesheet">
+    <link href="~/assets/Admin/plugins/slick/slick.min.css" rel="stylesheet">
+    <link href="~/assets/Admin/plugins/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link id="ekka-css" href="~/assets/Admin/css/ekka.css" rel="stylesheet">
     <link href="~/assets/Admin/img/favicon.png" rel="shortcut icon">
 </head>
@@ -98,7 +100,7 @@
                             </a>
                             <div class="collapse">
                                 <ul class="sub-menu" id="products" data-parent="#sidebar-menu">
-                                    <li><a class="sidenav-item-link" href="product-add.html"><span class="nav-text">افزودن محصول</span></a></li>
+                                    <li><a class="sidenav-item-link" asp-controller="Product" asp-action="Create"><span class="nav-text">افزودن محصول</span></a></li>
                                     <li>
                                         <a class="sidenav-item-link"
                                            asp-controller="Product" asp-action="Index">
@@ -106,13 +108,8 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="sidenav-item-link" href="product-grid.html">
-                                            <span class="nav-text">گرید محصولات</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="sidenav-item-link" href="product-detail.html">
-                                            <span class="nav-text">جزییات محصول</span>
+                                        <a class="sidenav-item-link" asp-controller="Product" asp-action="GetAllToConfirm">
+                                            <span class="nav-text">تایید محصولات جدید </span>
                                         </a>
                                     </li>
                                 </ul>
@@ -429,6 +426,7 @@
     <script src='~/assets/Admin/plugins/daterangepicker/moment-jalaali.js'></script>
     <script src="~/assets/Admin/plugins/daterangepicker/fa.js"></script>
     <script src="~/assets/Admin/js/date-range.js"></script>
+    <script src="~/assets/Admin/plugins/swiper/swiper-bundle.min.js"></script>
     <script src="~/assets/Admin/plugins/options-sidebar/optionswitcher.js"></script>
     <script src="~/assets/Admin/js/ekka.js"></script>
 

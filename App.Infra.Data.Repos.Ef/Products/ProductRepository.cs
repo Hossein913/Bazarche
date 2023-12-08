@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Products.Contracts.Repositories;
+using App.Domain.Core._Products.Dtos.CommentDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
@@ -50,13 +51,13 @@ public class ProductRepository : IProductRepository
 
         var result = await _context.Products
             .AsNoTracking()
-            .Where(p => p.IsDeleted == false)
+            .Where(p => p.IsDeleted == false && p.IsConfirmed != null)
             .Select<Product, ProductOutputDto>(c => new ProductOutputDto
             {
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted ==false).ImageUrl ?? null,
                 Grantee = c.Grantee,
                 Description = c.Description,
                 IsConfirmed = c.IsConfirmed,
@@ -77,12 +78,9 @@ public class ProductRepository : IProductRepository
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
                 Grantee = c.Grantee,
                 Description = c.Description,
-                IsConfirmed = c.IsConfirmed,
-                MaxPrice = c.BoothProducts.Max(p => p.Price),
-                MinPrice = c.BoothProducts.Min(p => p.Price),
             }).ToListAsync(cancellationToken);
         return result;
     }
@@ -97,7 +95,7 @@ public class ProductRepository : IProductRepository
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
                 Grantee = c.Grantee,
                 Description = c.Description,
                 IsConfirmed = c.IsConfirmed,
@@ -118,7 +116,7 @@ public class ProductRepository : IProductRepository
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
                 Grantee = c.Grantee,
                 Description = c.Description,
                 BoothProducts = c.BoothProducts.Where(bp => bp.BoothId == BoothId).ToList(),
@@ -140,7 +138,7 @@ public class ProductRepository : IProductRepository
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl ?? null,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
                 Grantee = c.Grantee,
                 Description = c.Description,
                 BoothProducts = c.BoothProducts.Where( bp => ProductPrice.Any(pp => pp.Values.Equals(bp.Id))).ToList(),
@@ -159,7 +157,7 @@ public class ProductRepository : IProductRepository
                 Id = c.Id,
                 Name = c.Name,
                 Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault().ImageUrl,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl,
                 Grantee = c.Grantee,
                 Description = c.Description,
                 IsConfirmed = c.IsConfirmed,
@@ -188,12 +186,57 @@ public class ProductRepository : IProductRepository
                 IncludedComponents = product.IncludedComponents,
                 IsConfirmed = product.IsConfirmed,
                 BasePrice = product.BasePrice,
-                Pictures = product.Pictures,
+                Pictures = product.Pictures.Where(p => p.IsDeleted == false).ToList(),
             };
             return productRecord;
         }
 
             return null;
+    }
+
+    public async Task<ProductOutputDto> GetDetailWithRelation(int productId, CancellationToken cancellationToken)
+    {
+        var product = await _context.Products
+            .Include(p => p.Pictures)
+            .Include(p => p.BoothProducts).ThenInclude(bp => bp.Booth)
+            .Include(p => p.Comments).ThenInclude(c => c.Customer)
+            .FirstOrDefaultAsync(p => p.Id == productId && p.IsDeleted == false, cancellationToken);
+
+        List<CommentOutputDto> comments = new List<CommentOutputDto>();
+        foreach (var item in product.Comments.Where(c => c.IsDeleted == false && c.IsConfirmed == true))
+        {
+            comments.Add(
+            new CommentOutputDto
+            {
+                Id = item.Id ,
+                CustomerId = item.CustomerId ,
+                Text = item.Text ,
+                CreatedAt = item.CreatedAt ,
+                Customer = item.Customer ,
+            });
+        }
+        if (product != null)
+        {
+            var productRecord = new ProductOutputDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Brand = product.Brand,
+                Grantee = product.Grantee,
+                InformationDetails = product.InformationDetails,
+                Description = product.Description,
+                IncludedComponents = product.IncludedComponents,
+                IsConfirmed = product.IsConfirmed,
+                BasePrice = product.BasePrice,
+                Pictures = product.Pictures.Where(p => p.IsDeleted == false).ToList(),
+                Comments = comments,
+                BoothProducts = product.BoothProducts.ToList(),
+                Auctions = product.Auctions,
+            };
+            return productRecord;
+        }
+
+        return null;
 
 
     }
@@ -219,19 +262,24 @@ public class ProductRepository : IProductRepository
              .FirstOrDefaultAsync(x => x.Id == product.Id,cancellationToken);
         if (productRecord != null)
         {
-            productRecord.Name = product.Name;
-            productRecord.Brand = product.Brand;
-            productRecord.Grantee = product.Grantee;
-            productRecord.InformationDetails = product.InformationDetails;
-            productRecord.Description = product.Description;
-            productRecord.IncludedComponents = product.IncludedComponents;
-            productRecord.IsConfirmed = product.IsConfirmed;
-            productRecord.BasePrice = product.BasePrice;
-            productRecord.IsDeleted = product.IsDeleted;
+            productRecord.Name = product.Name != null ? product.Name  : productRecord.Name;
+            productRecord.Brand = product.Brand != null ? product.Brand : productRecord.Brand;
+            productRecord.Grantee = product.Grantee != null ? product.Grantee : productRecord.Grantee;
+            productRecord.InformationDetails = product.InformationDetails != null ? product.InformationDetails : productRecord.InformationDetails;
+            productRecord.Description = product.Description != null ? product.Description : productRecord.Description;
+            productRecord.IncludedComponents = product.IncludedComponents != null ? product.IncludedComponents : productRecord.IncludedComponents;
+            productRecord.IsConfirmed = product.IsConfirmed != null ? product.IsConfirmed : productRecord.IsConfirmed;
+            productRecord.BasePrice = product.BasePrice != 0 ? product.BasePrice : productRecord.BasePrice;
+            productRecord.CategoryId = product.CategoryId != 0 ? product.CategoryId : productRecord.CategoryId;
+            productRecord.IsDeleted = product.IsDeleted != null ? product.IsDeleted : productRecord.IsDeleted;
+            productRecord.Pictures = product.Pictures != null ? product.Pictures : productRecord.Pictures;
+
 
         }
             await _context.SaveChangesAsync(cancellationToken);
 
 
+
     }
 }
+

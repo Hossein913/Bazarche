@@ -20,6 +20,7 @@ public class ProductCreateDto
     public string Description { get; set; } = null!;
 
     public string IncludedComponents { get; set; } = null!;
+
     public int BasePrice { get; set; }
 
     public int CategoryId { get; set; }

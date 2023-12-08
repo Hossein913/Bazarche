@@ -2,6 +2,7 @@
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 
 namespace App.Domain.Services.Product;
 
@@ -12,6 +13,12 @@ public class BoothProductServices : IBoothProductServices
     public BoothProductServices(IBoothProductRepository boothProduct)
     {
         _boothProduct = boothProduct;
+    }
+
+    public async Task ChangeBoothProductState(int boothProductId, BoothProductStatus status, CancellationToken cancellationToken)
+    {
+        BoothProductUpdateDto boothProductUpdateDto = new BoothProductUpdateDto {Id = boothProductId ,Status = status };
+        await _boothProduct.Update(boothProductUpdateDto,cancellationToken);
     }
 
     public async Task Create(BoothProductCreateDto boothProduct, CancellationToken cancellationToken)

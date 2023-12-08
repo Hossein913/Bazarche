@@ -38,3 +38,16 @@ public class CommentOutputDto
     public virtual Picture Picture { get; set; } = null!;
     #endregion
 }
+
+
+//Id { get; set; }
+//CustomerId { get; set; }
+//ProductId { get; set; }
+//OrderItemId { get; set; }
+//PictureId { get; set; }
+//Text { get; set; }
+//CreatedAt { get; set; }
+//IsConfirmed { get; set; }
+//IsDeleted { get; set; }
+//Customer { get; set; }
+//Picture { get; set; } 

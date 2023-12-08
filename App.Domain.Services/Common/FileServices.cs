@@ -22,7 +22,7 @@ namespace App.Domain.Services.Common
         }
         public async Task FileDeleteAsync()
         {
-            throw new NotImplementedException();
+            
         }
 
         public async Task FileUpdateAsync(IFormFile file, string OldFileName, FileServicesEntityType entityType, string ProjectRouteAddress)
