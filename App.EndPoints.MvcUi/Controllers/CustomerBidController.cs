@@ -38,7 +38,7 @@ namespace App.EndPoints.MvcUi.Controllers
                     ProductDto = result.ProductDto,
                 };
             }
-
+            
             if (TempData.ContainsKey("result"))
             {
 
