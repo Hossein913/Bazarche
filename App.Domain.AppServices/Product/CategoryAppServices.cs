@@ -1,16 +1,23 @@
-﻿using App.Domain.Core._Products.Contracts.AppServices;
+﻿using App.Domain.Core._Common.Contracts.Services;
+using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Repositories;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.CategorieDtos;
+using RedisCache;
+using System.Collections.Generic;
 
 namespace App.Domain.AppServices.Product;
 
 public class CategoryAppServices : ICategoryAppServices
 {
+
+    private readonly IRedisCacheServices _redisCacheServices;
     private readonly ICategoryServices _categoryServices;
-    public CategoryAppServices(ICategoryServices categoryRepository)
+
+    public CategoryAppServices(ICategoryServices categoryRepository, IRedisCacheServices redisCacheServices)
     {
         _categoryServices = categoryRepository;
+        _redisCacheServices = redisCacheServices;
     }
 
     public Task Create(CategoryCreateDto category, CancellationToken cancellationToken)
@@ -20,7 +27,15 @@ public class CategoryAppServices : ICategoryAppServices
 
     public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
     {
-        return await _categoryServices.GetAll(cancellationToken);
+        List<CategoryOutputDto> categoriesResult = _redisCacheServices.Get<List<CategoryOutputDto>>(CacheKey.Categories);
+
+        if (!_redisCacheServices.HasCache(CacheKey.Categories))
+        {
+            categoriesResult = await _categoryServices.GetAll(cancellationToken);
+            _redisCacheServices.Set(CacheKey.Categories, categoriesResult, 1);
+        }
+
+        return categoriesResult;
     }
 
     public async Task<CategoryOutputDto> GetById(int Id, CancellationToken cancellationToken)

@@ -217,7 +217,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
         public async Task<ActionResult> Confirm(int productId,bool status, CancellationToken cancellationToken)
         {
             await _productApp.ConfirmProduct(productId, status, cancellationToken);
-            Redirect(Request.Headers["referer"].ToString());
+            return Redirect(Request.Headers["referer"].ToString());
         }
 
         public async Task<ActionResult> DeletePicture(int productId, int pictureId, CancellationToken cancellationToken)

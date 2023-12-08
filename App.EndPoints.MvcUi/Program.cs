@@ -33,6 +33,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using RedisCache;
+using StackExchange.Redis;
 using System.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -193,6 +195,13 @@ builder.Services.AddHangfireServer();
 
 builder.Services.AddScoped<IJobServices, HangfireServices>();
 
+
+#endregion
+
+
+#region Rediscache config
+
+builder.Services.AddRedisCache();
 
 #endregion
 

@@ -26,6 +26,7 @@
     <ProjectReference Include="..\App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj" />
     <ProjectReference Include="..\App.Infra.Data.SqlServer.Ef\App.Infra.Data.SqlServer.Ef.csproj" />
     <ProjectReference Include="..\App.Infra.Hangfire\App.Infra.Hangfire.csproj" />
+    <ProjectReference Include="..\RedisCache\RedisCache.csproj" />
   </ItemGroup>
 
   <ItemGroup>
