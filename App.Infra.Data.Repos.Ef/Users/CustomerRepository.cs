@@ -19,23 +19,35 @@ public class CustomerRepository : ICustomerRepository
     }
 
 
-    public async Task Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
+    public async Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
     {
-        var newrecord = new Customer
+        Address address = new Address 
+        { 
+            ProvinceId = customerCreate.Address.ProvinceId,
+            City = customerCreate.Address.City,
+            PostalCode = customerCreate.Address.PostalCode,
+            FullAddress = customerCreate.Address.FullAddress,
+
+        };
+        Customer newrecord = new Customer
         {
             FirstName = customerCreate.Firstname,
             LastName = customerCreate.Lastname,
             Sexuality = customerCreate.Sexuality,
-            ProfilePicId = customerCreate.ProfilePicId,
-            AddressId = customerCreate.AddressId,
             Birthdate = customerCreate.Birthdate,
-            Wallet = customerCreate.Wallet,
+            Wallet = 0,
             AppUserId = customerCreate.AppUserId,
-            CartOrderId = customerCreate.CartOrderId,
+            AddressId = address.Id,
+            Address = address
         };
 
         await _context.Customers.AddAsync(newrecord, cancellationToken);
         var result = await _context.SaveChangesAsync(cancellationToken);
+        if (result > 0)
+        {
+            return newrecord.Id;
+        }
+        return 0;
     }
 
     public async Task<List<CustomerOutputDto>> GetAll(CancellationToken cancellationToken)
@@ -110,6 +122,9 @@ public class CustomerRepository : ICustomerRepository
             customerRecord.Birthdate = customerUpdate.Birthdate != null ? customerUpdate.Birthdate : customerRecord.Birthdate;
             customerRecord.Wallet = customerUpdate.Wallet != null ? customerUpdate.Wallet : customerRecord.Wallet;
             customerRecord.Address = customerUpdate.Address != null ? customerUpdate.Address : customerRecord.Address;
+            customerRecord.CartOrderId = customerUpdate.CartOrderId != null ? customerUpdate.CartOrderId : customerRecord.CartOrderId;
+            customerRecord.ProfilePic = customerUpdate.ProfilePic != null ? customerUpdate.ProfilePic : customerRecord.ProfilePic;
+            customerRecord.ProfilePicId = customerUpdate.ProfilePicId != 0 ? customerUpdate.ProfilePicId : customerRecord.ProfilePicId;
         }
         if (saveChanges)
         {

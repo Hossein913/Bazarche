@@ -13,9 +13,10 @@ public class CustomerServices : ICustomerServices
         _customerRepository = customerRepository;
     }
 
-    public async Task Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
+    public async Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
     {
-        await _customerRepository.Create(customerCreate, cancellationToken);
+        var result = await _customerRepository.Create(customerCreate, cancellationToken);
+        return result;
     }
 
     public async Task<List<CustomerOutputDto>> GetAll(CancellationToken cancellationToken)

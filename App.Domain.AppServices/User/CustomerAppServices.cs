@@ -13,14 +13,15 @@ namespace App.Domain.AppServices.User
     public class CustomerAppServices : ICustomerAppServices
     {
         protected readonly ICustomerServices _customerServices;
-public CustomerAppServices(ICustomerServices customerServices)
+        public CustomerAppServices(ICustomerServices customerServices)
         {
             _customerServices = customerServices;
         }
 
-        public async Task Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
+        public async Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+           var result = await _customerServices.Create(customerCreate, cancellationToken);
+            return result;
         }
 
         public async Task<List<CustomerOutputDto>> GetAll(CancellationToken cancellationToken)

@@ -1,6 +1,7 @@
 ﻿using App.Domain.AppServices.User;
 using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Dtos.Authenticate;
+using App.Domain.Core._User.Dtos.CustommersDtos;
 using App.Domain.Core._User.Entities;
 using App.EndPoints.MvcUi.Models.Authenticate;
 using Infrastructure.IdentityConfigs;
@@ -14,15 +15,17 @@ namespace App.EndPoints.MvcUi.Controllers
     [AllowAnonymous]
     public class AuthenticateController : Controller
     {
-        private readonly IIdentityAppServices _appServices;
+        private readonly IIdentityAppServices _identityApp;
+        private readonly IAddressAppServices _addressApp;
 
-        public AuthenticateController(IIdentityAppServices appServices)
+        public AuthenticateController(IIdentityAppServices appServices, IAddressAppServices addressApp)
         {
-            _appServices = appServices;
+            _identityApp = appServices;
+            _addressApp = addressApp;
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public async Task<ActionResult> Login()
         {
             return View();
         }
@@ -42,14 +45,14 @@ namespace App.EndPoints.MvcUi.Controllers
                 };
 
 
-                AppUser appUser = await _appServices.GetAppUser(userLogin, cancellationToken);
+                AppUser appUser = await _identityApp.GetAppUser(userLogin, cancellationToken);
 
                 if (appUser != null)
                 {
-                    var result = await _appServices.Login(appUser, userLogin, cancellationToken);
+                    var result = await _identityApp.Login(appUser, userLogin, cancellationToken);
                     if (result.Succeeded)
                     {
-                        var roles = await _appServices.GetRoles(appUser, cancellationToken);
+                        var roles = await _identityApp.GetRoles(appUser, cancellationToken);
 
 
                         if (roles != null && roles.Contains("Admin"))
@@ -77,24 +80,63 @@ namespace App.EndPoints.MvcUi.Controllers
 
         }
 
+
         [HttpGet]
-        public ActionResult Register()
+        public async Task<ActionResult> SellerRegister()
         {
+
             return View();
         }
 
 
         [HttpPost]
-        public ActionResult SellerRegister(SellerRegisterViewModel sellerRegisterViewModel)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SellerRegister(SellerRegisterViewModel sellerRegisterViewModel, CancellationToken cancellationToken)
         {
             return View();
         }
 
+        [HttpGet]
+        public async Task<ActionResult> CustomerRegister(CancellationToken cancellationToken)
+        {
+            var provinces = await _addressApp.GetAllProvinces(cancellationToken);
+            CustomerRegisterViewModel customerRegister = new CustomerRegisterViewModel {
+              provinces = provinces,
+            };
+            return View(customerRegister);
+        }
 
         [HttpPost]
-        public ActionResult CustomerRegister(CustomerRegisterViewModel customerRegisterVM)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CustomerRegister(CustomerRegisterViewModel customerRegisterVM, CancellationToken cancellationToken)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                CustomerRegisterDto customerRegister = new CustomerRegisterDto
+                {
+                    Email = customerRegisterVM.Email,
+                    Password = customerRegisterVM.Password,
+                    FirstName = customerRegisterVM.FirstName,
+                    LastName = customerRegisterVM.LastName,
+                    ProvinceId = customerRegisterVM.ProvinceId,
+                    City = customerRegisterVM.City,
+                    Address = customerRegisterVM.Address,
+                    PostalCode = customerRegisterVM.PostalCode,
+                };
+                var resutl = await _identityApp.CustomerRegister(customerRegister, cancellationToken);
+                if (resutl == null)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    resutl.ForEach(e => ModelState.AddModelError(string.Empty, e.Description));
+                    
+                }
+            }
+            customerRegisterVM.provinces = await _addressApp.GetAllProvinces(cancellationToken);
+            
+            return View(customerRegisterVM);
         }
 
 
@@ -102,7 +144,7 @@ namespace App.EndPoints.MvcUi.Controllers
         [HttpPost]
         public async Task<ActionResult> Logout()
         {
-            _appServices.LogOut();
+            _identityApp.LogOut();
             return RedirectToAction("Index", "Home");
         }
 

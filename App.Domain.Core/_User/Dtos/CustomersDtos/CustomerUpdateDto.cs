@@ -40,7 +40,7 @@ public partial class CustomerUpdateDto
 
     //public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
 
-    //public virtual Picture? ProfilePic { get; set; }
+    public virtual Picture? ProfilePic { get; set; }
 
     //public virtual AppUser AppUser { get; set; }
 

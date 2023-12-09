@@ -1,0 +1,103 @@
+﻿@model CustomerRegisterViewModel;
+@{
+    ViewData["Style"] = "Style.css";
+}
+<!-- Start Register -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="section-title">
+                    <h2 class="ec-bg-title">ثبت نام</h2>
+                    <h2 class="ec-title">ثبت نام</h2>
+                    <p class="sub-title mb-3">بهترین مکان برای خرید و فروش محصولات دیجیتال</p>
+                </div>
+            </div>
+            <div class="ec-register-wrapper">
+                <div class="ec-register-container">
+                    <div class="ec-register-form">
+
+                        <form asp-action="CustomerRegister" method="post">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.FirstName" class="form-text"></label>
+                                <input asp-for="@Model.FirstName" class="form-controller" placeholder="نام خود را وارد کنید">
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                            </span>
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.LastName" class="form-text"></label>
+                                <input asp-for="@Model.LastName" class="form-controller" placeholder="نام خانوادگی خود را وارد کنید">
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <label asp-for="@Model.Email" class="form-text"></label>
+                                <input asp-for="@Model.Email" class="form-controller" placeholder="وارد کردن ایمیل ">
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.Password" class="form-text"></label>
+                                <input asp-for="@Model.Password" class="form-controller" placeholder="رمز عبور">
+                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                            </span>
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.ConfirmPassword" class="form-text"></label>
+                                <input asp-for="@Model.ConfirmPassword" class="form-controller" placeholder="تکرار رمز عبور">
+                                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <label asp-for="@Model.Address" class="form-text"></label>
+                                <input asp-for="@Model.Address" class="form-controller" placeholder="آدرس خط اول">
+                                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <label asp-for="@Model.ProvinceId" class="form-text"></label>
+                                <span class="ec-rg-select-inner">
+                                        <select asp-for="@Model.ProvinceId" class="form-controller">
+                                            <option selected="" disabled="">استان </option>
+                                            @foreach (var item in Model.provinces)
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
+                                        </select>
+                                </span>
+                                <span asp-validation-for="@Model.ProvinceId" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.City" class="form-text"></label>
+                                <input asp-for="@Model.City" placeholder="نام شهر خود  ">
+                                <span asp-validation-for="@Model.City" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <label asp-for="@Model.PostalCode" class="form-text"></label>
+                                <input asp-for="@Model.PostalCode" placeholder="کد پستی را واردن کنید ">
+                                <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
+                            </span>
+
+
+@*                            <span class="ec-register-wrap ec-recaptcha">
+                                <span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S"
+                                      data-callback="verifyRecaptchaCallback"
+                                      data-expired-callback="expiredRecaptchaCallback"></span>
+                                <input class="form-control d-none" data-recaptcha="true" required=""
+                                       data-error="Please complete the Captcha">
+                                <span class="help-block with-errors"></span>
+                            </span>*@
+                            <span class="ec-register-wrap ec-register-btn">
+                                <button class="btn btn-primary" type="submit">ثبت نام</button>
+                            </span>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Register -->

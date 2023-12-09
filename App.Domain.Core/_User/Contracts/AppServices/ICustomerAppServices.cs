@@ -7,7 +7,7 @@ public interface ICustomerAppServices
 {
     Task<List<CustomerOutputDto>> GetAll(CancellationToken cancellationToken);
     Task<CustomerOutputDto> GetDetail(int customerId, CancellationToken cancellationToken);
-    Task Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken);
+    Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken);
     Task Update(CustomerAppServiceUpdateDto customerUpdate, CancellationToken cancellationToken);
     Task SoftDelete(int customerId, CancellationToken cancellationToken);
 

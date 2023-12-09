@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._User.Dtos.AddresseDtos;
 using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ public partial class CustomerCreateDto
 
     public int? AddressId { get; set; }
 
-    public int CartOrderId { get; set; }
+    public int? CartOrderId { get; set; }
 
     public DateTime? Birthdate { get; set; }
 
@@ -27,9 +28,9 @@ public partial class CustomerCreateDto
     public int AppUserId { get; set; }
 
 
-    //#region Navigation properties
+    #region Navigation properties
 
-    //public virtual Address? Address { get; set; }
+    public virtual AddressCreateDto? Address { get; set; }
     //public virtual ICollection<Auction> Auctions { get; set; } = new List<Auction>();
 
     //public virtual ICollection<Bid> Bids { get; set; } = new List<Bid>();
@@ -42,5 +43,17 @@ public partial class CustomerCreateDto
 
     //public virtual AppUser AppUser { get; set; }
 
-    //#endregion
+    #endregion
 }
+
+
+//Firstname { get; set; }
+//Lastname { get; set; }
+//Sexuality { get; set; }
+//ProfilePicId { get; set; }
+//AddressId { get; set; }
+//CartOrderId { get; set; }
+//Birthdate { get; set; }
+//Wallet { get; set; }
+//AppUserId { get; set; }
+//Address { get; set; }

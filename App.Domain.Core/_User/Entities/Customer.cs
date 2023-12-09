@@ -20,7 +20,7 @@ public partial class Customer
 
     public int? AddressId { get; set; }
 
-    public int CartOrderId { get; set; }
+    public int? CartOrderId { get; set; }
 
     public DateTime? Birthdate { get; set; }
 
