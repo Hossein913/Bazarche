@@ -28,7 +28,7 @@ namespace App.Domain.Core._User.Dtos.SellersDtos.SellerAppServiceDto
 
         public string PostalCode { get; set; } = null!;
 
-        public int ProfilePicId { get; set; }
+        public int? ProfilePicId { get; set; }
 
         public IFormFile? SellerProfilePicFile { get; set; }
 

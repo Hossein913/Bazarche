@@ -34,7 +34,7 @@ namespace App.Domain.AppServices.User
             _pictureServices = pictureServices;
         }
 
-        public Task Create(SellerAppServiceCreateDto sellerCreate, CancellationToken cancellationToken)
+        public Task Create(SellerRegisterDto sellerCreate, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
@@ -69,8 +69,8 @@ namespace App.Domain.AppServices.User
 
             if (sellerUpdate.SellerProfilePicFile != null)
             {
-                var PicDetail = await _pictureServices.GetDetails(sellerUpdate.ProfilePicId, cancellationToken);
-                await _fileServices.FileUpdateAsync(sellerUpdate.SellerProfilePicFile, PicDetail.ImageUrl, FileServicesEntityType.Profiles, projectRouteAddress);
+                //var PicDetail = await _pictureServices.GetDetails(sellerUpdate.ProfilePicId, cancellationToken);
+                //await _fileServices.FileUpdateAsync(sellerUpdate.SellerProfilePicFile, PicDetail.ImageUrl, FileServicesEntityType.Profiles, projectRouteAddress);
 
             }
 

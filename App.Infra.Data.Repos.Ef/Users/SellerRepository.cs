@@ -15,22 +15,39 @@ public class SellerRepository : ISellerRepository
         _context = context;
     }
 
-    public async Task Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken, bool saveChanges = true)
     {
+        Address address = new Address {
+            ProvinceId = sellerCreate.Address.ProvinceId,
+            City = sellerCreate.Address.City,
+            PostalCode = sellerCreate.Address.PostalCode,
+            FullAddress = sellerCreate.Address.FullAddress,
+        };
         var newrecord = new Seller
         {
             FirstName = sellerCreate.Firstname,
             LastName = sellerCreate.Lastname,
-            AddressId = sellerCreate.AddressId,
+            AddressId = address.Id,
             ProfilePicId = sellerCreate.ProfilePicId,
             Birthdate = sellerCreate.Birthdate,
             ShabaNumber = sellerCreate.ShabaNumber,
             BoothId = sellerCreate.BoothId,
-            AppUserId = sellerCreate.AppuserId
+            AppUserId = sellerCreate.AppUserId,
+            Address = address
         };
 
         await _context.Sellers.AddAsync(newrecord, cancellationToken);
-        var result = await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        {
+            var result = await _context.SaveChangesAsync(cancellationToken);
+            if (result > 0)
+            {
+                return new SellerOutputDto { Id = newrecord.Id };
+            }
+            return new SellerOutputDto { Id = 0 };
+
+        }
+        return new SellerOutputDto { Id = newrecord.Id };
     }
 
     public async Task<List<SellerOutputDto>> GetAll(CancellationToken cancellationToken)
@@ -101,18 +118,22 @@ public class SellerRepository : ISellerRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken)
+    public async Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
         var sellerRecord = await _context.Sellers
     .FirstOrDefaultAsync(x => x.Id == sellerUpdate.Id, cancellationToken);
         if (sellerRecord != null)
         {
-            sellerRecord.FirstName = sellerUpdate.Firstname;
-            sellerRecord.LastName = sellerUpdate.Lastname;
-            sellerRecord.ProfilePicId = sellerUpdate.ProfilePicId;
-            sellerRecord.Birthdate = sellerUpdate.Birthdate;
-            sellerRecord.ShabaNumber = sellerUpdate.ShabaNumber;
+            sellerRecord.FirstName = sellerUpdate.Firstname != null ? sellerUpdate.Firstname : sellerRecord.FirstName;
+            sellerRecord.LastName = sellerUpdate.Lastname != null ? sellerUpdate.Firstname : sellerRecord.LastName;
+            sellerRecord.ProfilePicId = sellerUpdate.ProfilePicId != 0 ? sellerUpdate.ProfilePicId : sellerRecord.ProfilePicId;
+            sellerRecord.Birthdate = sellerUpdate.Birthdate != null ? sellerUpdate.Birthdate : sellerRecord.Birthdate;
+            sellerRecord.ShabaNumber = sellerUpdate.ShabaNumber != null ? sellerUpdate.Firstname : sellerRecord.ShabaNumber;
+            sellerRecord.BoothId = sellerUpdate.BoothId != null ? sellerUpdate.BoothId : sellerRecord.BoothId;
         }
-        await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        {
+            await _context.SaveChangesAsync(cancellationToken);
+        }
     }
 }

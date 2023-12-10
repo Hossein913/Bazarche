@@ -2,6 +2,8 @@
 using App.Domain.Core._User.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using App.Domain.Core._User.Dtos.AddresseDtos;
+using App.Domain.Core._User.Dtos.ProvinceDto;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.SellerViewModels
 {
@@ -31,11 +33,13 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.SellerViewModels
         [DisplayName("کد پستی"), Required(ErrorMessage = "کد پستی نمی تواند خالی باشد.")]
         public string PostalCode { get; set; } 
 
-        public string ProfilePicUrl{ get; set; }
-        public int ProfilePicId{ get; set; }
+        public string? ProfilePicUrl{ get; set; }
+        public int? ProfilePicId{ get; set; }
 
         [DisplayName("آپلود تصویر")]
         public IFormFile? ProfilePicFile { get; set; }
+
+        public List<ProvinceOutputDto> provinces { get; set; }
 
     }
 }

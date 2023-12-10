@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Booth.Contracts.Repositories;
 using App.Domain.Core._Booth.Dtos.BoothDtos;
 using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Dtos.SellersDtos;
@@ -20,21 +21,40 @@ public class BoothRepository : IBoothRepository
         _context = context;
     }
 
-    public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
+    public async Task<int> Create(BoothCreateDto boothCreate, CancellationToken cancellationToken, bool saveChanges = true)
     {
+        Picture picture = new Picture
+        {
+            ImageUrl = boothCreate.AvatarPicture.ImageUrl,
+            CreatedBy = boothCreate.AvatarPicture.CreatedBy,
+            CreatedAt = DateTime.Now,
+            IsDeleted = false,
+        };
         var newBooth = new Booth
         {
             Name = boothCreate.Name,
-            AvatarPictureId = boothCreate.AvatarPictureId,
-            MedalId = boothCreate.MedalId,
+            AvatarPictureId = picture.Id,
+            MedalId = 1,
             AccountBalance = boothCreate.AccountBalance,
             Description = boothCreate.Description,
             IsActive = false,
             IsDeleted = false,
+            AvatarPicture = picture,
         };
 
         await _context.Booths.AddAsync(newBooth, cancellationToken);
-        var result = await _context.SaveChangesAsync(cancellationToken);
+        if (saveChanges)
+        {
+            var result = await _context.SaveChangesAsync(cancellationToken);
+            if (result > 0)
+            {
+                return newBooth.Id;
+            }
+            return 0;
+
+        }
+        return newBooth.Id;
+
     }
 
     public async Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)

@@ -2,6 +2,7 @@
 using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Dtos.Authenticate;
 using App.Domain.Core._User.Dtos.CustommersDtos;
+using App.Domain.Core._User.Dtos.SellersDtos.SellerAppServiceDto;
 using App.Domain.Core._User.Entities;
 using App.EndPoints.MvcUi.Models.Authenticate;
 using Infrastructure.IdentityConfigs;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading;
 
 namespace App.EndPoints.MvcUi.Controllers
 {
@@ -17,11 +19,12 @@ namespace App.EndPoints.MvcUi.Controllers
     {
         private readonly IIdentityAppServices _identityApp;
         private readonly IAddressAppServices _addressApp;
-
-        public AuthenticateController(IIdentityAppServices appServices, IAddressAppServices addressApp)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        public AuthenticateController(IIdentityAppServices appServices, IAddressAppServices addressApp, IWebHostEnvironment hostingEnvironment)
         {
             _identityApp = appServices;
             _addressApp = addressApp;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpGet]
@@ -82,10 +85,14 @@ namespace App.EndPoints.MvcUi.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> SellerRegister()
+        public async Task<ActionResult> SellerRegister(CancellationToken cancellationToken)
         {
-
-            return View();
+            var provinces = await _addressApp.GetAllProvinces(cancellationToken);
+            SellerRegisterViewModel sellerRegister = new SellerRegisterViewModel
+            {
+                provinces = provinces
+            };
+            return View(sellerRegister);
         }
 
 
@@ -93,7 +100,37 @@ namespace App.EndPoints.MvcUi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SellerRegister(SellerRegisterViewModel sellerRegisterViewModel, CancellationToken cancellationToken)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                SellerRegisterDto sellerRegister = new SellerRegisterDto
+                {
+                    FirstName =sellerRegisterViewModel.FirstName ,
+                    LastName =sellerRegisterViewModel.LastName ,
+                    ShabaNumber =sellerRegisterViewModel.ShabaNumber ,
+                    Email =sellerRegisterViewModel.Email ,
+                    Password =sellerRegisterViewModel.Password ,
+                    ProvinceId =sellerRegisterViewModel.ProvinceId ,
+                    City =sellerRegisterViewModel.City ,
+                    Address =sellerRegisterViewModel.Address,
+                    PostalCode =sellerRegisterViewModel.PostalCode ,
+                    BoothName =sellerRegisterViewModel.BoothName ,
+                    Description =sellerRegisterViewModel.Description ,
+                    BoothAvatar =sellerRegisterViewModel.BoothAvatar ,
+                };
+                var resutl = await _identityApp.SellerRegister(sellerRegister, _hostingEnvironment.WebRootPath, cancellationToken);
+                if (resutl == null)
+                {
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    resutl.ForEach(e => ModelState.AddModelError(string.Empty, e.Description));
+
+                }
+
+            }
+            sellerRegisterViewModel.provinces = await _addressApp.GetAllProvinces(cancellationToken);
+            return View(sellerRegisterViewModel);
         }
 
         [HttpGet]

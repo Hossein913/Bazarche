@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Dtos.PictureDtos;
 using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
@@ -31,7 +32,7 @@ public partial class BoothCreateDto
     #region Navigation properties
     public virtual ICollection<Auction> Auctions { get; set; }
 
-    public virtual Picture? AvatarPicture { get; set; } = null!;
+    public virtual PictureCreateDto? AvatarPicture { get; set; } = null!;
 
     public virtual ICollection<BoothProduct> BoothProducts { get; set; }
 

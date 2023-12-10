@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Common.Entities;
+using App.Domain.Core._User.Dtos.AddresseDtos;
 using App.Domain.Core._User.Entities;
 using System;
 using System.Collections.Generic;
@@ -25,11 +26,11 @@ public partial class SellerCreateDto
 
     public int? BoothId { get; set; }
 
-    public int AppuserId { get; set; }
+    public int AppUserId { get; set; }
 
 
     //#region Navigation properties
-    //public virtual Address? Address { get; set; }
+    public virtual AddressCreateDto? Address { get; set; }
 
     //public virtual Booth? Booth { get; set; }
 

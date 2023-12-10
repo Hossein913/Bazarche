@@ -21,9 +21,10 @@ namespace App.Domain.Services.Booth
             _medalRepository = medalRepository;
         }
 
-        public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
+        public async Task<int> Create(BoothCreateDto boothCreate, CancellationToken cancellationToken, bool saveChanges = true)
         {
-            await _boothRepository.Create(boothCreate, cancellationToken);
+           var result = await _boothRepository.Create(boothCreate, cancellationToken, saveChanges);
+            return result;
         }
 
         public async Task<List<BoothOutputDto>> GetAllHome(CancellationToken cancellationToken)

@@ -6,8 +6,8 @@ public interface ISellerRepository
 {
     Task<List<SellerOutputDto>> GetAll(CancellationToken cancellationToken);
     Task<SellerOutputDto> GetDetail(int sellerId, CancellationToken cancellationToken);
-    Task Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken);
-    Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken);
+    Task<SellerOutputDto> Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken,bool saveChanges = true);
+    Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task SoftDelete(int sellerId, CancellationToken cancellationToken);
 
 }

@@ -13,9 +13,10 @@ public class SellerServices : ISellerServices
         _sellerRepository = sellerRepository;
     }
 
-    public async Task Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> Create(SellerCreateDto sellerCreate, CancellationToken cancellationToken, bool saveChanges = true)
     {
-        await _sellerRepository.Create(sellerCreate, cancellationToken);
+       var result = await _sellerRepository.Create(sellerCreate, cancellationToken, saveChanges);
+        return result;
 
     }
 
@@ -37,9 +38,9 @@ public class SellerServices : ISellerServices
 
     }
 
-    public async Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken)
+    public async Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
-        await _sellerRepository.Update(sellerUpdate, cancellationToken);
+        await _sellerRepository.Update(sellerUpdate, cancellationToken, saveChanges);
             
     }
 }

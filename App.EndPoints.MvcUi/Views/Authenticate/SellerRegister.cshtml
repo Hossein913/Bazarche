@@ -1,0 +1,132 @@
+﻿@model SellerRegisterViewModel;
+
+@{
+    ViewData["Style"] = "Style.css";
+}
+<!-- Start Register -->
+<section class="ec-page-content section-space-p">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="section-title">
+                    <h2 class="ec-bg-title">ثبت نام</h2>
+                    <h2 class="ec-title">ثبت نام</h2>
+                    <p class="sub-title mb-3">بهترین مکان برای خرید و فروش محصولات دیجیتال</p>
+                </div>
+            </div>
+            <div class="ec-register-wrapper">
+                <div class="ec-register-container">
+                    <div class="ec-register-form">
+
+                        <form asp-action="SellerRegister" enctype="multipart/form-data" method="post">
+                            <span class="ec-register-wrap">
+                            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                <label asp-for="@Model.FirstName" class="form-label"></label>
+                                <input asp-for="@Model.FirstName" class="form-control" placeholder="نام خود را وارد کنید">
+                            </span>
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                <label asp-for="@Model.LastName" class="form-label"></label>
+                                <input asp-for="@Model.LastName" class="form-control" placeholder="نام خانوادگی خود را وارد کنید">
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <span asp-validation-for="@Model.ShabaNumber" class="text-danger"></span>
+                                <label asp-for="@Model.ShabaNumber" class="form-label"></label>
+                                <input asp-for="@Model.ShabaNumber" class="form-control" placeholder="شماره شبا بانکی ">
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                                <label asp-for="@Model.Email" class="form-label"></label>
+                                <input asp-for="@Model.Email" class="form-control" placeholder="وارد کردن ایمیل ">
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                <label asp-for="@Model.Password" class="form-label"></label>
+                                <input asp-for="@Model.Password" class="form-control" placeholder="رمز عبور">
+                            </span>
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                                <label asp-for="@Model.ConfirmPassword" class="form-label"></label>
+                                <input asp-for="@Model.ConfirmPassword" class="form-control" placeholder="تکرار رمز عبور">
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <hr />
+                                <h4 class="form-label"> آدرس:</h4>
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                                <label asp-for="@Model.Address" class="form-label"></label>
+                                <input asp-for="@Model.Address" class="form-control" placeholder="آدرس کامل">
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <label asp-for="@Model.ProvinceId" class="form-label"></label>
+                                <span class="ec-rg-select-inner">
+                                    <select asp-for="@Model.ProvinceId" class="form-control">
+                                        <option selected="" disabled="">استان </option>
+                                        @foreach (var item in Model.provinces)
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    </select>
+                                </span>
+                                <span asp-validation-for="@Model.ProvinceId" class="text-danger"></span>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.City" class="text-danger"></span>
+                                <label asp-for="@Model.City" class="form-label"></label>
+                                <input asp-for="@Model.City" placeholder="نام شهر خود  ">
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
+                                <label asp-for="@Model.PostalCode" class="form-label"></label>
+                                <input asp-for="@Model.PostalCode" placeholder="کد پستی را واردن کنید ">
+                            </span>
+                            <span class="ec-register-wrap">
+                            <hr />
+                            <h4 class="form-label"> غرفه:</h4>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.BoothName" class="text-danger"></span>
+                                <label asp-for="@Model.BoothName" class="form-label"></label>
+                                <input asp-for="@Model.BoothName" class="form-control" placeholder="نام غرفه را وارد کنید">
+                            </span>
+                            <span class="ec-register-wrap ec-register-half">
+                                <span asp-validation-for="@Model.BoothAvatar" class="text-danger"></span>
+                                <label asp-for="@Model.BoothAvatar" class="form-label"></label>
+                                <input asp-for="@Model.BoothAvatar" class="form-control">
+                            </span>
+
+                            <span class="ec-register-wrap">
+                                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                                <label asp-for="@Model.Description" class="form-label"></label>
+                                <textarea asp-for="@Model.Description" class="form-control" placeholder="درباره غرفه شما "></textarea>
+                            </span>
+
+                            <span class="ec-register-wrap ec-register-btn">
+                                <button class="btn btn-primary" type="submit">ثبت نام</button>
+                                <label class="form-label"> 24 ساعت بعد از ثبت نام غرفه شما فعال خواهد شد.</label>
+                            </span>
+                            
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Register -->
