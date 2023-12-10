@@ -120,7 +120,7 @@ builder.Services.AddScoped<IOrderAppServices, OrderAppServices>();
 builder.Services.AddScoped<IProductAppServices, ProductAppServices>();
 
 ////--Users
-//builder.Services.AddScoped<IAddressAppServices, AddressAppServices>();
+builder.Services.AddScoped<IAddressAppServices, AddressAppServices>();
 //builder.Services.AddScoped<IAdminAppServices, AdminAppServices>();
 builder.Services.AddScoped<IWageAppServices, WageAppServices>();
 builder.Services.AddScoped<ICustomerAppServices, CustomerAppServices>();
@@ -246,12 +246,12 @@ name: "SellerArea",
 pattern: "{area:exists}/{controller=SellerPanel}/{action=Index}/{id?}");
 
 //--------Area as default Route--------////
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{area=AdminArea}/{controller=AdminPanel}/{action=Index}/{id?}");
-
 //app.MapControllerRoute(
 //    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
+//    pattern: "{area=AdminArea}/{controller=AdminPanel}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
