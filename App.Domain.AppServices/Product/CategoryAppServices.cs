@@ -25,16 +25,23 @@ public class CategoryAppServices : ICategoryAppServices
         throw new NotImplementedException();
     }
 
+    //public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
+    //{
+    //    List<CategoryOutputDto> categoriesResult = _redisCacheServices.Get<List<CategoryOutputDto>>(CacheKey.Categories);
+
+    //    if (!_redisCacheServices.HasCache(CacheKey.Categories))
+    //    {
+    //        categoriesResult = await _categoryServices.GetAll(cancellationToken);
+    //        _redisCacheServices.Set(CacheKey.Categories, categoriesResult, 1);
+    //    }
+
+    //    return categoriesResult;
+    //}
+
     public async Task<List<CategoryOutputDto>> GetAll(CancellationToken cancellationToken)
     {
-        List<CategoryOutputDto> categoriesResult = _redisCacheServices.Get<List<CategoryOutputDto>>(CacheKey.Categories);
 
-        if (!_redisCacheServices.HasCache(CacheKey.Categories))
-        {
-            categoriesResult = await _categoryServices.GetAll(cancellationToken);
-            _redisCacheServices.Set(CacheKey.Categories, categoriesResult, 1);
-        }
-
+        var categoriesResult = await _categoryServices.GetAll(cancellationToken);
         return categoriesResult;
     }
 
