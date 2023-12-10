@@ -23,6 +23,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         protected readonly IBoothAppServices _BoothAppServices;
         protected readonly IProductAppServices _productAppServices;
         protected readonly IIdentityAppServices _identityAppServices;
+        protected readonly IAddressAppServices _addressAppServices;
 
 
         public SellerPanelController(
@@ -30,13 +31,15 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             IBoothAppServices boothAppServices,
             IProductAppServices productAppServices,
             IIdentityAppServices identityAppServices,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment,
+            IAddressAppServices addressAppServices)
         {
             _sellerAppServices = sellerAppServices;
             _BoothAppServices = boothAppServices;
             _productAppServices = productAppServices;
             _identityAppServices = identityAppServices;
             _webHostEnvironment = webHostEnvironment;
+            _addressAppServices = addressAppServices;
         }
 
         [HttpGet]
@@ -114,8 +117,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditProfile(EditSellerProfileViewModel sellerProfile, CancellationToken cancellationToken)
         {
-            try
-            {
+            if(ModelState.IsValid) {
+
                 SellerAppServiceUpdateDto SellerUpdate = new SellerAppServiceUpdateDto
                 {
                     SellerId = CurrentSellerId,
@@ -134,10 +137,9 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                 await _sellerAppServices.Update(SellerUpdate, _webHostEnvironment.WebRootPath, cancellationToken);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            sellerProfile.provinces = await _addressAppServices.GetAllProvinces(CancellationToken.None);
+            return View(sellerProfile);
+            
         }
 
 

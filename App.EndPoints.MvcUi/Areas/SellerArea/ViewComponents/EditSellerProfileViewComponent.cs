@@ -27,10 +27,12 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.ViewComponents
         }
 
         protected readonly ISellerAppServices _sellerAppServices;
+        protected readonly IAddressAppServices _addressAppServices;
 
-        public EditSellerProfileViewComponent(ISellerAppServices sellerAppServices, IBoothAppServices boothAppServices)
+        public EditSellerProfileViewComponent(ISellerAppServices sellerAppServices, IBoothAppServices boothAppServices, IAddressAppServices addressAppServices)
         {
             _sellerAppServices = sellerAppServices;
+            _addressAppServices = addressAppServices;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -47,10 +49,9 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.ViewComponents
                 City = seller.Address.City,
                 FullAddress = seller.Address.FullAddress,
                 PostalCode = seller.Address.PostalCode,
-                ProfilePicUrl = seller.ProfilePic.ImageUrl,
-                ProfilePicId = seller.ProfilePic.Id
+                //ProfilePicUrl = seller.ProfilePic.ImageUrl,
             };
-
+            editSeller.provinces = await _addressAppServices.GetAllProvinces(CancellationToken.None);
             return View(editSeller);
         }
     }

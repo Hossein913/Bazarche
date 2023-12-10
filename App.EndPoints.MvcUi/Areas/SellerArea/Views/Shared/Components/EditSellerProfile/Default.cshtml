@@ -3,12 +3,12 @@
 <!-- Modal -->
 
 <div class="ec-vendor-block-img space-bottom-30">
-    <label>
+@*    <label>
         <img src="~/@UploadPath.Profiles/@Model.ProfilePicUrl" class="svg_img header_svg"
              alt="edit">
-    </label>
+    </label>*@
     <form asp-controller="SellerPanel" asp-action="EditProfile" method="post" enctype="multipart/form-data" class="row g-3">
-        @Html.HiddenFor(m => m.ProfilePicId)
+        @*@Html.HiddenFor(m => m.ProfilePicId)*@
 
         <div class="ec-vendor-upload-detail">
             <h4 class="ec-title-lbg"><span>اطلاعات شخصی</span></h4>
@@ -30,11 +30,11 @@
                 <input asp-for="@Model.ShabaNumber" type="text" class="form-control">
             </div>
 
-            <div class="col-md-6 space-t-15">
+@*            <div class="col-md-6 space-t-15">
                 <label asp-for="@Model.ProfilePicFile" class="form-label"></label>
                 <input asp-for="@Model.ProfilePicFile" class="form-control"
                        accept=".png, .jpg, .jpeg">
-            </div>
+            </div>*@
             <h4 class="ec-title-lbg"><span>ویرایش آدرس </span></h4>
 
             <div class="col-md-4 space-t-15">
