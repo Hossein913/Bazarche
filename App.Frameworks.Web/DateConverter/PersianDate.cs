@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Globalization;
 
-namespace App.Frameworks.Web
+namespace App.Frameworks.Web.DateConverter
 {
     public static class PersianDate
     {
