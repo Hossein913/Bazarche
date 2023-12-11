@@ -32,7 +32,6 @@ namespace App.EndPoints.MvcUi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
-            throw new Exception("Log Log!");
 
             IndexViewModel viewModel = new IndexViewModel();
 
