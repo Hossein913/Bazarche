@@ -19,6 +19,7 @@ using App.Domain.Services.Booth;
 using App.Domain.Services.Common;
 using App.Domain.Services.Product;
 using App.Domain.Services.User;
+using App.Frameworks.Web.ExceptionHandler;
 using App.Infra.Data.Repos.Ef.Booths;
 using App.Infra.Data.Repos.Ef.Commons;
 using App.Infra.Data.Repos.Ef.Products;
@@ -32,8 +33,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RedisCache;
+using Serilog;
 using StackExchange.Redis;
 using System.Data;
 
@@ -205,7 +208,18 @@ builder.Services.AddRedisCache();
 
 #endregion
 
+#region SeriLog config
+builder.Services.Add_SeriLogConfiguration();
+#endregion
+
+
+
 var app = builder.Build();
+
+
+
+app.Use_ExceptionHandler();
+
 
 // Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())

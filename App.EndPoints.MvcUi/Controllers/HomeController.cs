@@ -32,6 +32,8 @@ namespace App.EndPoints.MvcUi.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(CancellationToken cancellationToken)
         {
+            throw new Exception("Log Log!");
+
             IndexViewModel viewModel = new IndexViewModel();
 
             var auctions = await _auctionAppServices.GetAllAuctions(cancellationToken);
@@ -85,7 +87,7 @@ namespace App.EndPoints.MvcUi.Controllers
         }
 
 
-            public IActionResult Privacy()
+        public IActionResult Privacy()
         {
             return View();
         }
