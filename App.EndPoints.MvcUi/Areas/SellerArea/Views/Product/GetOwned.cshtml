@@ -1,0 +1,195 @@
+﻿@using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum;
+@inject FileUploadPathsDto UploadPath;
+@model List<ProductListViewModel>;
+
+<div class="ec-shop-rightside col-lg-9 col-md-12">
+     <!-- بلوک لیست محصولات -->
+    <div class="ec-vendor-dashboard-card space-bottom-30">
+    <div class="ec-vendor-card-header">
+        <h5>لیست محصولات</h5>
+        <div class="ec-header-btn">
+            @*                            <a class="btn btn-lg btn-primary" href="#">مشاهده همه</a>
+            <a class="btn btn-lg btn-primary" href="#">اضافه کردن</a>*@
+        </div>
+    </div>
+    <div class="ec-vendor-card-body">
+        <div class="ec-vendor-card-table">
+            <table class="table ec-table">
+                <thead>
+                    <tr>
+                        <th scope="col">شناسه</th>
+                        <th scope="col">تصویر</th>
+                        <th scope="col">نام</th>
+                        <th scope="col">برند</th>
+                        <th scope="col">دسته بندی</th>
+                        <th scope="col">توضیحات</th>
+                        <th scope="col">قیمت پایه</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">فعالیت </th>
+                    </tr>
+                </thead>
+                @{
+                    int Productcounter = 1;
+                }
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row"><span>@Productcounter</span></th>
+                            <td>
+                                <img class="prod-img" src="~/@UploadPath.Product/@item.Avatar"
+                                     alt="product image">
+                            </td>
+                            <td><span>@item.Name</span></td>
+                            <td><span>@item.Brand</span></td>
+                            <th><span>@item.CategoryTitle</span></th>
+                            <td><span>@item.Description</span></td>
+                            <td><span>@item.BasePrice</span></td>
+                            <td>
+                                @if (@item.OwnedProductStatus == OwnedProductStatus.Registered)
+                                {
+                                        <span class="text-warning">انتظار تایید</span>
+                                }
+                                else if (@item.OwnedProductStatus == OwnedProductStatus.Confirmed)
+                                {
+                                        <span class="text-success">تایید شده</span>
+                                }
+                                else if (@item.OwnedProductStatus == OwnedProductStatus.InUse)
+                                {
+                                        <span class="text-primary"> دارای قیمت</span>
+                                }
+                                else
+                                {
+                                        <span class="text-danger">رد شده</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group mb-1">
+                                    <button type="button"
+                                            class="btn btn-outline-success">
+                                        اطلاعات
+                                        </button> <button type="button"
+                                                      class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                      data-bs-toggle="dropdown" aria-haspopup="true"
+                                                      aria-expanded="false" data-display="static">
+                                        <span class="sr-only">اطلاعات</span>
+                                    </button>
+                                        <div class="dropdown-menu">
+
+                                        @if (@item.OwnedProductStatus == OwnedProductStatus.Registered)
+                                        {
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="Product"
+                                               asp-action="Edit"
+                                               asp-route-productId="@item.Id">
+                                                ویرایش
+                                            </a>
+
+
+                                            <a class="dropdown-item text-danger"
+                                               asp-controller="Product"
+                                               asp-action="Delete"
+                                                   asp-route-productId="@item.Id">
+                                                حذف
+                                            </a>
+
+
+                                        }
+                                        else if (@item.OwnedProductStatus == OwnedProductStatus.Confirmed)
+                                        {
+
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="Product"
+                                               asp-action="Edit"
+                                                   asp-route-productId="@item.Id">
+                                                ویرایش
+                                            </a>
+
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="BoothProduct"
+                                                   asp-action="Create"
+                                                   asp-route-productId="@item.Id">
+                                                ثبت قیمت
+                                            </a>
+
+                                            <a class="dropdown-item text-success"
+                                                   asp-controller="Auction"
+                                               asp-action="Create"
+                                                   asp-route-productId="@item.Id">
+                                                فروش مزایده ای
+                                            </a>
+
+                                            <a class="dropdown-item text-success"
+                                               asp-area=""
+                                               asp-controller="Product"
+                                               asp-action="ProductFullPage"
+                                                   asp-route-productId="@item.Id">
+                                                مشاهده
+                                            </a>
+
+                                            <a class="dropdown-item text-danger"
+                                               asp-controller="Product"
+                                               asp-action="Delete"
+                                                   asp-route-productId="@item.Id">
+                                                حذف
+                                            </a>
+
+                                        }
+                                        else if (@item.OwnedProductStatus == OwnedProductStatus.InUse)
+                                        {
+                                            <a class="dropdown-item text-success"
+                                               asp-area=""
+                                               asp-controller="Product"
+                                                   asp-action="ProductFullPage"
+                                                   asp-route-productId="@item.Id">
+                                                مشاهده
+                                            </a>
+
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="BoothProduct"
+                                                   asp-action="Create"
+                                                   asp-route-productId="@item.Id">
+                                                ثبت قیمت
+                                            </a>
+
+
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="Auction"
+                                                   asp-action="Create"
+                                                   asp-route-productId="@item.Id">
+                                                فروش مزایده ای
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a class="dropdown-item text-success"
+                                               asp-controller="Product"
+                                               asp-action="Edit"
+                                                   asp-route-productId="@item.Id">
+                                                ویرایش
+                                            </a>
+
+
+                                            <a class="dropdown-item text-danger"
+                                               asp-controller="Product"
+                                               asp-action="Delete"
+                                                   asp-route-productId="@item.Id">
+                                                حذف
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                               
+                             </td>
+                        </tr>
+
+                        Productcounter++;
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+    <!-- بلوک لیست محصولات -->
+</div>

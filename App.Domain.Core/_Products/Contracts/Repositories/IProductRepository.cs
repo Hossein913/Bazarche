@@ -10,7 +10,7 @@ public interface IProductRepository
     Task<List<ProductOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);
     Task<List<ProductOutputDto>> GetAllForOrderItems(List<Dictionary<int, int>> ProductPrice, CancellationToken cancellationToken);
     Task<List<ProductOutputDto>> GetAllWithIdList(List<int> ProductIdList, CancellationToken cancellationToken);
-
+    Task<List<ProductOutputDto>> GetAllByOwner(int appuserId, CancellationToken cancellationToken);
     Task<ProductOutputDto> GetDetailWithRelation(int productId, CancellationToken cancellationToken);
     Task<ProductOutputDto> GetDetail(int productId, CancellationToken cancellationToken);
     Task<int> Create(ProductCreateDto product, CancellationToken cancellationToken);

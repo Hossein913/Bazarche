@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
+using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels
 {
@@ -18,6 +19,10 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels
         public int BasePrice { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public OwnedProductStatus? OwnedProductStatus { get; set; }
+
+        public virtual string CategoryTitle { get; set; }
 
     }
 }

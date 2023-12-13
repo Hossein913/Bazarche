@@ -4,6 +4,7 @@ using App.Domain.Core._Products.Dtos.CategorieDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
+using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels;
 using Microsoft.AspNetCore.Http;
@@ -84,7 +85,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     }
                     else if (result > 0)
                     {
-                        return RedirectToAction("Product", "Create");
+                        return RedirectToAction("Create", "Product");
                     }
 
                 }
@@ -133,6 +134,49 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             return View("CategoryProducts", ProductListViewModel);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GetOwned(CancellationToken cancellationToken)
+        {
+            var products = await _productAppServices.GetAllByOwner(CurrentUserId, cancellationToken);
+
+            var ProductListViewModel = products.Select(p =>
+            {
+                OwnedProductStatus Status ;
+                if (p.IsConfirmed == null && p.BoothProducts.Count == 0)
+                {
+                    Status = OwnedProductStatus.Registered;
+                }
+                else if (p.IsConfirmed == true && p.BoothProducts.Count == 0)
+                {
+                    Status = OwnedProductStatus.Confirmed;
+                }
+                else if (p.IsConfirmed == true && p.BoothProducts.Count > 0)
+                {
+                    Status = OwnedProductStatus.InUse;
+                }
+                else
+                {
+                    Status = OwnedProductStatus.Unconfirmed;
+                }
+
+                return new ProductListViewModel
+                       {
+                          Id = p.Id,
+                          Name = p.Name,
+                          Brand = p.Brand,
+                          Avatar = p.Avatar,
+                          Description = p.Description,
+                          BasePrice = p.BasePrice,
+                          CategoryTitle = p.CategoryTitle,
+                          OwnedProductStatus = Status,
+                          CreatedAt = p.CreatedAt
+                       };
+
+             }).ToList();
+
+
+            return View(ProductListViewModel.OrderBy(p => p.OwnedProductStatus).ThenBy(p => p.CreatedAt).ToList());
+        }
 
         public ActionResult Edit(int id)
         {

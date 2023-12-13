@@ -57,6 +57,11 @@ public class ProductServices : IProductServices
         var result = await _productRepository.GetAllWithIdList(ProductIdList, cancellationToken);
         return result;
     }
+    public async Task<List<ProductOutputDto>> GetAllByOwner(int appuserId, CancellationToken cancellationToken)
+    {
+        var result = await _productRepository.GetAllByOwner(appuserId, cancellationToken);
+        return result;
+    }
 
     public async Task<ProductOutputDto> GetDetails(int productId, CancellationToken cancellationToken)
     {
@@ -85,5 +90,4 @@ public class ProductServices : IProductServices
         ProductUpdateDto productUpdateDto = new ProductUpdateDto { Id = productId , IsConfirmed = status };
         await _productRepository.Update(productUpdateDto, cancellationToken);
     }
-
 }

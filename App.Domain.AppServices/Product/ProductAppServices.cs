@@ -134,7 +134,13 @@ namespace App.Domain.AppServices.Product
             var products = await _productServices.GetAllToConfirm(cancellationToken);
             return products;
         }
-        
+
+        public async Task<List<ProductOutputDto>> GetAllByOwner(int appuserId, CancellationToken cancellationToken)
+        {
+            var result = await _productServices.GetAllByOwner(appuserId, cancellationToken);
+            return result;
+        }
+
         public async Task<List<ProductOutputDto>> GetPopularOrderedProducts(int ProductCount, CancellationToken cancellationToken)
         {
            var ProductId = await _orderItemServices.GetPopularOrderedProductsId(ProductCount, cancellationToken);
@@ -234,5 +240,7 @@ namespace App.Domain.AppServices.Product
         {
             await _productServices.ConfirmProduct(productId, status, cancellationToken);
         }
+
+
     }
 }

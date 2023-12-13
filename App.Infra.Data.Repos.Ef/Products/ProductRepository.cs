@@ -19,6 +19,9 @@ public class ProductRepository : IProductRepository
         _context = context;
     }
 
+
+
+
     public async Task<int> Create(ProductCreateDto product, CancellationToken cancellationToken)
     {
         var newproduct = new Product
@@ -33,7 +36,8 @@ public class ProductRepository : IProductRepository
             BasePrice = product.BasePrice,
             IsDeleted = false,
             Pictures = product.Pictures,
-            CategoryId = product.CategoryId
+            CategoryId = product.CategoryId,
+            CreatedBy = product.CreatedBy,
         };
 
                      await _context.Products.AddAsync(newproduct, cancellationToken);
@@ -123,6 +127,29 @@ public class ProductRepository : IProductRepository
                 IsConfirmed = c.IsConfirmed,
 
             }).ToListAsync(cancellationToken);
+        return result;
+    }
+
+    public async Task<List<ProductOutputDto>> GetAllByOwner(int appuserId, CancellationToken cancellationToken)
+    {
+        var result = await _context.Products
+            .AsNoTracking()
+            .Where(p => p.IsDeleted == false && p.CreatedBy == appuserId)
+            .Select<Product, ProductOutputDto>(c => new ProductOutputDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Brand = c.Brand,
+                BasePrice = c.BasePrice,
+                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
+                Grantee = c.Grantee,
+                Description = c.Description,
+                BoothProducts = c.BoothProducts.ToList(),
+                IsConfirmed = c.IsConfirmed,
+                CategoryTitle = c.Category.Title,
+                CreatedAt = c.CreatedAt,
+
+            }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
         return result;
     }
 
