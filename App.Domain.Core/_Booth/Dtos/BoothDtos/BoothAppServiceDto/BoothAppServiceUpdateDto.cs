@@ -11,49 +11,18 @@ namespace App.Domain.Core._User.Dtos.BoothDtos.BoothAppServiceDto
 {
     public class BoothAppServiceUpdateDto
     {
-        public int SellerId { get; set; }
-        public string? SellerFirstName { get; set; }
-
-        public string? SellerLastName { get; set; }
-
-        public DateTime? SellerBirthdate { get; set; }
-
-        public string? SellerShabaNumber { get; set; }
-
-        public int? ProvinceId { get; set; }
-
-        public string City { get; set; } = null!;
-
-        public string FullAddress { get; set; } = null!;
-
-        public string PostalCode { get; set; } = null!;
-
-        public int ProfilePicId { get; set; }
-
-        public IFormFile? SellerProfilePicFile { get; set; }
 
         public int BoothId { get; set; }
+
         public string BoothName { get; set; } = null!;
 
         public string? Description { get; set; }
-
-        public int AvatarPictureId { get; set; }
 
         public IFormFile? BoothAvatarFile { get; set; }
 
     }
 }
 
-//SellerFirstName { get; set; }
-//SellerLastName { get; set; }
-//SellerBirthdate { get; set; }
-//SellerShabaNumber { get; set; }
-//ProvinceId { get; set; }
-//City { get; set; } 
-//FullAddress { get; set; } 
-//PostalCode { get; set; } 
-//ProfilePicName { get; set; }
-//SellerProfilePicFile { get; set; }
 //BoothName { get; set; }
 //Description { get; set; }
 //AvatarPictureName { get; set; }

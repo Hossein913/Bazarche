@@ -167,19 +167,23 @@ public class BoothRepository : IBoothRepository
 
     public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
+
         var BoothRecord = await _context.Booths
         .FirstOrDefaultAsync(x => x.Id == boothUpdate.Id, cancellationToken);
         if (BoothRecord != null)
         {
             BoothRecord.Name = boothUpdate.Name != null ? boothUpdate.Name : BoothRecord.Name;
-            BoothRecord.AvatarPictureId = boothUpdate.AvatarPictureId != null ? boothUpdate.AvatarPictureId : BoothRecord.AvatarPictureId;
-            BoothRecord.MedalId = boothUpdate.MedalId != null ? boothUpdate.MedalId : BoothRecord.MedalId;
+            BoothRecord.MedalId = boothUpdate.MedalId > 1 ? boothUpdate.MedalId : BoothRecord.MedalId;
             BoothRecord.Description = boothUpdate.Description != null ? boothUpdate.Description : BoothRecord.Description;
             BoothRecord.AccountBalance = boothUpdate.AccountBalance != null ? Convert.ToInt32( boothUpdate.AccountBalance) : BoothRecord.AccountBalance;
             BoothRecord.TotalSell = boothUpdate.TotalSell != null ? Convert.ToInt32(boothUpdate.TotalSell) : BoothRecord.TotalSell;
-            BoothRecord.IsActive = boothUpdate.IsActive != null ? boothUpdate.IsActive : BoothRecord.IsActive;
-            BoothRecord.IsDeleted = boothUpdate.IsDeleted != null ? boothUpdate.IsDeleted : BoothRecord.IsDeleted;
-
+            BoothRecord.IsActive = boothUpdate.IsActive != null ? Convert.ToBoolean( boothUpdate.IsActive) : BoothRecord.IsActive;
+            BoothRecord.IsDeleted = boothUpdate.IsDeleted != null ? Convert.ToBoolean(boothUpdate.IsDeleted) : BoothRecord.IsDeleted;
+            BoothRecord.AvatarPictureId = boothUpdate.AvatarPicture != null ? boothUpdate.AvatarPicture.Id : BoothRecord.AvatarPictureId;
+            if (boothUpdate.AvatarPicture != null)
+            {
+                BoothRecord.AvatarPicture = boothUpdate.AvatarPicture;
+            }
         }
         if (saveChanges)
         { await _context.SaveChangesAsync(cancellationToken); }

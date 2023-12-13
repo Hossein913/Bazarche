@@ -23,9 +23,9 @@ public partial class BoothUpdateDto
 
     public string? Description { get; set; }
 
-    public bool IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public bool? IsDeleted { get; set; }
 
 
     #region Navigation properties

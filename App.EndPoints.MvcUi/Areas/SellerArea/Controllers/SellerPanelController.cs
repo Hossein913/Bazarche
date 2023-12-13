@@ -3,6 +3,7 @@ using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Contracts.AppServices;
+using App.Domain.Core._User.Dtos.BoothDtos.BoothAppServiceDto;
 using App.Domain.Core._User.Dtos.SellersDtos.SellerAppServiceDto;
 using App.Domain.Core._User.Entities;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothViewModels;
@@ -82,7 +83,74 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                 }
             }
             _identityAppServices.LogOut();
-            return RedirectToAction("Login", "Authenticate", new { });
+            return RedirectToAction("Login", "Authenticate", new { area="" });
+        }
+
+
+
+        public async Task<ActionResult> EditBoothProfile(CancellationToken cancellationToken)
+        {
+            var Booth = await _BoothAppServices.GetDetails(CurrentBoothId, cancellationToken);
+            EditBoothProfileViewModel editBoothProfile = new EditBoothProfileViewModel {
+                BoothName = Booth.Name,
+                Description = Booth.Description,
+            };
+
+            return View(editBoothProfile);
+
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditBoothProfile(EditBoothProfileViewModel BoothProfile, CancellationToken cancellationToken)
+        {
+
+            if (ModelState.IsValid)
+            {
+
+                BoothAppServiceUpdateDto BoothUpdate = new BoothAppServiceUpdateDto
+                {
+                    BoothId = CurrentBoothId,
+                    BoothName = BoothProfile.BoothName ,
+                    Description = BoothProfile.Description ,
+                    BoothAvatarFile = BoothProfile.BoothAvatarFile ,
+                };
+
+                await _BoothAppServices.Update(BoothUpdate, CurrentUserId, _webHostEnvironment.WebRootPath, cancellationToken);
+                return RedirectToAction("Index");
+            }
+            return View(BoothProfile);
+
+        }
+
+
+
+            [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditSellerProfile(EditSellerProfileViewModel sellerProfile, CancellationToken cancellationToken)
+        {
+            if(ModelState.IsValid) {
+
+                SellerAppServiceUpdateDto SellerUpdate = new SellerAppServiceUpdateDto
+                {
+                    SellerId = CurrentSellerId,
+                    SellerFirstName = sellerProfile.FirstName,
+                    SellerLastName = sellerProfile.LastName,
+                    SellerBirthdate = sellerProfile.Birthdate,
+                    SellerShabaNumber = sellerProfile.ShabaNumber,
+                    ProvinceId = 1,
+                    City = sellerProfile.City,
+                    FullAddress = sellerProfile.FullAddress,
+                    PostalCode = sellerProfile.PostalCode,
+                    ProfilePicId = sellerProfile.ProfilePicId,
+                    SellerProfilePicFile = sellerProfile.ProfilePicFile,
+                };
+
+                await _sellerAppServices.Update(SellerUpdate, _webHostEnvironment.WebRootPath, cancellationToken);
+                return RedirectToAction("Index");
+            }
+            sellerProfile.provinces = await _addressAppServices.GetAllProvinces(CancellationToken.None);
+            return View(sellerProfile);
+            
         }
 
 
@@ -111,37 +179,6 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         {
             return View();
         }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditProfile(EditSellerProfileViewModel sellerProfile, CancellationToken cancellationToken)
-        {
-            if(ModelState.IsValid) {
-
-                SellerAppServiceUpdateDto SellerUpdate = new SellerAppServiceUpdateDto
-                {
-                    SellerId = CurrentSellerId,
-                    SellerFirstName = sellerProfile.FirstName,
-                    SellerLastName = sellerProfile.LastName,
-                    SellerBirthdate = sellerProfile.Birthdate,
-                    SellerShabaNumber = sellerProfile.ShabaNumber,
-                    ProvinceId = 1,
-                    City = sellerProfile.City,
-                    FullAddress = sellerProfile.FullAddress,
-                    PostalCode = sellerProfile.PostalCode,
-                    ProfilePicId = sellerProfile.ProfilePicId,
-                    SellerProfilePicFile = sellerProfile.ProfilePicFile,
-                };
-
-                await _sellerAppServices.Update(SellerUpdate, _webHostEnvironment.WebRootPath, cancellationToken);
-                return RedirectToAction("Index");
-            }
-            sellerProfile.provinces = await _addressAppServices.GetAllProvinces(CancellationToken.None);
-            return View(sellerProfile);
-            
-        }
-
 
         public async Task<ActionResult> Delete(int id)
         {

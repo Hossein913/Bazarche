@@ -7,7 +7,7 @@
         <img src="~/@UploadPath.Profiles/@Model.ProfilePicUrl" class="svg_img header_svg"
              alt="edit">
     </label>*@
-    <form asp-controller="SellerPanel" asp-action="EditProfile" method="post" enctype="multipart/form-data" class="row g-3">
+    <form asp-controller="SellerPanel" asp-action="EditSellerProfile" method="post" enctype="multipart/form-data" class="row g-3">
         @*@Html.HiddenFor(m => m.ProfilePicId)*@
 
         <div class="ec-vendor-upload-detail">
@@ -39,9 +39,19 @@
 
             <div class="col-md-4 space-t-15">
                 <label  class="form-label">نام استان</label>
-                <select name="categories" class="form-select">
+                <select name="categories" class="form-select" >
+                    @foreach (var item in Model.provinces)
+                    {
+                        @if (Model.ProvinceId > 0 && item.Id == Model.ProvinceId)
+                        {
+                            <option value="@item.Id" selected>@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
 
-                    <option value="individual">تهران</option>
 
 
                 </select>

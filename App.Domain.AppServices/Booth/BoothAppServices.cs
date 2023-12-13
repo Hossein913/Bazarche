@@ -1,16 +1,23 @@
 ﻿using App.Domain.Core._Booth.Contracts.AppServices;
 using App.Domain.Core._Booth.Contracts.Services;
 using App.Domain.Core._Booth.Dtos.BoothDtos;
+using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Common.Contracts.Services;
+using App.Domain.Core._Common.Entities;
+using App.Domain.Core._Common.Enums;
+using App.Domain.Core._User.Dtos.BoothDtos.BoothAppServiceDto;
 
 namespace App.Domain.AppServices.Booth
 {
     public class BoothAppServices : IBoothAppServices
     {
         protected readonly IBoothServices _boothServices;
+        protected readonly IFileServices _fileServices;
 
-        public BoothAppServices(IBoothServices boothServices)
+        public BoothAppServices(IBoothServices boothServices, IFileServices fileServices)
         {
             _boothServices = boothServices;
+            _fileServices = fileServices;
         }
 
         public async Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken)
@@ -40,9 +47,35 @@ namespace App.Domain.AppServices.Booth
             throw new NotImplementedException();
         }
 
-        public async Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken)
+        public async Task Update(BoothAppServiceUpdateDto boothUpdate, int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            Picture createPicture = null;
+            if (boothUpdate.BoothAvatarFile != null)
+            {
+                BoothUpdateDto boothAvatarUpdateDto = new BoothUpdateDto
+                {
+                    AvatarPicture = new Picture { IsDeleted = true }
+                };
+                await _boothServices.Update(boothAvatarUpdateDto, CancellationToken.None);
+                var photoName = await _fileServices.FileUploadAsync(boothUpdate.BoothAvatarFile, FileServicesEntityType.BoothAvatar, ProjectRouteAddress);
+                createPicture = new Picture
+                {
+                    ImageUrl = photoName,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = CurrentUserId,
+                    IsDeleted = false
+
+                };
+            }
+
+            BoothUpdateDto boothUpdateDto = new BoothUpdateDto
+            {
+                Id = boothUpdate.BoothId,
+                Name = boothUpdate.BoothName,
+                Description = boothUpdate.Description,
+                AvatarPicture = createPicture
+            };
+            await _boothServices.Update(boothUpdateDto, CancellationToken.None);
         }
     }
 }

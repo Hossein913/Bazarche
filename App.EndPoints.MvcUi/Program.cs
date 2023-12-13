@@ -218,7 +218,7 @@ var app = builder.Build();
 
 
 
-app.Use_ExceptionHandler();
+//app.Use_ExceptionHandler();
 
 
 // Configure the HTTP request pipeline

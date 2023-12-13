@@ -1,0 +1,46 @@
+﻿@model EditBoothProfileViewModel;
+@inject FileUploadPathsDto UploadPath;
+<!-- Modal -->
+<div class="ec-shop-rightside col-lg-9 col-md-12">
+    <div class="ec-vendor-dashboard-card">
+        <div class="ec-vendor-card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="ec-vendor-upload-detail">
+                        <div class="ec-vendor-block-img space-bottom-30">
+
+                            <form asp-controller="SellerPanel" asp-action="EditBoothProfile" method="post" enctype="multipart/form-data" class="row g-3">
+
+                                <div class="ec-vendor-upload-detail">
+                                        <h4 class="ec-title-lbg"><span>ویرایش اطلاعات غرفه </span></h4>
+
+                                        <div class="col-md-4 space-t-15">
+                                             <label asp-for="@Model.BoothName" class="form-label"> نام غرفه</label>
+                                             <input asp-for="@Model.BoothName" type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-12 space-t-15">
+                                             <label asp-for="@Model.Description" class="form-label">معرفی غرفه</label>
+                                             <input asp-for="@Model.Description" type="text" class="form-control">
+                                        </div>
+
+                                        <div class="col-md-6 space-t-15">
+                                            <label asp-for="@Model.BoothAvatarFile" class="form-label"></label>
+                                            <input asp-for="@Model.BoothAvatarFile" class="form-control" type="file" id="formFileMultiple" accept=".png, .jpg, .jpeg">
+                                        </div>
+
+                                        <div class="col-md-12 space-t-15">
+                                            <button type="submit" class="btn btn-primary mt-3">به روز رسانی</button>
+                                        </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal end -->

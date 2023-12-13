@@ -33,7 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoints.MvcUi", "App.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbBackUp", "DbBackUp", "{7E9584F4-0399-4FB7-941C-788DACD48412}"
 	ProjectSection(SolutionItems) = preProject
-		C:\Users\hosse\OneDrive\Desktop\Bazarche.sql = C:\Users\hosse\OneDrive\Desktop\Bazarche.sql
+		DbBackUp\Bazarche.bak = DbBackUp\Bazarche.bak
+		DbBackUp\Bazarche.sql = DbBackUp\Bazarche.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hangfire", "Hangfire", "{3730A21C-7443-4E04-B8B0-5C7F8DD2C32F}"
