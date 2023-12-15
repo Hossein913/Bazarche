@@ -4,22 +4,23 @@ using App.Domain.Core._Products.Dtos.CategorieDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
-using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels;
+using App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels.ProductEnum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.ObjectModel;
 using System.Threading;
+using ProductCreateViewModel = App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels.ProductCreateViewModel;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 {
     public class ProductController : BaseController
     {
         private readonly IWebHostEnvironment _hostingEnvironment;
-        private readonly ICategoryAppServices _categoryAppServices;
-        private readonly IProductAppServices _productAppServices;
+        private readonly ICategoryAppServices _categoryApp;
+        private readonly IProductAppServices _productApp;
         private readonly UserManager<AppUser> _userManager;
 
         public ProductController(
@@ -29,8 +30,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             UserManager<AppUser> userManager)
         {
             _hostingEnvironment = hostingEnvironment;
-            _categoryAppServices = categoryAppServices;
-            _productAppServices = productAppServices;
+            _categoryApp = categoryAppServices;
+            _productApp = productAppServices;
             _userManager = userManager;
         }
 
@@ -50,7 +51,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             ViewBag.BoothId = CurrentBoothId;
             CreateProductFormViewModel viewModel = new CreateProductFormViewModel();
             viewModel.Product = new ProductCreateViewModel();
-            viewModel.Categories = await _categoryAppServices.GetAll(cancellationToken);
+            viewModel.Categories = await _categoryApp.GetAll(cancellationToken);
             return View(viewModel);
         }
 
@@ -77,7 +78,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                         CreatedBy = CurrentUserId,
                     };
 
-                    var result = await _productAppServices.Create(productAppService, CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
+                    var result = await _productApp.Create(productAppService, CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
                     if (result == 0)
                     {
                         ModelState.AddModelError(string.Empty, "ذخیره کالا با مشکل روبه رو شد.");
@@ -101,7 +102,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         public async Task<ActionResult> ParentCategories(CancellationToken cancellationToken)
         {
             ViewBag.BoothId = CurrentBoothId;
-            var Categories = await _categoryAppServices.GetAll(cancellationToken);
+            var Categories = await _categoryApp.GetAll(cancellationToken);
             var CategoriesViewModel = Categories.Select(c => new ParentCategoriesViewModel
             {
                 Id = c.Id,
@@ -117,7 +118,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> CategoryProducts(int categoryId, CancellationToken cancellationToken)
         {
-            var products = await _productAppServices.GetAllByParentCategory(categoryId, cancellationToken);
+            var products = await _productApp.GetAllByParentCategory(categoryId, cancellationToken);
 
             var ProductListViewModel = products.Select(c => new ProductListViewModel
             {
@@ -137,7 +138,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> GetOwned(CancellationToken cancellationToken)
         {
-            var products = await _productAppServices.GetAllByOwner(CurrentUserId, cancellationToken);
+            var products = await _productApp.GetAllByOwner(CurrentUserId, cancellationToken);
 
             var ProductListViewModel = products.Select(p =>
             {
@@ -178,43 +179,82 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             return View(ProductListViewModel.OrderBy(p => p.OwnedProductStatus).ThenBy(p => p.CreatedAt).ToList());
         }
 
-        public ActionResult Edit(int id)
+
+        public async Task<ActionResult> Delete(int productId, CancellationToken cancellationToken)
         {
-            return View();
+            await _productApp.SoftDelete(productId, cancellationToken);
+            return RedirectToAction("GetOwned");
+        }
+
+        public async Task<ActionResult> Edit(int productId, CancellationToken cancellationToken)
+        {
+            var Categories = await _categoryApp.GetAll(cancellationToken);
+            var product = await _productApp.GetDetails(productId, cancellationToken);
+            ProductUpdateViewModel updateViewModel = new ProductUpdateViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Brand = product.Brand,
+                Grantee = product.Grantee,
+                InformationDetails = product.InformationDetails,
+                Description = product.Description,
+                IncludedComponents = product.IncludedComponents,
+                BasePrice = product.BasePrice,
+                PicturesFile = product.Pictures.ToList(),
+                CategoryId = product.CategoryId,
+                UploadPictures = new List<IFormFile>(),
+                Categories = Categories
+            };
+
+            return View(updateViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(ProductUpdateViewModel productUpdate, CancellationToken cancellationToken)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+
+                    ProductUpdateAppServiceDto productUpdateDto = new ProductUpdateAppServiceDto
+                    {
+                        Id = productUpdate.Id,
+                        Name = productUpdate.Name,
+                        Brand = productUpdate.Brand,
+                        Grantee = productUpdate.Grantee,
+                        InformationDetails = productUpdate.InformationDetails,
+                        Description = productUpdate.Description,
+                        IncludedComponents = productUpdate.IncludedComponents,
+                        BasePrice = productUpdate.BasePrice,
+                        UploadPictures = productUpdate.UploadPictures,
+                        CategoryId = productUpdate.CategoryId,
+                    };
+
+                var resultMessage =  await _productApp.Update(productUpdateDto, CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
+
+                if (resultMessage == "success")
+                {
+                    return RedirectToAction("GetOwned","Product");
+                }
+                else if (resultMessage == "owning Error")
+                {
+                    return Redirect("/Home/Error");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, resultMessage);
+                };
+
             }
-            catch
-            {
-                return View();
-            }
+            return View(productUpdate);
         }
 
 
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeletePicture(int productId, int pictureId, CancellationToken cancellationToken)
         {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _productApp.DeletePicture(productId, pictureId, cancellationToken);
+            return RedirectToAction(nameof(Edit), new { productId = productId });
         }
     }
 }

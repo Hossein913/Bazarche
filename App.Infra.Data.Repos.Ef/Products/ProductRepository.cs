@@ -214,6 +214,8 @@ public class ProductRepository : IProductRepository
                 IsConfirmed = product.IsConfirmed,
                 BasePrice = product.BasePrice,
                 Pictures = product.Pictures.Where(p => p.IsDeleted == false).ToList(),
+                CategoryId = product.CategoryId,
+                CreatedBy = product.CreatedBy,
             };
             return productRecord;
         }

@@ -1,6 +1,6 @@
 ﻿using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
-using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum;
+using App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels.ProductEnum;
 
 namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels
 {

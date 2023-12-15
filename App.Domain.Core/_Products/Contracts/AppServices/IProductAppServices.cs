@@ -22,7 +22,7 @@ namespace App.Domain.Core._Products.Contracts.AppServices
         Task<ProductOutputDto> GetDetailWithRelation(int productId, CancellationToken cancellationToken);
         Task<List<ProductOutputDto>> GetPopularOrderedProducts(int ProductCount, CancellationToken cancellationToken);
         Task<int> Create(ProductAppServiceDto product, int CurrentUserId,string ProjectRouteAddress, CancellationToken cancellationToken);
-        Task Update(ProductUpdateAppServiceDto productUpdateAppService, int CurrentUserId, string ProjectRouteAddress, CancellationToken CancellationToken);
+        Task<string> Update(ProductUpdateAppServiceDto productUpdateAppService, int CurrentUserId, string ProjectRouteAddress, CancellationToken CancellationToken);
         Task SoftDelete(int productId, CancellationToken cancellationToken);
         Task DeletePicture(int productid, int pictureid, CancellationToken cancellationToken);
         Task ConfirmProduct(int productId,bool status, CancellationToken cancellationToken);

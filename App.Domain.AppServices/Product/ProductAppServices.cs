@@ -156,19 +156,24 @@ namespace App.Domain.AppServices.Product
            var product = await _productServices.GetDetails(productId, cancellationToken);
 
            var productPrices =await _boothProductServices.GetAllForProduct(productId, cancellationToken);
-           product.BoothProducts = productPrices.Select(bp => new BoothProduct
-           {
-               Id = bp.Id,
-               Price = bp.Price,
-               Count = bp.Count,
-               Status = bp.Status,
-               CreatedAt = bp.CreatedAt,
-               Booth = bp.Booth,
-               
+            if (productPrices.Count>0)
+            {
+                product.BoothProducts = productPrices.Select(bp => new BoothProduct
+                {
+                    Id = bp.Id,
+                    Price = bp.Price,
+                    Count = bp.Count,
+                    Status = bp.Status,
+                    CreatedAt = bp.CreatedAt,
+                    Booth = bp.Booth,
+                    
 
-           }).ToList();
-
-           product.Comments = comments.OrderBy(c => c.CreatedAt).ToList();
+                }).ToList();
+            }
+            if (comments.Count > 0)
+            {
+                product.Comments = comments.OrderBy(c => c.CreatedAt).ToList();
+            }
 
             return product;
         }
@@ -184,43 +189,65 @@ namespace App.Domain.AppServices.Product
             await _productServices.SoftDelete(productId, cancellationToken);
         }
 
-        public async Task Update(ProductUpdateAppServiceDto productUpdateAppService, int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken)
+        public async Task<string> Update(ProductUpdateAppServiceDto productUpdateAppService, int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken)
         {
-            List<Picture> pictures = productUpdateAppService.Pictures.ToList();
-            if (productUpdateAppService.UploadPictures != null && productUpdateAppService.UploadPictures.Count > 0)
+
+            var product = await _productServices.GetDetails(productUpdateAppService.Id, cancellationToken);
+            if (product.CreatedBy == CurrentUserId || CurrentUserId == 1)
             {
-
-                foreach (var PhotoFile in productUpdateAppService.UploadPictures)
+                int uploadedPicture = productUpdateAppService.UploadPictures != null ? productUpdateAppService.UploadPictures.Count : 0;
+                if ((product.Pictures.Count + uploadedPicture) <= 4)
                 {
-                    var photoName = await _fileServices.FileUploadAsync(PhotoFile, FileServicesEntityType.Product, ProjectRouteAddress);
-                    Picture picture = new Picture
-                    {
-                        ImageUrl = photoName,
-                        CreatedAt = DateTime.Now,
-                        CreatedBy = CurrentUserId,
-                        IsDeleted = false
 
+                    List<Picture> pictures = product.Pictures.ToList();
+                    if (productUpdateAppService.UploadPictures != null && productUpdateAppService.UploadPictures.Count > 0)
+                    {
+
+                        foreach (var PhotoFile in productUpdateAppService.UploadPictures)
+                        {
+                            var photoName = await _fileServices.FileUploadAsync(PhotoFile, FileServicesEntityType.Product, ProjectRouteAddress);
+                            Picture picture = new Picture
+                            {
+                                ImageUrl = photoName,
+                                CreatedAt = DateTime.Now,
+                                CreatedBy = CurrentUserId,
+                                IsDeleted = false
+
+                            };
+                            pictures.Add(picture);
+                        }
+                    }
+
+                    ProductUpdateDto productCreateDto = new ProductUpdateDto
+                    {
+                        Id = productUpdateAppService.Id,
+                        Name = productUpdateAppService.Name,
+                        Brand = productUpdateAppService.Brand,
+                        Grantee = productUpdateAppService.Grantee,
+                        InformationDetails = productUpdateAppService.InformationDetails,
+                        Description = productUpdateAppService.Description,
+                        IncludedComponents = productUpdateAppService.IncludedComponents,
+                        BasePrice = productUpdateAppService.BasePrice,
+                        CategoryId = productUpdateAppService.CategoryId,
+                        Pictures = pictures
                     };
-                    pictures.Add(picture);
+
+                    await _productServices.Update(productCreateDto, cancellationToken);
+                    return "success";
                 }
+                else
+                {
+                    return "کالا بیش از 4 تصویر نمی تواند داشته باشد.";
+                }
+
+            }
+            else
+            {
+                return "owning Error";
             }
 
-            ProductUpdateDto productCreateDto = new ProductUpdateDto
-            {
-                Id = productUpdateAppService.Id,
-                Name = productUpdateAppService.Name,
-                Brand = productUpdateAppService.Brand,
-                Grantee = productUpdateAppService.Grantee,
-                InformationDetails = productUpdateAppService.InformationDetails,
-                Description = productUpdateAppService.Description,
-                IncludedComponents = productUpdateAppService.IncludedComponents,
-                BasePrice = productUpdateAppService.BasePrice,
-                CategoryId = 13,
-                IsConfirmed = productUpdateAppService.IsConfirmed,
-                Pictures = pictures
-            };
 
-            await _productServices.Update(productCreateDto, cancellationToken);
+
         }
 
         public async Task DeletePicture(int productid, int pictureid, CancellationToken cancellationToken)

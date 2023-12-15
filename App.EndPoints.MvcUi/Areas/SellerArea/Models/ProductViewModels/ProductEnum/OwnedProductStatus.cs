@@ -1,4 +1,4 @@
-﻿namespace App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product.ProductEnum
+﻿namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.ProductViewModels.ProductEnum
 {
     public enum OwnedProductStatus
     {
