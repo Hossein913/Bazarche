@@ -61,7 +61,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
                     Name = p.Name,
                     Avatar = p.Avatar,
                     Description = p.Description,
-                    BasePrice = p.Id,
+                    BasePrice = p.BasePrice,
                     CreatedAt = p.CreatedAt
                 }).ToList();
             return View(productsViewModel);

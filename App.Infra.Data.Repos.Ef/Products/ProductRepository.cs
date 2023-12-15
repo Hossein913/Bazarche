@@ -77,14 +77,15 @@ public class ProductRepository : IProductRepository
         var result = await _context.Products
             .AsNoTracking()
             .Where(p => p.IsDeleted == false && p.IsConfirmed == null)
-            .Select<Product, ProductOutputDto>(c => new ProductOutputDto
+            .Select<Product, ProductOutputDto>(p => new ProductOutputDto
             {
-                Id = c.Id,
-                Name = c.Name,
-                Brand = c.Brand,
-                Avatar = c.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
-                Grantee = c.Grantee,
-                Description = c.Description,
+                Id = p.Id,
+                Name = p.Name,
+                Brand = p.Brand,
+                Avatar = p.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl ?? null,
+                Grantee = p.Grantee,
+                Description = p.Description,
+                BasePrice = p.BasePrice,
             }).ToListAsync(cancellationToken);
         return result;
     }
