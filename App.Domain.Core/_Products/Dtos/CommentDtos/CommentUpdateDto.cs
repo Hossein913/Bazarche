@@ -24,7 +24,7 @@ public class CommentUpdateDto
 
     public bool? IsConfirmed { get; set; }
 
-    //public bool IsDeleted { get; set; }
+    public bool? IsDeleted { get; set; }
 
 
     #region Navigation properties

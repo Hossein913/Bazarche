@@ -42,7 +42,7 @@ public class CommentRepository : ICommentRepository
     {
             var result = await _context.Comments
         .AsNoTracking()
-        .Where(p => p.IsDeleted != false)
+        .Where(p => p.IsDeleted == false)
         .Select<Comment, CommentOutputDto>(c => new CommentOutputDto
         {
             Id = c.Id,
@@ -54,8 +54,8 @@ public class CommentRepository : ICommentRepository
             CreatedAt = c.CreatedAt,
             IsConfirmed = c.IsConfirmed,
             
-        }).OrderBy(p => p.CreatedAt).ToListAsync(cancellationToken);
-            return result.OrderBy(c => c.IsConfirmed).ToList();
+        }).OrderByDescending(c => c.IsConfirmed).ThenBy(p => p.CreatedAt).ToListAsync(cancellationToken);
+            return result;
     }
     
     public async Task<List<CommentOutputDto>> GetAllForBooth(int BoothId,CancellationToken cancellationToken)
@@ -114,16 +114,22 @@ public class CommentRepository : ICommentRepository
     public async Task<CommentOutputDto> GetDetail(int commentId, CancellationToken cancellationToken)
     {
         var comment = await _context.Comments
+        .Include(c => c.Product)
+        .Include(c => c.Customer)
+        .Include(c => c.OrderItem)
+        .ThenInclude(oi => oi.BoothProduct)
         .FirstOrDefaultAsync(c => c.Id == commentId && c.IsDeleted == false, cancellationToken);
 
         if (comment != null)
         {
-            var productRecord = new CommentOutputDto
+            var commentDto = new CommentOutputDto
             {
                 Id = comment.Id,
                 Text = comment.Text,
-            };
-            return productRecord;
+                Product = new ProductOutputDto{ Id = comment.Product.Id, Name = comment.Product.Name },
+                Customer = comment.Customer,
+                };
+            return commentDto;
         }
         else
         {
@@ -165,7 +171,7 @@ public class CommentRepository : ICommentRepository
         {
 
             CommentRecord.Text = commentDto.Text == null ? CommentRecord.Text : commentDto.Text;
-            CommentRecord.IsConfirmed = null;
+            CommentRecord.IsConfirmed = commentDto.IsConfirmed == null ? CommentRecord.IsConfirmed : commentDto.IsConfirmed;
 
         }
         await _context.SaveChangesAsync(cancellationToken);

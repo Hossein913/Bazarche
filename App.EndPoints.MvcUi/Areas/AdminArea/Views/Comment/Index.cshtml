@@ -22,7 +22,6 @@
                                         <th>محصول</th>
                                         <th>وضعیت نظر</th>
                                         <th>متن نظر</th>
-                                        <th>امتیازات</th>
                                         <th>تاریخ</th>
                                         <th>فعالیت</th>
                                     </tr>
@@ -32,8 +31,9 @@
                                     {
                                         <tr>
 
-                                            <td> @item.ProductName </td>
+                                            <td>
 
+                                               <a asp-area=@String.Empty asp-controller="Product" asp-action="ProductFullPage" asp-route-productId="@item.ProductId" target="_blank"> @item.ProductName </a> </td>
                                             <td>@item.CsutomerName </td>
 
                                             @if (@item.IsConfirmed == null)
@@ -55,7 +55,7 @@
                                                 </div>
                                             </td>
 
-                                            <td>@item.CreatedAt.</td>
+                                            <td>@item.CreatedAt</td>
 
                                             <td>
                                                 <div class="btn-group mb-1">
@@ -69,9 +69,48 @@
                                                         <span class="sr-only">اطلاعات</span>
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                        @if (@item.IsConfirmed == null)
+                                                        {
+                                                            <a class="dropdown-item text-success"
+                                                               asp-controller="Comment"
+                                                               asp-action="Confirmation"
+                                                               asp-route-commentId="@item.Id"
+                                                               asp-route-status=true>تایید</a>
+
+                                                            <a class="dropdown-item text-warning"
+                                                               asp-controller="Comment"
+                                                               asp-action="Confirmation"
+                                                               asp-route-commentId="@item.Id"
+                                                               asp-route-status=false>رد کردن</a>
+
+                                                        }else if (@item.IsConfirmed == true)
+                                                        {
+                                                            <a class="dropdown-item text-warning"
+                                                           asp-controller="Comment"
+                                                               asp-action="Confirmation"
+                                                               asp-route-commentId="@item.Id"
+                                                               asp-route-status=false>رد کردن</a>
+                                                        }
+
+                                                        else if (@item.IsConfirmed == false)
+                                                        {
+                                                            <a class="dropdown-item text-success"
+                                                               asp-controller="Comment"
+                                                               asp-action="Confirmation"
+                                                               asp-route-commentId="@item.Id"
+                                                               asp-route-status=true>تایید</a>
+                                                        }
+
+
+                                                        <a class="dropdown-item text-danger"
+                                                           asp-controller="Comment"
+                                                        asp-action="Edit"
+                                                        asp-route-commentId="@item.Id">ویرایش</a> 
                                                         <a class="dropdown-item"
-                                                           href="#">ویرایش</a> <a class="dropdown-item"
-                                                                                  href="#">حذف</a>
+                                                           asp-controller="Comment"
+                                                           asp-action="Delete"
+                                                           asp-route-commentId="@item.Id">حذف</a>
+                                                           
                                                     </div>
                                                 </div>
                                             </td>
