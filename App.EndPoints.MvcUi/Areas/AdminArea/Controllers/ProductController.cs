@@ -2,6 +2,7 @@
 using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Dtos.ProductDtos;
+using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
 using App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Product;
 using App.EndPoints.MvcUi.Models.Home;
@@ -171,15 +172,10 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(ProductUpdateViewModel productUpdate, CancellationToken cancellationToken)
         {
-           var product = await _productApp.GetDetails(productUpdate.Id, cancellationToken);
-            productUpdate.PicturesFile = product.Pictures.ToList();
-
 
             if (ModelState.IsValid)
             {
-                int uploadedPicture = productUpdate.UploadPictures != null ? productUpdate.UploadPictures.Count : 0;
-                if ((product.Pictures.Count + uploadedPicture) <=4)
-                {
+
 
                     ProductUpdateAppServiceDto productUpdateDto = new ProductUpdateAppServiceDto
                     {
@@ -192,16 +188,17 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
                         IncludedComponents = productUpdate.IncludedComponents ,
                         BasePrice = productUpdate.BasePrice ,
                         UploadPictures = productUpdate.UploadPictures ,
-                        Pictures = product.Pictures.ToList(),
-                        IsConfirmed = product.IsConfirmed,
                         CategoryId = productUpdate.CategoryId ,
                     };
-                    await _productApp.Update(productUpdateDto,CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
+                var resultMessage = await _productApp.Update(productUpdateDto,CurrentUserId, _hostingEnvironment.WebRootPath, cancellationToken);
+               
+                if (resultMessage == "success")
+                {
                     return RedirectToAction("Details", new {id =  productUpdate.Id});
 
                 }else
                 {
-                    ModelState.AddModelError(string.Empty, "کالا بیش از 4 تصویر نمی تواند داشته باشد.");
+                    ModelState.AddModelError(string.Empty, resultMessage);
                 };
 
             }
