@@ -109,7 +109,7 @@ namespace App.EndPoints.MvcUi.Controllers
                 InformationDetails = product.InformationDetails,
                 Description = product.Description,
                 IncludedComponents = product.IncludedComponents,
-                Comments = product.Comments.ToList(),
+                Comments = product.Comments == null ? null: product.Comments.ToList(),
                 Pictures = product.Pictures,
                 BoothProducts = product.BoothProducts
                       .OrderBy(p => p.Price)
