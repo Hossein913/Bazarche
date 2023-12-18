@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System;
 using System.Collections.Generic;
 
 namespace App.Domain.Core._User.Entities;
@@ -25,4 +26,10 @@ public class Address
 
 
     #endregion
+
+
+    public override string ToString()
+    {
+        return $"{Province.Name}-{City}-{FullAddress}[{PostalCode}]";
+    }
 }
