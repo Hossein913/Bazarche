@@ -63,7 +63,7 @@ namespace App.Domain.AppServices.Product
                 boothsId.Add(item.BoothProduct.BoothId);
             }
 
-            var customer = await _customerServices.GetDetail(CustomerId, cancellationToken);
+            var customer = await _customerServices.GetDetailsWithRelation(CustomerId, cancellationToken);
             if (TotalCustomerPayment > customer.Wallet)
             {
                 return -1;
