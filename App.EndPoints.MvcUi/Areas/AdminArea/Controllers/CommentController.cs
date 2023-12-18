@@ -30,7 +30,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
                      ProductId = c.Product.Id,
                      CsutomerName = c.Customer.FirstName + " " + c.Customer.LastName,
                      CommentText = c.Text,
-                     CreatedAt = c.CreatedAt.ToPersianDate(),
+                     CreatedAt = c.CreatedAt.ToPersianAlfabeticDate(),
                      IsConfirmed = c.IsConfirmed
             }).OrderBy(c => c.IsConfirmed).ThenBy(c => c.CreatedAt) .ToList();
 

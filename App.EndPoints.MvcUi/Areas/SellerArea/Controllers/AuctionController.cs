@@ -32,8 +32,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                 {
                     Id = a.Id ,
                     WinnerId = a.WinnerId ,
-                    StartTime = a.StartTime.ToPersianDate() ,
-                    EndTime = a.EndTime.ToPersianDate(),
+                    StartTime = a.StartTime.ToPersianNumericDate() ,
+                    EndTime = a.EndTime.ToPersianNumericDate(),
                     BasePrice = a.BasePrice ,
                     Status = a.Status ,
                     IsConfirmed = a.IsConfirmed ,
