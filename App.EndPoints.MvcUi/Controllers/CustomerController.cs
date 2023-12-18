@@ -6,6 +6,7 @@ using App.Domain.Core._User.Contracts.AppServices;
 using App.Domain.Core._User.Dtos.CustomersDtos.CustomerAppServiceDto;
 using App.EndPoints.MvcUi.Models._Auctions;
 using App.EndPoints.MvcUi.Models._Customer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,13 +19,15 @@ namespace App.EndPoints.MvcUi.Controllers
         protected readonly ICustomerAppServices _customerAppServices;
         protected readonly ICommentAppServices _commentAppServices;
         protected readonly IAuctionAppServices _auctionAppServices;
+        protected readonly IWebHostEnvironment _webHostEnvironment;
 
-        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices, IAuctionAppServices auctionAppServices)
+        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices, IAuctionAppServices auctionAppServices, IWebHostEnvironment webHostEnvironment)
         {
             _orderAppServices = orderAppServices;
             _orderItemAppServices = orderItemAppServices;
             _customerAppServices = customerAppServices;
             _auctionAppServices = auctionAppServices;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [HttpGet]
@@ -95,7 +98,7 @@ namespace App.EndPoints.MvcUi.Controllers
         [HttpGet]
         public async Task<ActionResult> Profile(CancellationToken cancellationToken)
         {
-            var customer = await _customerAppServices.GetDetail(CurrentCustomerId, cancellationToken); ;
+            var customer = await _customerAppServices.GetDetailsWithRelation(CurrentCustomerId, cancellationToken); ;
             EditCustomerViewModel editCustomerViewModel = new EditCustomerViewModel{
                 FirstName  =customer.Firstname ,
                 LastName  =customer.Lastname ,
@@ -113,16 +116,16 @@ namespace App.EndPoints.MvcUi.Controllers
         public async Task<ActionResult> EditProfile(EditCustomerViewModel customerViewModel,CancellationToken cancellationToken)
         {
             CustomerAppServiceUpdateDto customerAppServiceDto = new CustomerAppServiceUpdateDto{
-                CustomerId = CurrentCustomerId ,
-                CustomerFirstName = customerViewModel.FirstName ,
-                CustomerLastName = customerViewModel.LastName ,
-                CustomerBirthdate = customerViewModel.Birthdate ,
+                Id = CurrentCustomerId ,
+                FirstName = customerViewModel.FirstName ,
+                LastName = customerViewModel.LastName ,
+                Birthdate = customerViewModel.Birthdate ,
                 ProvinceId = 1 ,
                 City = customerViewModel.City , 
                 FullAddress = customerViewModel.FullAddress , 
                 PostalCode = customerViewModel.PostalCode , 
             };
-            await _customerAppServices.Update(customerAppServiceDto, cancellationToken);
+            await _customerAppServices.Update(customerAppServiceDto,CurrentUserId, _webHostEnvironment.WebRootPath, cancellationToken);
             return RedirectToAction("Profile", "Customer");
         }
 

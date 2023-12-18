@@ -25,9 +25,15 @@ public class CustomerServices : ICustomerServices
         return result;
     }
 
-    public async Task<CustomerOutputDto> GetDetail(int customerId, CancellationToken cancellationToken)
+    public async Task<CustomerOutputDto> GetDetailsWithRelation(int customerId, CancellationToken cancellationToken)
     {
-        var result = await _customerRepository.GetDetail(customerId, cancellationToken);
+        var result = await _customerRepository.GetDetailsWithRelation(customerId, cancellationToken);
+        return result;
+    }
+
+    public async Task<CustomerOutputDto> GetDetails(int customerId, CancellationToken cancellationToken)
+    {
+        var result = await _customerRepository.GetDetails(customerId, cancellationToken);
         return result;
     }
 

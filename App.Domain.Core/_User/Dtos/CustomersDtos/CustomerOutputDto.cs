@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Common.Entities;
 using App.Domain.Core._Products.Entities;
 using App.Domain.Core._User.Entities;
+using App.Domain.Core._User.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -14,21 +15,23 @@ public partial class CustomerOutputDto
 
     public string? Lastname { get; set; }
 
-    public bool? Sexuality { get; set; }
+    public CustomerSexuality Sexuality { get; set; }
 
-    public string ProfilePicFile { get; set; }
+    public string? ProfilePicFile { get; set; }
 
-    //public int? ProfilePicId { get; set; }
+    public int? ProfilePicId { get; set; }
 
     public int? AddressId { get; set; }
 
-    public int CartOrderId { get; set; }
+    public int? CartOrderId { get; set; }
 
     public DateTime? Birthdate { get; set; }
 
     public int? Wallet { get; set; }
 
     public int AppUserId { get; set; }
+
+    public int OrdersCount { get; set; }
 
 
     #region Navigation properties
