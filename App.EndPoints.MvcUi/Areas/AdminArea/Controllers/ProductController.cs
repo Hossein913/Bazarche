@@ -87,7 +87,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
                 CategoryId= product.CategoryId ,
                 Pictures= product.Pictures ,
                 BoothProducts= product.BoothProducts , 
-
+                
             };
             return View(ProductDetails);
         }
