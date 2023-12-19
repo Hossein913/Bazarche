@@ -46,9 +46,9 @@ namespace App.Domain.AppServices.User
             return result;
         }
 
-        public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
+        public async Task<SellerOutputDto> GetDetails(int sellerAppUserId, CancellationToken cancellationToken)
         {
-            var result = await _sellerServices.GetDetail(sellerAppUserId, cancellationToken);
+            var result = await _sellerServices.GetDetails(sellerAppUserId, cancellationToken);
             return result;
         }
 

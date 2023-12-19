@@ -121,7 +121,7 @@ public class SellerRepository : ISellerRepository
 
 
 
-    public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> GetDetails(int sellerAppUserId, CancellationToken cancellationToken)
     {
 
         var sellerUser = await _context.Sellers
