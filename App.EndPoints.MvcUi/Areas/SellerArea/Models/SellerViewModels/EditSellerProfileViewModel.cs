@@ -19,6 +19,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.SellerViewModels
         public DateTime? Birthdate { get; set; }
 
         [DisplayName("شاره شبا بانکی"), Required(ErrorMessage = "شماره شبا بانکی نمی تواند خالی باشد.")]
+        [MaxLength(26, ErrorMessage = " شبا بانکی را بررسی کنید.")]
+        [RegularExpression(@"^(?:IR)(?=.{24}$)[0-9]*$", ErrorMessage = "شماره شبا معتبر نمی باشد.")]
         public string? ShabaNumber { get; set; }
 
         [DisplayName(" استان"), Required(ErrorMessage = "نام استان را انتخال کنید.")]
