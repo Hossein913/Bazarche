@@ -22,8 +22,3 @@ namespace App.Domain.Core._User.Dtos.BoothDtos.BoothAppServiceDto
 
     }
 }
-
-//BoothName { get; set; }
-//Description { get; set; }
-//AvatarPictureName { get; set; }
-//BoothAvatarFile { get; set; }

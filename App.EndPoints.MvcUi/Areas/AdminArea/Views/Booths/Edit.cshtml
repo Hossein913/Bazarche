@@ -1,0 +1,74 @@
+﻿@model UpdateBoothViewModel;
+@inject FileUploadPathsDto filePaths;
+
+<div class="ec-content-wrapper">
+    <div class="content">
+
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>ویرایش اطلاعات کاربر</h1>
+                <p class="breadcrumbs">
+                    <span><a href="index.html">خانه</a></span> <span>
+                        <i class="mdi mdi-chevron-left"></i>
+                    </span>کاربر
+                </p>
+            </div>
+
+            <div><a asp-controller="Sellers" asp-action="Details" asp-route-sellerId="@Model.SellerId" class="btn btn-primary">بازگشت</a></div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="col-12">
+                            <div class="card-img mx-auto rounded-circle">
+                                <img class="img-fluid" src="~/@filePaths.BoothAvatar/@Model.AvatarUrl" alt="user image">
+                            </div>
+                            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                                @Html.HiddenFor(m => m.Id)
+                                @*@Html.HiddenFor(m => m.AvatarUrl)*@
+                                @Html.HiddenFor(m => m.AvatarId)
+                                @Html.HiddenFor(m => m.SellerId)
+
+                                <div class="form-group row mb-6">
+                                    <div class="col-sm-8 col-lg-6">
+                                            <label asp-for="AvatarFileUpload" for="coverImage" class="col-sm-4 col-lg-2 col-form-label">  تصویر </label>
+                                        <div class="custom-file mb-1">
+                                            <input asp-for="AvatarFileUpload" type="file" class="custom-file-input" id="coverImage">
+                                            <label class="custom-file-label" for="coverImage">انتخاب فایل<label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label asp-for="Name"></label>
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                            <input asp-for="Name" class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-12 space-t-15">
+                                    <label asp-for="@Model.Description" class="form-label">آدرس کامل</label>
+                                    <textarea asp-for="@Model.Description" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                </div>
+
+
+                                <div class="d-flex justify-content-end mt-5">
+                                    <button type="submit" class="btn btn-primary mb-2 btn-pill">
+                                        به روز رسانی پروفایل
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

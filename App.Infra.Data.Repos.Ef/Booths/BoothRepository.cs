@@ -212,5 +212,19 @@ public class BoothRepository : IBoothRepository
         if (saveChanges)
         { await _context.SaveChangesAsync(cancellationToken); }
     }
+
+    public async Task SetActivity(int BoothId, bool status, CancellationToken cancellationToken)
+    {
+        var commentRecord = await _context.Booths
+        .FirstOrDefaultAsync(x => x.Id == BoothId, cancellationToken);
+
+        if (commentRecord != null)
+        {
+            commentRecord.IsActive = status;
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+
+    }
 }
 

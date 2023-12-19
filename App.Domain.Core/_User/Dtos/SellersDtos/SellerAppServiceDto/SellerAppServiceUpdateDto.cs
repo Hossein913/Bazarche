@@ -11,14 +11,14 @@ namespace App.Domain.Core._User.Dtos.SellersDtos.SellerAppServiceDto
 {
     public class SellerAppServiceUpdateDto
     {
-        public int SellerId { get; set; }
-        public string? SellerFirstName { get; set; }
+        public int Id { get; set; }
+        public string? FirstName { get; set; }
 
-        public string? SellerLastName { get; set; }
+        public string? LastName { get; set; }
 
-        public DateTime? SellerBirthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
-        public string? SellerShabaNumber { get; set; }
+        public string? ShabaNumber { get; set; }
 
         public int? ProvinceId { get; set; }
 
@@ -35,17 +35,14 @@ namespace App.Domain.Core._User.Dtos.SellersDtos.SellerAppServiceDto
     }
 }
 
-//SellerFirstName { get; set; }
-//SellerLastName { get; set; }
-//SellerBirthdate { get; set; }
-//SellerShabaNumber { get; set; }
+//Id { get; set; }
+//FirstName { get; set; }
+//LastName { get; set; }
+//Birthdate { get; set; }
+//ShabaNumber { get; set; }
 //ProvinceId { get; set; }
-//City { get; set; } 
+//City { get; set; }
 //FullAddress { get; set; } 
 //PostalCode { get; set; } 
-//ProfilePicName { get; set; }
+//ProfilePicId { get; set; }
 //SellerProfilePicFile { get; set; }
-//BoothName { get; set; }
-//Description { get; set; }
-//AvatarPictureName { get; set; }
-//BoothAvatarFile { get; set; }

@@ -101,5 +101,10 @@ namespace App.Domain.Services.Booth
 
 
         }
+
+        public async Task SetActivity(int BoothId, bool status, CancellationToken cancellationToken)
+        {
+            await _boothRepository.SetActivity(BoothId, status, cancellationToken);
+        }
     }
 }

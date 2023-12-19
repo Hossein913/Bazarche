@@ -52,23 +52,29 @@ public class SellerRepository : ISellerRepository
 
     public async Task<List<SellerOutputDto>> GetAll(CancellationToken cancellationToken)
     {
-        return await _context.Sellers.AsNoTracking().Where(p => p.AppUser.IsDeleted == false).Select<Seller, SellerOutputDto>(c => new SellerOutputDto
-        {
-            Id = c.Id,
-            Firstname = c.FirstName,
-            Lastname = c.LastName,
-            AddressId = c.AddressId,
-            ProfilePicFile = c.ProfilePic.ImageUrl ?? null,
-            Birthdate = c.Birthdate,
-            ShabaNumber = c.ShabaNumber,
-            BoothId = c.BoothId,
-            BoothName = c.Booth.Name,
-            AppuserId = c.AppUserId
+        var result =  await _context.Sellers
+            .AsNoTracking()
+            .Where(p => p.AppUser.IsDeleted == false)
+            .Include(s =>s.Booth).ThenInclude(b => b.AvatarPicture)
+            .Include(s =>s.Booth).ThenInclude(b => b.Medal)
+            .Select<Seller, SellerOutputDto>(c => new SellerOutputDto
+                    {
+                    Id = c.Id,
+                    Firstname = c.FirstName,
+                    Lastname = c.LastName,
+                    //AddressId = c.AddressId,
+                    // ProfilePicFile = c.ProfilePic.ImageUrl ?? null,
+                    //Birthdate = c.Birthdate,
+                    //ShabaNumber = c.ShabaNumber,
+                    Booth = c.Booth,
+                    AppUser = c.AppUser
 
-        }).ToListAsync(cancellationToken);
+                    }).ToListAsync(cancellationToken);
+
+        return result;
     }
 
-    public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
+    public async Task<SellerOutputDto> GetDetailWithRilations(int sellerAppUserId, CancellationToken cancellationToken)
     {
         //----Attention ---> when we show the user profile it's possible to decide to
         //                   Update Address and Avatar therefor force to Include object's
@@ -77,6 +83,14 @@ public class SellerRepository : ISellerRepository
         var sellerUser = await _context.Sellers
             .Include(a => a.ProfilePic)
             .Include(a => a.AppUser)
+            .Include(a => a.Booth)
+            .ThenInclude(b => b.BoothProducts)
+            .Include(a => a.Booth)
+            .ThenInclude(b => b.Auctions)
+            .Include(a => a.Booth)
+            .ThenInclude(b => b.Medal)
+            .Include(a => a.Booth)
+            .ThenInclude(b => b.AvatarPicture)
             .Include(a => a.Address)
             .ThenInclude(ad => ad.Province)
             .FirstOrDefaultAsync(a => a.Id == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
@@ -90,11 +104,46 @@ public class SellerRepository : ISellerRepository
                 Firstname = sellerUser.FirstName,
                 Lastname = sellerUser.LastName,
                 Birthdate = sellerUser.Birthdate,
-                Address = sellerUser.Address,
                 ShabaNumber = sellerUser.ShabaNumber,
+                Address = sellerUser.Address,
                 ProfilePic = sellerUser.ProfilePic,
                 AppUser = sellerUser.AppUser,
-                BoothId = sellerUser.BoothId
+                Booth = sellerUser.Booth
+
+            };
+            return sellerRecord;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+
+
+    public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
+    {
+
+        var sellerUser = await _context.Sellers
+            .Include(a => a.ProfilePic)
+            .Include(a => a.Address)
+            .ThenInclude(ad => ad.Province)
+            .FirstOrDefaultAsync(a => a.Id == sellerAppUserId && a.AppUser.IsDeleted == false, cancellationToken);
+
+        if (sellerUser != null)
+        {
+            var sellerRecord = new SellerOutputDto
+            {
+
+                Id = sellerUser.Id,
+                Firstname = sellerUser.FirstName,
+                Lastname = sellerUser.LastName,
+                Birthdate = sellerUser.Birthdate,
+                ShabaNumber = sellerUser.ShabaNumber,
+                Address = sellerUser.Address,
+                ProfilePic = sellerUser.ProfilePic,
+                AppUser = sellerUser.AppUser,
+                Booth = sellerUser.Booth
 
             };
             return sellerRecord;
@@ -118,6 +167,19 @@ public class SellerRepository : ISellerRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task SetActivity(int sellerId,bool status, CancellationToken cancellationToken)
+    {
+        var sellerRecord = await _context.Sellers.Include(a => a.AppUser)
+        .FirstOrDefaultAsync(x => x.Id == sellerId, cancellationToken);
+
+        if (sellerRecord != null)
+        {
+            sellerRecord.AppUser.IsActive = status;
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
     public async Task Update(SellerUpdateDto sellerUpdate, CancellationToken cancellationToken, bool saveChanges = true)
     {
         var sellerRecord = await _context.Sellers
@@ -125,11 +187,12 @@ public class SellerRepository : ISellerRepository
         if (sellerRecord != null)
         {
             sellerRecord.FirstName = sellerUpdate.Firstname != null ? sellerUpdate.Firstname : sellerRecord.FirstName;
-            sellerRecord.LastName = sellerUpdate.Lastname != null ? sellerUpdate.Firstname : sellerRecord.LastName;
+            sellerRecord.LastName = sellerUpdate.Lastname != null ? sellerUpdate.Lastname : sellerRecord.LastName;
             sellerRecord.ProfilePicId = sellerUpdate.ProfilePicId != 0 ? sellerUpdate.ProfilePicId : sellerRecord.ProfilePicId;
             sellerRecord.Birthdate = sellerUpdate.Birthdate != null ? sellerUpdate.Birthdate : sellerRecord.Birthdate;
-            sellerRecord.ShabaNumber = sellerUpdate.ShabaNumber != null ? sellerUpdate.Firstname : sellerRecord.ShabaNumber;
+            sellerRecord.ShabaNumber = sellerUpdate.ShabaNumber != null ? sellerUpdate.ShabaNumber : sellerRecord.ShabaNumber;
             sellerRecord.BoothId = sellerUpdate.BoothId != null ? sellerUpdate.BoothId : sellerRecord.BoothId;
+            sellerRecord.Address = sellerUpdate.Address != null ? sellerUpdate.Address : sellerRecord.Address;
         }
         if (saveChanges)
         {

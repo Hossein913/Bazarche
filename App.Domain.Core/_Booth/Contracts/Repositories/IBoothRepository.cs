@@ -12,4 +12,5 @@ public interface IBoothRepository
     Task Update(BoothUpdateDto boothUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task GroupUpdate(List<BoothUpdateDto> boothUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task SoftDelete(int BoothId, CancellationToken cancellationToken);
+    Task SetActivity(int BoothId, bool status, CancellationToken cancellationToken);
 }

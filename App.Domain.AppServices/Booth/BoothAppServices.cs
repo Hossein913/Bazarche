@@ -42,7 +42,12 @@ namespace App.Domain.AppServices.Booth
             return result;
         }
 
-        public async Task SoftDelete(int BoothId, CancellationToken cancellationToken)
+        public async Task SetActivity(int BoothId, bool status, CancellationToken cancellationToken)
+        {
+            await _boothServices.SetActivity(BoothId, status,cancellationToken);
+        }
+
+        public Task SoftDelete(int BoothId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }

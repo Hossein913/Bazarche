@@ -1,4 +1,5 @@
 ﻿using App.Domain.Core._Booth.Dtos.BoothDtos;
+using App.Domain.Core._Booth.Entities;
 using App.Domain.Core._Common.Contracts.Services;
 using App.Domain.Core._Common.Dtos.AppSettingDtos;
 using App.Domain.Core._Common.Entities;
@@ -39,21 +40,34 @@ namespace App.Domain.AppServices.User
             throw new NotImplementedException();
         }
 
-        public Task<List<SellerOutputDto>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<SellerOutputDto>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var result = await _sellerServices.GetAll(cancellationToken);
+            return result;
         }
 
-        public async Task<SellerOutputDto> GetDetails(int sellerAppUserId, CancellationToken cancellationToken)
+        public async Task<SellerOutputDto> GetDetail(int sellerAppUserId, CancellationToken cancellationToken)
         {
             var result = await _sellerServices.GetDetail(sellerAppUserId, cancellationToken);
+            return result;
+        }
+
+        public async Task<SellerOutputDto> GetDetailWithRilations(int sellerAppUserId, CancellationToken cancellationToken)
+        {
+            var result = await _sellerServices.GetDetailWithRilations(sellerAppUserId, cancellationToken);
             return result;
 
         }
 
-        public Task SoftDelete(int sellerId, CancellationToken cancellationToken)
+        public async Task SoftDelete(int sellerId,int boothId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _sellerServices.SoftDelete(sellerId, boothId, cancellationToken);
+        }
+
+        public async Task SetActivity(int sellerId, bool status, CancellationToken cancellationToken)
+        {
+            await _sellerServices.SetActivity(sellerId, status, cancellationToken);
+
         }
 
         public async Task Update(SellerAppServiceUpdateDto sellerUpdate,string projectRouteAddress, CancellationToken cancellationToken)
@@ -76,13 +90,15 @@ namespace App.Domain.AppServices.User
 
             SellerUpdateDto sellerUpdateDto = new SellerUpdateDto
             {
-                Id = sellerUpdate.SellerId,
-                Firstname = sellerUpdate.SellerFirstName,
-                Lastname = sellerUpdate.SellerLastName,
-                Birthdate = sellerUpdate.SellerBirthdate,
-                ShabaNumber = sellerUpdate.SellerShabaNumber,
+                Id = sellerUpdate.Id,
+                Firstname = sellerUpdate.FirstName,
+                Lastname = sellerUpdate.LastName,
+                Birthdate = sellerUpdate.Birthdate,
+                ShabaNumber = sellerUpdate.ShabaNumber,
                 Address = address,
             };
+
+            await _sellerServices.Update(sellerUpdateDto, cancellationToken);
 
         }
     }

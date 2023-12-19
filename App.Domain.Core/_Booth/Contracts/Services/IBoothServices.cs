@@ -14,4 +14,5 @@ public interface IBoothServices
     Task ChangeMedal(List<int> BoothIds, CancellationToken cancellationToken);
     Task GroupUpdate(List<BoothUpdateDto> boothUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task SoftDelete(int BoothId, CancellationToken cancellationToken);
+    Task SetActivity(int sellerId, bool status, CancellationToken cancellationToken);
 }

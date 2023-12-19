@@ -45,6 +45,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.ViewModels.Customers;
         public string FullAddress { get; set; } = null!;
 
         [DisplayName("کد پستی"), Required(ErrorMessage = "کد پستی نمی تواند خالی باشد.")]
+        [MaxLength(10)]
         public string PostalCode { get; set; } = null!;
 
         public List<ProvinceOutputDto>? Provinces { get; set; }

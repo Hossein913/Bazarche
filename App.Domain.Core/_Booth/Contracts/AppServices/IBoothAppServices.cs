@@ -11,4 +11,5 @@ public interface IBoothAppServices
     Task Create(BoothCreateDto boothCreate, CancellationToken cancellationToken);
     Task Update(BoothAppServiceUpdateDto boothUpdate, int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken);
     Task SoftDelete(int BoothId, CancellationToken cancellationToken);
+    Task SetActivity(int sellerId, bool status, CancellationToken cancellationToken);
 }

@@ -39,7 +39,6 @@ public partial class SellerOutputDto
 
     public virtual Booth? Booth { get; set; }
 
-
     public virtual AppUser AppUser { get; set; }
 
     #endregion
