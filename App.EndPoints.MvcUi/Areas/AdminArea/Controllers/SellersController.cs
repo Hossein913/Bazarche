@@ -64,7 +64,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
 
         public async Task<ActionResult> Edit(int sellerId, CancellationToken cancellationToken)
         {
-            var result = await _SellerApp.GetDetail(sellerId, cancellationToken);
+            var result = await _SellerApp.GetDetails(sellerId, cancellationToken);
             var provinces = await _addressApp.GetAllProvinces(cancellationToken);
             UpdateSellerViewModel updateSeller = new UpdateSellerViewModel
             {
