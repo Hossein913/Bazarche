@@ -48,7 +48,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         {
             //ViewBag.BoothId = CurrentBoothId;
             //ViewBag.SellerAppUserId = CurrentUserId;
-            var SellerUser = await _sellerAppServices.GetDetails(CurrentSellerId, cancellationToken);
+            var SellerUser = await _sellerAppServices.GetDetailWithRilations(CurrentSellerId, cancellationToken);
             
             if (SellerUser != null)
             {
@@ -132,11 +132,11 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
 
                 SellerAppServiceUpdateDto SellerUpdate = new SellerAppServiceUpdateDto
                 {
-                    SellerId = CurrentSellerId,
-                    SellerFirstName = sellerProfile.FirstName,
-                    SellerLastName = sellerProfile.LastName,
-                    SellerBirthdate = sellerProfile.Birthdate,
-                    SellerShabaNumber = sellerProfile.ShabaNumber,
+                    Id = CurrentSellerId,
+                    FirstName = sellerProfile.FirstName,
+                    LastName = sellerProfile.LastName,
+                    Birthdate = sellerProfile.Birthdate,
+                    ShabaNumber = sellerProfile.ShabaNumber,
                     ProvinceId = 1,
                     City = sellerProfile.City,
                     FullAddress = sellerProfile.FullAddress,
