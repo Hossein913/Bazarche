@@ -91,9 +91,9 @@
                     </a>
                     <!-- Header Top Category Toggle End -->
                     <!-- Header Top Message Start -->
-                    <div class="col text-center header-top-center">
+                    <div class="col text-right">
                         <div class="header-top-message text-upper">
-                            <span> توجه توجه  توجه توجه  توجه توجه  توجه توجه  توجه توجه </span>
+                            <span>توسعه دهنده: </span><a href="mailto:hossein913@gmial.comn" class=" text-reset">حسین بشارتی</a>
                         </div>
                     </div>
                     <!-- Header Top Message End -->
@@ -180,28 +180,18 @@
                                                 <li><a asp-area="" asp-controller="Home" asp-action="Index">صفحه اصلی سایت</a></li>
 
                                                 <li class="dropdown">
-                                                    <a href="javascript:void(0)">صفحات دیگر</a>
+                                                    <a href="javascript:void(0)">درباره ما </a>
+                                                <li class="dropdown">
+                                                    <span class="main-label-note-new"
+                                                          data-toggle="tooltip"
+                                                          title="NEW"></span><a asp-controller="Home" asp-action="GetAuctions">پیشنهادات داغ</a>
+
+                                                </li>
                                                     <ul class="sub-menu">
-                                                        <li><a href="about-us.html">درباره ما</a></li>
-                                                        <li><a href="privacy-policy.html">سیاست حفظ حریم خصوصی</a></li>
+                                                        <li><a href="https://github.com/Hossein913/Bazarche">گیت</a></li>
+                                                        <li><a href="mailto:Hossein913@gmail.com">ایمیل </a></li>
                                                     </ul>
                                                 </li>
-
-                                                @if (signInManager.IsSignedIn(User))
-                                                {
-                                                    @if (User.IsInRole("Admin"))
-                                                    {
-                                                        <li><a href="index.html">پنل مدیریت </a></li>
-                                                    }
-                                                    @if (User.IsInRole("Seller"))
-                                                    {
-                                                        <li><a href="index.html">پنل غرفه</a></li>
-                                                    }
-                                                    @if (User.IsInRole("Csutomer"))
-                                                    {
-                                                        <li><a href="index.html">پروفایل من </a></li>
-                                                    }
-                                                }
 
                                             </ul>
 
@@ -226,6 +216,8 @@
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         @if (signInManager.IsSignedIn(User))
                                         {
+   
+
                                             <Form mathod="Post" asp-area="" asp-controller="Authenticate" asp-action="Logout">
                                             <li> <button type="submit" class="dropdown-item">خروج</button></li>
                                             </Form>
@@ -515,8 +507,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="text-center footer-off-msg">
-                            <span>مسابقه را ببرید و نسخه محدود رایگان را جایزه بگیرید</span><a href="#"
-                                                                                               target="_blank">مشاهده جزییات</a>
+                           @* <span></span><a href="#"
+                                                                                               target="_blank">مشاهده جزییات</a>*@
                         </div>
                     </div>
                 </div>

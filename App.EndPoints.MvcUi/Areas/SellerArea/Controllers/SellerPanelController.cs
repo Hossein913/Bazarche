@@ -48,17 +48,16 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         {
             //ViewBag.BoothId = CurrentBoothId;
             //ViewBag.SellerAppUserId = CurrentUserId;
-            var SellerUser = await _sellerAppServices.GetDetailWithRilations(CurrentSellerId, cancellationToken);
+            var SellerUser = await _sellerAppServices.GetDetails(CurrentSellerId, cancellationToken);
             
             if (SellerUser != null)
             {
-                
 
-                var Booth = await _BoothAppServices.GetDetailsWithRelations(Convert.ToInt32(SellerUser.BoothId), cancellationToken);
-                
-                if (Booth.IsActive == true)
+                var Booth = await _BoothAppServices.GetDetailsWithRelations(Convert.ToInt32(SellerUser.Booth.Id), cancellationToken);
+
+                if (Booth != null && Booth.IsActive == true)
                 {
-                    var Products = await _productAppServices.GetAllForBooth(Convert.ToInt32(SellerUser.BoothId), cancellationToken);
+                    var Products = await _productAppServices.GetAllForBooth(Convert.ToInt32(SellerUser.Booth.Id), cancellationToken);
                     Products.Select(
                         p => p.BoothProducts == Booth.BoothProducts.Where(bp => bp.ProductId == p.Id));
 
