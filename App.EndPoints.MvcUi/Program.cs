@@ -183,8 +183,13 @@ builder.Services.AddMvc(Option =>
 #endregion
 
 #region AppSetting Injectoin
+
 var uploadPath = builder.Configuration.GetSection("FileUploadPaths").Get<FileUploadPathsDto>();
 builder.Services.AddSingleton(uploadPath);
+
+var AppSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
+builder.Services.AddSingleton(AppSettings);
+
 #endregion
 
 
