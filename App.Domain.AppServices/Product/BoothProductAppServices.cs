@@ -1,6 +1,7 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
+using App.Domain.Core._Products.Entities;
 using App.Domain.Core._Products.Enums;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,10 @@ namespace App.Domain.AppServices.Product
         public async Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+        public async Task SetActivity(int BoothProductId, CancellationToken cancellationToken)
+        {
+            await _boothProductServices.SetActivity(BoothProductId, cancellationToken);
         }
 
         public async Task Update(BoothProductUpdateDto boothProduct, CancellationToken cancellationToken)

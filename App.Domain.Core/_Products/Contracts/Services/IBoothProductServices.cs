@@ -10,5 +10,6 @@ public interface IBoothProductServices
     Task<int> GetProductIdAsync(int boothProductId, CancellationToken cancellationToken);
     Task Update(BoothProductUpdateDto boothProduct, CancellationToken cancellationToken);
     Task SoftDelete(int BoothProductId, CancellationToken cancellationToken);
+    Task SetActivity(int BoothProductId, CancellationToken cancellationToken);
     Task ChangeBoothProductState(int boothProductId, BoothProductStatus status, CancellationToken cancellationToken);
 }

@@ -21,8 +21,12 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothProductViewModels
         public string ProductBrand { get; set; } 
 
         public Picture Avatar { get; set; } 
+        
+        public bool HasBoothProduct { get; set; } 
 
         public string MainUrl { get; set; } 
+
+
 
     }
 }

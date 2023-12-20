@@ -69,7 +69,7 @@
                                 <td><span>@item.Description</span></td>
                                 <td><span>@item.BoothProducts.FirstOrDefault().Count</span></td>
                                 <td><span>@item.BoothProducts.FirstOrDefault().Price</span></td>
-                                <td><span><a class="btn btn-lg btn-danger" asp-controller="BoothProduct" asp-action="Cancel" asp-route-boothProdcutId="@item.Id"> غیر فعال کردن قیمت</a></span></td>
+                                <td><span><a class="btn btn-lg btn-danger" asp-controller="BoothProduct" asp-action="SetActivity" asp-route-boothProductId="@item.Id"> غیر فعال کردن قیمت</a></span></td>
                             </tr>
 
                             Productcounter++; 

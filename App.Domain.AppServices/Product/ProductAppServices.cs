@@ -7,6 +7,7 @@ using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -156,9 +157,9 @@ namespace App.Domain.AppServices.Product
            var product = await _productServices.GetDetails(productId, cancellationToken);
 
            var productPrices =await _boothProductServices.GetAllForProduct(productId, cancellationToken);
-            if (productPrices.Count>0)
+            if (productPrices != null && productPrices.Count>0)
             {
-                product.BoothProducts = productPrices.Select(bp => new BoothProduct
+                product.BoothProducts = productPrices.Where(bp => bp.Status ==Convert.ToBoolean(BoothProductStatus.Active)).Select(bp => new BoothProduct
                 {
                     Id = bp.Id,
                     Price = bp.Price,

@@ -1,5 +1,6 @@
 ﻿using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Dtos.BoothProductDtos;
+using App.Domain.Core._Products.Entities;
 using App.EndPoints.MvcUi.Areas.SellerArea.Models.BoothProductViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     ProductName = product.Name ,
                     ProductBrand = product.Brand ,
                     Avatar = product.Pictures.FirstOrDefault() ,
+                    HasBoothProduct = product.BoothProducts.Any(bp => bp.Booth.Id == CurrentBoothId)? true : false,
                     MainUrl = Request.Headers["Referer"].ToString(),
                 };
             }
@@ -58,19 +60,12 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
             return RedirectToAction("Create", new { ProductId = boothProduct.ProductId });
         }
 
-        public async Task<ActionResult> Index()
-        {
-            return View();
-        }
 
-        public async Task<ActionResult> Details(int id)
-        {
-            return View();
-        }
 
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> SetActivity(int boothProductId, CancellationToken cancellationToken)
         {
-            return View();
+            await _boothProductApp.SetActivity(boothProductId, cancellationToken);
+            return RedirectToAction("Index", "SellerPanel");
         }
 
         [HttpPost]

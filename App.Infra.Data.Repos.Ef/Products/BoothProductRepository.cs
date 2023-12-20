@@ -96,6 +96,18 @@ public class BoothProductRepository : IBoothProductRepository
     //    throw new NotImplementedException();
     //}
 
+    public async Task SetActivity(int BoothProductId, CancellationToken cancellationToken)// Is usable for admin to remove a BoothProduct
+    {
+        var boothProductRecord = await _context.BoothProducts
+        .FirstOrDefaultAsync(x => x.Id == BoothProductId, cancellationToken);
+
+        if (boothProductRecord != null)
+        {
+            boothProductRecord.Status = Convert.ToBoolean(BoothProductStatus.History);
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+    }
 
     public async Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)// Is usable for admin to remove a BoothProduct
     {

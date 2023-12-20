@@ -13,7 +13,7 @@
             <div class="ec-vendor-card-header">
                 <h5> جزئیات سفارش</h5>
                 <div class="ec-header-btn">
-                    <a class="btn btn-lg btn-success" asp-controller="Customer" asp-action="Index">بازگشت  </a>
+                    <a class="btn btn-lg btn-success" href="@Model.MainUrl">بازگشت  </a>
 
                 </div>
             </div>
@@ -35,27 +35,36 @@
 
                         <h5 class="ec-single-title">@Model.ProductName</h5>
                         <h5 class="ec-single-title">برند :@Model.ProductBrand</h5>
+                        @if (Model.HasBoothProduct)
+                        {
+                            <span class="ec-fs-count-desc">
+                                <b class="text-danger">
+                                    یک قیمت از پیش ثبت  شده است ابتدا قیمت را غیر فعال کنید.
+                                </b>
+                            </span>
+                        }
+                        else{
+                            <form method="post">
+                                @Html.HiddenFor(m => m.ProductId)
+                                <div class="row d-flex align-items-end">
+                                    <div class=" col-4">
+                                         <label asp-for="@Model.Price" class="form-label"></label>
+                                         <input asp-for="@Model.Price" class="form-control" type="text"/>
+                                    </div>
 
-                        <form method="post">
-                            @Html.HiddenFor(m => m.ProductId)
-                            <div class="row d-flex align-items-end">
-                                <div class=" col-4">
-                                     <label asp-for="@Model.Price" class="form-label"></label>
-                                     <input asp-for="@Model.Price" class="form-control" type="text"/>
-                                </div>
+                                    <div class=" col-4">
+                                        <label asp-for="@Model.Count" class="form-label"></label>
+                                    <input asp-for="@Model.Count" class="form-control" type="text" />
+                                    </div>
 
-                                <div class=" col-4">
-                                    <label asp-for="@Model.Count" class="form-label"></label>
-                                <input asp-for="@Model.Count" class="form-control" type="text" />
-                                </div>
-
-                                <div class="col-4 justify">
-                                  <button type="submit"  class="ec-btn-group btn btn-success"> ثبت قیمت</button>
-                                </div>
+                                    <div class="col-4 justify">
+                                      <button type="submit"  class="ec-btn-group btn btn-success"> ثبت قیمت</button>
+                                    </div>
                         
-                            </div>
+                                </div>
 
-                        </form>
+                            </form>                            
+                        }
 
 
                      </div>

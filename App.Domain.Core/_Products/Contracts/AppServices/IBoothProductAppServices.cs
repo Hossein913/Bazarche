@@ -9,5 +9,6 @@ public interface IBoothProductAppServices
     Task<int> GetProductIdAsync(int boothProductId, CancellationToken cancellationToken);
     Task Update(BoothProductUpdateDto boothProduct, CancellationToken cancellationToken);
     Task SoftDelete(int BoothProductId, CancellationToken cancellationToken);
+    Task SetActivity(int BoothProductId, CancellationToken cancellationToken);
     Task ChangeBoothProductState(int boothProductId, bool status, CancellationToken cancellationToken);
 }

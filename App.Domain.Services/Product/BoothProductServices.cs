@@ -39,6 +39,11 @@ public class BoothProductServices : IBoothProductServices
         return resutl;
     }
 
+    public async Task SetActivity(int BoothProductId, CancellationToken cancellationToken)
+    {
+        await _boothProduct.SetActivity(BoothProductId, cancellationToken);
+    }
+
     public async Task SoftDelete(int BoothProductId, CancellationToken cancellationToken)
     {
         await _boothProduct.SoftDelete(BoothProductId, cancellationToken);
