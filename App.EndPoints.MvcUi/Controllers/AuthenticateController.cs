@@ -65,7 +65,7 @@ namespace App.EndPoints.MvcUi.Controllers
                             return RedirectToAction("Index", "SellerPanel", new { area = "SellerArea" });
 
                         else
-                            return RedirectToAction("index", "Home");
+                            return RedirectToAction("Index", "Customer");
                     }
                     else
                     {
