@@ -48,9 +48,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [HttpGet]
         public async Task<ActionResult> Create(CancellationToken cancellationToken)
         {
-            ViewBag.BoothId = CurrentBoothId;
             CreateProductFormViewModel viewModel = new CreateProductFormViewModel();
-            viewModel.Product = new ProductCreateViewModel();
             viewModel.Categories = await _categoryApp.GetAll(cancellationToken);
             return View(viewModel);
         }
@@ -61,20 +59,20 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (productViewModel.Product.Pictures != null)
+                if (productViewModel.Pictures != null)
                 {
 
                     ProductAppServiceDto productAppService = new ProductAppServiceDto
                     {
-                        Name = productViewModel.Product.Name,
-                        Brand = productViewModel.Product.Brand,
-                        Grantee = productViewModel.Product.Grantee,
-                        InformationDetails = productViewModel.Product.InformationDetails,
-                        Description = productViewModel.Product.Description,
-                        IncludedComponents = productViewModel.Product.IncludedComponents,
-                        BasePrice = productViewModel.Product.BasePrice,
-                        Pictures = productViewModel.Product.Pictures,
-                        CategoryId = productViewModel.Product.CategoryId,
+                        Name = productViewModel.Name,
+                        Brand = productViewModel.Brand,
+                        Grantee = productViewModel.Grantee,
+                        InformationDetails = productViewModel.InformationDetails,
+                        Description = productViewModel.Description,
+                        IncludedComponents = productViewModel.IncludedComponents,
+                        BasePrice = productViewModel.BasePrice,
+                        Pictures = productViewModel.Pictures,
+                        CategoryId = productViewModel.CategoryId,
                         CreatedBy = CurrentUserId,
                     };
 
@@ -95,6 +93,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     ModelState.AddModelError(string.Empty, "تصویری برای کالا انتخاب نشده است.");
                 }
             }
+            productViewModel.Categories = await _categoryApp.GetAll(cancellationToken);
             return View(productViewModel);
         }
 

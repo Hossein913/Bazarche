@@ -1,5 +1,4 @@
-﻿
-@model CreateProductFormViewModel;
+﻿@model CreateProductFormViewModel;
 
 @{
     ViewData["Title"] = "CreateProduct";
@@ -15,15 +14,15 @@
 
                         <form method="post" enctype="multipart/form-data" class="row g-3">
                              <div class="col-md-6 mt-2">
-                                 <h6>  <label asp-for="@Model.Product.Name" for="inputEmail4" class="form-label">نام محصول</label></h6>
-                                 <input asp-for="@Model.Product.Name" class="form-control" id="inputEmail4">
+                                 <h6>  <label asp-for="@Model.Name" for="inputEmail4" class="form-label">نام محصول</label></h6>
+                                 <input asp-for="@Model.Name" class="form-control" id="inputEmail4">
                               </div>
 
                              <div class="col-md-6 mt-2">
 
                                 <h6>
-                                    <label asp-for="@Model.Product.CategoryId" class="form-label"></label></h6>
-                                <select asp-for="@Model.Product.CategoryId" class="form-select">
+                                    <label asp-for="@Model.CategoryId" class="form-label"></label></h6>
+                                <select asp-for="@Model.CategoryId" class="form-select">
                                                 @foreach (var pItem in Model.Categories)
                                                 {
                                                    <optgroup label="@pItem.Title ">
@@ -35,55 +34,55 @@
                                                  }
 
                                             </select>
-                                             <span asp-validation-for="@Model.Product.CategoryId" class="text-danger"></span>
+                                             <span asp-validation-for="@Model.CategoryId" class="text-danger"></span>
 
                              </div>
                             <div class="col-md-6 mt-2">
                                 <h6>
-                                    <label asp-for="@Model.Product.Brand" for="inputEmail4" class="form-label"></label></h6>
-                                            <input asp-for="@Model.Product.Brand" type="text" class="form-control" id="inputEmail4">
-                                <span asp-validation-for="@Model.Product.Brand" class="text-danger"></span>
+                                    <label asp-for="@Model.Brand" for="inputEmail4" class="form-label"></label></h6>
+                                            <input asp-for="@Model.Brand" type="text" class="form-control" id="inputEmail4">
+                                <span asp-validation-for="@Model.Brand" class="text-danger"></span>
 
                                         </div>
                             <div class="col-md-6 mt-2">
                                 <h6>
-                                    <label asp-for="@Model.Product.Grantee" for="inputEmail4" class="form-label">گارانتی</label></h6>
-                                            <input asp-for="@Model.Product.Grantee" type="text" class="form-control" id="inputEmail4">
-                                <span asp-validation-for="@Model.Product.Grantee" class="text-danger"></span>
+                                    <label asp-for="@Model.Grantee" for="inputEmail4" class="form-label">گارانتی</label></h6>
+                                            <input asp-for="@Model.Grantee" type="text" class="form-control" id="inputEmail4">
+                                <span asp-validation-for="@Model.Grantee" class="text-danger"></span>
 
                                         </div>
                             <div class="col-md-12 mt-2">
                                 <h6>
-                                <label asp-for="@Model.Product.Description" class="form-label">توضیحات </label></h6>
-                                             <textarea asp-for="@Model.Product.Description" class="form-control" rows="2"></textarea>
-                                             <span asp-validation-for="@Model.Product.Description" class="text-danger"></span>
+                                <label asp-for="@Model.Description" class="form-label">توضیحات </label></h6>
+                                             <textarea asp-for="@Model.Description" class="form-control" rows="2"></textarea>
+                                             <span asp-validation-for="@Model.Description" class="text-danger"></span>
 
                                         </div>
 
                             <div class="col-md-6 mt-2">
                                 <h6>
-                                        <label asp-for="@Model.Product.BasePrice" class="form-label"> </label></h6>
-                                        <input asp-for="@Model.Product.BasePrice" type="number" class="form-control" id="price1">
-                                        <span asp-validation-for="@Model.Product.BasePrice" class="text-danger"></span>
+                                        <label asp-for="@Model.BasePrice" class="form-label"> </label></h6>
+                                        <input asp-for="@Model.BasePrice" type="number" class="form-control" id="price1">
+                                        <span asp-validation-for="@Model.BasePrice" class="text-danger"></span>
                                          </div>
 
                             <div class="col-md-6 mt-2">
-                                            <h6><label asp-for="@Model.Product.Pictures" class="form-label"></label></h6>
-                                            <input asp-for="@Model.Product.Pictures" class="form-control"/>
-                                            <span asp-validation-for="@Model.Product.Pictures" class="text-danger"></span>
+                                            <h6><label asp-for="@Model.Pictures" class="form-label"></label></h6>
+                                            <input asp-for="@Model.Pictures" class="form-control"/>
+                                            <span asp-validation-for="@Model.Pictures" class="text-danger"></span>
                                         </div>
                             <div class="col-md-12 mt-2">
                                 <h6>
-                                    <label asp-for="@Model.Product.InformationDetails" class="form-label">جزییات کامل</label></h6>
-                                            <textarea asp-for="@Model.Product.InformationDetails" class="form-control" rows="4"></textarea>
-                                            <span asp-validation-for="@Model.Product.InformationDetails" class="text-danger"></span>
+                                    <label asp-for="@Model.InformationDetails" class="form-label">جزییات کامل</label></h6>
+                                            <textarea asp-for="@Model.InformationDetails" class="form-control" rows="4"></textarea>
+                                            <span asp-validation-for="@Model.InformationDetails" class="text-danger"></span>
 
                                         </div>
                             <div class="col-md-12 mt-2">
                                 <h6>
-                                        <label asp-for="@Model.Product.IncludedComponents" class="form-label"></label></h6>
-                                        <textarea asp-for="@Model.Product.IncludedComponents" class="form-control" rows="4"></textarea>
-                                            <span asp-validation-for="@Model.Product.IncludedComponents" class="text-danger"></span>
+                                        <label asp-for="@Model.IncludedComponents" class="form-label"></label></h6>
+                                        <textarea asp-for="@Model.IncludedComponents" class="form-control" rows="4"></textarea>
+                                            <span asp-validation-for="@Model.IncludedComponents" class="text-danger"></span>
 
                                         </div>
                             <div class="col-md-12 mt-2">
