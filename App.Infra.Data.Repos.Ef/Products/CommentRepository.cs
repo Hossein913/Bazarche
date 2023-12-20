@@ -31,11 +31,19 @@ public class CommentRepository : ICommentRepository
             CreatedAt = DateTime.Now,
             IsConfirmed = null,
             IsDeleted = false,
-
-
         };
         await _context.Comments.AddAsync(newComment, cancellationToken);
-        var result = await _context.SaveChangesAsync(cancellationToken);
+        try
+        {
+            var result = await _context.SaveChangesAsync(cancellationToken);
+
+        }
+        catch (Exception ex)
+        {
+
+            string m = ex.Message;
+        }
+
     }
 
     public async Task<List<CommentOutputDto>> GetAll(CancellationToken cancellationToken)

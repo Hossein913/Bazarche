@@ -114,6 +114,11 @@ namespace App.Domain.AppServices.User
             appUser.IsActive = status;
             await _userManager.UpdateAsync(appUser);
         }
+
+        public async Task IncreaseWallet(int customerId, int Amount, CancellationToken cancellationToken)
+        {
+            await _customerServices.IncreaseWallet(customerId, Amount, cancellationToken);
+        }
     }
 }
 

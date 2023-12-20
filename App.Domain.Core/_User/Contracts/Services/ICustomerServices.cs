@@ -10,5 +10,6 @@ public interface ICustomerServices
     Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken);
     Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken, bool saveChanges = true);
     Task SoftDelete(int customerId, CancellationToken cancellationToken);
+    Task IncreaseWallet(int customerId, int Amount, CancellationToken cancellationToken);
 
 }

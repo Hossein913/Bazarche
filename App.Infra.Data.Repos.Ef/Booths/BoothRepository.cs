@@ -85,7 +85,9 @@ public class BoothRepository : IBoothRepository
             Name = b.Name,
             AvatarPictureFile = b.AvatarPicture.ImageUrl,
             Description = b.Description,
-            Medal = b.Medal
+            Medal = b.Medal,
+            AccountBalance = b.AccountBalance,
+            TotalSell = b.TotalSell
         }).ToListAsync(cancellationToken);
 
         return result;

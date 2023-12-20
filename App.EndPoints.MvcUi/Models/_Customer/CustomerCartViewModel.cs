@@ -5,6 +5,7 @@
         public int OrderItemId { get; set; }
 
         public int price { get; set; }
+        public int Count { get; set; }
 
         public string ProductName { get; set; }
 

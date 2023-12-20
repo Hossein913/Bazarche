@@ -46,4 +46,9 @@ public class CustomerServices : ICustomerServices
     {
         await _customerRepository.Update(customerUpdate, cancellationToken, saveChanges);
     }
+
+    public async Task IncreaseWallet(int customerId, int Amount, CancellationToken cancellationToken)
+    {
+        await _customerRepository.IncreaseWallet(customerId, Amount, cancellationToken);
+    }
 }

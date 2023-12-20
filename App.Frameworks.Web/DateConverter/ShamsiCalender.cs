@@ -66,8 +66,20 @@ namespace App.Frameworks.Web.DateConverter
             DateTime gregorianDate = persianCalendar.ToDateTime(persianDate.year, persianDate.month, persianDate.day, 0, 0, 0, 0);
             return gregorianDate;
         }
-        
 
+        public static string ToPersianNumericDateTime(this DateTime dateTime)
+        {
+            PersianCalendar persianCalendar = new PersianCalendar();
+            int year = persianCalendar.GetYear(dateTime);
+            int month = persianCalendar.GetMonth(dateTime);
+            int day = persianCalendar.GetDayOfMonth(dateTime);
+
+            int Hour = persianCalendar.GetHour(dateTime);
+            int Minute = persianCalendar.GetMinute(dateTime);
+            int Second = persianCalendar.GetSecond(dateTime);
+
+            return $" {Hour}:{Minute}:{Second} {year}/{month:00}/{day:00}";
+        }
 
         public static PersianDate ToPersianDate(this DateTime dateTime)
         {

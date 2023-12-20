@@ -25,13 +25,13 @@
                         <div class="ec-pro-content">
                             <a href="single-product-left-sidebar.html"
                             class="cart_pro_title">@item.ProductName</a>
-                            <span class="cart-price"><span>@item.price تومان</span> x 1</span>
-                            <div class="qty-plus-minus">
+                            <span class="cart-price"><span>@item.price تومان</span> x @item.Count</span>
+@*                            <div class="qty-plus-minus">
                                 <input class="qty-input"
                                 type="text"
                                 name="ec_qtybtn"
                                 value="1" />
-                            </div>
+                            </div>*@
                             <a asp-controller="Cart" asp-action="RemoveFromCart" asp-route-orderItem="@item.OrderItemId" class="remove">×</a>
                         </div>
                     </li>

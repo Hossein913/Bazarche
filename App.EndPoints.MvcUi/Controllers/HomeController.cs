@@ -62,7 +62,7 @@ namespace App.EndPoints.MvcUi.Controllers
             }).ToList();
 
             IndexViewModel indexViewModel = new IndexViewModel();
-            indexViewModel.auctionViewModels = auctionViewModelList;
+            indexViewModel.auctionViewModels = auctionViewModelList.Take(5).ToList();
             indexViewModel.productsViewModels = productsViewModelList;
 
             return View(indexViewModel);

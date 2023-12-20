@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using App.Domain.Core._User.Dtos.ProvinceDto;
 
 namespace App.EndPoints.MvcUi.Models._Customer
 {
@@ -13,7 +14,7 @@ namespace App.EndPoints.MvcUi.Models._Customer
         public string? LastName { get; set; }
 
         [DisplayName("تاریخ تولد")]
-        public DateTime? Birthdate { get; set; }
+        public string? Birthdate { get; set; }
 
         [DisplayName(" استان"), Required(ErrorMessage = "نام استان را انتخال کنید.")]
         public int? ProvinceId { get; set; }
@@ -27,6 +28,7 @@ namespace App.EndPoints.MvcUi.Models._Customer
         [DisplayName("کد پستی"), Required(ErrorMessage = "کد پستی نمی تواند خالی باشد.")]
         public string PostalCode { get; set; }
 
+        public List<ProvinceOutputDto>? Provinces { get; set; }
     }
 }
 

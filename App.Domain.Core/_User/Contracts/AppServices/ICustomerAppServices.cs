@@ -12,5 +12,6 @@ public interface ICustomerAppServices
     Task<string> Update(CustomerAppServiceUpdateDto customerUpdate, int CurrentUserId, string ProjectRouteAddress, CancellationToken cancellationToken);
     Task SoftDelete(int customerId, CancellationToken cancellationToken);
     Task SetActivity(int appUserId, bool status, CancellationToken cancellationToken);
+    Task IncreaseWallet(int customerId, int Amount, CancellationToken cancellationToken);
 
 }

@@ -101,6 +101,29 @@ public class OrderItemRepository : IOrderItemRepository
 
     }
 
+    public async Task<OrderItemOutputDto> GetDitailsByBoothProductId(int OrderId ,int boothProductId, CancellationToken cancellationToken)
+    {
+        var OrderItem = await _context.OrderItems
+            .FirstOrDefaultAsync(oi => oi.BoothProductid == boothProductId && oi.OrderId == OrderId, cancellationToken);
+
+        if (OrderItem != null)
+        {
+            var orderItemRecord = new OrderItemOutputDto
+            {
+                Id = OrderItem.Id,
+                BoothProduct = OrderItem.BoothProduct,
+                ProductId = OrderItem.ProductId,
+                OrderId = OrderItem.OrderId,
+                Count = OrderItem.Count,
+                IsActive = OrderItem.IsActive
+            };
+            return orderItemRecord;
+        }
+
+        return null;
+
+    }
+
     public async Task HardDelete(int OrderItemId, CancellationToken cancellationToken)
     {
         var OrderItemRecord = await _context.OrderItems

@@ -9,6 +9,7 @@ using App.EndPoints.MvcUi.Models._Customer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using App.Frameworks.Web.DateConverter;
 
 namespace App.EndPoints.MvcUi.Controllers
 {
@@ -20,14 +21,16 @@ namespace App.EndPoints.MvcUi.Controllers
         protected readonly ICommentAppServices _commentAppServices;
         protected readonly IAuctionAppServices _auctionAppServices;
         protected readonly IWebHostEnvironment _webHostEnvironment;
+        protected readonly IAddressAppServices _addressApp ;
 
-        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices, IAuctionAppServices auctionAppServices, IWebHostEnvironment webHostEnvironment)
+        public CustomerController(IOrderAppServices orderAppServices, IOrderItemAppServices orderItemAppServices, ICustomerAppServices customerAppServices, IAuctionAppServices auctionAppServices, IWebHostEnvironment webHostEnvironment, IAddressAppServices addressApp)
         {
             _orderAppServices = orderAppServices;
             _orderItemAppServices = orderItemAppServices;
             _customerAppServices = customerAppServices;
             _auctionAppServices = auctionAppServices;
             _webHostEnvironment = webHostEnvironment;
+            _addressApp = addressApp;
         }
 
         [HttpGet]
@@ -96,17 +99,19 @@ namespace App.EndPoints.MvcUi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Profile(CancellationToken cancellationToken)
+        public async Task<ActionResult> EditProfile(CancellationToken cancellationToken)
         {
+            var provinces = await _addressApp.GetAllProvinces(cancellationToken);
             var customer = await _customerAppServices.GetDetailsWithRelation(CurrentCustomerId, cancellationToken); ;
             EditCustomerViewModel editCustomerViewModel = new EditCustomerViewModel{
                 FirstName  =customer.Firstname ,
                 LastName  =customer.Lastname ,
-                Birthdate  =customer .Birthdate,
+                Birthdate  =customer .Birthdate.ToPersianNumericDate(),
                 City  =customer.Address.City ,
                 FullAddress  =customer.Address.FullAddress ,
                 PostalCode  =customer.Address.PostalCode,
-                //ProvinceId  =customer.pr ,
+                ProvinceId  =customer.Address.ProvinceId ,
+                Provinces = provinces,
             };
             return View(editCustomerViewModel);
         }
@@ -115,18 +120,48 @@ namespace App.EndPoints.MvcUi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EditProfile(EditCustomerViewModel customerViewModel,CancellationToken cancellationToken)
         {
-            CustomerAppServiceUpdateDto customerAppServiceDto = new CustomerAppServiceUpdateDto{
-                Id = CurrentCustomerId ,
-                FirstName = customerViewModel.FirstName ,
-                LastName = customerViewModel.LastName ,
-                Birthdate = customerViewModel.Birthdate ,
-                ProvinceId = 1 ,
-                City = customerViewModel.City , 
-                FullAddress = customerViewModel.FullAddress , 
-                PostalCode = customerViewModel.PostalCode , 
+            if (ModelState.IsValid)
+            {
+                CustomerAppServiceUpdateDto customerAppServiceDto = new CustomerAppServiceUpdateDto
+                {
+                    Id = CurrentCustomerId,
+                    FirstName = customerViewModel.FirstName,
+                    LastName = customerViewModel.LastName,
+                    Birthdate = ConvertTo.GregorianDate(customerViewModel.Birthdate),
+                    ProvinceId = 1,
+                    City = customerViewModel.City,
+                    FullAddress = customerViewModel.FullAddress,
+                    PostalCode = customerViewModel.PostalCode,
+                };
+                await _customerAppServices.Update(customerAppServiceDto, CurrentUserId, _webHostEnvironment.WebRootPath, cancellationToken);
+                return RedirectToAction("EditProfile", "Customer");
+            }
+            customerViewModel.Provinces = await _addressApp.GetAllProvinces(cancellationToken);
+            return View(customerViewModel);
+
+        }
+
+
+
+        [HttpGet]
+        public async Task<ActionResult> IncreaseWallet(CancellationToken cancellationToken)
+        {
+            IncreaseWalletViewModel increaseWallet= new IncreaseWalletViewModel
+            {
+                Amount = 0,
             };
-            await _customerAppServices.Update(customerAppServiceDto,CurrentUserId, _webHostEnvironment.WebRootPath, cancellationToken);
-            return RedirectToAction("Profile", "Customer");
+            return View(increaseWallet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> IncreaseWallet(IncreaseWalletViewModel customerViewModel, CancellationToken cancellationToken)
+        {
+            if(customerViewModel.Amount != null && customerViewModel.Amount > 0)
+            {
+                await _customerAppServices.IncreaseWallet(CurrentCustomerId, customerViewModel.Amount, cancellationToken);
+            }
+            return RedirectToAction("Index", "Customer");
         }
 
     }

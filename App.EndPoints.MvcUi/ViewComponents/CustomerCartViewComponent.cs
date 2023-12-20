@@ -45,6 +45,7 @@ namespace App.EndPoints.MvcUi.ViewComponents
                 ProductName = oi.BoothProduct.Product.Name,
                 Productbrand = oi.BoothProduct.Product.Brand,
                 ProductPictureUrl = oi.BoothProduct.Product.Pictures.FirstOrDefault().ImageUrl,
+                Count = oi.Count,
 
             }).ToList();
 

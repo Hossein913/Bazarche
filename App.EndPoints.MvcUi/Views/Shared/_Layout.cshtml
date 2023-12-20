@@ -104,9 +104,9 @@
                     </a>
                     <!-- Header Top Category Toggle End -->
                     <!-- Header Top Message Start -->
-                    <div class="col text-center header-top-center">
-                        <div class="header-top-message text-upper">
-                            <span> ارسال رایگان </span>این هفته برای سفارشات بالای 500 هزار تومان
+                    <div class="col text-right">
+                        <div class="header-top-message text-upper ">
+                            <span>توسعه دهنده: </span><a href="mailto:hossein913@gmial.comn" class=" text-reset">حسین بشارتی</a>
                         </div>
                     </div>
                     <!-- Header Top Message End -->
@@ -124,10 +124,23 @@
                                 <ul class="dropdown-menu dropdown-menu-right">
                                     @if (signInManager.IsSignedIn(User))
                                     {
-                                        <li>
+@*                                        <li>
                                             <a class="dropdown-item" asp-controller="Customer" asp-action="Index"> حساب من </a>
+                                        </li>*@
+                                        <li>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <a class="dropdown-item" asp-area="AdminArea" asp-controller="AdminPanel" asp-action="Index">پنل مدیریت </a>
+                                        }
+                                            else if (User.IsInRole("Seller"))
+                                        {
+                                            <a class="dropdown-item" asp-area="sellerArea" asp-controller="SellerPanel" asp-action="Index">پنل غرفه</a>
+                                        }
+                                            else if (User.IsInRole("Customer"))
+                                        {
+                                           <a class="dropdown-item" asp-controller="Customer" asp-action="Index">پروفایل کاربری </a>
+                                        }
                                         </li>
-
                                         <Form mathod="Post" asp-area="" asp-controller="Authenticate" asp-action="Logout">
                                         <li> <button type="submit" class="dropdown-item">خروج</button></li>
                                         </Form>
@@ -218,9 +231,20 @@
                                     <ul class="dropdown-menu dropdown-menu-right">
                                     @if (signInManager.IsSignedIn(User))
                                     {
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Customer" asp-action="Index"> حساب من </a>
-                                        </li>
+                                            <li>
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    <a class="dropdown-item" asp-area="AdminArea" asp-controller="AdminPanel" asp-action="Index">پنل مدیریت </a>
+                                                }
+                                                else if (User.IsInRole("Seller"))
+                                                {
+                                                    <a class="dropdown-item" asp-area="sellerArea" asp-controller="SellerPanel" asp-action="Index">پنل غرفه</a>
+                                                }
+                                                else if (User.IsInRole("Customer"))
+                                                {
+                                                    <a class="dropdown-item" asp-controller="Customer" asp-action="Index">پروفایل کاربری </a>
+                                                }
+                                            </li>
                                         <Form mathod="Post" asp-area="" asp-controller="Authenticate" asp-action="Logout">
                                         <li> <button type="submit" class="dropdown-item">خروج</button></li>
                                         </Form>
@@ -385,28 +409,12 @@
                                 </li>
                                 *@
                                 <li class="dropdown">
-                                    <a href="javascript:void(0)">صفحات دیگر</a>
+                                    <a href="javascript:void(0)">درباره ما </a>
                                     <ul class="sub-menu">
-                                        <li><a href="about-us.html">درباره ما</a></li>
-                                        <li><a href="privacy-policy.html">سیاست حفظ حریم خصوصی</a></li>
+                                        <li><a href="https://github.com/Hossein913/Bazarche">گیت</a></li>
+                                        <li><a href="mailto:Hossein913@gmail.com">ایمیل </a></li>
                                     </ul>
                                 </li>
-
-                                @if (signInManager.IsSignedIn(User))
-                                {
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <li><a asp-area="AdminArea" asp-controller="AdminPanel" asp-action="Index">پنل مدیریت </a></li>
-                                    }
-                                    @if (User.IsInRole("Seller"))
-                                    {
-                                        <li><a asp-area="sellerArea" asp-controller="SellerPanel" asp-action="Index">پنل غرفه</a></li>
-                                    }
-                                    @if (User.IsInRole("Csutomer"))
-                                    {
-                                        <li><a href="index.html">پروفایل من </a></li>
-                                    }
-                                }
 
                             </ul>
 
@@ -890,9 +898,9 @@
     <script data-cfasync="false" src="~/assets/Home/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     
     <script src="~/assets/Home/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="~/assets/Home/js/vendor/jquery-migrate-3.3.0.min.js"></script>
     <script src="~/assets/Home/js/vendor/popper.min.js"></script>
     <script src="~/assets/Home/js/vendor/bootstrap.min.js"></script>
-    <script src="~/assets/Home/js/vendor/jquery-migrate-3.3.0.min.js"></script>
     <script src="~/assets/Home/js/vendor/modernizr-3.11.2.min.js"></script>
     <script src="~/assets/Home/js/vendor/jquery.notify.min.js"></script>
     <script src="~/assets/Home/js/vendor/jquery.bundle.notify.min.js"></script>
@@ -905,8 +913,8 @@
     <script src="~/assets/Home/js/plugins/scrollup.js"></script>
     <script src="~/assets/Home/js/plugins/jquery.zoom.min.js"></script>
     <script src="~/assets/Home/js/plugins/slick.min.js"></script>
-    <script src="~/assets/Home/js/plugins/infiniteslidev2.js"></script>
     <script src="~/assets/Home/js/plugins/jquery.sticky-sidebar.js"></script>
+    <script src="~/assets/Home/js/plugins/infiniteslidev2.js"></script>
     <script src="~/assets/Home/js/plugins/nouislider.js"></script>
     <script src="~/assets/Home/js/plugins/owl.carousel.min.js"></script>
     <script src="~/assets/Home/js/plugins/click-to-call.js"></script>
@@ -915,7 +923,7 @@
     <script src="~/assets/Home/js/vendor/index.js"></script>
     <script src="~/assets/Home/js/demo-8.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    @if (ViewData["title"] == "ProductfullPage" && ViewData["Style"] == "demo5")
+    @if (ViewData["title"] == "ProductfullPage" || ViewData["Style"] == "demo5")
     {
         <script src="~/assets/Home/js/main.js"></script>
         

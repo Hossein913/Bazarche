@@ -156,6 +156,19 @@ public class CustomerRepository : ICustomerRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
+    public async Task IncreaseWallet(int customerId,int Amount, CancellationToken cancellationToken)
+    {
+        var customerRecord = await _context.Customers.Include(a => a.AppUser)
+        .FirstOrDefaultAsync(x => x.Id == customerId, cancellationToken);
+
+        if (customerRecord != null && (customerRecord.Wallet += Amount) <= int.MaxValue)
+        {
+            customerRecord.Wallet += Amount;
+
+        }
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
     public async Task Update(CustomerUpdateDto customerUpdate, CancellationToken cancellationToken,bool saveChanges = true)
     {
         Picture ProfilePictuer = null;
