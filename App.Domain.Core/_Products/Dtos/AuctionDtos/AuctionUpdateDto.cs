@@ -18,11 +18,11 @@ public class AuctionUpdateDto
 
     public int? WinnerId { get; set; }
 
-    public DateTime StartTime { get; set; }
+    public DateTime? StartTime { get; set; }
 
-    public DateTime EndTime { get; set; }
+    public DateTime? EndTime { get; set; }
 
-    public int BasePrice { get; set; }
+    public int? BasePrice { get; set; }
 
     public AuctionStatus Status { get; set; }
 

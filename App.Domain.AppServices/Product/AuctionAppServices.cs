@@ -47,11 +47,23 @@ namespace App.Domain.AppServices.Product
             return auctions;
         }
 
-        public async Task Create(AuctionCreateDto createAuction, CancellationToken cancellationToken)
+        public async Task<string> Create(AuctionCreateDto createAuction, CancellationToken cancellationToken)
         {
-            var auctionId = await _auctionServices.Create(createAuction, cancellationToken);
-            jobServices.AddNewJub<IAuctionServices>(a => a.GetStartAuction(auctionId, cancellationToken), createAuction.StartTime);
-            jobServices.AddNewJub<IAuctionServices>(a => a.GetEndAuction(auctionId, cancellationToken), createAuction.EndTime);
+            if(
+                DateTime.Compare(DateTime.Now, createAuction.StartTime) <=0 &&
+                DateTime.Compare(DateTime.Now, createAuction.EndTime) < 0 &&
+                DateTime.Compare(createAuction.EndTime, createAuction.StartTime) > 0 
+            )
+            {
+                var auctionId = await _auctionServices.Create(createAuction, cancellationToken);
+                jobServices.AddNewJub<IAuctionServices>(a => a.GetStartAuction(auctionId, cancellationToken), createAuction.StartTime);
+                jobServices.AddNewJub<IAuctionServices>(a => a.GetEndAuction(auctionId, cancellationToken), createAuction.EndTime);
+                return "success";
+            }
+            else
+            {
+                return "تاریخ های وارد شده نامعتر است.";
+            }
         }
 
         public async Task<AuctionOutputDto> GetDetail(int auctionId, CancellationToken cancellationToken)

@@ -1,4 +1,5 @@
-﻿using App.Domain.Core._Products.Contracts.AppServices;
+﻿using App.Domain.Core._Booth.Entities;
+using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Dtos.ProductDtos;
 using App.Domain.Core._Products.Entities;
@@ -61,6 +62,8 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     ProductName = product.Name,
                     ProductBrand = product.Brand,
                     Avatar = product.Pictures.FirstOrDefault(),
+                    StartYear = 1402,
+                    EndYear = 1402,
                     MainUrl = Request.Headers["Referer"].ToString(),
                 };
             }
@@ -72,25 +75,44 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateAuctionViewModels createAuction, CancellationToken cancellationToken)
         {
-            PersianCalendar persianCalendarStart = new PersianCalendar();
-            DateTime StartDateTime = persianCalendarStart.ToDateTime(createAuction.StartYear, createAuction.StartMonth, createAuction.StartDay, createAuction.StartHour, 0, 0, 0);
-
-            PersianCalendar EndpersianCalendar = new PersianCalendar();
-            DateTime EndDateTime = EndpersianCalendar.ToDateTime(createAuction.EndYear, createAuction.EndMonth, createAuction.EndDay, createAuction.EndHour, 0, 0, 0);
-
-            AuctionCreateDto auctionCreate = new AuctionCreateDto
+            if (ModelState.IsValid)
             {
-                ProductId = createAuction.ProductId,
-                BoothId = CurrentBoothId,
-                StartTime = StartDateTime,
-                EndTime = EndDateTime,
-                BasePrice = createAuction.BasePrice,
-            };
+                PersianCalendar persianCalendarStart = new PersianCalendar();
+                DateTime StartDateTime = persianCalendarStart.ToDateTime(createAuction.StartYear, createAuction.StartMonth, createAuction.StartDay, createAuction.StartHour, 0, 0, 0);
 
-            await _auctionApp.Create(auctionCreate, cancellationToken);
+                PersianCalendar EndpersianCalendar = new PersianCalendar();
+                DateTime EndDateTime = EndpersianCalendar.ToDateTime(createAuction.EndYear, createAuction.EndMonth, createAuction.EndDay, createAuction.EndHour, 0, 0, 0);
 
-            
-            return RedirectToAction("Create", new { productId = createAuction.ProductId });
+                AuctionCreateDto auctionCreate = new AuctionCreateDto
+                {
+                    ProductId = createAuction.ProductId,
+                    BoothId = CurrentBoothId,
+                    StartTime = StartDateTime,
+                    EndTime = EndDateTime,
+                    BasePrice = createAuction.BasePrice,
+                };
+
+                var result = await _auctionApp.Create(auctionCreate, cancellationToken);
+                if (result == "success")
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError(String.Empty,result);
+                }
+
+            }
+                var product = await _productApp.GetDetails(createAuction.ProductId, cancellationToken);
+                createAuction.BoothId = CurrentBoothId;
+                createAuction.ProductName = product.Name;
+                createAuction.ProductBrand = product.Brand;
+                createAuction.Avatar = product.Pictures.FirstOrDefault();
+                return View(createAuction);
+
+
+
+
         }
 
 

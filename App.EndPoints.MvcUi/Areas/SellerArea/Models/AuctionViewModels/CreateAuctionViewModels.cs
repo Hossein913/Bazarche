@@ -31,11 +31,11 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Models.AuctionViewModels
         [Display(Name = "قیمت پایه")]
         public int BasePrice { get; set; }
 
-        public string ProductName { get; set; }
+        public string? ProductName { get; set; }
 
-        public string ProductBrand { get; set; }
+        public string? ProductBrand { get; set; }
 
-        public Picture Avatar { get; set; }
+        public Picture? Avatar { get; set; }
 
         public string MainUrl { get; set; }
     }

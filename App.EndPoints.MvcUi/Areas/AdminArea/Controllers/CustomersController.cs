@@ -137,7 +137,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers;
                 }
                 else
                 {
-                ModelState.AddModelError("Birthdate", resutl);
+                    ModelState.AddModelError("Birthdate", resutl);
                 }
 
             }

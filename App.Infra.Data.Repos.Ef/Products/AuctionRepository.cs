@@ -182,12 +182,9 @@ public class AuctionRepository : IAuctionRepository
         .FirstOrDefaultAsync(x => x.Id == auction.Id, cancellationToken);
         if (AuctionRecord != null)
         {
-            AuctionRecord.ProductId = auction.ProductId == null ? AuctionRecord.ProductId : auction.ProductId;
-            AuctionRecord.BoothId = auction.BoothId == null ? AuctionRecord.BoothId : auction.BoothId;
             AuctionRecord.WinnerId = auction.WinnerId == null ? AuctionRecord.WinnerId : auction.WinnerId;
-            AuctionRecord.StartTime = auction.StartTime == null ? AuctionRecord.StartTime : auction.StartTime;
-            AuctionRecord.EndTime = auction.EndTime == null ? AuctionRecord.EndTime : auction.EndTime;
-            AuctionRecord.BasePrice = auction.BasePrice == null ? AuctionRecord.BasePrice : auction.BasePrice;
+            AuctionRecord.StartTime = auction.StartTime == null ? AuctionRecord.StartTime : Convert.ToDateTime(auction.StartTime);
+            AuctionRecord.EndTime = auction.EndTime == null ? AuctionRecord.EndTime : Convert.ToDateTime(auction.EndTime);
             AuctionRecord.Status = auction.Status == null ? AuctionRecord.Status : (int)auction.Status;
             AuctionRecord.IsConfirmed = auction.IsConfirmed == null ? AuctionRecord.IsConfirmed : auction.IsConfirmed;
 
