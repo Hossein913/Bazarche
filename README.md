@@ -1,6 +1,6 @@
 # Bazarche
-A persian Eshop  that User can register and buy produtct and 
-Vendors can sell the products eith a defineing a price or an auction.
+A persian Eshop that User can register and buy products and 
+Vendors can sell the products with a defining a price or an auction.
 </hr>
 
 ## architecture 
@@ -10,9 +10,9 @@ Designed in Onion-architecture Incloud three part :
 3. EndPoints
 
 ## Framework :
-* Microsoft .Net Core 6
-* Microsoft Entity Framework Core 6 
-* Microsoft RazorPages
+* Microsoft .Net Core 7
+* Microsoft Entity Framework Core 7 
+* Microsoft Mvc
 
 ## Database :
 * Microsoft SQL Server 
@@ -21,8 +21,9 @@ Designed in Onion-architecture Incloud three part :
 ## Tools  :
 * Repository pattern
 * Configurations
-* Logging : seriLog
+* Logging : SeriLog
 * RidisCache
 * Exception Handling with Custom Middlware
+
 ## Web  :
 * Bootstrap
