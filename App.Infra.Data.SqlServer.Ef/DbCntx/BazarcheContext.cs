@@ -70,6 +70,7 @@ public class BazarcheContext : IdentityDbContext<AppUser, AppRole, int>
         modelBuilder.ApplyConfiguration(new RoleSeedData());
         modelBuilder.ApplyConfiguration(new UserSeedData());
         modelBuilder.ApplyConfiguration(new UsertoRoleSeedData());
+        modelBuilder.ApplyConfiguration(new UserClaimsSeedData());
 
         modelBuilder.ApplyConfiguration(new AdminConfig());
         modelBuilder.ApplyConfiguration(new AuctionConfig());

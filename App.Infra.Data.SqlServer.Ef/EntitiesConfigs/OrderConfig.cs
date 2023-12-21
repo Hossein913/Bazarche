@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 
 namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs;
 
@@ -21,10 +22,10 @@ public class OrderConfig : IEntityTypeConfiguration<Order>
             .HasConstraintName("FK_Orders_Customers");
 
         entity.HasData(
-            new Order { Id = 1, CustomerId = 1, Status = true, TotalPrice = 100, CreatedAt = DateTime.Now, PayedAt = DateTime.Now.AddMinutes(30) },
-            new Order { Id = 2, CustomerId = 1, Status = false, TotalPrice = 100, CreatedAt = DateTime.Now, PayedAt = null },
-            new Order { Id = 3, CustomerId = 2, Status = true, TotalPrice = 100, CreatedAt = DateTime.Now, PayedAt = DateTime.Now.AddMinutes(45) },
-            new Order { Id = 4, CustomerId = 2, Status = false, TotalPrice = 100, CreatedAt = DateTime.Now, PayedAt = null }
+            new Order { Id = 1, CustomerId = 1, Status = Convert.ToBoolean(OrderStatus.Cart), TotalPrice = 0, CreatedAt = DateTime.Now, PayedAt = null },
+            new Order { Id = 2, CustomerId = 2, Status = Convert.ToBoolean(OrderStatus.Cart), TotalPrice = 0, CreatedAt = DateTime.Now, PayedAt = null },
+            new Order { Id = 3, CustomerId = 1, Status = true, TotalPrice = 1000, CreatedAt = DateTime.Now, PayedAt = DateTime.Now.AddMinutes(45) },
+            new Order { Id = 4, CustomerId = 2, Status = false, TotalPrice = 100, CreatedAt = DateTime.Now, PayedAt = DateTime.Now.AddMinutes(45) }
             );
     }
 }

@@ -29,8 +29,7 @@ public class BoothProductRepository : IBoothProductRepository
             Count = boothProduct.Count,
             Status = Convert.ToBoolean(BoothProductStatus.Active),
             CreatedAt = DateTime.Now,
-            IsDeleted = false
-            
+            IsDeleted = false,
 
         };
 

@@ -121,7 +121,6 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
 
             customerUser2.PasswordHash = ph1.HashPassword(customerUser2, "1111@Customer");
 
-
             //seed user
             entity.HasData(adminUser, sellerUser1, sellerUser2, customerUser1, customerUser2);
         }
@@ -138,6 +137,35 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
                 new IdentityUserRole<int>{RoleId = 2,UserId = 3},
                 new IdentityUserRole<int>{RoleId = 3,UserId = 4},
                 new IdentityUserRole<int>{RoleId = 3,UserId = 5}
+                );
+        }
+    }
+
+    public class UserClaimsSeedData : IEntityTypeConfiguration<IdentityUserClaim<int>>
+    {
+        public void Configure(EntityTypeBuilder<IdentityUserClaim<int>> entity)
+        {
+
+            entity.HasData(
+                new IdentityUserClaim<int> { UserId= 1, ClaimType = "UserId", ClaimValue = "1"},
+
+                new IdentityUserClaim<int> { UserId= 2, ClaimType = "UserId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { UserId= 2, ClaimType = "SellerId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { UserId= 2, ClaimType = "BoothId", ClaimValue = "1"},
+
+                new IdentityUserClaim<int> { UserId= 3, ClaimType = "UserId", ClaimValue = "3"},
+                new IdentityUserClaim<int> { UserId= 3, ClaimType = "SellerId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { UserId= 3, ClaimType = "BoothId", ClaimValue = "2"},
+
+                new IdentityUserClaim<int> { UserId= 4, ClaimType = "UserId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { UserId= 4, ClaimType = "CustomerId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { UserId= 4, ClaimType = "CartId", ClaimValue = "1"},
+
+                new IdentityUserClaim<int> { UserId= 5, ClaimType = "UserId", ClaimValue = "5"},
+                new IdentityUserClaim<int> { UserId= 5, ClaimType = "CustomerId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { UserId= 5, ClaimType = "CartId", ClaimValue = "2"}
+
+
                 );
         }
     }
