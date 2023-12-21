@@ -145,25 +145,25 @@ namespace App.Infra.Data.SqlServer.Ef.EntitiesConfigs.Identity
     {
         public void Configure(EntityTypeBuilder<IdentityUserClaim<int>> entity)
         {
-
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
             entity.HasData(
-                new IdentityUserClaim<int> { UserId= 1, ClaimType = "UserId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 1, UserId= 1, ClaimType = "UserId", ClaimValue = "1"},
 
-                new IdentityUserClaim<int> { UserId= 2, ClaimType = "UserId", ClaimValue = "2"},
-                new IdentityUserClaim<int> { UserId= 2, ClaimType = "SellerId", ClaimValue = "1"},
-                new IdentityUserClaim<int> { UserId= 2, ClaimType = "BoothId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 2, UserId= 2, ClaimType = "UserId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { Id = 3, UserId= 2, ClaimType = "SellerId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 4, UserId = 2, ClaimType = "BoothId", ClaimValue = "1"},
 
-                new IdentityUserClaim<int> { UserId= 3, ClaimType = "UserId", ClaimValue = "3"},
-                new IdentityUserClaim<int> { UserId= 3, ClaimType = "SellerId", ClaimValue = "2"},
-                new IdentityUserClaim<int> { UserId= 3, ClaimType = "BoothId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { Id = 5, UserId= 3, ClaimType = "UserId", ClaimValue = "3"},
+                new IdentityUserClaim<int> { Id = 6, UserId= 3, ClaimType = "SellerId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { Id = 7, UserId = 3, ClaimType = "BoothId", ClaimValue = "2"},
 
-                new IdentityUserClaim<int> { UserId= 4, ClaimType = "UserId", ClaimValue = "1"},
-                new IdentityUserClaim<int> { UserId= 4, ClaimType = "CustomerId", ClaimValue = "1"},
-                new IdentityUserClaim<int> { UserId= 4, ClaimType = "CartId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 8, UserId= 4, ClaimType = "UserId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 9, UserId= 4, ClaimType = "CustomerId", ClaimValue = "1"},
+                new IdentityUserClaim<int> { Id = 10, UserId = 4, ClaimType = "CartId", ClaimValue = "1"},
 
-                new IdentityUserClaim<int> { UserId= 5, ClaimType = "UserId", ClaimValue = "5"},
-                new IdentityUserClaim<int> { UserId= 5, ClaimType = "CustomerId", ClaimValue = "2"},
-                new IdentityUserClaim<int> { UserId= 5, ClaimType = "CartId", ClaimValue = "2"}
+                new IdentityUserClaim<int> { Id = 11, UserId= 5, ClaimType = "UserId", ClaimValue = "5"},
+                new IdentityUserClaim<int> { Id = 12, UserId= 5, ClaimType = "CustomerId", ClaimValue = "2"},
+                new IdentityUserClaim<int> { Id = 13, UserId = 5, ClaimType = "CartId", ClaimValue = "2"}
 
 
                 );
