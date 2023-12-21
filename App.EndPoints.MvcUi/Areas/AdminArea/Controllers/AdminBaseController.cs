@@ -4,7 +4,7 @@ using System.Security.Claims;
 
 namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
 {
-    [Area("AdminArea"),AllowAnonymous]
+    [Area("AdminArea"), Authorize(Roles ="Admin")]
     public class AdminBaseController : Controller
     {
 

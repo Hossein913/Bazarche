@@ -230,11 +230,6 @@
                     </div>
                     <div class="navbar-right">
                         <ul class="nav navbar-nav">
-                            <li class="dropdown user-menu">
-                                <div class=" nav-link">
-                                    <b>موجودی : 1500 تومان</b>
-                                </div>
-                            </li>
 
                             <li class="dropdown user-menu">
                                 <button class="dropdown-toggle nav-link ec-drop"
@@ -245,11 +240,7 @@
                                 <ul class="dropdown-menu dropdown-menu-right ec-dropdown-menu">
                                     <li class="dropdown-header">
                                         <img src="~/assets/Admin/img/user/user.jpg" class="img-circle" alt="User Image">
-                                        <div class="d-inline-block">
-                                             حسین بشارتی <small class="me-4">
-                                                <a href="mailto:hossein913@gmial.com">hossein913@gmial.com</a>
-                                            </small>
-                                        </div>
+                                        @await Component.InvokeAsync("AdminProfile")
                                     </li>
 @*                                    <li><a href="user-profile.html"><i class="mdi mdi-account"></i>پروفایل من </a></li>
                                     <li><a href="#"><i class="mdi mdi-email"></i> پیام </a></li>

@@ -29,9 +29,4 @@
     <ProjectReference Include="..\RedisCache\App.Infra.RedisCache.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\AdminArea\ViewComponents\" />
-    <Folder Include="Areas\AdminArea\Views\Shared\Components\" />
-  </ItemGroup>
-
 </Project>
