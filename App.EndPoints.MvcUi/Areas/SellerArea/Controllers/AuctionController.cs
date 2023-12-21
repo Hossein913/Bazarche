@@ -39,7 +39,7 @@ namespace App.EndPoints.MvcUi.Areas.SellerArea.Controllers
                     Status = a.Status ,
                     IsConfirmed = a.IsConfirmed ,
                     ProductDto = a.ProductDto,
-                    MaxBid = a.Bids.Count > 0 ? a.Bids.FirstOrDefault(): null,
+                    MaxBid = a.Bids.Count > 0 ? a.Bids.MaxBy( b => b.BidPrice): null,
                 }
             ).ToList();
             return View(auctionViewModel);

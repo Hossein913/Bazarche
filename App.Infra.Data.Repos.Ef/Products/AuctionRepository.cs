@@ -44,7 +44,7 @@ public class AuctionRepository : IAuctionRepository
     
     public async Task<List<AuctionOutputDto>> GetAll(AuctionStatus auctionStatus,CancellationToken cancellationToken)
     {
-        return await _context.Auctions
+        var result = await _context.Auctions
             .AsNoTracking()
             .Where<Auction>(p => p.IsConfirmed == true && p.Status == (int)auctionStatus)
             .Select<Auction, AuctionOutputDto>(a => new AuctionOutputDto
@@ -65,6 +65,7 @@ public class AuctionRepository : IAuctionRepository
                 
 
             }).ToListAsync(cancellationToken);
+        return result;
     }
 
     public async Task<List<AuctionOutputDto>> GetAllActive( CancellationToken cancellationToken)
@@ -134,6 +135,7 @@ public class AuctionRepository : IAuctionRepository
 
         var auction = await _context.Auctions
             .Include(a => a.Booth)
+            .ThenInclude(b => b.Medal)
             .Include(a => a.Bids)
             .ThenInclude(b => b.Customer)
             .Include(a => a.Product)

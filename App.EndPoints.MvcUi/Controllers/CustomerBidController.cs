@@ -68,7 +68,7 @@ namespace App.EndPoints.MvcUi.Controllers
         {
             BidCreateDto bidCreateDto = new BidCreateDto {
              AuctionId = bidViewModel.AuctionId,
-             CustomerId = 1,
+             CustomerId = CurrentCustomerId,
              BidPrice= bidViewModel.BidPrice ,
             };
             var result = await _bidApp.Create(bidCreateDto,cancellationToken);

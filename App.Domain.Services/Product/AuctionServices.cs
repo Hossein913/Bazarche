@@ -132,7 +132,7 @@ public class AuctionServices : IAuctionServices
 
                 BoothUpdateDto boothUpdateDto = new BoothUpdateDto
                 {
-                    Id = auction.BoothId,
+                    Id = auction.Booth.Id,
                     TotalSell = (auction.Booth.TotalSell + BoothIncome),
                     AccountBalance = (auction.Booth.AccountBalance + BoothIncome)
                 };
@@ -140,7 +140,6 @@ public class AuctionServices : IAuctionServices
                 List<WageCreateDto> wages = new List<WageCreateDto>();
                 wages.Add( new WageCreateDto
                  {
-
                      AuctionId = auctionId,
                      FeePercenteage = Convert.ToInt32(wagePercentage * 100),
                      WageAmount = wageAmount
@@ -170,7 +169,7 @@ public class AuctionServices : IAuctionServices
                 await _adminRepository.Update(adminDto, cancellationToken, false);
 
 
-                AuctionUpdateDto updateAuction = new AuctionUpdateDto { Id = auctionId, Status = AuctionStatus.Runing };
+                AuctionUpdateDto updateAuction = new AuctionUpdateDto { Id = auctionId, WinnerId= winnerBib.CustomerId, Status = AuctionStatus.Ended };
                 await _auctionRepository.Update(updateAuction, cancellationToken,false);
 
                 await _saveChangesRepository.SaveChanges(cancellationToken);
