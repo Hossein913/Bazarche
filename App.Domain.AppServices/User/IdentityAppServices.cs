@@ -172,9 +172,8 @@ namespace App.Domain.AppServices.User
         public async Task<AppUser> GetAppUser(UserLoginDto userLoginDto, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByNameAsync(userLoginDto.Email);
-            if (user != null)
+            if (user != null && user.IsDeleted == false)
             {
-
                 return user;
             }
 
@@ -183,8 +182,13 @@ namespace App.Domain.AppServices.User
 
         public async Task<SignInResult> Login(AppUser appUser, UserLoginDto userLoginDto, CancellationToken cancellationToken)
         {
-            var result = await _signInManager.PasswordSignInAsync(appUser, userLoginDto.Password, userLoginDto.IsPersistent, true);
-            return result;
+            if (appUser != null  && appUser.IsActive == true)
+            {
+                var result = await _signInManager.PasswordSignInAsync(appUser, userLoginDto.Password, userLoginDto.IsPersistent, true);
+                return result;
+            }
+            return null;
+
         }
 
         public async Task<IList<string>> GetRoles(AppUser user, CancellationToken cancellationToken)

@@ -53,25 +53,34 @@ namespace App.EndPoints.MvcUi.Controllers
                 if (appUser != null)
                 {
                     var result = await _identityApp.Login(appUser, userLogin, cancellationToken);
-                    if (result.Succeeded)
+                    if (result != null)
                     {
-                        var roles = await _identityApp.GetRoles(appUser, cancellationToken);
+                        if ( result.Succeeded)
+                        {
+                            var roles = await _identityApp.GetRoles(appUser, cancellationToken);
 
 
-                        if (roles != null && roles.Contains("Admin"))
-                            return RedirectToAction("Index", "AdminPanel", new { area = "AdminArea" });
+                            if (roles != null && roles.Contains("Admin"))
+                                return RedirectToAction("Index", "AdminPanel", new { area = "AdminArea" });
 
-                        else if (roles != null && roles.Contains("Seller"))
-                            return RedirectToAction("Index", "SellerPanel", new { area = "SellerArea" });
+                            else if (roles != null && roles.Contains("Seller"))
+                                return RedirectToAction("Index", "SellerPanel", new { area = "SellerArea" });
 
+                            else
+                                return RedirectToAction("Index", "Customer");
+                        }
                         else
-                            return RedirectToAction("Index", "Customer");
+                        {
+                            ModelState.AddModelError(string.Empty, "رمز عبور صحیح نمی باشد.");
+
+                        }
                     }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "رمز عبور صحیح نمی باشد.");
+                        ModelState.AddModelError(string.Empty, "حساب شما به حالت تعلیق در آمده است.");
 
                     }
+
                 }
                 else 
                 { 
