@@ -1,0 +1,135 @@
+﻿@model List<GatAllAuctionsViewModel>
+@inject FileUploadPathsDto filePath;
+
+<div class="ec-content-wrapper">
+    <div class="content">
+        <div class="breadcrumb-wrapper d-flex align-items-center justify-content-between">
+            <div>
+                <h1>مزایده ها</h1>
+                <p class="breadcrumbs">
+                    <span>خانه</span> <span>
+                        <i class="mdi mdi-chevron-left"></i>
+                    </span>مزایده ها
+                </p>
+            </div>
+            @*<div><a href="product-list.html" class="btn btn-primary">افزودن محصول</a></div>*@
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            @if(Model != null && Model.Count >0)
+                            {  
+                            <table id="responsive-data-table" class="table" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>تصویر</th>
+                                        <th>نام</th>
+                                        <th>نام غرفه</th>
+                                        <th>قیمت پایه </th>
+                                        <th>تاریخ آغاز</th>
+                                        <th>تاریخ پایان</th>
+                                        <th>تاییدیه</th>
+                                        @if (Model.FirstOrDefault().status != AuctionStatus.Ended)
+                                        {
+                                                <th>فعالیت</th>
+                                        }else
+                                        {
+                                                <th>برنده</th>
+
+                                        }
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int Counter = 1;
+                                    }
+
+                                    @foreach (var item in @Model)
+                                    {
+                                        <tr>
+                                            <td> @Counter</td>
+                                            <td>
+                                                <img class="tbl-thumb" src="~/@filePath.Product/@item.ProductDto.Avatar"
+                                                     alt="Product Image">
+                                            </td>
+                                            <td>@item.ProductDto.Name</td>
+                                            <td>@item.Booth.Name</td>
+                                            <td>@item.BasePrice تومان</td>
+                                            <td>@item.StartTime</td>
+                                            <td>@item.EndTime</td>
+                                            <td>
+                                                @if (@item.IsConfirmed == true)
+                                                {
+                                                    <b class="badge badge-success">تایید</b>
+                                                }
+                                                else
+                                                {
+                                                    <b class="badge badge-danger">رد شده</b>
+                                                }
+                                            </td>
+                                            @if (item.status == AuctionStatus.Defined)
+                                            {
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                                class="btn btn-outline-success">
+                                                            اطلاعات
+                                                        </button> <button type="button"
+                                                                          class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                          data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                          aria-expanded="false" data-display="static">
+                                                            <span class="sr-only">اطلاعات</span>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                        <a class="dropdown-item" asp-controller="Auction" asp-action="Cancel" asp-route-auctionId="@item.Id">لغو</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            }
+                                            else if (item.status == AuctionStatus.Runing)
+                                            {
+                                                <td>
+                                                    <div class="btn-group mb-1">
+                                                        <button type="button"
+                                                                class="btn btn-outline-success">
+                                                            اطلاعات
+                                                        </button> <button type="button"
+                                                                      class="btn btn-outline-success dropdown-toggle dropdown-toggle-split"
+                                                                      data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                      aria-expanded="false" data-display="static">
+                                                        <span class="sr-only">اطلاعات</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                            <a class="dropdown-item" asp-controller="Auction" asp-action="Cancel" asp-route-auctionId="@item.Id">لغو</a>
+                                                            <a class="dropdown-item" asp-controller="Auction" asp-action="GetEndAuction" asp-route-auctionId="@item.Id">اتمام</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                            }
+                                            else if (item.status == AuctionStatus.Ended)
+                                            {
+                                                 <td>@item.WinnerName </td>
+                                            }
+
+
+                                            @Counter++;
+                                        </tr>
+
+                                    }
+
+                                </tbody>
+                            </table>
+                            }else{
+                                <p>مزایده ای یافت نشد!</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

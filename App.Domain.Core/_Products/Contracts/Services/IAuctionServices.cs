@@ -1,9 +1,13 @@
 ﻿using App.Domain.Core._Products.Dtos.AuctionDtos;
+using App.Domain.Core._Products.Enums;
 
 namespace App.Domain.Core._Products.Contracts.Services;
 
 public interface IAuctionServices
 {
+    Task<List<AuctionOutputDto>> GetAllRegistered(CancellationToken cancellationToken);
+    Task<List<AuctionOutputDto>> GetAllRuning(CancellationToken cancellationToken);
+    Task<List<AuctionOutputDto>> GetAllEnded(CancellationToken cancellationToken);
     Task<List<AuctionOutputDto>> GetAllActive(CancellationToken cancellationToken);
     Task<List<AuctionOutputDto>> GetAllForCustomer(int customerId, CancellationToken cancellationToken);
     Task<List<AuctionOutputDto>> GetAllForBooth(int BoothId, CancellationToken cancellationToken);

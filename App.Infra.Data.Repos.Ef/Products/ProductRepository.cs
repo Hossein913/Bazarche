@@ -65,6 +65,7 @@ public class ProductRepository : IProductRepository
                 Grantee = c.Grantee,
                 Description = c.Description,
                 IsConfirmed = c.IsConfirmed,
+                BasePrice = c.BasePrice,
                 MaxPrice = c.BoothProducts.Max(p => p.Price),
                 MinPrice = c.BoothProducts.Min(p => p.Price),
              }).ToListAsync(cancellationToken);

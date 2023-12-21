@@ -129,14 +129,16 @@
                             </a>
                             <div class="collapse">
                                 <ul class="sub-menu" id="orders" data-parent="#sidebar-menu">
-                                    <li><a class="sidenav-item-link" href="new-order.html"><span class="nav-text">مزایده های ثبت شده</span></a></li>
                                     <li>
-                                        <a class="sidenav-item-link" href="order-history.html">
+                                        <a class="sidenav-item-link" asp-controller="Auction" asp-action="IndexOfRegistered">
+                                        <span class="nav-text">مزایده های ثبت شده</span></a></li>
+                                    <li>
+                                        <a class="sidenav-item-link" asp-controller="Auction" asp-action="IndexOfRuning">
                                             <span class="nav-text"> مزایده های در حال اجرا </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="sidenav-item-link" href="order-detail.html">
+                                        <a class="sidenav-item-link" asp-controller="Auction" asp-action="IndexOfEnded">
                                             <span class="nav-text"> مزایده های تمام شده </span>
                                         </a>
                                     </li>

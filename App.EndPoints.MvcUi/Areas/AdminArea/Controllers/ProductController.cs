@@ -45,7 +45,7 @@ namespace App.EndPoints.MvcUi.Areas.AdminArea.Controllers
                     Avatar = p.Avatar,
                     Description = p.Description,
                     IsConfirmed = p.IsConfirmed,
-                    BasePrice = p.Id,
+                    BasePrice = p.BasePrice,
                     CreatedAt = p.CreatedAt
                 }).OrderByDescending(p => p.IsConfirmed).ThenBy(p => p.Id).ToList();
             return View(productsViewModel);

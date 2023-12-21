@@ -78,7 +78,7 @@ namespace App.Frameworks.Web.DateConverter
             int Minute = persianCalendar.GetMinute(dateTime);
             int Second = persianCalendar.GetSecond(dateTime);
 
-            return $" {Hour}:{Minute}:{Second} {year}/{month:00}/{day:00}";
+            return $" {Hour:00}:{Minute:00}:{Second:00} {year}/{month:00}/{day:00}";
         }
 
         public static PersianDate ToPersianDate(this DateTime dateTime)

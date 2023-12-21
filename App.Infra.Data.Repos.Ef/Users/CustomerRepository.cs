@@ -78,6 +78,28 @@ public class CustomerRepository : ICustomerRepository
 
     }
 
+    public async Task<List<CustomerOutputDto>> GetAllByIdList(List<int> IdsList,CancellationToken cancellationToken)
+    {
+        var reuslt = await _context.Customers
+            .AsNoTracking()
+            .Where(c => c.AppUser.IsDeleted == false && IdsList.Contains(c.Id))
+            .Select<Customer, CustomerOutputDto>(c => new CustomerOutputDto
+            {
+                Id = c.Id,
+                Firstname = c.FirstName,
+                Lastname = c.LastName,
+                Sexuality = c.Sexuality == null ? CustomerSexuality.None : c.Sexuality == true ? CustomerSexuality.Male : CustomerSexuality.Female,
+                //ProfilePicFile = c.ProfilePic.ImageUrl ?? null,
+                AddressId = c.AddressId,
+                Birthdate = c.Birthdate,
+                Wallet = c.Wallet,
+
+            }).ToListAsync(cancellationToken);
+        reuslt.ForEach(c => c.OrdersCount -= 1);
+        return reuslt;
+
+    }
+
     public async Task<CustomerOutputDto> GetDetailsWithRelation(int customerId, CancellationToken cancellationToken)
     {
         var customerUser = await _context.Customers

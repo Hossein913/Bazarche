@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Frameworks.Web", "App.F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cache", "Cache", "{5DB6E244-FFEC-43E1-9F23-4265E5540D00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisCache", "RedisCache\RedisCache.csproj", "{2994D4F8-32F7-4FCB-8BF9-6EC651A0DE4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.RedisCache", "RedisCache\App.Infra.RedisCache.csproj", "{2994D4F8-32F7-4FCB-8BF9-6EC651A0DE4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

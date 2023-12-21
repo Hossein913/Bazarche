@@ -29,7 +29,7 @@ public class AuctionRepository : IAuctionRepository
             EndTime = auction.EndTime,
             BasePrice = auction.BasePrice,
             Status = (int)AuctionStatus.Defined ,
-            IsConfirmed = null,
+            IsConfirmed = true,
 
         };
 
@@ -42,20 +42,28 @@ public class AuctionRepository : IAuctionRepository
         return 0;
     }
     
-    public async Task<List<AuctionOutputDto>> GetAll(CancellationToken cancellationToken)
+    public async Task<List<AuctionOutputDto>> GetAll(AuctionStatus auctionStatus,CancellationToken cancellationToken)
     {
         return await _context.Auctions
             .AsNoTracking()
+            .Where<Auction>(p => p.IsConfirmed == true && p.Status == (int)auctionStatus)
             .Select<Auction, AuctionOutputDto>(a => new AuctionOutputDto
             {
                 Id = a.Id,
                 WinnerId = a.WinnerId,
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
-                BasePrice = a.Id,
-                ProductId = a.ProductId,
+                BasePrice = a.BasePrice,
                 Booth = a.Booth,
-                Status = (AuctionStatus)a.Status
+                Status = (AuctionStatus)a.Status,
+                IsConfirmed = a.IsConfirmed,
+                ProductDto = new ProductOutputDto
+                {
+                    Name = a.Product.Name,
+                    Avatar = a.Product.Pictures.FirstOrDefault(p => p.IsDeleted == false).ImageUrl
+                },
+                
+
             }).ToListAsync(cancellationToken);
     }
 
@@ -69,7 +77,7 @@ public class AuctionRepository : IAuctionRepository
                 Id = a.Id,
                 StartTime = a.StartTime,
                 EndTime = a.EndTime,
-                BasePrice = a.Id,
+                BasePrice = a.BasePrice,
                 ProductId = a.ProductId,
                 Booth = a.Booth,
 

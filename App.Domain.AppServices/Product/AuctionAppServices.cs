@@ -3,6 +3,7 @@ using App.Domain.Core._Products.Contracts.AppServices;
 using App.Domain.Core._Products.Contracts.Services;
 using App.Domain.Core._Products.Dtos.AuctionDtos;
 using App.Domain.Core._Products.Entities;
+using App.Domain.Core._Products.Enums;
 using App.Domain.Core._User.Entities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -27,6 +28,21 @@ namespace App.Domain.AppServices.Product
             this.jobServices = jobServices;
         }
 
+        public async Task<List<AuctionOutputDto>> GetAllRegistered(CancellationToken cancellationToken)
+        {
+            var result = await _auctionServices.GetAllRegistered(cancellationToken);
+            return result;
+        }
+        public async Task<List<AuctionOutputDto>> GetAllRuning(CancellationToken cancellationToken)
+        {
+            var result = await _auctionServices.GetAllRuning(cancellationToken);
+            return result;
+        }
+        public async Task<List<AuctionOutputDto>> GetAllEnded(CancellationToken cancellationToken)
+        {
+            var result = await _auctionServices.GetAllEnded(cancellationToken);
+            return result;
+        }
         public async Task<List<AuctionOutputDto>> GetAllAuctions(CancellationToken cancellationToken)
         {
             var auctions =await _auctionServices.GetAllActive(cancellationToken);
@@ -97,6 +113,10 @@ namespace App.Domain.AppServices.Product
         public async Task Cancel(int auctionId, CancellationToken cancellationToken)
         {
             await _auctionServices.Cancel(auctionId, cancellationToken);
+        }
+        public async Task GetEndAuction(int auctionId, CancellationToken cancellationToken)
+        {
+            await _auctionServices.GetEndAuction(auctionId, cancellationToken);
         }
     }
 }

@@ -15,16 +15,13 @@ using App.Domain.Core._User.Dtos.WageDtos;
 using App.Domain.Core._User.Entities;
 using App.Domain.Services.Common;
 using App.Infra.Data.Repos.Ef.Commons;
+using App.Infra.Data.Repos.Ef.Users;
 using App.Infra.Data.SqlServer.Ef.Migrations;
 
 namespace App.Domain.Services.Product;
 
 public class AuctionServices : IAuctionServices
 {
-    
-    
-    
-
 
     protected readonly IAuctionRepository _auctionRepository;
     protected readonly ICustomerRepository _customerRepository ;
@@ -48,6 +45,39 @@ public class AuctionServices : IAuctionServices
     {
        var auctionId =  await _auctionRepository.Create(auction, cancellationToken);
         return auctionId;
+    }
+    public async Task<List<AuctionOutputDto>> GetAllRegistered(CancellationToken cancellationToken)
+    {
+        var result = await _auctionRepository.GetAll(AuctionStatus.Defined, cancellationToken);
+        return result;
+    }
+    public async Task<List<AuctionOutputDto>> GetAllRuning(CancellationToken cancellationToken)
+    {
+        var result = await _auctionRepository.GetAll(AuctionStatus.Runing, cancellationToken);
+        return result;
+    }
+    public async Task<List<AuctionOutputDto>> GetAllEnded(CancellationToken cancellationToken)
+    {
+        List<int> WinnersId = new List<int>();
+        var result = await _auctionRepository.GetAll(AuctionStatus.Ended, cancellationToken);
+
+        result.ForEach(a => {
+            if (a.WinnerId != null)
+            {
+                WinnersId.Add(Convert.ToInt32(a.WinnerId));
+
+            }
+        });
+        var customers = await _customerRepository.GetAllByIdList(WinnersId, cancellationToken);
+
+        result.ForEach( a =>{
+            if (a.WinnerId != null )
+            {
+                a.WinnerCustomer = customers.SingleOrDefault(c => c.Id == a.WinnerId);
+            }
+        });
+
+        return result;
     }
 
     public async Task<List<AuctionOutputDto>> GetAllActive(CancellationToken cancellationToken)
@@ -78,7 +108,7 @@ public class AuctionServices : IAuctionServices
     {
         var auction = await _auctionRepository.GetDetail(auctionId, cancellationToken);
 
-        if (auction.Bids.Count > 0)
+        if (auction.Bids.Count > 0 && auction.Status == AuctionStatus.Runing && auction.IsConfirmed == true)
         {
 
             List<Bid> auctionsBids = auction.Bids.OrderByDescending(b => b.BidPrice).ToList();
@@ -151,20 +181,6 @@ public class AuctionServices : IAuctionServices
                 await _boothServices.ChangeMedal(boothsId, cancellationToken);
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

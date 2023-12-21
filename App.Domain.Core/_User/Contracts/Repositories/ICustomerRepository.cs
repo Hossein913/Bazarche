@@ -6,6 +6,7 @@ namespace App.Domain.Core._User.Contracts.Repositories;
 public interface ICustomerRepository
 {
     Task<List<CustomerOutputDto>> GetAll(CancellationToken cancellationToken);
+    Task<List<CustomerOutputDto>> GetAllByIdList(List<int> IdsList, CancellationToken cancellationToken);
     Task<CustomerOutputDto> GetDetailsWithRelation(int customerId, CancellationToken cancellationToken);
     Task<CustomerOutputDto> GetDetails(int customerId, CancellationToken cancellationToken);
     Task<int> Create(CustomerCreateDto customerCreate, CancellationToken cancellationToken);
